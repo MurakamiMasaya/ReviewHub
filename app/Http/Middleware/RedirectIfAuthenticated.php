@@ -9,9 +9,6 @@ use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
 {
-    private const GUARD_USER = 'users';
-    private const GUARD_ADMIN = 'admin';
-
     /**
      * Handle an incoming request.
      *
