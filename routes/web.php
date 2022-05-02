@@ -14,5 +14,16 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('top');
 });
+
+//phpの設定確認する際にコメントを外す
+// Route::get('/phpinfo', function(){
+//     phpinfo();
+// });
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware('auth')->name('dashboard');
+
+require __DIR__.'/auth.php';
