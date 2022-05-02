@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserContorller;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +14,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('top');
-});
+
+Route::get('/', [UserContorller::class, 'index']);
 
 //phpの設定確認する際にコメントを外す
 // Route::get('/phpinfo', function(){
