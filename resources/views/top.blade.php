@@ -1,29 +1,51 @@
 <x-app-layout>
-
-    <!-- Admin Bar -->
+    <!-- Admin Header -->
     @if(isset($user) && $user->admin_flg === 1)
-    <header class="bg-gray-500 shadow">
-        <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-6xl">
-                <div class="flex justify-around items-center">
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">企業登録</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">スクール登録</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">イベント一覧</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">特集記事一覧</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">ユーザー一覧</a>
-                </div>
-            </div>
-        </div>
-    </header>
+        <x-admin-header />
     @endif
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 bg-white border-b border-gray-200">
-                    TopPage!!
+    <!-- Header Image -->
+    {{-- #TODO: 画像を横にスライドできる機能を後ほど実装 --}}
+    <x-eye-catching-image />
+
+    <div class="max-w-6xl mx-auto my-5 sm:my-10">
+        <div class="md:flex">
+            <!-- Left sides of main -->
+            <div class="md:w-2/3 md:mr-5 ">
+                <div class="block md:hidden">
+                    <x-login-register />
                 </div>
+                <div class="border-4 border-gray-300 my-5 md:my-0">
+                    <x-company.banner />
+     
+                    <x-company.ranking />
+     
+                    {{-- #TODO: 後ほど条件から企業を検索できるようにするために、企業テーブルを編集する必要あり。
+                        また以下を表示するために採用条件テーブルを2つ用意し、foreacheで表示する。 --}}
+                    <x-company.search-by-conditions />
+                </div>
+
+            </div>
+
+            <!-- Right side of main -->
+            <div class="md:w-1/3">
+                <div class="hidden md:block">
+                    <x-login-register />
+                </div>
+
+                {{-- #TODO: デザインがかなりもっさりしているの修正必須。
+                    データを渡してforeachで表示する --}}
+                <x-school.top-three />
+
+                {{-- #TODO: tuncateがついていないので修正が必要かと
+                    上記同様にデータを渡して、foreachで表示する。 --}}
+                <x-article.top-eight />
+                  
             </div>
         </div>
     </div>
+
+    <!-- Footer Image -->
+    {{-- #TODO: 画像を横にスライドできる機能を後ほど実装 --}}
+    <x-eye-catching-image />
 </x-app-layout>

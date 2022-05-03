@@ -15,7 +15,7 @@ use App\Http\Controllers\UserContorller;
 */
 
 
-Route::get('/', [UserContorller::class, 'index']);
+Route::get('/', [UserContorller::class, 'index'])->name('top');
 
 //phpの設定確認する際にコメントを外す
 // Route::get('/phpinfo', function(){

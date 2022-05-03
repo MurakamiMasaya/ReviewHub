@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 relative">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
 
     <!-- Primary Navigation Menu -->
     <div class="max-w-6xl mx-auto">
@@ -6,17 +6,18 @@
             <!-- Logo -->
             <div class="shrink-0 flex items-center pl-3 sm:pl-10 lg:pl-20">
                 <div class="w-28 sm:w-40 md:w-48">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('top') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
             </div>
             <div class="hidden sm:block my-auto pr-5 sm:pr-10 lg:pr-20">
                 <div>
+                    <a href="#" class="text-sm font-bold text-gray-700 dark:text-gray-500">サイトマップ</a>
                     <a href="#" class="text-sm font-bold text-gray-700 dark:text-gray-500">お問い合わせ</a>
                     <a href="#" class="ml-5 text-sm font-bold text-gray-700 dark:text-gray-500">マイページ</a>
                 </div>
-                <div class="">
+                <div class="text-right">
                     @auth
                         <a href="{{ url('/logout') }}" class="text-sm font-bold text-red-600 dark:text-red-500">ログアウト</a>
                     @else
@@ -72,33 +73,33 @@
         <div>
             <div class="flex justify-center items-center h-16">
                 <div class="w-28">
-                    <a href="{{ route('dashboard') }}">
+                    <a href="{{ route('top') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
                 </div>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
                     企業情報
                 </x-responsive-nav-link>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
                     スクール情報
                 </x-responsive-nav-link>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
                     イベント情報
                 </x-responsive-nav-link>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
                     特集記事
                 </x-responsive-nav-link>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
+                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
                     マイページ
                 </x-responsive-nav-link>
             </div>
@@ -110,15 +111,8 @@
         <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
             <div class="max-w-6xl mx-auto flex justify-center sm:justify-between items-center">
                 <div class="flex">
-                    {{-- todo: inputにフォーカスした時、青い枠線が出現する --}}
-                    <form action="#" method="post" class="mr-2 lg:mr-5 w-32 md:w-48">
-                        <input class="text-sm bg-white appearance-none border-2 border-white rounded w-full py-2 px-2 md:px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-300"
-                        type="text" name="" value="会社を検索">
-                    </form>
-                    <form action="#" method="post" class="mr-2 w-32 md:w-48">
-                        <input class="text-sm bg-white appearance-none border-2 border-white rounded w-full py-2 px-2 md:px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-300"
-                        type="text" name="" value="スクールを検索">
-                    </form>
+                    <x-search.company />
+                    <x-search.school />
                 </div>
                 <div class="hidden sm:block">
                     <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">企業情報</a>
