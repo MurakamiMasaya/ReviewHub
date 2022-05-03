@@ -35,5 +35,8 @@
             </div>
         </div>
     </div>
+    <div class="text-center text-sm py-5">
+        &copy; ReviewHub All Right Reserved.
+    </div>
 
 </footer>
