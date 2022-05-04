@@ -24,7 +24,7 @@
             </a>
         </div>
         <div class="md:flex items-center justify-end mt-5 lg:mt-0">
-            <div class="w-28 sm:w-40 md:w-48 mr-0 md:mr-3">
+            <div class="w-36 sm:w-40 md:w-48 mr-0 md:mr-3">
                 <a href="{{ route('top') }}">
                     <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                 </a>

@@ -17,7 +17,7 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="min-h-screen relative">
+        <div class="min-h-screen bg-gray-100 relative">
             @include('layouts.navigation')
 
             <!-- Page Content -->
@@ -27,5 +27,6 @@
 
             @include('layouts.footer')
         </div>
+        <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
     </body>
 </html>

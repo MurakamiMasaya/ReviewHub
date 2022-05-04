@@ -9,7 +9,7 @@
     </div>
     <div class="bg-gray-500 h-1"></div>
     <div class="md:flex">
-        <div class="md:w-1/2 mr-3">
+        <div class="md:w-1/2 md:mr-3">
             <div class="flex items-center mt-5 justify-center">
                 <div class="w-10 mr-3">
                     <img src="{{ asset('images/first.png') }}" alt="1位">

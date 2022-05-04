@@ -1,4 +1,4 @@
-<div class="sm:flex justify-around my-10 px-5 text-gray-800">
+<div class="sm:flex justify-around my-10 px-10 md:px-5 text-gray-800">
     <div class="">
         <div class="border-4 border-orange-500 px-2 md:px-4 py-2 rounded-md font-bold text-sm lg:text-lg text-center">言語・技術から企業を探す</div>
         <div class="flex justify-around pt-5">

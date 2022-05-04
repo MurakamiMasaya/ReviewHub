@@ -5,7 +5,7 @@
         <div class="flex justify-between h-16">
             <!-- Logo -->
             <div class="shrink-0 flex items-center pl-3 sm:pl-10 lg:pl-20">
-                <div class="w-28 sm:w-40 md:w-48">
+                <div class="w-36 sm:w-40 md:w-48">
                     <a href="{{ route('top') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
                     </a>
@@ -32,23 +32,38 @@
                 <!-- Responsive Icon -->
                 <div class="flex sm:hidden items-center">
                     @auth
-                        <div class="mr-2">
+                        <div class="mr-3">
                             <a href="{{ route('logout') }}">
-                                <div class="w-8 mx-auto"><img src="{{ asset('images/logout.png') }}" alt=""></div>
-                                <div class="text-xs text-gray-500">ログアウト</div>
+                                <div class="w-8 mx-auto" data-tooltip-target="tooltip-logout" data-tooltip-style="light">
+                                    <img src="{{ asset('images/logout.png') }}" alt="">
+                                </div>
+                                <div id="tooltip-logout" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
+                                    新規登録
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
                             </a>
                         </div>
                     @else
-                        <div class="mr-2">
+                        <div class="mr-3">
                             <a href="{{ route('register') }}">
-                                <div class="w-8 mx-auto"><img src="{{ asset('images/register.png') }}" alt=""></div>
-                                <div class="text-xs text-gray-500">新規登録</div>
+                                <div class="w-8 mx-auto" data-tooltip-target="tooltip-register" data-tooltip-style="light">
+                                    <img src="{{ asset('images/register.png') }}" alt="">
+                                </div>
+                                <div id="tooltip-register" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
+                                    新規登録
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
                             </a>
                         </div>
-                        <div class="mr-2">
+                        <div class="mr-3">
                             <a href="{{ route('login') }}">
-                                <div class="w-8 mx-auto"><img src="{{ asset('images/login.png') }}" alt=""></div>
-                                <div class="text-xs text-gray-500">ログイン</div>
+                                <div class="w-8 mx-auto" data-tooltip-target="tooltip-login" data-tooltip-style="light">
+                                    <img src="{{ asset('images/login.png') }}" alt="">
+                                </div>
+                                <div id="tooltip-login" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
+                                    ログイン
+                                    <div class="tooltip-arrow" data-popper-arrow></div>
+                                </div>
                             </a>
                         </div>
                     @endauth
@@ -108,7 +123,7 @@
 
     <!-- Top Bar -->
     <header class="bg-red-500 shadow">
-        <div class="mx-auto py-6 px-4 sm:px-6 lg:px-8">
+        <div class="mx-auto py-3 md:py-6 px-4 sm:px-6 lg:px-8">
             <div class="max-w-6xl mx-auto flex justify-center sm:justify-between items-center">
                 <div class="flex">
                     <x-search.company />
