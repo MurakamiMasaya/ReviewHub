@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserContorller;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,15 +15,18 @@ use App\Http\Controllers\UserContorller;
 */
 
 
-Route::get('/', [UserContorller::class, 'index'])->name('top');
+Route::controller(UserController::class)->group(function(){
+    Route::get('/', 'index')->name('top');
+});
 
 //phpの設定確認する際にコメントを外す
 // Route::get('/phpinfo', function(){
 //     phpinfo();
 // });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware('auth')->name('dashboard');
+//個人情報保護方針
+Route::get('/privacy_policy', function(){
+    return view('privacy-policy');
+});
 
 require __DIR__.'/auth.php';

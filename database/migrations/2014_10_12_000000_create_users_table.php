@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('username');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('phone');
+            $table->bigInteger('phone')->unsigned();
             $table->string('password');
             $table->tinyInteger('admin_flg')->unsigned();
             $table->rememberToken();
