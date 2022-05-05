@@ -14,8 +14,15 @@ class ExampleTest extends TestCase
      */
     public function test_the_application_returns_a_successful_response()
     {
-        $response = $this->get('/');
+        $data = [
+            'id' => 1,
+            'name' => 'YAMADA-TARO',
+            'email' => 'taro@yamada.com',
+            'age' => 34,
+        ];
 
-        $response->assertStatus(200);
+        $this->assertDatabaseHas('user_for_tests', $data);
+        //$data['id'] => 2;
+        $this->assertDatabaseMissing('user_for_tests', $data);
     }
 }

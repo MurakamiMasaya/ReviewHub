@@ -105,13 +105,6 @@
                 </div>
 
             </div>
-            <div class="text-center my-10">
-                <a href="{{ url()->previous() }}">
-                    <x-button.secondary-button class="w-52">
-                        戻る
-                    </x-button.secondary-button>
-                </a>
-            </div>
         </div>
     </x-auth-card>
 </x-guest-layout>

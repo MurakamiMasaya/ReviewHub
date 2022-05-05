@@ -33,14 +33,13 @@
                 </div>
     
                 <!-- privacy policy -->
-                {{-- #TODO: 個人情報保護方針ページから戻ってきた際にデータが消えていることの修正 --}}
                 <div class="mt-10 text-xs text-center">
-                    <a href="/privacy_policy" class="text-blue-400">
+                    <a href="/privacy_policy" class="text-blue-400" target="_blank" rel="noopener noreferrer">
                         個人情報保護方針
                     </a>
                     に同意してログイン
                     <div class="text-center mt-2">
-                        <input type="checkbox" name="privacy_policy" value="1" class="rounded-full mr-2">同意する    
+                        <input type="checkbox" name="privacy_policy" value=1 class="rounded-full mr-2" required>同意する    
                     </div>
                 </div>
     
