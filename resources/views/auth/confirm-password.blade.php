@@ -27,9 +27,9 @@
             </div>
 
             <div class="flex justify-end mt-4">
-                <x-button>
-                    {{ __('Confirm') }}
-                </x-button>
+                <x-button.primary-button >
+                    確定する
+                </x-button.primary-button>
             </div>
         </form>
     </x-auth-card>

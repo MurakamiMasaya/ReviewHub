@@ -21,9 +21,9 @@
                 @csrf
 
                 <div>
-                    <x-button>
-                        {{ __('Resend Verification Email') }}
-                    </x-button>
+                    <x-button.primary-button >
+                        確認メールを送信する
+                    </x-button.primary-button>
                 </div>
             </form>
 

@@ -32,7 +32,7 @@ class AuthenticationTest extends TestCase
         ]);
 
         
-        // $this->assertAuthenticated();
+        $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
 
