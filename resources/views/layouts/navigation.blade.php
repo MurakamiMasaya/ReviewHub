@@ -94,22 +94,22 @@
                 </div>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
+                <x-responsive-nav-link :href="route('company.index')" :active="request()->routeIs('company.index')">
                     企業情報
                 </x-responsive-nav-link>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
+                <x-responsive-nav-link :href="route('school.index')" :active="request()->routeIs('school.index')">
                     スクール情報
                 </x-responsive-nav-link>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
+                <x-responsive-nav-link :href="route('event.index')" :active="request()->routeIs('event.index')">
                     イベント情報
                 </x-responsive-nav-link>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
+                <x-responsive-nav-link :href="route('article.index')" :active="request()->routeIs('article.index')">
                     特集記事
                 </x-responsive-nav-link>
             </div>
@@ -126,14 +126,14 @@
         <div class="mx-auto py-3 md:py-6 px-4 sm:px-6 lg:px-8">
             <div class="max-w-6xl mx-auto flex justify-center sm:justify-between items-center">
                 <div class="flex">
-                    <x-search.company />
-                    <x-search.school />
+                    <x-company.search />
+                    <x-school.search />
                 </div>
                 <div class="hidden sm:block">
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">企業情報</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">スクール情報</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">イベント情報</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">特集記事</a>
+                    <a href="{{ route('company.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">企業情報</a>
+                    <a href="{{ route('school.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">スクール情報</a>
+                    <a href="{{ route('event.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">イベント情報</a>
+                    <a href="{{ route('article.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">特集記事</a>
                 </div>
             </div>
         </div>

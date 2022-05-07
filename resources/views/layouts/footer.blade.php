@@ -3,10 +3,10 @@
         <div class="mx-auto py-6 px-2 md:px-5">
             <div class="max-w-6xl">
                 <div class="flex justify-around items-center">
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-1 lg:mr-5">企業情報</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-1 lg:mr-5">スクール情報</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-1 lg:mr-5">イベント情報</a>
-                    <a href="#" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">特集記事</a>
+                    <a href="{{ route('company.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-1 lg:mr-5">企業情報</a>
+                    <a href="{{ route('school.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-1 lg:mr-5">スクール情報</a>
+                    <a href="{{ route('event.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-1 lg:mr-5">イベント情報</a>
+                    <a href="{{ route('article.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">特集記事</a>
                 </div>
             </div>
         </div>
