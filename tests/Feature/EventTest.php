@@ -13,10 +13,11 @@ class EventTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_event_display()
     {
         $response = $this->get('/event');
 
         $response->assertStatus(200);
+        $response->assertSeeText('人気イベント');
     }
 }

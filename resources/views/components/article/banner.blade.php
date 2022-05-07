@@ -4,7 +4,7 @@
             <div>GRがTOP10の</div>
             <div class="lg:flex justify-center mt-1 md:mt-5">
                 <div>
-                    <span class="text-2xl md:text-4xl text-orange-500">「人気掲載記事」</span>
+                    <span class="text-2xl md:text-4xl text-orange-500">「人気特集記事」</span>
                 </div>
                 <div class="mt-1 lg:mt-0">掲載中！！</div>
             </div>

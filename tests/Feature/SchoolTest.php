@@ -13,10 +13,11 @@ class SchoolTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_school_display()
     {
         $response = $this->get('/school');
 
         $response->assertStatus(200);
+        $response->assertSeeText('開講情報・レビュー');
     }
 }

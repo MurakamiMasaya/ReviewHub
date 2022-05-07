@@ -23,14 +23,12 @@ class AuthenticationTest extends TestCase
     {
         
         $user = User::factory()->create();
-        // dd($user);
-        
+
         $response = $this->post('/login', [
             'email' => $user->email,
             'password' => 'password',
             'privacy_policy' => '1',
         ]);
-
         
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
@@ -47,5 +45,18 @@ class AuthenticationTest extends TestCase
         ]);
 
         $this->assertGuest();
+    }
+
+    public function test_forget_check_privacy_policy()
+    {
+        $user = User::factory()->create();
+
+        $response = $this->post('/login', [
+            'email' => $user->email,
+            'password' => 'password',
+        ]);
+
+        $this->assertGuest();
+        $response->assertRedirect(RouteServiceProvider::HOME);
     }
 }

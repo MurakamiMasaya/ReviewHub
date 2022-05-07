@@ -13,10 +13,11 @@ class ArticleTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_article_display()
     {
         $response = $this->get('/article');
 
         $response->assertStatus(200);
+        $response->assertSeeText('人気特集記事');
     }
 }

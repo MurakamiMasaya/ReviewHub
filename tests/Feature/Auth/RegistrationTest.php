@@ -34,4 +34,22 @@ class RegistrationTest extends TestCase
         $this->assertAuthenticated();
         $response->assertRedirect(RouteServiceProvider::HOME);
     }
+
+    public function test_forget_check_privacy_policy()
+    {
+        $response = $this->post('/register', [
+            'name' => 'Test User',
+            'birthday' => '2022-05-07 00:28:26',
+            'gender' => 0,
+            'username' => 'test',
+            'email' => 'test@gmail.com',
+            'phone' => '09099999999',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+        ]);
+
+
+        $this->assertGuest();
+        $response->assertRedirect(RouteServiceProvider::HOME);
+    }
 }
