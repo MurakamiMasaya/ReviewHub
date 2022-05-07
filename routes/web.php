@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\TopController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SchoolController;
@@ -19,7 +19,7 @@ use App\Http\Controllers\ArticleController;
 */
 
 
-Route::controller(UserController::class)->group(function(){
+Route::controller(TopController::class)->group(function(){
     Route::get('/', 'index')->name('top');
 });
 

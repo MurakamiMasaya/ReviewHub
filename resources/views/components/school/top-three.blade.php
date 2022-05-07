@@ -7,7 +7,7 @@
             スクールランキングTOP3
         </div>
     </div>
-    <div class="p-5">
+    <div class="py-5 px-2">
         <div class="w-52 mx-auto flex items-center border-4 border-red-300 rounded-3xl py-2 px-4">
             <div class="w-8 mr-3">
                 <img src="{{ asset('images/GR.png') }}" alt="GR">
@@ -15,55 +15,23 @@
             <div class="text-xl font-bold">GR 受付中！</div>
         </div>
         <div>
+            @foreach ($schools as $school)
             <div>
-                <div class="flex justify-between items-center mt-3">
+                <div class="flex justify-around items-center mt-3">
                     <div class="flex items-end">
-                        <div class="mr-3 text-2xl font-bold text-red-800">1位</div>
-                        <div class="text-xl font-medium">TECH CAMP</div>
+                        <div class="mr-3 md:mr-1 lg:mr-3 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
+                        <div class="text-md lg:text-lg font-bold">{{ $school->school_name }}</div>
                     </div>
                     <div class="flex">
-                        <div class="w-8 mr-1">
+                        <div class="w-7 mr-1">
                             <img src="{{ asset('images/GR.png') }}" alt="GR">
                         </div>
-                        <div class="text-xl font-medium flex items-end">950</div>
+                        <div class="text-lg font-medium flex items-end">{{ $school->school_gr }}</div>
                     </div>
                 </div>
                 <div class="bg-gray-300 h-1"></div>
             </div>
-        </div>
-        <div>
-            <div>
-                <div class="flex justify-between items-center mt-3">
-                    <div class="flex items-end">
-                        <div class="mr-3 text-2xl font-bold text-red-800">2位</div>
-                        <div class="text-xl font-medium">TECH CAMP</div>
-                    </div>
-                    <div class="flex">
-                        <div class="w-8 mr-1">
-                            <img src="{{ asset('images/GR.png') }}" alt="GR">
-                        </div>
-                        <div class="text-xl font-medium flex items-end">950</div>
-                    </div>
-                </div>
-                <div class="bg-gray-300 h-1"></div>
-            </div>
-        </div>
-        <div>
-            <div>
-                <div class="flex justify-between items-center mt-3">
-                    <div class="flex items-end">
-                        <div class="mr-3 text-2xl font-bold text-red-800">3位</div>
-                        <div class="text-xl font-medium">TECH CAMP</div>
-                    </div>
-                    <div class="flex">
-                        <div class="w-8 mr-1">
-                            <img src="{{ asset('images/GR.png') }}" alt="GR">
-                        </div>
-                        <div class="text-xl font-medium flex items-end">950</div>
-                    </div>
-                </div>
-                <div class="bg-gray-300 h-1"></div>
-            </div>
+            @endforeach
         </div>
     </div>
 </div>

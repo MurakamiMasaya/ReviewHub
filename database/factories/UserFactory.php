@@ -20,7 +20,7 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'birthday' => $this->faker->dateTimeBetween('-100 year', 'now'),
+            'birthday' => $this->faker->dateTimeBetween('-100 years', '-20 years')->format('Y-m-d'),
             'gender' => $this->faker->numberBetween(0,1),
             'username' => $this->faker->firstName(),
             'email' => $this->faker->unique()->safeEmail(),

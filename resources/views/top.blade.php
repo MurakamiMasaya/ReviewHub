@@ -35,11 +35,11 @@
 
                 {{-- #TODO: デザインがかなりもっさりしているの修正必須。
                     データを渡してforeachで表示する --}}
-                <x-school.top-three />
+                <x-school.top-three :schools="$schools" />
 
                 {{-- #TODO: tuncateがついていないので修正が必要かと
                     上記同様にデータを渡して、foreachで表示する。 --}}
-                <x-article.top-eight />
+                <x-article.top-eight :articles="$articles" />
                   
             </div>
         </div>
