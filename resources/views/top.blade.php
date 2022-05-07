@@ -18,11 +18,11 @@
                 <div class="border-4 border-gray-300 my-5 md:my-0">
                     <x-company.banner />
      
-                    <x-company.ranking />
+                    <x-company.ranking :companies="$companies"/>
      
                     {{-- #TODO: 後ほど条件から企業を検索できるようにするために、企業テーブルを編集する必要あり。
                         また以下を表示するために採用条件テーブルを2つ用意し、foreacheで表示する。 --}}
-                    <x-company.search-by-conditions />
+                    <x-company.search-by-conditions :conditions="$conditions" :stacks="$stacks" />
                 </div>
 
             </div>

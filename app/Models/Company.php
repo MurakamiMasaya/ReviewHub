@@ -19,5 +19,4 @@ class Company extends Model
         'company_website_url',
     ];
 
-
 }
