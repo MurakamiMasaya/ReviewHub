@@ -34,7 +34,7 @@
     
                 <!-- privacy policy -->
                 <div class="mt-10 text-xs text-center">
-                    <a href="/privacy_policy" class="text-blue-400" target="_blank" rel="noopener noreferrer">
+                    <a href="/privacy_policy" class="text-blue-500" target="_blank" rel="noopener noreferrer">
                         個人情報保護方針
                     </a>
                     に同意してログイン
@@ -53,6 +53,11 @@
                         </x-button.secondary-button>
                     </a>
                 </div>
+                 <div class="text-xs text-center text-blue-500 mb-5">
+                     <a href="{{ route('password.request') }}">
+                         パスワードを忘れた方はこちら
+                     </a>
+                 </div>
             </form>
         </div>
     </x-auth-card>
