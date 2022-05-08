@@ -38,7 +38,7 @@
                                     <img src="{{ asset('images/logout.png') }}" alt="">
                                 </div>
                                 <div id="tooltip-logout" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
-                                    新規登録
+                                    ログアウト
                                     <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                             </a>

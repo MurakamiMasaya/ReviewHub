@@ -15,16 +15,16 @@ class CompanyController extends Controller
 
         $user = Auth::user();
         // #TODO: クエリビルダで取得したデータに順位をつけたい。
-        $companies = Company::orderBy('company_gr', 'desc')
+        $companies = Company::orderBy('gr', 'desc')
             ->paginate(20); 
         // $companies = DB::table('companies')
         // ->select( id,
         //  DB::raw(select 'rank_result' rank()over(order by company_gr desc) as rank_result));
         
-        $schools = School::orderBy('school_gr', 'desc')
+        $schools = School::orderBy('gr', 'desc')
             ->limit(3)
             ->get();
-        $articles = Article::orderBy('article_gr', 'desc')
+        $articles = Article::orderBy('gr', 'desc')
             ->limit(8)
             ->get();
     

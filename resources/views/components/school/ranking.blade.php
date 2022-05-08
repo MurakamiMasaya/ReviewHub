@@ -1,7 +1,7 @@
 <div class="mt-10 px-1 md:px-3 lg:px-5 text-gray-800">
     <div class="lg:flex justify-between items-end">
         <div class="text-xl md:text-2xl font-bold">
-            企業掲示板 GRランキング
+            スクール掲示板 GRランキング
         </div>
         <div class="text-right">
             2022/04/25~2022/05/24
@@ -11,7 +11,7 @@
 
     <div class="my-5 md:flex">
         <div class="md:w-1/2">
-            @foreach($companies as $company)
+            @foreach($schools as $school)
                 @if($loop->index < 10)
                 <div class="mr-1 lg:mr-3">
                     <div class="flex justify-around md:justify-between">
@@ -23,7 +23,7 @@
                             </div>
                             <div class="font-bold text-md lg:text-lg">
                                 <a href="#">
-                                    {{ $company->name }}
+                                    {{ $school->name }}
                                 </a>
                             </div>
                         </div>
@@ -31,7 +31,7 @@
                             <div class="w-7 mr-1">
                                 <img src="{{ asset('images/GR.png') }}" alt="GR">
                             </div>
-                            <div class="text-lg font-bold flex items-end">{{ $company->gr }}</div>
+                            <div class="text-lg font-bold flex items-end">{{ $school->gr }}</div>
                         </div>
                     </div>
                 </div>
@@ -39,7 +39,7 @@
             @endforeach
         </div>
         <div class="md:w-1/2 relative">
-            @foreach($companies as $company)
+            @foreach($schools as $school)
                 @if($loop->index >= 10)
                 <div class="mr-1 lg:mr-3">
                     <div class="flex justify-around md:justify-between">
@@ -51,7 +51,7 @@
                             </div>
                             <div class="font-bold text-md lg:text-lg">
                                 <a href="#">
-                                    {{ $company->name }}
+                                    {{ $school->name }}
                                 </a>
                             </div>
                         </div>
@@ -59,7 +59,7 @@
                             <div class="w-7 mr-1">
                                 <img src="{{ asset('images/GR.png') }}" alt="GR">
                             </div>
-                            <div class="text-lg font-medium flex items-end">{{ $company->gr }}</div>
+                            <div class="text-lg font-medium flex items-end">{{ $school->gr }}</div>
                         </div>
                     </div>
                 </div>
@@ -73,6 +73,6 @@
         </div>
     </div>
     @if(Auth::check())
-    <div class="my-5">{{ $companies->links() }}</div>
+    <div class="my-5">{{ $schools->links() }}</div>
     @endif
 </div>

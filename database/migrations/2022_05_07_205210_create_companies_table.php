@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('companies', function (Blueprint $table) {
             $table->id();
-            $table->string('company_name');
-            $table->string('company_address');
-            $table->bigInteger('company_phone')->unsigned();
-            $table->string('company_technology');
-            $table->integer('company_gr')->unsigned();
-            $table->string('company_website_url');
+            $table->string('name');
+            $table->string('address');
+            $table->bigInteger('phone')->unsigned();
+            $table->string('technology');
+            $table->integer('gr')->unsigned();
+            $table->string('website_url');
             $table->timestamps();
             $table->softDeletes();
         });

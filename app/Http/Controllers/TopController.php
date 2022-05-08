@@ -15,14 +15,14 @@ class TopController extends Controller
     public function index(){
 
         $user = Auth::user();
-        $companies = Company::orderBy('company_gr', 'desc')
+        $companies = Company::orderBy('gr', 'desc')
             ->paginate(20);
         $conditions = Condition::all();
         $stacks = Stack::all();
-        $schools = School::orderBy('school_gr', 'desc')
+        $schools = School::orderBy('gr', 'desc')
             ->limit(3)
             ->get();
-        $articles = Article::orderBy('article_gr', 'desc')
+        $articles = Article::orderBy('gr', 'desc')
             ->limit(8)
             ->get();
         // dd($schools, $articles);

@@ -14,16 +14,16 @@
         @foreach ($articles as $article)      
         <div class="border-b-2 border-gray-300 mt-3">
             <div class="flex items-end">
-                <div class="mr-2 w-56 h-12 text-ellipsis overflow-hidden ...">
+                <div class="mr-2 line-clamp-2">
                     <a href="#">
-                        {{ $article->article_contents}}
+                        {{ $article->contents}}
                     </a>
                 </div>
                 <div class="mx-auto align-middle">
                     <div class="w-8">
                         <img src="{{ asset('images/GR.png') }}" alt="GR">
                     </div>
-                    <div class="text-center text-sm">{{ $article->article_gr }}</div>
+                    <div class="text-center text-sm">{{ $article->gr }}</div>
                 </div>
             </div>
         </div>

@@ -18,6 +18,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\Company::factory(100)->create();
         \App\Models\School::factory(100)->create();
         \App\Models\Article::factory(100)->create();
+        \App\Models\Event::factory(100)->create();
         $this->call([
             UserSeeder::class,
             ConditionSeeder::class,

@@ -15,13 +15,13 @@ return new class extends Migration
     {
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
-            $table->string('school_name');
-            $table->boolean('school_online');
-            $table->string('school_address');
-            $table->text('school_contents');
-            $table->bigInteger('school_phone')->unsigned();
-            $table->integer('school_gr')->unsigned();
-            $table->string('school_website_url');
+            $table->string('name');
+            $table->boolean('online');
+            $table->string('address');
+            $table->text('contents');
+            $table->bigInteger('phone')->unsigned();
+            $table->integer('gr')->unsigned();
+            $table->string('website_url');
             $table->timestamps();
             $table->softDeletes();
         });

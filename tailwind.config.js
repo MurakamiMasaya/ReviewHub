@@ -20,7 +20,8 @@ module.exports = {
     plugins: [
         require('tailwindcss'),
         require('@tailwindcss/forms'),
-        require('flowbite/plugin')
+        require('flowbite/plugin'),
+        require('@tailwindcss/line-clamp'),
     ],
     
 };

@@ -6,17 +6,22 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Article extends Model
+class Event extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
-        'article_title',
-        'article_contents',
-        'article_image',
-        'article_gr',
-        'article_tag',
-        'article_url',
+        'segment',
+        'title',
+        'contents',
+        'image',
+        'online',
+        'area',
+        'capacity',
+        'contact_address',
+        'gr',
+        'tag',
+        'url',
     ];
 }

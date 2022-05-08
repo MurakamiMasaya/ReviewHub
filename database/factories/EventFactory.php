@@ -5,16 +5,15 @@ namespace Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Article>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Event>
  */
-class ArticleFactory extends Factory
+class EventFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    
     public function definition()
     {
         $image = [
@@ -36,9 +35,14 @@ class ArticleFactory extends Factory
 
         return [
             'user_id' => $this->faker->numberBetween(1,10),
-            'title' => $this->faker->realText(20),
+            'segment' => $this->faker->numberBetween(0,1),
+            'title' => $this->faker->realText(40),
             'contents' => $this->faker->realText(300),
             'image' => $this->faker->randomElement($image),
+            'online' => $this->faker->numberBetween(0,1),
+            'area' => $this->faker->address(),
+            'capacity' => $this->faker->numberBetween(1,50),
+            'contact_address' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
             'gr' => $this->faker->numberBetween(0,1000),
             'tag' => $this->faker->randomElement($tag),
             'url' => $this->faker->url(),

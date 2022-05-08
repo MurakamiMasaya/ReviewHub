@@ -17,13 +17,13 @@ class SchoolFactory extends Factory
     public function definition()
     {
         return [
-            'school_name' => $this->faker->name().'スクール',
-            'school_online' => $this->faker->numberBetween(0,1),
-            'school_address' => $this->faker->address(),
-            'school_contents' => $this->faker->realText(300),
-            'school_phone' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
-            'school_gr' => $this->faker->numberBetween(0,1000),
-            'school_website_url' => $this->faker->url(),
+            'name' => $this->faker->name().'スクール',
+            'online' => $this->faker->numberBetween(0,1),
+            'address' => $this->faker->address(),
+            'contents' => $this->faker->realText(300),
+            'phone' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
+            'gr' => $this->faker->numberBetween(0,1000),
+            'website_url' => $this->faker->url(),
         ];
     }
 }

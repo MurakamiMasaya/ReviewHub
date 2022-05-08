@@ -13,14 +13,8 @@
                 </div>
                 <div class="border-4 border-gray-300 my-5 md:my-0">
                     <x-article.banner />
-     
-                    <x-company.ranking />
-     
-                    {{-- #TODO: 後ほど条件から企業を検索できるようにするために、企業テーブルを編集する必要あり。
-                        また以下を表示するために採用条件テーブルを2つ用意し、foreacheで表示する。 --}}
-                    <x-company.search-by-conditions />
+                    <x-article.ranking :articles="$articles"/>
                 </div>
-
             </div>
 
             <!-- Right side of main -->
@@ -29,14 +23,8 @@
                     <x-login-register />
                 </div>
 
-                {{-- #TODO: デザインがかなりもっさりしているの修正必須。
-                    データを渡してforeachで表示する --}}
-                <x-school.top-three />
-
-                {{-- #TODO: tuncateがついていないので修正が必要かと
-                    上記同様にデータを渡して、foreachで表示する。 --}}
-                <x-article.top-eight />
-                  
+                <x-school.top-three :schools="$schools"/>
+                <x-company.top-three :companies="$companies" />
             </div>
         </div>
     </div>
