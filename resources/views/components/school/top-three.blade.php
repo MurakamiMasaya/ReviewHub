@@ -1,4 +1,4 @@
-<div class="border-4 border-red-500 mt-5">
+<div class="border-4 border-red-500">
     <div class="bg-red-500 py-2">
         <div class="text-center text-white text-xl font-bold">
             2022年最新
@@ -20,7 +20,11 @@
                 <div class="flex justify-around items-center mt-3">
                     <div class="flex items-end">
                         <div class="mr-3 md:mr-1 lg:mr-3 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
-                        <div class="text-md lg:text-lg font-bold">{{ $school->school_name }}</div>
+                        <div class="text-md lg:text-lg font-bold">
+                            <a href="#">
+                                {{ $school->school_name }}
+                            </a>
+                        </div>
                     </div>
                     <div class="flex">
                         <div class="w-7 mr-1">

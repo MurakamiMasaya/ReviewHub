@@ -16,8 +16,7 @@ class TopController extends Controller
 
         $user = Auth::user();
         $companies = Company::orderBy('company_gr', 'desc')
-            ->limit(5)
-            ->get(); 
+            ->paginate(20);
         $conditions = Condition::all();
         $stacks = Stack::all();
         $schools = School::orderBy('school_gr', 'desc')

@@ -15,7 +15,9 @@
         <div class="border-b-2 border-gray-300 mt-3">
             <div class="flex items-end">
                 <div class="mr-2 w-56 h-12 text-ellipsis overflow-hidden ...">
-                    {{ $article->article_contents}}
+                    <a href="#">
+                        {{ $article->article_contents}}
+                    </a>
                 </div>
                 <div class="mx-auto align-middle">
                     <div class="w-8">
