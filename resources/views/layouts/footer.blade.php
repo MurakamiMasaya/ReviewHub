@@ -1,4 +1,4 @@
-<footer class="">
+<footer class="max-w-6xl mx-auto">
     <div class="bg-red-400 shadow">
         <div class="mx-auto py-6 px-2 md:px-5">
             <div class="max-w-6xl">

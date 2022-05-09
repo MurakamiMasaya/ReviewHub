@@ -11,23 +11,27 @@
         </div>
 
         <!-- 特集記事TOP8 -->
-        @foreach ($articles as $article)      
-        <div class="border-b-2 border-gray-300 mt-3">
-            <div class="flex items-end">
-                <div class="mr-2 line-clamp-2">
-                    <a href="#">
-                        {{ $article->contents}}
-                    </a>
-                </div>
-                <div class="mx-auto align-middle">
-                    <div class="w-8">
-                        <img src="{{ asset('images/GR.png') }}" alt="GR">
+        @if(count($articles)===0)
+            <span class="text-md md:text-lg font-bold flex justify-center mx-auto my-5 text-gray-500">記事が登録されていません。</span>
+        @else
+            @foreach ($articles as $article)      
+            <div class="border-b-2 border-gray-300 mt-3">
+                <div class="flex items-end">
+                    <div class="mr-2 line-clamp-2">
+                        <a href="#">
+                            {{ $article->contents}}
+                        </a>
                     </div>
-                    <div class="text-center text-sm">{{ $article->gr }}</div>
+                    <div class="mx-auto align-middle">
+                        <div class="w-8">
+                            <img src="{{ asset('images/GR.png') }}" alt="GR">
+                        </div>
+                        <div class="text-center text-sm">{{ $article->gr }}</div>
+                    </div>
                 </div>
             </div>
-        </div>
-        @endforeach
+            @endforeach
+        @endif
     </div>
 
 </div>

@@ -10,39 +10,44 @@
     <div class="bg-gray-500 h-1"></div>
 
     <div class="my-5 md:flex relative">
-        <div class="">
-            @foreach($articles as $article)
-                @if($loop->index < 10)
-                <div class="px-3 md:px-5">
-                    <div class="flex items-end mt-5 justify-around md:justify-between">
-                        <div class="flex items-center">
-                            <div class="w-10 mr-2 md:mr-3">
-                                {{-- うまく順位を取得できていないので暫定的処理 --}}
-                                {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
-                                <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
+        @if(count($articles)===0)
+            <span class="text-md md:text-lg font-bold flex justify-center mx-auto text-gray-500">記事が登録されていません。</span>
+        @else
+            <div class="">
+                @foreach($articles as $article)
+                    @if($loop->index < 10)
+                    <div class="px-3 md:px-5">
+                        <div class="flex items-end mt-5 justify-around md:justify-between">
+                            <div class="flex items-center">
+                                <div class="w-10 mr-2 md:mr-3">
+                                    {{-- うまく順位を取得できていないので暫定的処理 --}}
+                                    {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
+                                    <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
+                                </div>
+                                <div class="font-bold text-md lg:text-lg line-clamp-1">
+                                    <a href="#">
+                                        {{ $article->title }}
+                                    </a>
+                                </div>
                             </div>
-                            <div class="font-bold text-md lg:text-lg line-clamp-1">
-                                <a href="#">
-                                    {{ $article->title }}
-                                </a>
+                            <div class="flex items-center">
+                                <div class="w-7 mr-1">
+                                    <img src="{{ asset('images/GR.png') }}" alt="GR">
+                                </div>
+                                <div class="text-lg font-bold flex items-end">{{ $article->gr }}</div>
                             </div>
                         </div>
-                        <div class="flex items-center">
-                            <div class="w-7 mr-1">
-                                <img src="{{ asset('images/GR.png') }}" alt="GR">
-                            </div>
-                            <div class="text-lg font-bold flex items-end">{{ $article->gr }}</div>
+                        <div class="line-clamp-2 px-5">
+                            {{ $article->contents }}
                         </div>
                     </div>
-                    <div class="line-clamp-2 px-5">
-                        {{ $article->contents }}
-                    </div>
-                </div>
-                @endif
-            @endforeach
-        </div>
+                    @endif
+                @endforeach
+            </div>
+        @endif
+
         {{-- #TODO: 開発ツールからモザイクを削除できてしまうので修正が必要。 --}}
-        @if(!Auth::check())
+        @if(count($articles) > 5 && !Auth::check())
         <div class="backdrop-filter backdrop-blur-sm absolute top-1/2 w-full h-1/2 text-xs font-bold"></div>
         <span class="absolute text-xs lg:text-md font-bold top-3/4 text-center w-full">閲覧するには会員登録が必要です。</span>
         @endif

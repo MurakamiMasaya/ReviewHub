@@ -15,8 +15,7 @@ class ArticleController extends Controller
         $user = Auth::user();
         // #TODO: クエリビルダで取得したデータに順位をつけたい。
         $articles = Article::orderBy('gr', 'desc')
-            ->paginate(20); 
-        
+            ->paginate(20);  
         $companies = Company::orderBy('gr', 'desc')
             ->limit(3)
             ->get();
@@ -24,7 +23,18 @@ class ArticleController extends Controller
             ->limit(3)
             ->get();
     
-        // dd($companies);
         return view('article.index', compact('user', 'articles', 'companies', 'schools'));
+    }
+
+    public function search(Request $request){
+
+        $user = Auth::user();
+        $companies = Company::orderBy('gr', 'desc')
+            ->limit(3)
+            ->get();
+        $schools = School::orderBy('gr', 'desc')
+            ->limit(3)
+            ->get();
+        return view('article.candidates', compact('user', 'companies', 'schools'));
     }
 }

@@ -27,8 +27,20 @@ class CompanyController extends Controller
         $articles = Article::orderBy('gr', 'desc')
             ->limit(8)
             ->get();
-    
-        // dd($companies);
+
         return view('company.index', compact('user', 'companies', 'schools', 'articles'));
+    }
+
+    public function search(){
+
+        $user = Auth::user();
+        $schools = School::orderBy('gr', 'desc')
+            ->limit(3)
+            ->get();
+        $articles = Article::orderBy('gr', 'desc')
+            ->limit(8)
+            ->get();
+
+        return view('company.candidates', compact('user', 'schools', 'articles'));
     }
 }

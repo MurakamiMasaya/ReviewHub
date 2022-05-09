@@ -25,4 +25,16 @@ class SchoolController extends Controller
 
         return view('school.index', compact('user', 'schools', 'companies', 'articles'));
     }
+
+    public function search(){
+        $user = Auth::user();
+        $companies = Company::orderBy('gr', 'desc')
+            ->limit(3)
+            ->get();
+        $articles = Article::orderBy('gr', 'desc')
+            ->limit(8)
+            ->get();
+
+        return view('school.candidates', compact('user', 'companies', 'articles'));
+    }
 }

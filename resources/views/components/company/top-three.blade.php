@@ -16,27 +16,31 @@
             <div class="text-xl font-bold">GR 受付中！</div>
         </div>
         <div>
-            @foreach ($companies as $company)
-            <div>
-                <div class="flex justify-around items-center mt-3">
-                    <div class="flex items-end">
-                        <div class="mr-3 md:mr-1 lg:mr-3 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
-                        <div class="text-md lg:text-lg font-bold">
-                            <a href="#">
-                                {{ $company->name }}
-                            </a>
+            @if(count($companies)===0)
+                <span class="text-md md:text-lg font-bold flex justify-center mx-auto text-gray-500 my-5">企業が登録されていません。</span>
+            @else
+                @foreach ($companies as $company)
+                <div>
+                    <div class="flex justify-around items-center mt-3">
+                        <div class="flex items-end">
+                            <div class="mr-3 md:mr-1 lg:mr-3 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
+                            <div class="text-md lg:text-lg font-bold">
+                                <a href="#">
+                                    {{ $company->name }}
+                                </a>
+                            </div>
+                        </div>
+                        <div class="flex">
+                            <div class="w-7 mr-1">
+                                <img src="{{ asset('images/GR.png') }}" alt="GR">
+                            </div>
+                            <div class="text-lg font-medium flex items-end">{{ $company->gr }}</div>
                         </div>
                     </div>
-                    <div class="flex">
-                        <div class="w-7 mr-1">
-                            <img src="{{ asset('images/GR.png') }}" alt="GR">
-                        </div>
-                        <div class="text-lg font-medium flex items-end">{{ $company->gr }}</div>
-                    </div>
+                    <div class="bg-gray-300 h-1"></div>
                 </div>
-                <div class="bg-gray-300 h-1"></div>
-            </div>
-            @endforeach
+                @endforeach
+            @endif
         </div>
     </div>
 </div>

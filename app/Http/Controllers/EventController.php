@@ -24,7 +24,18 @@ class EventController extends Controller
             ->limit(8)
             ->get();
     
-        // dd($companies);
         return view('event.index', compact('user', 'events', 'schools', 'articles'));
+    }
+
+    public function search(){
+        $user = Auth::user();
+        $schools = School::orderBy('gr', 'desc')
+            ->limit(3)
+            ->get();
+        $articles = Article::orderBy('gr', 'desc')
+            ->limit(8)
+            ->get();
+    
+        return view('event.candidates', compact('user', 'schools', 'articles'));
     }
 }
