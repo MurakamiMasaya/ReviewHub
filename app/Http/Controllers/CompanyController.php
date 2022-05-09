@@ -15,32 +15,31 @@ class CompanyController extends Controller
 
         $user = Auth::user();
         // #TODO: クエリビルダで取得したデータに順位をつけたい。
-        $companies = Company::orderBy('gr', 'desc')
-            ->paginate(20); 
-        // $companies = DB::table('companies')
-        // ->select( id,
-        //  DB::raw(select 'rank_result' rank()over(order by company_gr desc) as rank_result));
+        $companies = Company::orderBy('gr', 'desc')->paginate(20); 
         
-        $schools = School::orderBy('gr', 'desc')
-            ->limit(3)
-            ->get();
-        $articles = Article::orderBy('gr', 'desc')
-            ->limit(8)
-            ->get();
+        $schools = School::orderBy('gr', 'desc')->limit(3)->get();
+        $articles = Article::orderBy('gr', 'desc')->limit(8)->get();
 
         return view('company.index', compact('user', 'companies', 'schools', 'articles'));
     }
 
-    public function search(){
+    public function search(Request $request){
 
+        // #TODO: 文字入力なしでの検索をバリデーションで禁止にする
         $user = Auth::user();
-        $schools = School::orderBy('gr', 'desc')
-            ->limit(3)
-            ->get();
-        $articles = Article::orderBy('gr', 'desc')
-            ->limit(8)
+        $target = $request->input('target');
+
+        // ＃TODO: 大文字小文字全角半角を区別しないように修正
+        $companiesSearch = Company::where('name' , 'like', '%'.$request->input('target').'%')
+            ->orderBy('gr', 'desc')
+            ->paginate(10);
+        $companiesAll = Company::where('name' , 'like', '%'.$request->input('target').'%')
+            ->orderBy('gr', 'desc')
             ->get();
 
-        return view('company.candidates', compact('user', 'schools', 'articles'));
+        $schools = School::orderBy('gr', 'desc')->limit(3)->get();
+        $articles = Article::orderBy('gr', 'desc')->limit(8)->get();
+
+        return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
     }
 }

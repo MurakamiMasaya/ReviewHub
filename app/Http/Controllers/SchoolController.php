@@ -26,8 +26,19 @@ class SchoolController extends Controller
         return view('school.index', compact('user', 'schools', 'companies', 'articles'));
     }
 
-    public function search(){
+    public function search(Request $request){
+
         $user = Auth::user();
+        $target = $request->input('target');
+
+        // ＃TODO: 大文字小文字全角半角を区別しないように修正
+        $schoolsSearch = School::where('name' , 'like', '%'.$request->input('target').'%')
+            ->orderBy('gr', 'desc')
+            ->paginate(10);
+        $schoolsAll = School::where('name' , 'like', '%'.$request->input('target').'%')
+            ->orderBy('gr', 'desc')
+            ->get();
+
         $companies = Company::orderBy('gr', 'desc')
             ->limit(3)
             ->get();
@@ -35,6 +46,6 @@ class SchoolController extends Controller
             ->limit(8)
             ->get();
 
-        return view('school.candidates', compact('user', 'companies', 'articles'));
+        return view('school.candidates', compact('user', 'target', 'schoolsSearch', 'schoolsAll', 'companies', 'articles'));
     }
 }

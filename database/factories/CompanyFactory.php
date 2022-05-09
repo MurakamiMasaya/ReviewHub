@@ -16,11 +16,17 @@ class CompanyFactory extends Factory
      */
     public function definition()
     {
+        $technology = [
+            'PHP,Laravel,JavaScript,React,Doker,AWS',
+            'Apache,Docker,SQL,Java',
+            'Swift,Go,Vue',
+        ];
+
         return [
             'name' => $this->faker->company(),
             'address' => $this->faker->address(),
             'phone' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
-            'technology' => 'PHP,Laravel,JavaScript,React,Doker,AWS',
+            'technology' => $this->faker->randomElement($technology),
             'gr' => $this->faker->numberBetween(0,1000),
             'website_url' => $this->faker->url(),
         ];

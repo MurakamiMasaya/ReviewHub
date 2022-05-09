@@ -77,6 +77,6 @@
         @endif
     </div>
     @if(Auth::check())
-    <div class="my-5">{{ $companies->links() }}</div>
+        <div class="my-5">{{ $companies->links() }}</div>
     @endif
 </div>
