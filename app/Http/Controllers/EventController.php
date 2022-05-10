@@ -33,10 +33,10 @@ class EventController extends Controller
         $target = $request->input('target');
 
         // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $eventsSearch = Event::where('title' , 'like', '%'.$request->input('target').'%')
+        $eventsSearch = Event::where('title' , 'like', '%'.$target.'%')
             ->orderBy('gr', 'desc')
             ->paginate(10);
-        $eventsAll = Event::where('title' , 'like', '%'.$request->input('target').'%')
+        $eventsAll = Event::where('title' , 'like', '%'.$target.'%')
             ->orderBy('gr', 'desc')
             ->get();
 

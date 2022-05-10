@@ -40,6 +40,8 @@ Route::controller(CompanyController::class)
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/company/search', 'search')->name('search');
+            Route::get('/company/tech/{target}', 'tech')->name('tech');
+            Route::get('/company/condition/{target}', 'condition')->name('condition');
         });
     });
 

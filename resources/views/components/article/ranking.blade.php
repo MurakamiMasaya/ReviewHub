@@ -19,12 +19,12 @@
                     <div class="px-3 md:px-5">
                         <div class="flex items-end mt-5 justify-around md:justify-between">
                             <div class="flex items-center">
-                                <div class="w-10 mr-2 md:mr-3">
+                                <div class="w-2/12 md:w-1/12 lg:w-1/12 mr-2 md:mr-3">
                                     {{-- うまく順位を取得できていないので暫定的処理 --}}
                                     {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
-                                <div class="font-bold text-md lg:text-lg line-clamp-1">
+                                <div class="w-10/12 md:w-10/12 lg:w-11/12 font-bold text-md lg:text-lg line-clamp-1">
                                     <a href="#">
                                         {{ $article->title }}
                                     </a>

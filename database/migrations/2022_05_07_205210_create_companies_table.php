@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->bigInteger('phone')->unsigned();
+            $table->string('condition');
             $table->string('technology');
             $table->integer('gr')->unsigned();
             $table->string('website_url');

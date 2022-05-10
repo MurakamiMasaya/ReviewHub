@@ -32,10 +32,10 @@ class SchoolController extends Controller
         $target = $request->input('target');
 
         // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $schoolsSearch = School::where('name' , 'like', '%'.$request->input('target').'%')
+        $schoolsSearch = School::where('name' , 'like', '%'.$target.'%')
             ->orderBy('gr', 'desc')
             ->paginate(10);
-        $schoolsAll = School::where('name' , 'like', '%'.$request->input('target').'%')
+        $schoolsAll = School::where('name' , 'like', '%'.$target.'%')
             ->orderBy('gr', 'desc')
             ->get();
 

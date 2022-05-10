@@ -30,13 +30,47 @@ class CompanyController extends Controller
         $target = $request->input('target');
 
         // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $companiesSearch = Company::where('name' , 'like', '%'.$request->input('target').'%')
+        $companiesSearch = Company::where('name' , 'like', '%'. $target .'%')
             ->orderBy('gr', 'desc')
             ->paginate(10);
-        $companiesAll = Company::where('name' , 'like', '%'.$request->input('target').'%')
+        $companiesAll = Company::where('name' , 'like', '%'. $target .'%')
             ->orderBy('gr', 'desc')
             ->get();
 
+        $schools = School::orderBy('gr', 'desc')->limit(3)->get();
+        $articles = Article::orderBy('gr', 'desc')->limit(8)->get();
+
+        return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+    }
+
+    public function tech(Request $request, $target){
+        
+        $user = Auth::user();
+
+        $companiesSearch = Company::where('technology' , 'like', '%'. $target .'%')
+            ->orderBy('gr', 'desc')
+            ->paginate(10);
+        $companiesAll = Company::where('technology' , 'like', '%'. $target .'%')
+            ->orderBy('gr', 'desc')
+            ->get();
+        
+        $schools = School::orderBy('gr', 'desc')->limit(3)->get();
+        $articles = Article::orderBy('gr', 'desc')->limit(8)->get();
+
+        return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+    }
+
+    public function condition(Request $request, $target){
+        
+        $user = Auth::user();
+
+        $companiesSearch = Company::where('condition' , 'like', '%'. $target .'%')
+            ->orderBy('gr', 'desc')
+            ->paginate(10);
+        $companiesAll = Company::where('condition' , 'like', '%'. $target .'%')
+            ->orderBy('gr', 'desc')
+            ->get();
+        
         $schools = School::orderBy('gr', 'desc')->limit(3)->get();
         $articles = Article::orderBy('gr', 'desc')->limit(8)->get();
 

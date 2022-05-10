@@ -5,7 +5,7 @@
             <ul class="flex flex-col flex-wrap h-96 ">
                 @foreach($stacks as $stack)
                 <div class="w-1/2 mb-2 text-md font-bold text-center">
-                    <a href="#">
+                    <a href="{{ route('company.tech', ['target' => $stack->stack]) }}">
                         <li>{{ $stack->stack }}</li>
                     </a>
                 </div>
@@ -19,7 +19,7 @@
             <ul class="flex flex-col flex-wrap h-48 ">
                 @foreach($conditions as $condition)
                 <div class="w-1/2 mb-2 text-md font-bold text-center">
-                    <a href="#">
+                    <a href="{{ route('company.condition', ['target' => $condition->condition]) }}">
                         <li>{{ $condition->condition }}</li>
                     </a>
                 </div>

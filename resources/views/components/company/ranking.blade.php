@@ -16,15 +16,15 @@
             <div class="md:w-1/2">
                 @foreach($companies as $company)
                     @if($loop->index < 10)
-                    <div class="mr-1 lg:mr-3">
+                    <div class="mr-1 lg:mr-3 mt-5">
                         <div class="flex justify-around md:justify-between">
-                            <div class="flex items-end mt-5 justify-center">
-                                <div class="w-9 lg:w-10 mr-2 md:mr-3">
+                            <div class="flex items-center">
+                                <div class="w-1/5 lg:w-1/6 mr-2 md:mr-3">
                                     {{-- うまく順位を取得できていないので暫定的処理 --}}
                                     {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
-                                <div class="font-bold text-md lg:text-lg">
+                                <div class="w-4/5 lg:w-5/6 font-bold text-md lg:text-lg">
                                     <a href="#">
                                         {{ $company->name }}
                                     </a>
@@ -44,15 +44,15 @@
             <div class="md:w-1/2 relative">
                 @foreach($companies as $company)
                     @if($loop->index >= 10)
-                    <div class="mr-1 lg:mr-3">
+                    <div class="mr-1 lg:mr-3 mt-5">
                         <div class="flex justify-around md:justify-between">
-                            <div class="flex items-end mt-5 justify-center">
-                                <div class="w-9 lg:w-10 mr-2 md:mr-3">
+                            <div class="flex items-center">
+                                <div class="w-1/5 lg:w-1/6 mr-2 md:mr-3">
                                     {{-- うまく順位を取得できていないので暫定的処理 --}}
                                     {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
-                                <div class="font-bold text-md lg:text-lg">
+                                <div class="w-4/5 lg:w-5/6 font-bold text-md lg:text-lg">
                                     <a href="#">
                                         {{ $company->name }}
                                     </a>
@@ -62,7 +62,7 @@
                                 <div class="w-7 mr-1">
                                     <img src="{{ asset('images/GR.png') }}" alt="GR">
                                 </div>
-                                <div class="text-lg font-medium flex items-end">{{ $company->gr }}</div>
+                                <div class="text-lg font-bold flex items-end">{{ $company->gr }}</div>
                             </div>
                         </div>
                     </div>
