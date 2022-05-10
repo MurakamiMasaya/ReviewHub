@@ -12,7 +12,7 @@
                     <x-login-register />
                 </div>
                 <div class="border-4 border-gray-300 my-5 md:my-0">
-                    <x-candidates :target="$target" :searchResults="$schoolsSearch" :targetsAll="$schoolsAll" flg="school"/>
+                    <x-candidates :target="$target" :searchResults="$schoolsSearch" :targetsAll="$schoolsAll" flg="school" title="スクール"/>
                 </div>
             </div>
 

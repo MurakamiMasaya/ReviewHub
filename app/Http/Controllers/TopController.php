@@ -2,29 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Models\Company;
-use App\Models\Condition;
-use App\Models\School;
-use App\Models\Stack;
+use App\Interfaces\DisplayRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class TopController extends Controller
 {
+    private $displayRepository;
+
+    public function __construct(
+        DisplayRepositoryInterface $displayRepository
+        ) {
+        $this->displayRepository = $displayRepository;
+    }
+
     public function index(){
 
-        $user = Auth::user();
-        $companies = Company::orderBy('gr', 'desc')
-            ->paginate(20);
-        $conditions = Condition::all();
-        $stacks = Stack::all();
-        $schools = School::orderBy('gr', 'desc')
-            ->limit(3)
-            ->get();
-        $articles = Article::orderBy('gr', 'desc')
-            ->limit(8)
-            ->get();
+        $user = $this->displayRepository->getAuthenticatedUser();
+        $companies = $this->displayRepository->getTargetsTwelveEach('Company'); 
+
+        $conditions = $this->displayRepository->getConditionAll();
+        $stacks = $this->displayRepository->getTechnologyAll();
+
+        $schools = $this->displayRepository->getTargetsThreeEach('School');
+        $articles = $this->displayRepository->getArticlesEightEach();
         // dd($schools, $articles);
         
         return view('top', compact('user', 'companies', 'conditions', 'stacks', 'schools', 'articles'));

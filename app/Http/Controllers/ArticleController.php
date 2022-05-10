@@ -2,49 +2,46 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Models\Company;
-use App\Models\School;
+use App\Interfaces\SearchRepositoryInterface;
+use App\Interfaces\DisplayRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
 class ArticleController extends Controller
 {
+    private $searchRepository;
+    private $displayRepository;
+
+    public function __construct(
+        SearchRepositoryInterface $searchRepository,
+        DisplayRepositoryInterface $displayRepository
+        ) {
+        $this->searchRepository = $searchRepository;
+        $this->displayRepository = $displayRepository;
+    }
+
     public function index(){
         
-        $user = Auth::user();
+        $user = $this->displayRepository->getAuthenticatedUser();
         // #TODO: クエリビルダで取得したデータに順位をつけたい。
-        $articles = Article::orderBy('gr', 'desc')
-            ->paginate(20);  
-        $companies = Company::orderBy('gr', 'desc')
-            ->limit(3)
-            ->get();
-        $schools = School::orderBy('gr', 'desc')
-            ->limit(3)
-            ->get();
+        $articles = $this->displayRepository->getTargetsTenEach('Article');
+
+        $companies = $this->displayRepository->getTargetsThreeEach('Company');
+        $schools = $this->displayRepository->getTargetsThreeEach('School');
     
         return view('article.index', compact('user', 'articles', 'companies', 'schools'));
     }
 
     public function search(Request $request){
 
-        $user = Auth::user();
+        $user = $this->displayRepository->getAuthenticatedUser();
         $target = $request->input('target');
 
         // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $articlesSearch = article::where('title' , 'like', '%'.$target.'%')
-            ->orderBy('gr', 'desc')
-            ->paginate(10);
-        $articlesAll = article::where('title' , 'like', '%'.$target.'%')
-            ->orderBy('gr', 'desc')
-            ->get();
+        $articlesSearch = $this->searchRepository->getSearchTargetsTenEach('Article', 'title', $target);
+        $articlesAll = $this->searchRepository->getSearchTargetsAll('Article', 'title', $target);
 
-        $companies = Company::orderBy('gr', 'desc')
-            ->limit(3)
-            ->get();
-        $schools = School::orderBy('gr', 'desc')
-            ->limit(3)
-            ->get();
+        $companies = $this->displayRepository->getTargetsThreeEach('Company');
+        $schools = $this->displayRepository->getTargetsThreeEach('School');
             
         return view('article.candidates', compact('user', 'target', 'articlesSearch', 'articlesAll', 'companies', 'schools'));
     }

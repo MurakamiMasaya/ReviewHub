@@ -1,5 +1,5 @@
 <div class="py-5 px-3 md:px-5 lg:px-7">
-    <div class="font-bold text-lg md:text-xl lg:text-2xl"><span class="text-red-500 mx-2">「{{ $target }}」</span>の企業検索結果</div>
+    <div class="font-bold text-lg md:text-xl lg:text-2xl"><span class="text-red-500 mx-2">「{{ $target }}」</span>の<span>{{ $title }}</span>検索結果</div>
     <div class="bg-gray-300 h-1"></div>
     <div class="text-gray-500 text-md lg:text-lg">
         検索の結果, <span>{{ count($targetsAll) }}</span>件が該当しました。

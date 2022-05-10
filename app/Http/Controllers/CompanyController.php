@@ -2,23 +2,31 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Models\Company;
-use App\Models\School;
+use App\Interfaces\SearchRepositoryInterface;
+use App\Interfaces\DisplayRepositoryInterface;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\DB;
 
 class CompanyController extends Controller
 {
+    private $searchRepository;
+    private $displayRepository;
+
+    public function __construct(
+        SearchRepositoryInterface $searchRepository,
+        DisplayRepositoryInterface $displayRepository
+        ) {
+        $this->searchRepository = $searchRepository;
+        $this->displayRepository = $displayRepository;
+    }
+
     public function index(){
 
-        $user = Auth::user();
+        $user = $this->displayRepository->getAuthenticatedUser();
         // #TODO: クエリビルダで取得したデータに順位をつけたい。
-        $companies = Company::orderBy('gr', 'desc')->paginate(20); 
+        $companies = $this->displayRepository->getTargetsTwelveEach('Company'); 
         
-        $schools = School::orderBy('gr', 'desc')->limit(3)->get();
-        $articles = Article::orderBy('gr', 'desc')->limit(8)->get();
+        $schools = $this->displayRepository->getTargetsThreeEach('School');
+        $articles = $this->displayRepository->getArticlesEightEach();
 
         return view('company.index', compact('user', 'companies', 'schools', 'articles'));
     }
@@ -26,53 +34,41 @@ class CompanyController extends Controller
     public function search(Request $request){
 
         // #TODO: 文字入力なしでの検索をバリデーションで禁止にする
-        $user = Auth::user();
+        $user = $this->displayRepository->getAuthenticatedUser();
         $target = $request->input('target');
 
         // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $companiesSearch = Company::where('name' , 'like', '%'. $target .'%')
-            ->orderBy('gr', 'desc')
-            ->paginate(10);
-        $companiesAll = Company::where('name' , 'like', '%'. $target .'%')
-            ->orderBy('gr', 'desc')
-            ->get();
+        $companiesSearch = $this->searchRepository->getSearchTargetsTenEach('Company', 'name', $target);
+        $companiesAll = $this->searchRepository->getSearchTargetsAll('Company', 'name', $target);
 
-        $schools = School::orderBy('gr', 'desc')->limit(3)->get();
-        $articles = Article::orderBy('gr', 'desc')->limit(8)->get();
+        $schools = $this->displayRepository->getTargetsThreeEach('School');
+        $articles = $this->displayRepository->getArticlesEightEach();
 
         return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
     }
 
     public function tech(Request $request, $target){
         
-        $user = Auth::user();
+        $user = $this->displayRepository->getAuthenticatedUser();
 
-        $companiesSearch = Company::where('technology' , 'like', '%'. $target .'%')
-            ->orderBy('gr', 'desc')
-            ->paginate(10);
-        $companiesAll = Company::where('technology' , 'like', '%'. $target .'%')
-            ->orderBy('gr', 'desc')
-            ->get();
+        $companiesSearch = $this->searchRepository->getSearchTargetsTenEach('Company', 'technology', $target);
+        $companiesAll = $this->searchRepository->getSearchTargetsAll('Company', 'technology', $target);
         
-        $schools = School::orderBy('gr', 'desc')->limit(3)->get();
-        $articles = Article::orderBy('gr', 'desc')->limit(8)->get();
+        $schools = $this->displayRepository->getTargetsThreeEach('School');
+        $articles = $this->displayRepository->getArticlesEightEach();
 
         return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
     }
 
     public function condition(Request $request, $target){
         
-        $user = Auth::user();
+        $user = $this->displayRepository->getAuthenticatedUser();
 
-        $companiesSearch = Company::where('condition' , 'like', '%'. $target .'%')
-            ->orderBy('gr', 'desc')
-            ->paginate(10);
-        $companiesAll = Company::where('condition' , 'like', '%'. $target .'%')
-            ->orderBy('gr', 'desc')
-            ->get();
+        $companiesSearch = $this->searchRepository->getSearchTargetsTenEach('Company', 'condition', $target);
+        $companiesAll = $this->searchRepository->getSearchTargetsAll('Company', 'condition', $target);
         
-        $schools = School::orderBy('gr', 'desc')->limit(3)->get();
-        $articles = Article::orderBy('gr', 'desc')->limit(8)->get();
+        $schools = $this->displayRepository->getTargetsThreeEach('School');
+        $articles = $this->displayRepository->getArticlesEightEach();
 
         return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
     }
