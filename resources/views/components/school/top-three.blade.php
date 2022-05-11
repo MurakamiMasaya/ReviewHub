@@ -1,5 +1,5 @@
-<div class="border-4 border-pink-500">
-    <div class="bg-pink-500 py-2">
+<div class="border-4 border-orange-500">
+    <div class="bg-orange-500 py-2">
         <div class="text-center text-white text-xl font-bold">
             2022年最新
         </div>

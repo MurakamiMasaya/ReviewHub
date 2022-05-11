@@ -122,7 +122,7 @@
     </div>
 
     <!-- Top Bar -->
-    <header class="bg-red-500 shadow">
+    <header class="bg-gradient-to-r from-pink-500 via-orange-500 to-red-500 shadow">
         <div class="mx-auto py-3 md:py-6 px-4 sm:px-6 lg:px-8">
             <div class="max-w-6xl mx-auto flex justify-center sm:justify-between items-center">
                 <div class="flex">

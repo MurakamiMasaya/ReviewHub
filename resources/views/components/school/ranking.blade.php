@@ -19,12 +19,12 @@
                     <div class="mr-1 lg:mr-3 mt-5">
                         <div class="flex justify-around md:justify-between">
                             <div class="flex items-center">
-                                <div class="w-1/5 lg:w-1/6 mr-2 md:mr-3">
+                                <div class="w-1/6 mr-2 md:mr-3">
                                     {{-- うまく順位を取得できていないので暫定的処理 --}}
                                     {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
-                                <div class="w-4/5 lg:w-5/6 font-bold text-md lg:text-lg">
+                                <div class="w-5/6 font-bold text-md lg:text-lg">
                                     <a href="#">
                                         {{ $school->name }}
                                     </a>
@@ -47,12 +47,12 @@
                     <div class="mr-1 lg:mr-3 mt-5">
                         <div class="flex justify-around md:justify-between">
                             <div class="flex items-center">
-                                <div class="w-1/5 lg:w-1/6 mr-2 md:mr-3">
+                                <div class="w-1/6 mr-2 md:mr-3">
                                     {{-- うまく順位を取得できていないので暫定的処理 --}}
                                     {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
-                                <div class="w-4/5 lg:w-5/6 font-bold text-md lg:text-lg">
+                                <div class="w-5/6 font-bold text-md lg:text-lg">
                                     <a href="#">
                                         {{ $school->name }}
                                     </a>

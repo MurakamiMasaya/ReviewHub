@@ -37,11 +37,12 @@ Route::get('/privacy_policy', function(){
 Route::controller(CompanyController::class)
     ->name('company.')->group(function(){
         Route::get('/company', 'index')->name('index');
+        Route::get('/company/search', 'search')->name('search');
+        Route::get('/company/tech/{target}', 'tech')->name('tech');
+        Route::get('/company/condition/{target}', 'condition')->name('condition');
+        
         Route::middleware('auth')->group(function(){
-            // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
-            Route::get('/company/search', 'search')->name('search');
-            Route::get('/company/tech/{target}', 'tech')->name('tech');
-            Route::get('/company/condition/{target}', 'condition')->name('condition');
+        // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
         });
     });
 
@@ -49,9 +50,10 @@ Route::controller(CompanyController::class)
 Route::controller(SchoolController::class)
     ->name('school.')->group(function(){
         Route::get('/school', 'index')->name('index');
+        Route::get('/school/search', 'search')->name('search');
+
         Route::middleware('auth')->group(function(){
-            // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
-            Route::get('/school/search', 'search')->name('search');
+        // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
         });
     });
 
@@ -59,9 +61,10 @@ Route::controller(SchoolController::class)
 Route::controller(EventController::class)
     ->name('event.')->group(function(){
         Route::get('/event', 'index')->name('index');
+        Route::get('/event/search', 'search')->name('search');
+
         Route::middleware('auth')->group(function(){
-            // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
-            Route::get('/event/search', 'search')->name('search');
+        // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
         });
     });
 
@@ -69,9 +72,10 @@ Route::controller(EventController::class)
 Route::controller(ArticleController::class)
     ->name('article.')->group(function(){
         Route::get('/article', 'index')->name('index');
+        Route::get('/article/search', 'search')->name('search');
+
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
-            Route::get('/article/search', 'search')->name('search');
         });
     });
 
