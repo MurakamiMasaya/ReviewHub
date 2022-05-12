@@ -8,6 +8,12 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Article;
+use App\Models\ReviewArticle;
+use App\Models\ReviewCompany;
+use App\Models\ReviewEvent;
+use App\Models\ReviewSchool;
+
 
 class User extends Authenticatable
 {
@@ -48,4 +54,35 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    public function events()
+    {
+        return $this->hasMany(Event::class);
+    }
+
+    public function reviewArticles()
+    {
+        return $this->hasMany(ReviewArticle::class);
+    }
+
+    public function reviewCompanies()
+    {
+        return $this->hasMany(ReviewCompany::class);
+    }
+
+    public function reviewEvents()
+    {
+        return $this->hasMany(ReviewEvent::class);
+    }
+
+    public function reviewSchools()
+    {
+        return $this->hasMany(ReviewSchool::class);
+    }
 }

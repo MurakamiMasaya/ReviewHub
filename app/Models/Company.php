@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\ReviewCompany;
 
 class Company extends Model
 {
@@ -18,5 +19,10 @@ class Company extends Model
         'company_gr',
         'company_website_url',
     ];
+
+    public function reviewCompanies()
+    {
+        return $this->hasMany(ReviewCompany::class);
+    }
 
 }

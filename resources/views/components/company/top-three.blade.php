@@ -25,7 +25,7 @@
                         <div class="flex items-end">
                             <div class="mr-3 md:mr-1 lg:mr-3 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
                             <div class="text-md lg:text-lg font-bold">
-                                <a href="#">
+                                <a href="{{ route('company.detail',['company' => $company->id]) }}">
                                     {{ $company->name }}
                                 </a>
                             </div>

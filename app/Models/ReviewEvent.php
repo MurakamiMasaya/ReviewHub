@@ -6,25 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\User;
-use App\Models\ReviewEvent;
+use App\Models\Event;
 
-class Event extends Model
+class ReviewEvent extends Model
 {
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
         'user_id',
-        'segment',
-        'title',
-        'contents',
-        'image',
-        'online',
-        'area',
-        'capacity',
-        'contact_address',
+        'event_id',
+        'review',
         'gr',
-        'tag',
-        'url',
     ];
 
     public function user()
@@ -32,9 +24,8 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function reviewEvent()
+    public function event()
     {
-        return $this->hasMany(ReviewEvent::class);
+        return $this->belongsTo(Event::class);
     }
-    
 }

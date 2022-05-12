@@ -35,11 +35,12 @@ Route::get('/privacy_policy', function(){
 
 //企業
 Route::controller(CompanyController::class)
-    ->name('company.')->group(function(){
-        Route::get('/company', 'index')->name('index');
-        Route::get('/company/search', 'search')->name('search');
-        Route::get('/company/tech/{target}', 'tech')->name('tech');
-        Route::get('/company/condition/{target}', 'condition')->name('condition');
+    ->prefix('company')->name('company.')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/search', 'search')->name('search');
+        Route::get('/tech/{target}', 'tech')->name('tech');
+        Route::get('/condition/{target}', 'condition')->name('condition');
+        Route::get('/detail/{company}', 'detail')->name('detail');
         
         Route::middleware('auth')->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
@@ -48,9 +49,10 @@ Route::controller(CompanyController::class)
 
 //スクール
 Route::controller(SchoolController::class)
-    ->name('school.')->group(function(){
-        Route::get('/school', 'index')->name('index');
-        Route::get('/school/search', 'search')->name('search');
+    ->prefix('school')->name('school.')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/search', 'search')->name('search');
+        Route::get('/detail/{school}', 'detail')->name('detail');
 
         Route::middleware('auth')->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
@@ -59,9 +61,10 @@ Route::controller(SchoolController::class)
 
 //イベント
 Route::controller(EventController::class)
-    ->name('event.')->group(function(){
-        Route::get('/event', 'index')->name('index');
-        Route::get('/event/search', 'search')->name('search');
+    ->prefix('event')->name('event.')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/search', 'search')->name('search');
+        Route::get('/detail/{event}', 'detail')->name('detail');
 
         Route::middleware('auth')->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
@@ -70,9 +73,10 @@ Route::controller(EventController::class)
 
 //特集記事
 Route::controller(ArticleController::class)
-    ->name('article.')->group(function(){
-        Route::get('/article', 'index')->name('index');
-        Route::get('/article/search', 'search')->name('search');
+    ->prefix('article')->name('article.')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/search', 'search')->name('search');
+        Route::get('/detail/{event}', 'detail')->name('detail');
 
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。

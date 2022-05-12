@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\SearchRepositoryInterface;
 use App\Interfaces\DisplayRepositoryInterface;
+use App\Models\Company;
+use App\Models\ReviewCompany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class CompanyController extends Controller
 {
@@ -71,5 +74,19 @@ class CompanyController extends Controller
         $articles = $this->displayRepository->getArticlesEightEach();
 
         return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+    }
+
+    public function detail(Request $request, $company){
+
+        $user = $this->displayRepository->getAuthenticatedUser();
+
+        $companyData = Company::where('id', $company)->first();
+        $reviewCompanies = ReviewCompany::where('company_id', $company)->orderBy('gr', 'desc')->paginate(10); 
+
+        $schools = $this->displayRepository->getTargetsThreeEach('School');
+        $articles = $this->displayRepository->getArticlesEightEach();
+
+        // dd($reviewCompanies);
+        return view('company.detail', compact('user', 'companyData', 'reviewCompanies', 'schools', 'articles'));
     }
 }
