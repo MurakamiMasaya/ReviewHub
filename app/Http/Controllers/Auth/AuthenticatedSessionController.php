@@ -17,6 +17,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function create()
     {
+        if (array_key_exists('HTTP_REFERER', $_SERVER)) {
+            $path = parse_url($_SERVER['HTTP_REFERER']); // URLを分解
+            if (array_key_exists('host', $path)) {
+                if ($path['host'] == $_SERVER['HTTP_HOST']) { // ホスト部分が自ホストと同じ
+                    session(['url.intended' => $_SERVER['HTTP_REFERER']]);
+                }
+            }
+        }
         return view('auth.login');
     }
 
@@ -32,7 +40,8 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-        return redirect()->intended(RouteServiceProvider::HOME);
+        return redirect()->intended();
+        
     }
 
     /**

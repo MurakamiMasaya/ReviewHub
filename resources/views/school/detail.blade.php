@@ -8,9 +8,12 @@
         <div class="md:flex">
             <!-- Left sides of main -->
             <div class="md:w-2/3 md:mr-5 ">
+                @if(!Auth::check())
                 <div class="block md:hidden">
                     <x-login-register />
                 </div>
+                @endif
+
                 <div class="my-5 md:my-0">
                     <x-detail :detail="$schoolData" :reviews="$reviewSchools" title="スクール"/>
                 </div>
@@ -18,9 +21,11 @@
 
             <!-- Right side of main -->
             <div class="md:w-1/3">
+                @if(!Auth::check())
                 <div class="hidden md:block">
                     <x-login-register />
                 </div>
+                @endif
 
                 <x-company.top-three :companies="$companies"/>
                 <x-article.top-eight :articles="$articles"/>

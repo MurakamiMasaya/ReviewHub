@@ -64,10 +64,13 @@ Route::controller(EventController::class)
     ->prefix('event')->name('event.')->group(function(){
         Route::get('/', 'index')->name('index');
         Route::get('/search', 'search')->name('search');
-        Route::get('/detail/{event}', 'detail')->name('detail');
-
+        
         Route::middleware('auth')->group(function(){
-        // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
+            // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
+            Route::get('/detail/{event}', 'detail')->name('detail');
+            Route::get('/register', 'showRegister')->name('register');
+            Route::post('/register/confilm', 'confilmRegister')->name('confilm');
+            Route::post('/register', 'completeRegister')->name('register');
         });
     });
 
@@ -76,10 +79,10 @@ Route::controller(ArticleController::class)
     ->prefix('article')->name('article.')->group(function(){
         Route::get('/', 'index')->name('index');
         Route::get('/search', 'search')->name('search');
-        Route::get('/detail/{event}', 'detail')->name('detail');
-
+        
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
+            Route::get('/detail/{article}', 'detail')->name('detail');
         });
     });
 

@@ -33,6 +33,7 @@
     <div class="backdrop-filter backdrop-blur-sm absolute top-1/2 w-full h-1/2 text-xs font-bold"></div>
     <span class="absolute text-xs lg:text-md font-bold top-3/4 text-center w-full">閲覧するには会員登録が必要です。</span>
     @endif
+    
     @if(Auth::check())
     <div class="mt-3">{{ $reviews->links() }}</div>
     @endif

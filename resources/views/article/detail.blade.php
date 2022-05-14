@@ -13,21 +13,21 @@
                     <x-login-register />
                 </div>
                 @endif
-                <div class="border-4 border-gray-300 my-5 md:my-0">
-                    <x-candidates :searchResults="$companiesSearch" :targetsAll="$companiesAll" :target="$target" flg="company" title="企業"/>
+
+                <div class="my-5 md:my-0">
                 </div>
             </div>
 
             <!-- Right side of main -->
             <div class="md:w-1/3">
                 @if(!Auth::check())
-                <div class="md:block hidden">
+                <div class="hidden md:block">
                     <x-login-register />
                 </div>
                 @endif
 
                 <x-school.top-three :schools="$schools"/>
-                <x-article.top-eight :articles="$articles"/>
+                <x-company.top-three :companies="$companies" />
             </div>
         </div>
     </div>

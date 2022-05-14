@@ -1,4 +1,4 @@
-<div class="mt-10 px-1 md:px-3 lg:px-5 text-gray-800">
+<div class="mt-10 py-5 px-1 md:px-3 lg:px-5 text-gray-800">
     <div class="lg:flex justify-between items-end">
         <div class="text-xl md:text-2xl font-bold">
             イベント掲示板 GRランキング
@@ -25,7 +25,7 @@
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
                                 <div class="font-bold text-md lg:text-lg line-clamp-1">
-                                    <a href="#">
+                                    <a href="{{ route('event.detail', ['event' => $event->id]) }}">
                                         {{ $event->title }}
                                     </a>
                                 </div>
@@ -55,4 +55,8 @@
     @if(Auth::check())
     <div class="my-5">{{ $events->links() }}</div>
     @endif
+
+    <a href="{{ route('event.register') }}">
+        <x-button.review title="イベント" />
+    </a>
 </div>

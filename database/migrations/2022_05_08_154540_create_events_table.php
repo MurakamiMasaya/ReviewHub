@@ -25,7 +25,8 @@ return new class extends Migration
             $table->boolean('online');
             $table->string('area');
             $table->integer('capacity')->unsigned();
-            $table->string('contact_address');
+            $table->bigInteger('contact_address')->unsigned();
+            $table->string('contact_email');
             $table->integer('gr')->unsigned();
             $table->string('tag')->nullable();
             $table->string('url')->nullable();

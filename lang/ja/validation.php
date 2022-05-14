@@ -142,6 +142,16 @@ return [
         'gender' => '性別',
         'username' => 'ユーザーネーム',
         'phone' => '電話番号',
-        'privacy_policy' => '個人情報保護方針'
+        'privacy_policy' => '個人情報保護方針',
+        'contact_address' => '連絡先電話番号',
+        'contact_email' => '連絡先メールアドレス',
+        'segment' => 'イベント種別',
+        'online' => 'オンラインタグ',
+        'area' => '開催地域',
+        'capacity' => '定員',
+        'title' => 'タイトル',
+        'contents' => '本文',
+        'image' => '画像',
+        'url' => 'URL',
     ],
 ];

@@ -43,6 +43,7 @@ class EventFactory extends Factory
             'area' => $this->faker->address(),
             'capacity' => $this->faker->numberBetween(1,50),
             'contact_address' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
+            'contact_email' => $this->faker->unique()->safeEmail(),
             'gr' => $this->faker->numberBetween(0,1000),
             'tag' => $this->faker->randomElement($tag),
             'url' => $this->faker->url(),

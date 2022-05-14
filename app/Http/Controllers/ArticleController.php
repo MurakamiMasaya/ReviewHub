@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Interfaces\SearchRepositoryInterface;
 use App\Interfaces\DisplayRepositoryInterface;
+use App\Models\Article;
+use App\Models\ReviewArticle;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class ArticleController extends Controller
 {
@@ -44,5 +47,19 @@ class ArticleController extends Controller
         $schools = $this->displayRepository->getTargetsThreeEach('School');
             
         return view('article.candidates', compact('user', 'target', 'articlesSearch', 'articlesAll', 'companies', 'schools'));
+    }
+
+    public function detail(Request $request, $article){
+
+        $user = $this->displayRepository->getAuthenticatedUser();
+
+        $articleData = Article::where('id', $article)->first();
+        $reviewArticles = ReviewArticle::where('article_id', $article)->orderBy('gr', 'desc')->paginate(10);
+
+        $companies = $this->displayRepository->getTargetsThreeEach('Company');
+        $schools = $this->displayRepository->getTargetsThreeEach('School');
+
+        // dd($articleData, $reviewArticles);
+        return view('article.detail', compact('user', 'articleData', 'reviewArticles', 'companies', 'schools'));
     }
 }
