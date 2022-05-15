@@ -32,7 +32,6 @@ class EventFormRequest extends FormRequest
             'capacity' => ['required', 'numeric', 'between:1,100'],
             'title' => ['required', 'string', 'max:40'],
             'contents' => ['required', 'string', 'max:1000'],
-            'image' => ['image', 'mimes:jpeg,png,jpg'],
             'url' => [new CustomUrlValidation],
         ];
     }

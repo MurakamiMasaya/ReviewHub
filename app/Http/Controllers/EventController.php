@@ -15,16 +15,16 @@ class EventController extends Controller
 {
     private $searchRepository;
     private $displayRepository;
-    private $imageRepository;
+    private $imageService;
 
     public function __construct(
         SearchRepositoryInterface $searchRepository,
         DisplayRepositoryInterface $displayRepository,
-        ImageRepositoryInterface $imageRepository
+        ImageRepositoryInterface $imageService
         ) {
         $this->searchRepository = $searchRepository;
         $this->displayRepository = $displayRepository;
-        $this->imageRepository = $imageRepository;
+        $this->imageService = $imageService;
     }
 
     public function index(){
@@ -80,11 +80,15 @@ class EventController extends Controller
 
     public function confilmRegister(EventFormRequest $request){
 
+        $request->validate([
+            'image' => ['image', 'mimes:jpeg,png,jpg'],
+        ]);
+
         $user = $this->displayRepository->getAuthenticatedUser();
 
         //画像の一時保存
         if($image = $request->image){
-            $fileNameToStore = $this->imageRepository->TemporarilySave($image, 'events');
+            $fileNameToStore = $this->imageService->TemporarilySave($image, 'events');
         }
        
         //送信されたデータの取得
@@ -115,7 +119,7 @@ class EventController extends Controller
         // dd($request);
 
         // 戻るボタンが押された場合
-        if ($request->back === true) {
+        if ($request->back === "true") {
             Storage::delete('public/events/tmp/'.$request->image);
             return redirect()->route('event.register')->withInput();
         }
@@ -123,7 +127,7 @@ class EventController extends Controller
         //画像の登録
         $image = $request->image;
         if(!is_null($image)){
-            $fileNameToStore = $this->imageRepository->upload($image, 'events');
+            $fileNameToStore = $this->imageService->upload($image, 'events');
         }
 
         //イベントの作成

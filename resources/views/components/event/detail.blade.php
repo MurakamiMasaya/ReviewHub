@@ -39,7 +39,7 @@
                     <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->contents }}</div>
                 </div>
 
-                <div class="mt-3">
+                <div class="flex items-center mt-3">
                     <div class="font-bold text-sm md:text-lg lg:text-xl text-red-500 mr-2">ハッシュタグ : </div>
                     <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->tag }}</div>
                 </div>
@@ -50,7 +50,7 @@
                 </div>
 
                 <div class="flex items-center mt-3">
-                    <div class="font-bold text-sm md:text-lg lg:text-xl text-red-500 mr-2">ハッシュタグ : </div>
+                    <div class="font-bold text-sm md:text-lg lg:text-xl text-red-500 mr-2">メールアドレス : </div>
                     <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->contact_email }}</div>
                 </div>
 

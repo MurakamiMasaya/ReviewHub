@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Repositories;
+namespace App\Services;
 
 use App\Interfaces\ImageRepositoryInterface;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-class ImageRepository implements ImageRepositoryInterface{
+class ImageService implements ImageRepositoryInterface{
     
     public function TemporarilySave($image, $folderName){
         $fileName = uniqid(rand().'_');

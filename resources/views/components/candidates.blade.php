@@ -8,14 +8,24 @@
     <div class="my-3 relative">
         @foreach ($searchResults as $result)
             <div class="flex items-center pt-5 border-b-2 border-gray-400">
-                @if($flg === 'company' || $flg === 'school')
-                    <div class="font-bold text-md md:text-lg lg:text-xl line-clamp-2 mr-5 md:mr-10">
-                        {{ $result->name }}
-                    </div>
-                @else
-                    <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
-                        {{ $result->title }}
-                    </div>
+                @if($flg === 'company')
+                    <a href="{{ route('company.detail', ['company' => $result->id]) }}">
+                        <div class="font-bold text-md md:text-lg lg:text-xl line-clamp-2 mr-5 md:mr-10">
+                            {{ $result->name }}
+                        </div>
+                    </a>
+                @elseif($flg === 'school')
+                    <a href="{{ route('school.detail', ['school' => $result->id]) }}">
+                        <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
+                            {{ $result->name }}
+                        </div>
+                    </a>
+                @elseif($flg === 'event')
+                    <a href="{{ route('event.detail', ['event' => $result->id]) }}">
+                        <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
+                            {{ $result->title }}
+                        </div>
+                    </a>
                 @endif
                 <div class="flex items-end">
                     <div class="w-6 md:w-8 mr-1 md:mr-2">
