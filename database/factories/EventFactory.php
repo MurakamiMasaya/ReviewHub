@@ -16,14 +16,6 @@ class EventFactory extends Factory
      */
     public function definition()
     {
-        $image = [
-            'sample1.png',
-            'sample2.png',
-            'sample3.png',
-            'sample4.png',
-            'sample5.png',
-        ];
-
         $tag = [
             'PHP',
             'Laravel',
@@ -38,9 +30,8 @@ class EventFactory extends Factory
             'segment' => $this->faker->numberBetween(0,1),
             'title' => $this->faker->realText(40),
             'contents' => $this->faker->realText(300),
-            'image' => $this->faker->randomElement($image),
             'online' => $this->faker->numberBetween(0,1),
-            'area' => $this->faker->address(),
+            'area' => $this->faker->city(),
             'capacity' => $this->faker->numberBetween(1,50),
             'contact_address' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
             'contact_email' => $this->faker->unique()->safeEmail(),

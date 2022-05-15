@@ -17,14 +17,6 @@ class ArticleFactory extends Factory
     
     public function definition()
     {
-        $image = [
-            'sample1.png',
-            'sample2.png',
-            'sample3.png',
-            'sample4.png',
-            'sample5.png',
-        ];
-
         $tag = [
             'PHP',
             'Laravel',
@@ -38,7 +30,6 @@ class ArticleFactory extends Factory
             'user_id' => $this->faker->numberBetween(1,10),
             'title' => $this->faker->realText(20),
             'contents' => $this->faker->realText(300),
-            'image' => $this->faker->randomElement($image),
             'gr' => $this->faker->numberBetween(0,1000),
             'tag' => $this->faker->randomElement($tag),
             'url' => $this->faker->url(),

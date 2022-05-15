@@ -7,6 +7,8 @@ use App\Interfaces\SearchRepositoryInterface;
 use App\Repositories\SearchRepository;
 use App\Interfaces\DisplayRepositoryInterface;
 use App\Repositories\DisplayRepository;
+use App\Interfaces\ImageRepositoryInterface;
+use App\Repositories\ImageRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(SearchRepositoryInterface::class, SearchRepository::class);
         $this->app->bind(DisplayRepositoryInterface::class, DisplayRepository::class);
+        $this->app->bind(ImageRepositoryInterface::class, ImageRepository::class);
     }
 
     /**

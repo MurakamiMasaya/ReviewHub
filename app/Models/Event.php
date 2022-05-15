@@ -22,6 +22,7 @@ class Event extends Model
         'area',
         'capacity',
         'contact_address',
+        'contact_email',
         'gr',
         'tag',
         'url',

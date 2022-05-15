@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->text('contents');
             $table->bigInteger('phone')->unsigned();
-            $table->integer('gr')->unsigned();
+            $table->integer('gr')->unsigned()->default(0);
             $table->string('website_url');
             $table->timestamps();
             $table->softDeletes();
