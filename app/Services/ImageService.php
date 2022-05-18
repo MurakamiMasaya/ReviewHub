@@ -2,11 +2,11 @@
 
 namespace App\Services;
 
-use App\Interfaces\ImageRepositoryInterface;
+use App\Interfaces\Services\ImageServiceInterface;
 use Illuminate\Support\Facades\Storage;
 use Image;
 
-class ImageService implements ImageRepositoryInterface{
+class ImageService implements ImageServiceInterface{
     
     public function TemporarilySave($image, $folderName){
         $fileName = uniqid(rand().'_');
@@ -22,5 +22,9 @@ class ImageService implements ImageRepositoryInterface{
         $registeredImage = Storage::get('public/' . $folderName . '/tmp/' . $image);
         Storage::put('public/' . $folderName . '/' . $image, $registeredImage);
         Storage::delete('public/' . $folderName . '/tmp/' . $image);
+    }
+
+    public function delete($path, $image){
+        Storage::delete($path . $image);
     }
 }

@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\SearchRepositoryInterface;
-use App\Interfaces\DisplayRepositoryInterface;
+use App\Interfaces\Services\ArticleServiceInterface;
+use App\Interfaces\Services\CompanyServiceInterface;
+use App\Interfaces\Services\DisplayServiceInterface;
+use App\Interfaces\Services\SchoolServiceInterface;
 use App\Models\Article;
 use App\Models\ReviewArticle;
 use Illuminate\Http\Request;
@@ -11,55 +13,60 @@ use Illuminate\Support\Facades\Redis;
 
 class ArticleController extends Controller
 {
-    private $searchRepository;
-    private $displayRepository;
+    private $articleService;
+    private $companyService;
+    private $schoolService;
+    private $displayService;
 
     public function __construct(
-        SearchRepositoryInterface $searchRepository,
-        DisplayRepositoryInterface $displayRepository
+        ArticleServiceInterface $articleService,
+        CompanyServiceInterface $companyService,
+        SchoolServiceInterface $schoolService,
+        DisplayServiceInterface $displayService
         ) {
-        $this->searchRepository = $searchRepository;
-        $this->displayRepository = $displayRepository;
+        $this->articleService = $articleService;
+        $this->companyService = $companyService;
+        $this->schoolService = $schoolService;
+        $this->displayService = $displayService;
     }
 
     public function index(){
         
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
         // #TODO: クエリビルダで取得したデータに順位をつけたい。
-        $articles = $this->displayRepository->getTargetsTenEach('Article');
+        $articles = $this->articleService->getTenEach();
 
-        $companies = $this->displayRepository->getTargetsThreeEach('Company');
-        $schools = $this->displayRepository->getTargetsThreeEach('School');
+        $companies = $this->companyService->getTopThree();
+        $schools = $this->schoolService->getTopThree();
     
         return view('article.index', compact('user', 'articles', 'companies', 'schools'));
     }
 
     public function search(Request $request){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
         $target = $request->input('target');
 
         // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $articlesSearch = $this->searchRepository->getSearchTargetsTenEach('Article', 'title', $target);
-        $articlesAll = $this->searchRepository->getSearchTargetsAll('Article', 'title', $target);
+        $articlesSearch = $this->articleService->getSearchTenEach($target);
+        $articlesAll = $this->articleService->getSearchAll($target);
 
-        $companies = $this->displayRepository->getTargetsThreeEach('Company');
-        $schools = $this->displayRepository->getTargetsThreeEach('School');
+        $companies = $this->companyService->getTopThree();
+        $schools = $this->schoolService->getTopThree();
             
         return view('article.candidates', compact('user', 'target', 'articlesSearch', 'articlesAll', 'companies', 'schools'));
     }
 
     public function detail(Request $request, $article){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
 
-        $articleData = Article::where('id', $article)->first();
-        $reviewArticles = ReviewArticle::where('article_id', $article)->orderBy('gr', 'desc')->paginate(10);
+        $articleData = $this->articleService->getArticle($article);
+        $reviewArticles = $this->articleService->getReviews($article);
 
-        $companies = $this->displayRepository->getTargetsThreeEach('Company');
-        $schools = $this->displayRepository->getTargetsThreeEach('School');
+        $companies = $this->companyService->getTopThree();
+        $schools = $this->schoolService->getTopThree();
 
-        // dd($articleData, $reviewArticles);
         return view('article.detail', compact('user', 'articleData', 'reviewArticles', 'companies', 'schools'));
     }
 }

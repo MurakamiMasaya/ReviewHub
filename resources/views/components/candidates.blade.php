@@ -26,6 +26,12 @@
                             {{ $result->title }}
                         </div>
                     </a>
+                @elseif($flg === 'article')
+                    <a href="#">
+                        <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
+                            {{ $result->title }}
+                        </div>
+                    </a>
                 @endif
                 <div class="flex items-end">
                     <div class="w-6 md:w-8 mr-1 md:mr-2">

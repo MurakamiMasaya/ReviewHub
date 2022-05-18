@@ -2,61 +2,69 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\SearchRepositoryInterface;
-use App\Interfaces\DisplayRepositoryInterface;
+use App\Interfaces\Services\ArticleServiceInterface;
+use App\Interfaces\Services\CompanyServiceInterface;
+use App\Interfaces\Services\SchoolServiceInterface;
+use App\Interfaces\Services\DisplayServiceInterface;
 use App\Models\ReviewSchool;
 use App\Models\School;
 use Illuminate\Http\Request;
 
 class SchoolController extends Controller
 {
-    private $searchRepository;
-    private $displayRepository;
+    private $articleService;
+    private $companyService;
+    private $schoolService;
+    private $displayService;
 
     public function __construct(
-        SearchRepositoryInterface $searchRepository,
-        DisplayRepositoryInterface $displayRepository
+        ArticleServiceInterface $articleService,
+        CompanyServiceInterface $companyService,
+        SchoolServiceInterface $schoolService,
+        DisplayServiceInterface $displayService
         ) {
-        $this->searchRepository = $searchRepository;
-        $this->displayRepository = $displayRepository;
+        $this->articleService = $articleService;
+        $this->companyService = $companyService;
+        $this->schoolService = $schoolService;
+        $this->displayService = $displayService;
     }
 
     public function index(){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
         // #TODO: クエリビルダで取得したデータに順位をつけたい。
-        $schools = $this->displayRepository->getTargetsTwelveEach('School');
+        $schools = $this->schoolService->getTwelveEach();
         
-        $companies = $this->displayRepository->getTargetsThreeEach('Company');
-        $articles = $this->displayRepository->getArticlesEightEach();
+        $companies = $this->companyService->getTopThree();
+        $articles = $this->articleService->getTopEight();
 
         return view('school.index', compact('user', 'schools', 'companies', 'articles'));
     }
 
     public function search(Request $request){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
         $target = $request->input('target');
 
         // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $schoolsSearch = $this->searchRepository->getSearchTargetsTenEach('School', 'name', $target);
-        $schoolsAll = $this->searchRepository->getSearchTargetsAll('School', 'name', $target);
+        $schoolsSearch = $this->schoolService->getSearchTenEach($target);
+        $schoolsAll = $this->schoolService->getSearchAll($target);
 
-        $companies = $this->displayRepository->getTargetsThreeEach('Company');
-        $articles = $this->displayRepository->getArticlesEightEach();
+        $companies = $this->companyService->getTopThree();
+        $articles = $this->articleService->getTopEight();
 
         return view('school.candidates', compact('user', 'target', 'schoolsSearch', 'schoolsAll', 'companies', 'articles'));
     }
 
     public function detail(Request $request, $school){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
 
-        $schoolData = School::where('id', $school)->first();
+        $schoolData = $this->schoolService->getSchool($school);
         $reviewSchools = ReviewSchool::where('school_id', $school)->orderBy('gr', 'desc')->paginate(10); 
 
-        $companies = $this->displayRepository->getTargetsThreeEach('Company');
-        $articles = $this->displayRepository->getArticlesEightEach();
+        $companies = $this->companyService->getTopThree();
+        $articles = $this->articleService->getTopEight();
 
         // dd($reviewCompanies);
         return view('school.detail', compact('user', 'schoolData', 'reviewSchools', 'companies', 'articles'));

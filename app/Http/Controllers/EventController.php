@@ -3,66 +3,78 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\EventFormRequest;
-use App\Interfaces\SearchRepositoryInterface;
-use App\Interfaces\DisplayRepositoryInterface;
-use App\Interfaces\ImageRepositoryInterface;
-use App\Models\Event;
+use App\Interfaces\Services\ArticleServiceInterface;
+use App\Interfaces\Services\CompanyServiceInterface;
+use App\Interfaces\Services\SchoolServiceInterface;
+use App\Interfaces\Services\EventServiceInterface;
+use App\Interfaces\Services\DisplayServiceInterface;
+use App\Interfaces\Services\ImageServiceInterface;
 use App\Models\ReviewEvent;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
-    private $searchRepository;
-    private $displayRepository;
+    private $articleService;
+    private $companyService;
+    private $schoolService;
+    private $eventService;
+    private $displayService;
     private $imageService;
 
     public function __construct(
-        SearchRepositoryInterface $searchRepository,
-        DisplayRepositoryInterface $displayRepository,
-        ImageRepositoryInterface $imageService
+        ArticleServiceInterface $articleService,
+        CompanyServiceInterface $companyService,
+        SchoolServiceInterface $schoolService,
+        EventServiceInterface $eventService,
+        DisplayServiceInterface $displayService,
+        ImageServiceInterface $imageService
         ) {
-        $this->searchRepository = $searchRepository;
-        $this->displayRepository = $displayRepository;
+        $this->articleService = $articleService;
+        $this->companyService = $companyService;
+        $this->schoolService = $schoolService;
+        $this->eventService = $eventService;
+        $this->displayService = $displayService;
         $this->imageService = $imageService;
     }
 
     public function index(){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
         // #TODO: クエリビルダで取得したデータに順位をつけたい。
-        $events = $this->displayRepository->getTargetsTenEach('Event');
+        $events = $this->eventService->getTenEach();
         
-        $schools = $this->displayRepository->getTargetsThreeEach('School');
-        $articles = $this->displayRepository->getArticlesEightEach();
+        $schools = $this->schoolService->getTopThree();
+        $articles = $this->articleService->getTopEight();
     
         return view('event.index', compact('user', 'events', 'schools', 'articles'));
     }
 
     public function search(Request $request){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
         $target = $request->input('target');
 
         // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $eventsSearch = $this->searchRepository->getSearchTargetsTenEach('Event', 'title', $target);
-        $eventsAll = $this->searchRepository->getSearchTargetsAll('Event', 'title', $target);
+        $eventsSearch = $this->eventService->getSearchTenEach($target);
+        $eventsAll = $this->eventService->getSearchAll($target);
 
-        $schools = $this->displayRepository->getTargetsThreeEach('School');
-        $articles = $this->displayRepository->getArticlesEightEach();
+        $schools = $this->schoolService->getTopThree();
+        $articles = $this->articleService->getTopEight();
     
         return view('event.candidates', compact('user', 'target', 'eventsSearch', 'eventsAll', 'schools', 'articles'));
     }
 
     public function detail(Request $request, $event){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
 
-        $eventData = Event::where('id', $event)->first();
+        $eventData = $this->eventService->getEvent($event);
         $reviewEvents = ReviewEvent::where('event_id', $event)->orderBy('gr', 'desc')->paginate(10);
 
-        $schools = $this->displayRepository->getTargetsThreeEach('School');
-        $articles = $this->displayRepository->getArticlesEightEach();
+        $schools = $this->schoolService->getTopThree();
+        $articles = $this->articleService->getTopEight();
 
         // dd($eventData, $reviewEvents);
         return view('event.detail', compact('user', 'eventData', 'reviewEvents', 'schools', 'articles'));
@@ -70,10 +82,10 @@ class EventController extends Controller
 
     public function showRegister(){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
 
-        $schools = $this->displayRepository->getTargetsThreeEach('School');
-        $articles = $this->displayRepository->getArticlesEightEach();
+        $schools = $this->schoolService->getTopThree();
+        $articles = $this->articleService->getTopEight();
 
         return view('event.register' ,compact('user', 'schools', 'articles'));
     }
@@ -84,7 +96,7 @@ class EventController extends Controller
             'image' => ['image', 'mimes:jpeg,png,jpg'],
         ]);
 
-        $user = $this->displayRepository->getAuthenticatedUser();
+        $user = $this->displayService->getAuthenticatedUser();
 
         //画像の一時保存
         if($image = $request->image){
@@ -109,29 +121,31 @@ class EventController extends Controller
             'tag' => $request->tag,
         ];
 
-        $schools = $this->displayRepository->getTargetsThreeEach('School');
-        $articles = $this->displayRepository->getArticlesEightEach();
+        //ログの出力
+        Log::info($eventInfo);
+
+        $schools = $this->schoolService->getTopThree();
+        $articles = $this->articleService->getTopEight();
 
         return view('event.confilm', compact('user', 'eventInfo', 'schools', 'articles'));
     }
 
     public function completeRegister(EventFormRequest $request){
-        // dd($request);
+        $image = $request->image;
 
-        // 戻るボタンが押された場合
+        // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
         if ($request->back === "true") {
-            Storage::delete('public/events/tmp/'.$request->image);
+            $this->imageService->delete('public/events/tmp/', $image);
             return redirect()->route('event.register')->withInput();
         }
 
         //画像の登録
-        $image = $request->image;
         if(!is_null($image)){
             $fileNameToStore = $this->imageService->upload($image, 'events');
         }
 
         //イベントの作成
-        Event::create([
+        $event = Event::create([
             'user_id' => $request->user_id,
             'contact_address' => $request->contact_address,
             'contact_email' => $request->contact_email,

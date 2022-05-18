@@ -2,30 +2,41 @@
 
 namespace App\Http\Controllers;
 
-use App\Interfaces\DisplayRepositoryInterface;
+use App\Interfaces\Services\ArticleServiceInterface;
+use App\Interfaces\Services\CompanyServiceInterface;
+use App\Interfaces\Services\SchoolServiceInterface;
+use App\Interfaces\Services\DisplayServiceInterface;
 use Illuminate\Http\Request;
 
 class TopController extends Controller
 {
-    private $displayRepository;
+    private $articleService;
+    private $companyService;
+    private $schoolService;
+    private $displayService;
 
     public function __construct(
-        DisplayRepositoryInterface $displayRepository
+        ArticleServiceInterface $articleService,
+        CompanyServiceInterface $companyService,
+        SchoolServiceInterface $schoolService,
+        DisplayServiceInterface $displayService
         ) {
-        $this->displayRepository = $displayRepository;
+        $this->articleService = $articleService;
+        $this->companyService = $companyService;
+        $this->schoolService = $schoolService;
+        $this->displayService = $displayService;
     }
 
     public function index(){
 
-        $user = $this->displayRepository->getAuthenticatedUser();
-        $companies = $this->displayRepository->getTargetsTwelveEach('Company'); 
+        $user = $this->displayService->getAuthenticatedUser();
+        $companies = $this->companyService->getTwelveEach(); 
 
-        $conditions = $this->displayRepository->getConditionAll();
-        $stacks = $this->displayRepository->getTechnologyAll();
+        $conditions = $this->displayService->getConditionAll();
+        $stacks = $this->displayService->getTechnologyAll();
 
-        $schools = $this->displayRepository->getTargetsThreeEach('School');
-        $articles = $this->displayRepository->getArticlesEightEach();
-        // dd($schools, $articles);
+        $schools = $this->schoolService->getTopThree();
+        $articles = $this->articleService->getTopEight();
         
         return view('top', compact('user', 'companies', 'conditions', 'stacks', 'schools', 'articles'));
     }

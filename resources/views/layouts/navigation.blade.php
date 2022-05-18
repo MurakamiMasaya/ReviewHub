@@ -11,19 +11,26 @@
                     </a>
                 </div>
             </div>
-            <div class="hidden sm:block my-auto pr-5 sm:pr-10 lg:pr-20">
-                <div>
-                    <a href="#" class="text-sm font-bold text-gray-700 dark:text-gray-500">サイトマップ</a>
-                    <a href="#" class="text-sm font-bold text-gray-700 dark:text-gray-500">お問い合わせ</a>
-                    <a href="#" class="ml-5 text-sm font-bold text-gray-700 dark:text-gray-500">マイページ</a>
+            <div class="hidden sm:flex items-center justify-end sm:pr-10 lg:pr-20">
+                <div class="pr-5">
+                    <div>
+                        <a href="#" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">サイトマップ</a>
+                        <a href="#" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">お問い合わせ</a>
+                        <a href="#" class="text-xs font-bold text-gray-700 dark:text-gray-500">マイページ</a>
+                    </div>
+                    <div class="text-right">
+                        @auth
+                            <a href="{{ url('/logout') }}" class="text-sm font-bold text-red-600 dark:text-red-500">ログアウト</a>
+                        @else
+                            <a href="{{ route('login') }}" class="mr-2 lg:mr-4 text-sm font-bold text-red-600 dark:text-red-500">ログイン</a>
+                            <a href="{{ route('register') }}" class="text-sm font-bold text-red-600 dark:text-red-500">新規登録</a>
+                        @endauth
+                    </div>
                 </div>
-                <div class="text-right">
-                    @auth
-                        <a href="{{ url('/logout') }}" class="text-sm font-bold text-red-600 dark:text-red-500">ログアウト</a>
-                    @else
-                        <a href="{{ route('login') }}" class="text-sm font-bold text-red-600 dark:text-red-500">ログイン</a>
-                        <a href="{{ route('register') }}" class="ml-5 lg:ml-10 text-sm font-bold text-red-600 dark:text-red-500">新規登録</a>
-                    @endauth
+                <div>
+                    <a href="{{ route('event.index') }}">
+                        <img src="{{ asset('images/event.png') }}" alt="">
+                    </a>
                 </div>
             </div>
 

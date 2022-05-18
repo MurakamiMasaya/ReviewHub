@@ -3,12 +3,32 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Interfaces\SearchRepositoryInterface;
-use App\Repositories\SearchRepository;
-use App\Interfaces\DisplayRepositoryInterface;
-use App\Repositories\DisplayRepository;
-use App\Interfaces\ImageRepositoryInterface;
-use App\Services\ImageService;
+
+use App\Interfaces\Services\{DisplayServiceInterface,
+    CompanyServiceInterface,
+    SchoolServiceInterface,
+    EventServiceInterface,
+    ArticleServiceInterface,
+    ImageServiceInterface};
+    
+use App\Services\{DisplayService,
+    CompanyService,
+    SchoolService,
+    EventService,
+    ArticleService,
+    ImageService};
+
+use App\Interfaces\Repositories\{DisplayRepositoryInterface,
+    CompanyRepositoryInterface,
+    SchoolRepositoryInterface,
+    EventRepositoryInterface,
+    ArticleRepositoryInterface};
+
+use App\Repositories\{DisplayRepository,
+    CompanyRepository,
+    SchoolRepository,
+    EventRepository,
+    ArticleRepository};
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -19,9 +39,19 @@ class RepositoryServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->bind(SearchRepositoryInterface::class, SearchRepository::class);
+        $this->app->bind(DisplayServiceInterface::class, DisplayService::class);
+        $this->app->bind(ImageServiceInterface::class, ImageService::class);
+        $this->app->bind(CompanyServiceInterface::class, CompanyService::class);
+        $this->app->bind(SchoolServiceInterface::class, SchoolService::class);
+        $this->app->bind(EventServiceInterface::class, EventService::class);
+        $this->app->bind(ArticleServiceInterface::class, ArticleService::class);
+
         $this->app->bind(DisplayRepositoryInterface::class, DisplayRepository::class);
         $this->app->bind(ImageRepositoryInterface::class, ImageService::class);
+        $this->app->bind(CompanyRepositoryInterface::class, CompanyRepository::class);
+        $this->app->bind(SchoolRepositoryInterface::class, SchoolRepository::class);
+        $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
+        $this->app->bind(ArticleRepositoryInterface::class, ArticleRepository::class);
     }
 
     /**
