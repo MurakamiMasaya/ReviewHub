@@ -71,13 +71,13 @@ class EventController extends Controller
         $user = $this->displayService->getAuthenticatedUser();
 
         $eventData = $this->eventService->getEvent($event);
-        $reviewEvents = ReviewEvent::where('event_id', $event)->orderBy('gr', 'desc')->paginate(10);
+        $reviews = ReviewEvent::where('event_id', $event)->orderBy('gr', 'desc')->paginate(10);
 
         $schools = $this->schoolService->getTopThree();
         $articles = $this->articleService->getTopEight();
 
         // dd($eventData, $reviewEvents);
-        return view('event.detail', compact('user', 'eventData', 'reviewEvents', 'schools', 'articles'));
+        return view('event.detail', compact('user', 'eventData', 'reviews', 'schools', 'articles'));
     }
 
     public function showRegister(){

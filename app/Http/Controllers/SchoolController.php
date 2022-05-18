@@ -61,12 +61,12 @@ class SchoolController extends Controller
         $user = $this->displayService->getAuthenticatedUser();
 
         $schoolData = $this->schoolService->getSchool($school);
-        $reviewSchools = ReviewSchool::where('school_id', $school)->orderBy('gr', 'desc')->paginate(10); 
+        $reviews = ReviewSchool::where('school_id', $school)->orderBy('gr', 'desc')->paginate(10); 
 
         $companies = $this->companyService->getTopThree();
         $articles = $this->articleService->getTopEight();
 
         // dd($reviewCompanies);
-        return view('school.detail', compact('user', 'schoolData', 'reviewSchools', 'companies', 'articles'));
+        return view('school.detail', compact('user', 'schoolData', 'reviews', 'companies', 'articles'));
     }
 }

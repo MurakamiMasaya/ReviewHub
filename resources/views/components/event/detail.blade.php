@@ -14,7 +14,7 @@
         <div class="text-white bg-red-500 rounded-t-lg font-bold text-md md:text-lg text-center pt-2">イベント詳細</div>
         <div class="border-4 border-red-500 p-3 md:p-5">
 
-            <x-detail-top :event="$event" fileName="events"/>
+            <x-detail-top :target="$event" fileName="events"/>
 
             <div class="mt-10">
                 <div class="flex items-center mt-3">

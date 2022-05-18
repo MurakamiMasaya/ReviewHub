@@ -38,6 +38,6 @@ class ArticleService implements ArticleServiceInterface {
     }
 
     public function getReviews($article){
-        return $this->articleRepository->getReviews($aritcle);
+        return $this->articleRepository->getReviews($article);
     }
 }

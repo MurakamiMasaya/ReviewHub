@@ -87,11 +87,11 @@ class CompanyController extends Controller
         $user = $this->displayService->getAuthenticatedUser();
 
         $companyData = $this->companyService->getCompany($company);
-        $reviewCompanies = $this->companyService->getReviews($company);
+        $reviews = $this->companyService->getReviews($company);
 
         $schools = $this->schoolService->getTopThree();
         $articles = $this->articleService->getTopEight();
 
-        return view('company.detail', compact('user', 'companyData', 'reviewCompanies', 'schools', 'articles'));
+        return view('company.detail', compact('user', 'companyData', 'reviews', 'schools', 'articles'));
     }
 }

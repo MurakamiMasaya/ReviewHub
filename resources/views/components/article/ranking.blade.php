@@ -1,4 +1,4 @@
-<div class="mt-10 px-1 md:px-3 lg:px-5 text-gray-800">
+<div class="mt-10 py-5 px-1 md:px-3 lg:px-5 text-gray-800">
     <div class="lg:flex justify-between items-end">
         <div class="text-xl md:text-2xl font-bold">
             特集記事掲示板 GRランキング
@@ -55,4 +55,8 @@
     @if(Auth::check())
     <div class="my-5">{{ $articles->links() }}</div>
     @endif
+
+    <a href="{{ route('article.register') }}">
+        <x-button.review title="記事" />
+    </a>
 </div>

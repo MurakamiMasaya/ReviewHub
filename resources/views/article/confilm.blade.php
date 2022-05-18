@@ -15,7 +15,7 @@
                 @endif
 
                 <div class="my-5 md:my-0">
-                    <x-event.detail :event="$eventData" :reviews="$reviews"/>
+                    <x-article.confilm :articleInfo="$articleInfo"/>
                 </div>
 
             </div>
@@ -29,7 +29,7 @@
                 @endif
 
                 <x-school.top-three :schools="$schools"/>
-                <x-article.top-eight :articles="$articles"/>
+                <x-company.top-three :companies="$companies" />
                   
             </div>
         </div>

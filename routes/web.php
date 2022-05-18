@@ -83,6 +83,9 @@ Route::controller(ArticleController::class)
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/detail/{article}', 'detail')->name('detail');
+            Route::get('/register', 'showRegister')->name('register');
+            Route::post('/register/confilm', 'confilmRegister')->name('confilm');
+            Route::post('/register', 'completeRegister')->name('register');
         });
     });
 

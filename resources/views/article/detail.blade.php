@@ -15,6 +15,7 @@
                 @endif
 
                 <div class="my-5 md:my-0">
+                    <x-article.detail :article="$articleData" :reviews="$reviews"/>
                 </div>
             </div>
 

@@ -14,12 +14,12 @@ class Article extends Model
 
     protected $fillable = [
         'user_id',
-        'article_title',
-        'article_contents',
-        'article_image',
-        'article_gr',
-        'article_tag',
-        'article_url',
+        'title',
+        'contents',
+        'image',
+        'gr',
+        'tag',
+        'url',
     ];
 
     public function user()

@@ -15,7 +15,7 @@
                 @endif
 
                 <div class="my-5 md:my-0">
-                    <x-detail :detail="$companyData" :reviews="$reviewCompanies" title="企業"/>
+                    <x-detail :detail="$companyData" :reviews="$reviews" title="企業"/>
                 </div>
             </div>
 
