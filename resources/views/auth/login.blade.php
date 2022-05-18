@@ -1,56 +1,64 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
-
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
-
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
-        <form method="POST" action="{{ route('login') }}">
-            @csrf
-
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
+        <div class="py-5 px-5 max-w-md mx-auto">
+            <div class="w-40 sm:w-56 mt-10">
+                <a href="/">
+                    <x-application-logo />
+                </a>
             </div>
-
-            <!-- Password -->
-            <div class="mt-4">
-                <x-label for="password" :value="__('Password')" />
-
-                <x-input id="password" class="block mt-1 w-full"
-                                type="password"
-                                name="password"
-                                required autocomplete="current-password" />
-            </div>
-
-            <!-- Remember Me -->
-            <div class="block mt-4">
-                <label for="remember_me" class="inline-flex items-center">
-                    <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" name="remember">
-                    <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
+    
+            <!-- Session Status -->
+            <x-auth-session-status class="mt-4" :status="session('status')" />
+    
+            <!-- Validation Errors -->
+            <x-auth-validation-errors class="mt-4" :errors="$errors" />
+    
+            <form method="POST" action="{{ route('login') }}" class="mt-10">
+                @csrf
+    
+                <div class="font-bold">ログイン</div>
+    
+                <!-- Email Address -->
+                <div class="mt-5">
+                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus placeholder="メールアドレス(必須)" />
+                </div>
+    
+                <!-- Password -->
+                <div class="mt-5">
+                    <x-input id="password" class="block mt-1 w-full"
+                                    type="password"
+                                    name="password"
+                                    required autocomplete="current-password"
+                                    placeholder="パスワード(必須)" />
+                </div>
+    
+                <!-- privacy policy -->
+                <div class="mt-10 text-xs text-center">
+                    <a href="/privacy_policy" class="text-blue-500" target="_blank" rel="noopener noreferrer">
+                        個人情報保護方針
                     </a>
-                @endif
-
-                <x-button class="ml-3">
-                    {{ __('Log in') }}
-                </x-button>
-            </div>
-        </form>
+                    に同意してログイン
+                    <div class="text-center mt-2">
+                        <input type="checkbox" name="privacy_policy" value=1 class="rounded-full mr-2" required>同意する    
+                    </div>
+                </div>
+    
+                <div class="my-10 text-center">
+                    <x-button.primary-button class="w-52">
+                        ログイン
+                    </x-button.primary-button>
+                    <a href="{{ route('register') }}">
+                        <x-button.secondary-button class="w-52 mt-5">
+                            新規登録はこちら
+                        </x-button.secondary-button>
+                    </a>
+                </div>
+                 <div class="text-xs text-center text-blue-500 mb-5">
+                     <a href="{{ route('password.request') }}">
+                         パスワードを忘れた方はこちら
+                     </a>
+                 </div>
+            </form>
+        </div>
     </x-auth-card>
 </x-guest-layout>

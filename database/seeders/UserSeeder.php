@@ -27,16 +27,6 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password123'),
                 'admin_flg' => 1,
             ],
-            [
-                'name' => 'user',
-                'birthday' => '2022-01-11',
-                'gender' => 1,
-                'username' => 'ユーザー',
-                'email' => 'user@user.com',
-                'phone' => '00099999999',
-                'password' => Hash::make('password123'),
-                'admin_flg' => 0,
-            ],
         ]);
     }
 }

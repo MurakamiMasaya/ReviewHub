@@ -13,35 +13,24 @@ use Illuminate\Validation\Rules;
 
 class RegisteredUserController extends Controller
 {
-    /**
-     * Display the registration view.
-     *
-     * @return \Illuminate\View\View
-     */
+
     public function create()
     {
         return view('auth.register');
     }
 
-    /**
-     * Handle an incoming registration request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\RedirectResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
-     */
     public function store(Request $request)
     {
         // dd($request);
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'birthday' => ['required'],
-            'gender' => ['required', 'integer'],
+            'gender' => ['required', 'numeric'],
             'username' => ['required', 'string', 'max:10'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required', 'string'],
+            'email' => ['required', 'string', 'email:strict,spoof', 'max:255', 'unique:users'],
+            'phone' => ['required','numeric','digits_between:10,11'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'privacy_policy' => ['required']
         ]);
 
         $user = User::create([
