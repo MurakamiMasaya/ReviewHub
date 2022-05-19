@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewForm;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
 use App\Models\ReviewCompany;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redis;
 
 class CompanyController extends Controller
 {
@@ -93,5 +95,49 @@ class CompanyController extends Controller
         $articles = $this->articleService->getTopEight();
 
         return view('company.detail', compact('user', 'companyData', 'reviews', 'schools', 'articles'));
+    }
+
+    public function review($detail){
+
+        $user = $this->displayService->getAuthenticatedUser();
+        $company = $this->companyService->getCompany($detail);
+
+        $schools = $this->schoolService->getTopThree();
+        $articles = $this->articleService->getTopEight();
+
+        return view('company.review', compact('user', 'company', 'schools', 'articles'));
+    }
+
+    public function reviewConfilm(ReviewForm $request, $company){
+        
+        $user = $this->displayService->getAuthenticatedUser();
+        $company = $this->companyService->getCompany($company);
+
+        $review = $request->review;
+
+        $schools = $this->schoolService->getTopThree();
+        $articles = $this->articleService->getTopEight();
+
+        return view('company.confilm', compact('user', 'company', 'review', 'schools', 'articles'));
+    }
+
+    public function reviewRegister(ReviewForm $request, $company){
+       
+        // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
+        if ($request->back === "true") {
+            return redirect()->route('company.review', $company)->withInput();
+        }
+
+        ReviewCompany::create([
+            'user_id' => $request->user_id,
+            'company_id' => $company,
+            'review' => $request->review,
+        ]);
+
+        $text = '投稿が完了しました！';
+        $linkText = '企業一覧に戻る';
+        $link = 'company.index';
+        
+        return view('redirect', compact('text', 'linkText', 'link'));
     }
 }
