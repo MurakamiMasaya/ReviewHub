@@ -7,7 +7,7 @@
     @foreach ($reviews as $review)
     <div class="flex items-center mt-3">
         <div class="w-12 md:w-15 mr-1 md:mr-2">
-            @if($detail->gender === 0)
+            @if($review->user->gender == 0)
             <img src="{{ asset('images/man.png') }}" alt="男性アイコン">
             @else
             <img src="{{ asset('images/woman.png') }}" alt="女性アイコン">

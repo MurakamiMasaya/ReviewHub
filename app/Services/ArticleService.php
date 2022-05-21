@@ -37,7 +37,19 @@ class ArticleService implements ArticleServiceInterface {
         return $this->articleRepository->getSearchAll($target);
     }
 
-    public function getReviews($article){
-        return $this->articleRepository->getReviews($article);
+    public function getReviewsAll($article){
+        return $this->articleRepository->getReviewsAll($article);
+    }
+
+    public function getReviewsTenEach($article){
+        return $this->articleRepository->getReviewsTenEach($article);
+    }
+
+    public function createArticle($request){
+        return $this->articleRepository->createArticle($request);
+    }
+
+    public function createReview($request){
+        return $this->articleRepository->createReview($request);
     }
 }

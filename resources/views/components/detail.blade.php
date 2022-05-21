@@ -16,11 +16,11 @@
 
             <x-information :reviews="$reviews" :detail="$detail" :title="$title"/>
 
-            <x-review :reviews="$reviews" :detail="$detail"/>
+            <x-review :reviews="$reviews"/>
 
             <x-button.see-more :reviews="$reviews" :detail="$detail"/>
             
-            <a href="#">
+            <a href="{{ route($route, ['detail' => $detail->id]) }}">
                 <x-button.review :title="$title" />
             </a>
         </div>

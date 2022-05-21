@@ -77,6 +77,7 @@
         @endif
     </div>
     @if(Auth::check())
+    {{-- #FIXME:一旦デフォルトのページネーションにしてます。レスポンシプで枠からはみ出ることがある --}}
         <div class="my-5">{{ $companies->links() }}</div>
     @endif
 </div>

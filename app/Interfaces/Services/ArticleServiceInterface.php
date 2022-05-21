@@ -10,5 +10,9 @@ interface ArticleServiceInterface{
     public function getSearchTenEach($target);
     public function getSearchAll($target);
 
-    public function getReviews($article);
+    public function getReviewsAll($article);
+    public function getReviewsTenEach($article);
+
+    public function createArticle($request);
+    public function createReview($request);
 }

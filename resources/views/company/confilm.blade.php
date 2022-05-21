@@ -15,7 +15,7 @@
                 @endif
 
                 <div class="my-5 md:my-0">
-                    <x-detail :detail="$companyData" :reviews="$reviews" title="企業" route="company.review"/>
+                    <x-company.review-confilm :user="$user" :review="$review" title="企業" :company="$company"/>
                 </div>
             </div>
 

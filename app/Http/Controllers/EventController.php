@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use App\Http\Requests\ReviewForm;
 use App\Http\Requests\EventFormRequest;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
@@ -9,10 +12,6 @@ use App\Interfaces\Services\SchoolServiceInterface;
 use App\Interfaces\Services\EventServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
 use App\Interfaces\Services\ImageServiceInterface;
-use App\Models\ReviewEvent;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Storage;
 
 class EventController extends Controller
 {
@@ -71,13 +70,14 @@ class EventController extends Controller
         $user = $this->displayService->getAuthenticatedUser();
 
         $eventData = $this->eventService->getEvent($event);
-        $reviews = ReviewEvent::where('event_id', $event)->orderBy('gr', 'desc')->paginate(10);
+        $reviews = $this->eventService->getReviewsTenEach($event);
+        $reviewsAll = $this->eventService->getReviews($event);
 
         $schools = $this->schoolService->getTopThree();
         $articles = $this->articleService->getTopEight();
 
         // dd($eventData, $reviewEvents);
-        return view('event.detail', compact('user', 'eventData', 'reviews', 'schools', 'articles'));
+        return view('event.detail', compact('user', 'eventData', 'reviews', 'reviewsAll', 'schools', 'articles'));
     }
 
     public function showRegister(){
@@ -145,25 +145,19 @@ class EventController extends Controller
         }
 
         //イベントの作成
-        $event = Event::create([
-            'user_id' => $request->user_id,
-            'contact_address' => $request->contact_address,
-            'contact_email' => $request->contact_email,
-            'segment' => $request->segment,
-            'online' => $request->online ?? '',
-            'area' => $request->area ?? '',
-            'capacity' => $request->capacity,
-            'title' => $request->title,
-            'contents' => $request->contents,
-            'image' => $image ?? '',
-            'url' => $request->url ?? '',
-            'tag' => $request->tag ?? '',
-        ]);
+        $this->eventService->createEvent($request);
 
         $text = '登録が完了しました！';
         $linkText = 'イベント一覧に戻る';
         $link = 'event.index';
         
         return view('redirect', compact('text', 'linkText', 'link'));
+    }
+
+    public function review(ReviewForm $request){
+
+        $this->eventService->createReview($request);
+
+        return redirect()->route('event.detail',$request->event_id);
     }
 }

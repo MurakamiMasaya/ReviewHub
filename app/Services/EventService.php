@@ -33,7 +33,18 @@ class EventService implements EventServiceInterface {
 
     public function getReviews($event){
         return $this->eventRepository->getReviews($event);
-        
+    }
+
+    public function getReviewsTenEach($event){
+        return $this->eventRepository->getReviewsTenEach($event);
+    }
+
+    public function createEvent($request){
+        return $this->eventRepository->createEvent($request);
+    }
+
+    public function createReview($request){
+        return $this->eventRepository->createReview($request);
     }
 
 }

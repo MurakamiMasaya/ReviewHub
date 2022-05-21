@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewForm;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
@@ -68,5 +69,49 @@ class SchoolController extends Controller
 
         // dd($reviewCompanies);
         return view('school.detail', compact('user', 'schoolData', 'reviews', 'companies', 'articles'));
+    }
+
+    public function review($detail){
+
+        $user = $this->displayService->getAuthenticatedUser();
+        $school = $this->schoolService->getSchool($detail);
+
+        $companies = $this->companyService->getTopThree();
+        $articles = $this->articleService->getTopEight();
+
+        return view('school.review', compact('user', 'school', 'companies', 'articles'));
+    }
+
+    public function reviewConfilm(ReviewForm $request, $school){
+        
+        $user = $this->displayService->getAuthenticatedUser();
+        $school = $this->schoolService->getSchool($school);
+
+        $review = $request->review;
+
+        $companies = $this->companyService->getTopThree();
+        $articles = $this->articleService->getTopEight();
+
+        return view('school.confilm', compact('user', 'school', 'review', 'companies', 'articles'));
+    }
+
+    public function reviewRegister(ReviewForm $request, $school){
+       
+        // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
+        if ($request->back === "true") {
+            return redirect()->route('school.review', $school)->withInput();
+        }
+
+        ReviewSchool::create([
+            'user_id' => $request->user_id,
+            'school_id' => $school,
+            'review' => $request->review,
+        ]);
+
+        $text = '投稿が完了しました！';
+        $linkText = 'スクール一覧に戻る';
+        $link = 'school.index';
+        
+        return view('redirect', compact('text', 'linkText', 'link'));
     }
 }

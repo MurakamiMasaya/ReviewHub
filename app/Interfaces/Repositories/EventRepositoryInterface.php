@@ -10,4 +10,8 @@ interface EventRepositoryInterface{
     public function getSearchAll($target);
 
     public function getReviews($event);
+    public function getReviewsTenEach($event);
+
+    public function createEvent($request);
+    public function createReview($request);
 }

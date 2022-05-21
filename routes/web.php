@@ -44,6 +44,9 @@ Route::controller(CompanyController::class)
         
         Route::middleware('auth')->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
+            Route::get('/review/{detail}', 'review')->name('review');
+            Route::post('/review/confilm/{company}', 'reviewConfilm')->name('review.confilm');
+            Route::post('/review/register/{company}', 'reviewRegister')->name('review.register');
         });
     });
 
@@ -56,6 +59,9 @@ Route::controller(SchoolController::class)
 
         Route::middleware('auth')->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
+            Route::get('/review/{detail}', 'review')->name('review');
+            Route::post('/review/confilm/{school}', 'reviewConfilm')->name('review.confilm');
+            Route::post('/review/register/{school}', 'reviewRegister')->name('review.register');
         });
     });
 
@@ -71,6 +77,8 @@ Route::controller(EventController::class)
             Route::get('/register', 'showRegister')->name('register');
             Route::post('/register/confilm', 'confilmRegister')->name('confilm');
             Route::post('/register', 'completeRegister')->name('register');
+
+            Route::post('/review', 'review')->name('review');
         });
     });
 
@@ -86,6 +94,8 @@ Route::controller(ArticleController::class)
             Route::get('/register', 'showRegister')->name('register');
             Route::post('/register/confilm', 'confilmRegister')->name('confilm');
             Route::post('/register', 'completeRegister')->name('register');
+
+            Route::post('/review', 'review')->name('review');
         });
     });
 
