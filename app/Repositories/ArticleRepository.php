@@ -10,30 +10,53 @@ use App\Models\ReviewArticle;
 class ArticleRepository implements ArticleRepositoryInterface {
 
     public function getArticle($article){
-        return Article::findOrFail($article);
+        return Article::with('user')->findOrFail($article);
     }
 
     public function getTopEight(){
-        return Article::orderBy('gr', 'desc')->limit(8)->get();
+        return Article::with('user')->orderBy('gr', 'desc')->limit(8)->get();
     }
 
     public function getTenEach(){
-        return Article::orderBy('gr', 'desc')->paginate(10); 
+        return Article::with('user')->orderBy('gr', 'desc')->paginate(10); 
     }
 
     public function getSearchTenEach($target){
-        return Article::where('title' , 'like', '%'. $target .'%')
+        return Article::with('user')->where('title' , 'like', '%'. $target .'%')
         ->orderBy('gr', 'desc')
         ->paginate(10);
     }
 
     public function getSearchAll($target){
-        return Article::where('title' , 'like', '%'. $target .'%')
+        return Article::with('user')->where('title' , 'like', '%'. $target .'%')
         ->orderBy('gr', 'desc')
         ->get();
     }
 
-    public function getReviews($article){
-        return ReviewArticle::where('article_id', $article)->orderBy('gr', 'desc')->paginate(10);
+    public function getReviewsAll($article){
+        return ReviewArticle::with('user', 'article')->where('article_id', $article)->orderBy('gr', 'desc')->get();
+    }
+
+    public function getReviewsTenEach($article){
+        return ReviewArticle::with('user', 'article')->where('article_id', $article)->orderBy('gr', 'desc')->paginate(10);
+    }
+
+    public function createArticle($request){
+        Article::create([
+            'user_id' => $request->user_id,
+            'title' => $request->title,
+            'contents' => $request->contents,
+            'image' => $image ?? '',
+            'url' => $request->url ?? '',
+            'tag' => $request->tag ?? '',
+        ]);
+    }
+
+    public function createReview($request){
+        ReviewArticle::create([
+            'user_id' => $request->user_id,
+            'article_id' => $request->article_id,
+            'review' => $request->review,
+        ]);
     }
 }

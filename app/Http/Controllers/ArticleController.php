@@ -8,8 +8,6 @@ use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
 use App\Interfaces\Services\ImageServiceInterface;
-use App\Models\Article;
-use App\Models\ReviewArticle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redis;
@@ -68,12 +66,13 @@ class ArticleController extends Controller
         $user = $this->displayService->getAuthenticatedUser();
 
         $articleData = $this->articleService->getArticle($article);
-        $reviews = $this->articleService->getReviews($article);
+        $reviews = $this->articleService->getReviewsTenEach($article);
+        $reviewsAll = $this->articleService->getReviewsAll($article);
 
         $companies = $this->companyService->getTopThree();
         $schools = $this->schoolService->getTopThree();
 
-        return view('article.detail', compact('user', 'articleData', 'reviews', 'companies', 'schools'));
+        return view('article.detail', compact('user', 'articleData', 'reviews', 'reviewsAll', 'companies', 'schools'));
     }
 
     public function showRegister(){
@@ -135,19 +134,19 @@ class ArticleController extends Controller
         }
 
         //イベントの作成
-        Article::create([
-            'user_id' => $request->user_id,
-            'title' => $request->title,
-            'contents' => $request->contents,
-            'image' => $image ?? '',
-            'url' => $request->url ?? '',
-            'tag' => $request->tag ?? '',
-        ]);
+        $this->articleService->createArticle($request);
 
         $text = '登録が完了しました！';
         $linkText = '記事一覧に戻る';
         $link = 'article.index';
         
         return view('redirect', compact('text', 'linkText', 'link'));
+    }
+
+    public function review(Request $request){
+        
+        $this->articleService->createReview($request);
+
+        return redirect()->route('article.detail',$request->article_id);
     }
 }

@@ -77,6 +77,8 @@ Route::controller(EventController::class)
             Route::get('/register', 'showRegister')->name('register');
             Route::post('/register/confilm', 'confilmRegister')->name('confilm');
             Route::post('/register', 'completeRegister')->name('register');
+
+            Route::post('/review', 'review')->name('review');
         });
     });
 
@@ -92,6 +94,8 @@ Route::controller(ArticleController::class)
             Route::get('/register', 'showRegister')->name('register');
             Route::post('/register/confilm', 'confilmRegister')->name('confilm');
             Route::post('/register', 'completeRegister')->name('register');
+
+            Route::post('/review', 'review')->name('review');
         });
     });
 

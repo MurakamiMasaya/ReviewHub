@@ -21,9 +21,9 @@
             @else
                 @foreach ($companies as $company)
                 <div>
-                    <div class="flex justify-around items-center mt-3">
-                        <div class="flex items-end">
-                            <div class="mr-3 md:mr-1 lg:mr-3 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
+                    <div class="flex justify-between items-center mt-3">
+                        <div class="flex items-center">
+                            <div class="w-10 mx-3 md:mx-1 lg:mx-3 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
                             <div class="text-md lg:text-lg font-bold">
                                 <a href="{{ route('company.detail',['company' => $company->id]) }}">
                                     {{ $company->name }}
