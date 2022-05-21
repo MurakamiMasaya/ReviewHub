@@ -10,5 +10,7 @@ interface CompanyServiceInterface{
     public function getSearchTenEach($target);
     public function getSearchAll($target);
 
-    public function getReviews($company);
+    public function getReviewsTenEach($company);
+
+    public function deleteReview($id);
 }

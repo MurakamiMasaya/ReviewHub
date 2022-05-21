@@ -34,4 +34,17 @@ class SchoolService implements SchoolServiceInterface {
     public function getSearchAll($target){
         return $this->schoolRepository->getSearchAll($target);
     }
+
+    public function getReviewsTenEach($school){
+        return $this->schoolRepository->getReviewsTenEach($school);
+    }
+
+    public function getReviewsTiedUserTenEach($user){
+        return $this->schoolRepository->getReviewsTiedUserTenEach($user);
+    }
+
+    public function deleteReview($id){
+        return $this->schoolRepository->deleteReview($id);
+        
+    }
 }

@@ -37,6 +37,10 @@ class ArticleRepository implements ArticleRepositoryInterface {
         return ReviewArticle::with('user', 'article')->where('article_id', $article)->orderBy('gr', 'desc')->get();
     }
 
+    public function getReviewsTiedUserTenEach($user){
+        return ReviewArticle::with('user', 'article')->where('user_id', $user)->orderBy('gr', 'desc')->paginate(10);
+    }
+
     public function getReviewsTenEach($article){
         return ReviewArticle::with('user', 'article')->where('article_id', $article)->orderBy('gr', 'desc')->paginate(10);
     }
@@ -58,5 +62,9 @@ class ArticleRepository implements ArticleRepositoryInterface {
             'article_id' => $request->article_id,
             'review' => $request->review,
         ]);
+    }
+
+    public function deleteReview($id){
+        ReviewArticle::where('id', $id)->delete();
     }
 }

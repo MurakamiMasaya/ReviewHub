@@ -16,7 +16,7 @@
                     <div>
                         <a href="#" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">サイトマップ</a>
                         <a href="#" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">お問い合わせ</a>
-                        <a href="#" class="text-xs font-bold text-gray-700 dark:text-gray-500">マイページ</a>
+                        <a href="{{ route('mypage.index') }}" class="text-xs font-bold text-gray-700 dark:text-gray-500">マイページ</a>
                     </div>
                     <div class="text-right">
                         @auth

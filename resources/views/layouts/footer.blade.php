@@ -19,7 +19,7 @@
             <a href="">
                 <div class="mr-3 md:mr-5 text-gray-800 text-sm font-bold">お問い合わせ</div>
             </a>
-            <a href="">
+            <a href="{{ route('mypage.index') }}">
                 <div class="mr-3 md:mr-5 text-gray-800 text-sm font-bold">マイページ</div>
             </a>
         </div>

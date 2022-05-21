@@ -37,6 +37,10 @@ class EventRepository implements EventRepositoryInterface {
         return ReviewEvent::with('user', 'event')->where('event_id', $event)->orderBy('gr', 'desc')->paginate(10);
     }
 
+    public function getReviewsTiedUserTenEach($user){
+        return ReviewEvent::with('user', 'event')->where('user_id', $user)->orderBy('gr', 'desc')->paginate(10); 
+    }
+
     public function createEvent($request){
 
         Event::create([
@@ -62,6 +66,10 @@ class EventRepository implements EventRepositoryInterface {
             'event_id' => $request->event_id,
             'review' => $request->review
         ]);
+    }
+
+    public function deleteReview($id){
+        return ReviewEvent::where('id', $id)->delete();
     }
 
 }

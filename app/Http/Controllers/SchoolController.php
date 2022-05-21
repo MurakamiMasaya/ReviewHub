@@ -62,7 +62,7 @@ class SchoolController extends Controller
         $user = $this->displayService->getAuthenticatedUser();
 
         $schoolData = $this->schoolService->getSchool($school);
-        $reviews = ReviewSchool::where('school_id', $school)->orderBy('gr', 'desc')->paginate(10); 
+        $reviews = $this->schoolService->getReviewsTenEach($school);
 
         $companies = $this->companyService->getTopThree();
         $articles = $this->articleService->getTopEight();
@@ -82,7 +82,7 @@ class SchoolController extends Controller
         return view('school.review', compact('user', 'school', 'companies', 'articles'));
     }
 
-    public function reviewConfilm(ReviewForm $request, $school){
+    public function confilmReview(ReviewForm $request, $school){
         
         $user = $this->displayService->getAuthenticatedUser();
         $school = $this->schoolService->getSchool($school);
@@ -95,7 +95,7 @@ class SchoolController extends Controller
         return view('school.confilm', compact('user', 'school', 'review', 'companies', 'articles'));
     }
 
-    public function reviewRegister(ReviewForm $request, $school){
+    public function registerReview(ReviewForm $request, $school){
        
         // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
         if ($request->back === "true") {
@@ -113,5 +113,14 @@ class SchoolController extends Controller
         $link = 'school.index';
         
         return view('redirect', compact('text', 'linkText', 'link'));
+    }
+
+    public function deleteReview($id){
+
+        $user = $this->displayService->getAuthenticatedUser();
+
+        $this->schoolService->deleteReview($id);
+
+        return redirect()->route('mypage.review');
     }
 }

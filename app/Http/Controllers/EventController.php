@@ -160,4 +160,13 @@ class EventController extends Controller
 
         return redirect()->route('event.detail',$request->event_id);
     }
+
+    public function deleteReview($id){
+
+        $user = $this->displayService->getAuthenticatedUser();
+
+        $this->eventService->deleteReview($id);
+
+        return redirect()->route('mypage.review');
+    }
 }

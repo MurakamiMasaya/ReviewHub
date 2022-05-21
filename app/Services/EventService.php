@@ -47,4 +47,8 @@ class EventService implements EventServiceInterface {
         return $this->eventRepository->createReview($request);
     }
 
+    public function deleteReview($id){
+        return $this->eventRepository->deleteReview($id);
+    }
+
 }

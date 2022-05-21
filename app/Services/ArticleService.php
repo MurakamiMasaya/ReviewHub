@@ -52,4 +52,9 @@ class ArticleService implements ArticleServiceInterface {
     public function createReview($request){
         return $this->articleRepository->createReview($request);
     }
+
+    public function deleteReview($id){
+        return $this->articleRepository->deleteReview($id);
+        
+    }
 }

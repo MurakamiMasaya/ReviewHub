@@ -12,6 +12,7 @@ interface ArticleServiceInterface{
 
     public function getReviewsAll($article);
     public function getReviewsTenEach($article);
+    public function deleteReview($id);
 
     public function createArticle($request);
     public function createReview($request);

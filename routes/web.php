@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\MypageController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,8 +46,9 @@ Route::controller(CompanyController::class)
         Route::middleware('auth')->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/review/{detail}', 'review')->name('review');
-            Route::post('/review/confilm/{company}', 'reviewConfilm')->name('review.confilm');
-            Route::post('/review/register/{company}', 'reviewRegister')->name('review.register');
+            Route::post('/review/confilm/{company}', 'confilmReview')->name('review.confilm');
+            Route::post('/review/register/{company}', 'registerReview')->name('review.register');
+            Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
         });
     });
 
@@ -60,8 +62,9 @@ Route::controller(SchoolController::class)
         Route::middleware('auth')->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/review/{detail}', 'review')->name('review');
-            Route::post('/review/confilm/{school}', 'reviewConfilm')->name('review.confilm');
-            Route::post('/review/register/{school}', 'reviewRegister')->name('review.register');
+            Route::post('/review/confilm/{school}', 'confilmReview')->name('review.confilm');
+            Route::post('/review/register/{school}', 'registerReview')->name('review.register');
+            Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
         });
     });
 
@@ -79,6 +82,7 @@ Route::controller(EventController::class)
             Route::post('/register', 'completeRegister')->name('register');
 
             Route::post('/review', 'review')->name('review');
+            Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
         });
     });
 
@@ -96,7 +100,18 @@ Route::controller(ArticleController::class)
             Route::post('/register', 'completeRegister')->name('register');
 
             Route::post('/review', 'review')->name('review');
+            Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
         });
+    });
+
+Route::controller(MypageController::class)
+    ->prefix('mypage')->name('mypage.')->middleware('auth')->group(function(){
+        Route::get('/', 'index')->name('index');
+        Route::get('/review', 'review')->name('review');
+        Route::get('/event', 'event')->name('event');
+        Route::get('/article', 'article')->name('article');
+        Route::get('/profile', 'profile')->name('profile');
+        Route::get('/withdraw', 'withdraw')->name('withdraw');
     });
 
 require __DIR__.'/auth.php';

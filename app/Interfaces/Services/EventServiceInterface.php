@@ -11,6 +11,7 @@ interface EventServiceInterface{
 
     public function getReviews($event);
     public function getReviewsTenEach($event);
+    public function deleteReview($id);
 
     public function createEvent($request);
     public function createReview($request);

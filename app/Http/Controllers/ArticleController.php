@@ -149,4 +149,13 @@ class ArticleController extends Controller
 
         return redirect()->route('article.detail',$request->article_id);
     }
+
+    public function deleteReview($id){
+
+        $user = $this->displayService->getAuthenticatedUser();
+
+        $this->articleService->deleteReview($id);
+
+        return redirect()->route('mypage.review');
+    }
 }

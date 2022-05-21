@@ -8,4 +8,5 @@ interface DisplayServiceInterface{
     public function getConditionAll();
     public function getAuthenticatedUser();
 
+    public function getAllReviews($id);
 }
