@@ -134,7 +134,7 @@ class ArticleController extends Controller
         }
 
         //イベントの作成
-        $this->articleService->createArticle($request);
+        $this->articleService->createArticle($request, $image);
 
         $text = '登録が完了しました！';
         $linkText = '記事一覧に戻る';

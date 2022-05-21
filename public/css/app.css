@@ -1211,6 +1211,9 @@ input:checked + .toggle-bg {
 .h-4 {
   height: 1rem;
 }
+.max-h-5 {
+  max-height: 1.25rem;
+}
 .min-h-screen {
   min-height: 100vh;
 }
@@ -1297,6 +1300,9 @@ input:checked + .toggle-bg {
 }
 .w-4\/12 {
   width: 33.333333%;
+}
+.w-6\/12 {
+  width: 50%;
 }
 .max-w-6xl {
   max-width: 72rem;
@@ -1426,6 +1432,11 @@ input:checked + .toggle-bg {
 }
 .overflow-hidden {
   overflow: hidden;
+}
+.truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .rounded-md {
   border-radius: 0.375rem;
@@ -1622,6 +1633,10 @@ input:checked + .toggle-bg {
 .bg-red-400 {
   --tw-bg-opacity: 1;
   background-color: rgb(249 128 128 / var(--tw-bg-opacity));
+}
+.bg-green-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(49 196 141 / var(--tw-bg-opacity));
 }
 .bg-opacity-50 {
   --tw-bg-opacity: 0.5;
@@ -2441,6 +2456,10 @@ input:checked + .toggle-bg {
 
   .md\:w-5\/12 {
     width: 41.666667%;
+  }
+
+  .md\:w-7\/12 {
+    width: 58.333333%;
   }
 
   .md\:justify-between {

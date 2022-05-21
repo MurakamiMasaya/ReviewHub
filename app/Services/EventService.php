@@ -39,8 +39,8 @@ class EventService implements EventServiceInterface {
         return $this->eventRepository->getReviewsTenEach($event);
     }
 
-    public function createEvent($request){
-        return $this->eventRepository->createEvent($request);
+    public function createEvent($request, $image){
+        return $this->eventRepository->createEvent($request, $image);
     }
 
     public function createReview($request){
@@ -49,6 +49,10 @@ class EventService implements EventServiceInterface {
 
     public function deleteReview($id){
         return $this->eventRepository->deleteReview($id);
+    }
+
+    public function getEventTiedUserTenEach($user){
+        return $this->eventRepository->getEventTiedUserTenEach($user);
     }
 
 }

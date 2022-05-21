@@ -121,7 +121,7 @@
                 </x-responsive-nav-link>
             </div>
             <div class="text-center">
-                <x-responsive-nav-link :href="route('top')" :active="request()->routeIs('top')">
+                <x-responsive-nav-link :href="route('mypage.index')" :active="request()->routeIs('top')">
                     マイページ
                 </x-responsive-nav-link>
             </div>

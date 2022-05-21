@@ -109,6 +109,7 @@ Route::controller(MypageController::class)
         Route::get('/', 'index')->name('index');
         Route::get('/review', 'review')->name('review');
         Route::get('/event', 'event')->name('event');
+        Route::get('/event/edit/{event}', 'event')->name('event.edit');
         Route::get('/article', 'article')->name('article');
         Route::get('/profile', 'profile')->name('profile');
         Route::get('/withdraw', 'withdraw')->name('withdraw');

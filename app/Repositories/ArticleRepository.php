@@ -45,7 +45,7 @@ class ArticleRepository implements ArticleRepositoryInterface {
         return ReviewArticle::with('user', 'article')->where('article_id', $article)->orderBy('gr', 'desc')->paginate(10);
     }
 
-    public function createArticle($request){
+    public function createArticle($request, $image){
         Article::create([
             'user_id' => $request->user_id,
             'title' => $request->title,

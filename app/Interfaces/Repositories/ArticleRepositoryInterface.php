@@ -15,6 +15,6 @@ interface ArticleRepositoryInterface{
     public function getReviewsTiedUserTenEach($user);
     public function deleteReview($id);
 
-    public function createArticle($request);
+    public function createArticle($request, $image);
     public function createReview($request);
 }

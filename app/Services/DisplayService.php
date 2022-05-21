@@ -44,7 +44,7 @@ class DisplayService implements DisplayServiceInterface {
         return $this->displayRepository->getConditionAll();
     }
 
-    public function getAllReviews($id){
+    public function getAllReviewsTenEach($id){
 
         $allReviews = [];
 

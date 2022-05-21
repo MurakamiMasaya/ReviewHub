@@ -145,7 +145,7 @@ class EventController extends Controller
         }
 
         //イベントの作成
-        $this->eventService->createEvent($request);
+        $this->eventService->createEvent($request, $image);
 
         $text = '登録が完了しました！';
         $linkText = 'イベント一覧に戻る';

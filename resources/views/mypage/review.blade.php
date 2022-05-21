@@ -4,8 +4,13 @@
         <x-admin-header />
     @endif
 
-    <div class="max-w-4xl mx-auto my-5 sm:my-10 px-2 md:px-10">
-        <div class="text-xl font-bold">Review一覧</div>
+    <div class="max-w-4xl mx-auto my-10 px-2 md:px-10">
+        <div class="flex justify-between items-end">
+            <div class="text-xl font-bold">Review一覧</div>
+            <div class="">
+                <a href="{{ route("mypage.index") }}"><div class="text-sm text-blue-500 font-bold">マイページに戻る</div></a>
+            </div>
+        </div>
         
         {{-- CompanyReview --}}
         <div class="mt-5">
@@ -32,7 +37,13 @@
                     </td>
                 </tr>
                 @endforeach
+                {{ $allReviews[0]['c_reviews']->links() }}
             </table>
+
+            {{-- データが登録されていない時 --}}
+            @if (count($allReviews[0]['c_reviews'])===0)
+                <div class="text-center font-bold mt-5 text-gray-500">Reviewは登録されていません</div>
+            @endif
         </div>
 
         {{-- SchoolReview --}}
@@ -60,7 +71,13 @@
                     </td>
                 </tr>
                 @endforeach
+                {{ $allReviews[0]['s_reviews']->links() }}
             </table>
+
+            {{-- データが登録されていない時 --}}
+            @if (count($allReviews[0]['s_reviews'])===0)
+                <div class="text-center font-bold mt-5 text-gray-500">Reviewは登録されていません</div>
+            @endif
         </div>
 
         {{-- EventReview --}}
@@ -88,7 +105,13 @@
                     </td>
                 </tr>
                 @endforeach
+                {{ $allReviews[0]['e_reviews']->links() }}
             </table>
+
+            {{-- データが登録されていない時 --}}
+            @if (count($allReviews[0]['e_reviews'])===0)
+                <div class="text-center font-bold mt-5 text-gray-500">Reviewは登録されていません</div>
+            @endif
         </div>
         {{-- ArticleReview --}}
         <div class="mt-5">
@@ -115,7 +138,13 @@
                     </td>
                 </tr>
                 @endforeach
+                {{ $allReviews[0]['a_reviews']->links() }}
             </table>
+
+            {{-- データが登録されていない時 --}}
+            @if (count($allReviews[0]['a_reviews'])===0)
+                <div class="text-center font-bold mt-5 text-gray-500">Reviewは登録されていません</div>
+            @endif
         </div>
     </div>
 
