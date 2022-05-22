@@ -21,6 +21,10 @@ class ArticleService implements ArticleServiceInterface {
         return $this->articleRepository->getArticle($article);
     }
 
+    public function getArticleTiedUserTenEach($user){
+        return $this->articleRepository->getArticleTiedUserTenEach($user);
+    }
+
     public function getTopEight(){
         return $this->articleRepository->getTopEight();
     }
@@ -55,6 +59,9 @@ class ArticleService implements ArticleServiceInterface {
 
     public function deleteReview($id){
         return $this->articleRepository->deleteReview($id);
-        
+    }
+
+    public function deleteArticle($article){
+        return $this->articleRepository->deleteArticle($article);
     }
 }

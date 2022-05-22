@@ -49,7 +49,7 @@ class DisplayService implements DisplayServiceInterface {
         $allReviews = [];
 
         $c_reviews = $this->companyRepository->getReviewsTiedUserTenEach($id);
-        $s_reviews = $this->schoolRepository->getReviewsTiedUserTenEach($id);
+        $s_reviews = $this->schoolRepository->getReviewsTiedUserTenEacsh($id);
         $e_reviews = $this->eventRepository->getReviewsTiedUserTenEach($id);
         $a_reviews = $this->articleRepository->getReviewsTiedUserTenEach($id);
 
@@ -59,5 +59,9 @@ class DisplayService implements DisplayServiceInterface {
             'e_reviews' => $e_reviews, 
             'a_reviews' => $a_reviews]);
         return $allReviews;
+    }
+
+    public function deleteAcount($id){
+        return $this->displayRepository->deleteAcount($id);
     }
 }

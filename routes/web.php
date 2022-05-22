@@ -70,16 +70,17 @@ Route::controller(SchoolController::class)
 
 //イベント
 Route::controller(EventController::class)
-    ->prefix('event')->name('event.')->group(function(){
-        Route::get('/', 'index')->name('index');
-        Route::get('/search', 'search')->name('search');
+->prefix('event')->name('event.')->group(function(){
+    Route::get('/', 'index')->name('index');
+    Route::get('/search', 'search')->name('search');
         
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/detail/{event}', 'detail')->name('detail');
-            Route::get('/register', 'showRegister')->name('register');
-            Route::post('/register/confilm', 'confilmRegister')->name('confilm');
-            Route::post('/register', 'completeRegister')->name('register');
+            Route::get('/register', 'createEvent')->name('register');
+            Route::post('/register/confilm', 'confilmEvent')->name('confilm');
+            Route::post('/register', 'registEvent')->name('register');
+            Route::post('/delete/{event}', 'deleteEvent')->name('delete');
 
             Route::post('/review', 'review')->name('review');
             Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
@@ -91,13 +92,15 @@ Route::controller(ArticleController::class)
     ->prefix('article')->name('article.')->group(function(){
         Route::get('/', 'index')->name('index');
         Route::get('/search', 'search')->name('search');
+       
         
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/detail/{article}', 'detail')->name('detail');
-            Route::get('/register', 'showRegister')->name('register');
-            Route::post('/register/confilm', 'confilmRegister')->name('confilm');
-            Route::post('/register', 'completeRegister')->name('register');
+            Route::get('/register', 'createArticle')->name('register');
+            Route::post('/register/confilm', 'confilmArticle')->name('confilm');
+            Route::post('/register', 'registArticle')->name('register');
+            Route::post('/delete/{article}', 'deleteArticle')->name('delete');
 
             Route::post('/review', 'review')->name('review');
             Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
@@ -108,11 +111,21 @@ Route::controller(MypageController::class)
     ->prefix('mypage')->name('mypage.')->middleware('auth')->group(function(){
         Route::get('/', 'index')->name('index');
         Route::get('/review', 'review')->name('review');
+
         Route::get('/event', 'event')->name('event');
-        Route::get('/event/edit/{event}', 'event')->name('event.edit');
+        Route::get('/event/edit/{event}', 'editEvent')->name('event.edit');
+        Route::post('/event/confilm', 'confilmEvent')->name('event.confilm');
+        Route::post('/event/register', 'registerEvent')->name('event.register');
+
         Route::get('/article', 'article')->name('article');
+        Route::get('/article/edit/{article}', 'editArticle')->name('article.edit');
+        Route::post('/article/confilm', 'confilmArticle')->name('article.confilm');
+        Route::post('/article/register', 'registerArticle')->name('article.register');
+
         Route::get('/profile', 'profile')->name('profile');
-        Route::get('/withdraw', 'withdraw')->name('withdraw');
+        Route::post('/profile', 'registProfile')->name('profile.register');
+        Route::post('/delete', 'deleteAcount')->name('delete');
+
     });
 
 require __DIR__.'/auth.php';

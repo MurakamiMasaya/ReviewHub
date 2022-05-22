@@ -9,6 +9,7 @@ use App\Models\Article;
 use App\Models\Condition;
 use App\Models\Stack;
 use App\Interfaces\Repositories\DisplayRepositoryInterface;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class DisplayRepository implements DisplayRepositoryInterface {
@@ -23,5 +24,9 @@ class DisplayRepository implements DisplayRepositoryInterface {
 
     public function getConditionAll(){
         return Condition::all();
+    }
+
+    public function deleteAcount($id){
+        return User::where('id', $id)->delete();
     }
 }

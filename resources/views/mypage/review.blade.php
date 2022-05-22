@@ -37,8 +37,10 @@
                     </td>
                 </tr>
                 @endforeach
-                {{ $allReviews[0]['c_reviews']->links() }}
             </table>
+            <div class="my-5">
+                {{ $allReviews[0]['c_reviews']->links() }}
+            </div>
 
             {{-- データが登録されていない時 --}}
             @if (count($allReviews[0]['c_reviews'])===0)
@@ -71,8 +73,10 @@
                     </td>
                 </tr>
                 @endforeach
-                {{ $allReviews[0]['s_reviews']->links() }}
             </table>
+            <div class="my-5">
+                {{ $allReviews[0]['s_reviews']->links() }}
+            </div>
 
             {{-- データが登録されていない時 --}}
             @if (count($allReviews[0]['s_reviews'])===0)
@@ -105,8 +109,10 @@
                     </td>
                 </tr>
                 @endforeach
-                {{ $allReviews[0]['e_reviews']->links() }}
             </table>
+            <div class="my-5">
+                {{ $allReviews[0]['e_reviews']->links() }}
+            </div>
 
             {{-- データが登録されていない時 --}}
             @if (count($allReviews[0]['e_reviews'])===0)
@@ -138,8 +144,10 @@
                     </td>
                 </tr>
                 @endforeach
-                {{ $allReviews[0]['a_reviews']->links() }}
             </table>
+            <div class="my-5">
+                {{ $allReviews[0]['a_reviews']->links() }}
+            </div>
 
             {{-- データが登録されていない時 --}}
             @if (count($allReviews[0]['a_reviews'])===0)

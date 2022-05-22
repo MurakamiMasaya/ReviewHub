@@ -19,6 +19,10 @@ class EventService implements EventServiceInterface {
         return $this->eventRepository->getEvent($event);
     }
 
+    public function getEventTiedUserTenEach($user){
+        return $this->eventRepository->getEventTiedUserTenEach($user);
+    }
+
     public function getTenEach(){
         return $this->eventRepository->getTenEach(); 
     }
@@ -51,8 +55,8 @@ class EventService implements EventServiceInterface {
         return $this->eventRepository->deleteReview($id);
     }
 
-    public function getEventTiedUserTenEach($user){
-        return $this->eventRepository->getEventTiedUserTenEach($user);
+    public function deleteEvent($event){
+        return $this->eventRepository->deleteEvent($event);
     }
 
 }

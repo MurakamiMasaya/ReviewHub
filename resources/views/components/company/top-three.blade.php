@@ -1,5 +1,5 @@
 {{-- #TODO: デザインがかなりもっさりしているの修正必須。--}}
-<div class="border-4 border-pink-500 mt-5">
+<div class="border-4 border-pink-500">
     <div class="py-2 bg-pink-500">
         <div class="text-center text-white text-xl font-bold">
             2022年最新

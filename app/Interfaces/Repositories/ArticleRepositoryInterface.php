@@ -5,6 +5,7 @@ namespace App\Interfaces\Repositories;
 interface ArticleRepositoryInterface{
     
     public function getArticle($article);
+    public function getArticleTiedUserTenEach($user);
     public function getTopEight();
     public function getTenEach();
     public function getSearchTenEach($target);
@@ -17,4 +18,5 @@ interface ArticleRepositoryInterface{
 
     public function createArticle($request, $image);
     public function createReview($request);
+    public function deleteArticle($article);
 }

@@ -13,6 +13,10 @@ class EventRepository implements EventRepositoryInterface {
         return Event::with('user')->findOrFail($event);
     }
 
+    public function getEventTiedUserTenEach($user){
+        return Event::where('user_id', $user)->orderBy('updated_at', 'desc')->paginate(10); 
+    }
+
     public function getTenEach(){
         return Event::with('user')->orderBy('gr', 'desc')->paginate(10); 
     }
@@ -38,7 +42,7 @@ class EventRepository implements EventRepositoryInterface {
     }
 
     public function getReviewsTiedUserTenEach($user){
-        return ReviewEvent::with('user', 'event')->where('user_id', $user)->orderBy('gr', 'desc')->paginate(10); 
+        return ReviewEvent::with('user', 'event')->where('user_id', $user)->orderBy('created_at', 'desc')->paginate(10); 
     }
 
     public function createEvent($request, $image){
@@ -72,8 +76,8 @@ class EventRepository implements EventRepositoryInterface {
         return ReviewEvent::where('id', $id)->delete();
     }
 
-    public function getEventTiedUserTenEach($user){
-        return Event::where('user_id', $user)->orderBy('gr', 'desc')->paginate(10); 
+    public function deleteEvent($event){
+        Event::where('id', $event)->delete();
     }
 
 }

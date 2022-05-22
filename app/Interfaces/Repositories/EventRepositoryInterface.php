@@ -17,4 +17,5 @@ interface EventRepositoryInterface{
 
     public function createEvent($request, $image);
     public function createReview($request);
+    public function deleteEvent($event);
 }

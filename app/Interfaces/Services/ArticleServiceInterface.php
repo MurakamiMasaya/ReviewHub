@@ -5,6 +5,7 @@ namespace App\Interfaces\Services;
 interface ArticleServiceInterface{
     
     public function getArticle($article);
+    public function getArticleTiedUserTenEach($user);
     public function getTopEight();
     public function getTenEach();
     public function getSearchTenEach($target);
@@ -16,4 +17,5 @@ interface ArticleServiceInterface{
 
     public function createArticle($request, $image);
     public function createReview($request);
+    public function deleteArticle($article);
 }

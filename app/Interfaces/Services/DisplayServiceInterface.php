@@ -9,4 +9,5 @@ interface DisplayServiceInterface{
     public function getAuthenticatedUser();
 
     public function getAllReviewsTenEach($id);
+    public function deleteAcount($id);
 }
