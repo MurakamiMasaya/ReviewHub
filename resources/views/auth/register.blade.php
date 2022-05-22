@@ -64,9 +64,13 @@
                     </div>
                     
                     <!-- gender -->
-                    <div class="flexs mt-5">
-                        <x-input id="gender" class="mt-1" type="radio" name="gender" value="0" required />男性
-                        <x-input id="gender" class="mt-1" type="radio" name="gender" value="1" required />女性
+                    <div class="flex mt-5">
+                        <div class="mr-2 flex justify-center">
+                            <x-input id="gender" class="mt-1 mr-1" type="radio" name="gender" value="0" required />男性
+                        </div>
+                        <div class="flex justify-center">
+                            <x-input id="gender" class="mt-1 mr-1" type="radio" name="gender" value="1" required />女性
+                        </div>
                     </div>
                     
                     <!-- username -->
@@ -96,11 +100,13 @@
                         <x-button.primary-button class="w-52">
                             新規登録
                         </x-button.primary-button>
-                        <a href="{{ route('login') }}">
-                            <x-button.secondary-button class="w-52 mt-5">
-                                ログインはこちら
-                            </x-button.secondary-button>
-                        </a>
+                        <div class="mt-5">
+                            <a href="{{ route('login') }}">
+                                <x-button.secondary-button class="w-52">
+                                    ログインはこちら
+                                </x-button.secondary-button>
+                            </a>
+                        </div>
                     </div>
                 </form>
             </div>

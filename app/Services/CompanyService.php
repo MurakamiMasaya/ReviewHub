@@ -35,7 +35,11 @@ class CompanyService implements CompanyServiceInterface {
         return $this->companyRepository->getSearchAll($target);
     }
 
-    public function getReviews($company){
-        return $this->companyRepository->getReviews($company);
+    public function getReviewsTenEach($company){
+        return $this->companyRepository->getReviewsTenEach($company);
+    }
+
+    public function deleteReview($id){
+        return $this->companyRepository->deleteReview($id);
     }
 }

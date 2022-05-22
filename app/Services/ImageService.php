@@ -27,4 +27,12 @@ class ImageService implements ImageServiceInterface{
     public function delete($path, $image){
         Storage::delete($path . $image);
     }
+
+    public function update($image, $folderName){
+        // #FIXME: 前回の画像がフォルダに残ってしまう
+        $sameImage = Storage::exists('public/'. $folderName .'/'. $image);
+        if(!$sameImage){
+            $this->upload($image, $folderName);
+        }
+    }
 }

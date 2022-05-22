@@ -1,4 +1,4 @@
-<div class="border-4 border-orange-500">
+<div class="border-4 border-orange-500 mb-5">
     <div class="bg-orange-500 py-2">
         <div class="text-center text-white text-xl font-bold">
             2022年最新

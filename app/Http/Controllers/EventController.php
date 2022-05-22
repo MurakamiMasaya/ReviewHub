@@ -80,7 +80,14 @@ class EventController extends Controller
         return view('event.detail', compact('user', 'eventData', 'reviews', 'reviewsAll', 'schools', 'articles'));
     }
 
-    public function showRegister(){
+    public function deleteEvent($event){
+
+        $this->eventService->deleteEvent($event);
+
+        return redirect()->route('mypage.event');
+    }
+
+    public function createEvent(){
 
         $user = $this->displayService->getAuthenticatedUser();
 
@@ -90,7 +97,7 @@ class EventController extends Controller
         return view('event.register' ,compact('user', 'schools', 'articles'));
     }
 
-    public function confilmRegister(EventFormRequest $request){
+    public function confilmEvent(EventFormRequest $request){
 
         $request->validate([
             'image' => ['image', 'mimes:jpeg,png,jpg'],
@@ -130,7 +137,7 @@ class EventController extends Controller
         return view('event.confilm', compact('user', 'eventInfo', 'schools', 'articles'));
     }
 
-    public function completeRegister(EventFormRequest $request){
+    public function registArticle(EventFormRequest $request){
         $image = $request->image;
 
         // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
@@ -145,7 +152,7 @@ class EventController extends Controller
         }
 
         //イベントの作成
-        $this->eventService->createEvent($request);
+        $this->eventService->createEvent($request, $image);
 
         $text = '登録が完了しました！';
         $linkText = 'イベント一覧に戻る';
@@ -159,5 +166,14 @@ class EventController extends Controller
         $this->eventService->createReview($request);
 
         return redirect()->route('event.detail',$request->event_id);
+    }
+
+    public function deleteReview($id){
+
+        $user = $this->displayService->getAuthenticatedUser();
+
+        $this->eventService->deleteReview($id);
+
+        return redirect()->route('mypage.review');
     }
 }

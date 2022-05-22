@@ -47,11 +47,13 @@
                     <x-button.primary-button class="w-52">
                         ログイン
                     </x-button.primary-button>
-                    <a href="{{ route('register') }}">
-                        <x-button.secondary-button class="w-52 mt-5">
-                            新規登録はこちら
-                        </x-button.secondary-button>
-                    </a>
+                    <div class="mt-5">
+                        <a href="{{ route('register') }}">
+                            <x-button.secondary-button class="w-52">
+                                新規登録はこちら
+                            </x-button.secondary-button>
+                        </a>
+                    </div>
                 </div>
                  <div class="text-xs text-center text-blue-500 mb-5">
                      <a href="{{ route('password.request') }}">

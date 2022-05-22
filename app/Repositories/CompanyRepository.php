@@ -33,7 +33,15 @@ class CompanyRepository implements CompanyRepositoryInterface {
         ->get();
     }
 
-    public function getReviews($company){
-        return ReviewCompany::where('company_id', $company)->orderBy('gr', 'desc')->paginate(10); 
+    public function getReviewsTenEach($company){
+        return ReviewCompany::with('user', 'company')->where('company_id', $company)->orderBy('gr', 'desc')->paginate(10); 
+    }
+
+    public function getReviewsTiedUserTenEach($user){
+        return ReviewCompany::with('user', 'company')->where('user_id', $user)->orderBy('gr', 'desc')->paginate(10); 
+    }
+
+    public function deleteReview($id){
+        return ReviewCompany::where('id', $id)->delete();
     }
 }

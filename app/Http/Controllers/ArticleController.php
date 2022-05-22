@@ -75,7 +75,14 @@ class ArticleController extends Controller
         return view('article.detail', compact('user', 'articleData', 'reviews', 'reviewsAll', 'companies', 'schools'));
     }
 
-    public function showRegister(){
+    public function deleteArticle($article){
+
+        $this->articleService->deleteArticle($article);
+
+        return redirect()->route('mypage.article');
+    }
+
+    public function createArticle(){
 
         $user = $this->displayService->getAuthenticatedUser();
 
@@ -85,7 +92,7 @@ class ArticleController extends Controller
         return view('article.register' ,compact('user', 'companies', 'schools'));
     }
 
-    public function confilmRegister(ArticleFormRequest $request){
+    public function confilmArticle(ArticleFormRequest $request){
 
         $request->validate([
             'image' => ['image', 'mimes:jpeg,png,jpg'],
@@ -119,7 +126,7 @@ class ArticleController extends Controller
         return view('article.confilm', compact('user', 'articleInfo', 'companies', 'schools'));
     }
 
-    public function completeRegister(ArticleFormRequest $request){
+    public function registArticle(ArticleFormRequest $request){
         $image = $request->image;
 
         // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
@@ -134,7 +141,7 @@ class ArticleController extends Controller
         }
 
         //イベントの作成
-        $this->articleService->createArticle($request);
+        $this->articleService->createArticle($request, $image);
 
         $text = '登録が完了しました！';
         $linkText = '記事一覧に戻る';
@@ -148,5 +155,14 @@ class ArticleController extends Controller
         $this->articleService->createReview($request);
 
         return redirect()->route('article.detail',$request->article_id);
+    }
+
+    public function deleteReview($id){
+
+        $user = $this->displayService->getAuthenticatedUser();
+
+        $this->articleService->deleteReview($id);
+
+        return redirect()->route('mypage.review');
     }
 }

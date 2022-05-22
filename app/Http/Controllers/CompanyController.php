@@ -89,7 +89,7 @@ class CompanyController extends Controller
         $user = $this->displayService->getAuthenticatedUser();
 
         $companyData = $this->companyService->getCompany($company);
-        $reviews = $this->companyService->getReviews($company);
+        $reviews = $this->companyService->getReviewsTenEach($company);
 
         $schools = $this->schoolService->getTopThree();
         $articles = $this->articleService->getTopEight();
@@ -108,7 +108,7 @@ class CompanyController extends Controller
         return view('company.review', compact('user', 'company', 'schools', 'articles'));
     }
 
-    public function reviewConfilm(ReviewForm $request, $company){
+    public function confilmReview(ReviewForm $request, $company){
         
         $user = $this->displayService->getAuthenticatedUser();
         $company = $this->companyService->getCompany($company);
@@ -121,7 +121,7 @@ class CompanyController extends Controller
         return view('company.confilm', compact('user', 'company', 'review', 'schools', 'articles'));
     }
 
-    public function reviewRegister(ReviewForm $request, $company){
+    public function registerReview(ReviewForm $request, $company){
        
         // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
         if ($request->back === "true") {
@@ -139,5 +139,14 @@ class CompanyController extends Controller
         $link = 'company.index';
         
         return view('redirect', compact('text', 'linkText', 'link'));
+    }
+
+    public function deleteReview($id){
+
+        $user = $this->displayService->getAuthenticatedUser();
+
+        $this->companyService->deleteReview($id);
+
+        return redirect()->route('mypage.review');
     }
 }
