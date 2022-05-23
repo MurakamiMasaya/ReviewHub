@@ -33,7 +33,8 @@
             <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
                 ヘッダー画像(推奨) : 
                 <input type="hidden" name="image" value="{{ $articleInfo['image'] }}"/>
-                <img src="{{ $articleInfo['image'] ? asset('/storage/articles/tmp/' . $articleInfo['image']) : 'https://placehold.jp/500x300.png' }}" >
+                <img src="{{ $articleInfo['image'] ? asset('/storage/articles/tmp/' . $articleInfo['image']) : 'https://placehold.jp/500x400.png' }}" >
+                <div class="text-xs font-bold text-gray-500">※推奨サイズ: 横幅500px 縦幅400px</div>
             </div>
 
             <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">

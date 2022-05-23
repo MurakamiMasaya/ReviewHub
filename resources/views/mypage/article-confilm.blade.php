@@ -45,7 +45,8 @@
                         @if($TemporarilyFlg)
                             <img src="{{ asset('/storage/articles/tmp/' . $articleInfo['image']) }}" >
                         @else
-                            <img src="{{ $articleInfo['image'] ? asset('/storage/articles/' . $articleInfo['image']) : 'https://placehold.jp/500x300.png' }}" >
+                            <img src="{{ $articleInfo['image'] ? asset('/storage/articles/' . $articleInfo['image']) : 'https://placehold.jp/500x400.png' }}" >
+                            <div class="text-xs font-bold text-gray-500">※推奨サイズ: 横幅500px 縦幅400px</div>
                         @endif
                     </div>
         

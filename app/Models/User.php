@@ -9,6 +9,8 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Article;
+use App\Models\Event;
+use App\Models\Contact;
 use App\Models\ReviewArticle;
 use App\Models\ReviewCompany;
 use App\Models\ReviewEvent;
@@ -84,5 +86,10 @@ class User extends Authenticatable
     public function reviewSchools()
     {
         return $this->hasMany(ReviewSchool::class);
+    }
+
+    public function contact()
+    {
+        return $this->hasMany(Contact::class);
     }
 }

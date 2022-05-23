@@ -6,17 +6,17 @@
                     <a href="{{ route('company.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-1 lg:mr-5">企業情報</a>
                     <a href="{{ route('school.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-1 lg:mr-5">スクール情報</a>
                     <a href="{{ route('event.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-1 lg:mr-5">イベント情報</a>
-                    <a href="{{ route('article.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">特集記事</a>
+                    <a href="{{ route('article.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">記事情報</a>
                 </div>
             </div>
         </div>
     </div>
     <div class="lg:flex justify-between items-center py-5 px-5">
         <div class="flex justify-end">
-            <a href="#">
+            <a href="{{ route('sitemap') }}">
                 <div class="mr-3 md:mr-5 text-gray-800 text-sm font-bold">サイトマップ</div>
             </a>
-            <a href="">
+            <a href="{{ route('contact') }}">
                 <div class="mr-3 md:mr-5 text-gray-800 text-sm font-bold">お問い合わせ</div>
             </a>
             <a href="{{ route('mypage.index') }}">

@@ -77,8 +77,9 @@
                         @if($TemporarilyFlg)
                             <img src="{{ asset('/storage/events/tmp/' . $eventInfo['image']) }}" >
                         @else
-                            <img src="{{ $eventInfo['image'] ? asset('/storage/events/' . $eventInfo['image']) : 'https://placehold.jp/500x300.png' }}" >
+                            <img src="{{ $eventInfo['image'] ? asset('/storage/events/' . $eventInfo['image']) : 'https://placehold.jp/500x400.png' }}" >
                         @endif
+                        <div class="text-xs font-bold text-gray-500">※推奨サイズ: 横幅500px 縦幅400px</div>
                     </div>
         
                     <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">

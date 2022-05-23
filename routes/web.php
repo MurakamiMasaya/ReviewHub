@@ -7,6 +7,7 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\MypageController;
+use App\Http\Controllers\OtherController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,9 @@ use App\Http\Controllers\MypageController;
 
 Route::controller(TopController::class)->group(function(){
     Route::get('/', 'index')->name('top');
-});
+    });
 
-//phpの設定確認する際にコメントを外す
+//phpの設定確認用
 // Route::get('/phpinfo', function(){
 //     phpinfo();
 // });
@@ -33,6 +34,20 @@ Route::controller(TopController::class)->group(function(){
 Route::get('/privacy_policy', function(){
     return view('privacy-policy');
     });
+
+Route::controller(OtherController::class)->group(function(){
+    //サイトマップ
+    Route::get('/sitemap', 'sitemap')->name('sitemap');
+
+    Route::middleware('auth')->group(function(){   
+        //お問い合わせ
+        Route::get('/contact', 'contact')->name('contact');
+        Route::post('/contact/confilm', 'confilmContact')->name('contact.confilm');
+        Route::post('/contact/register', 'registContact')->name('contact.register');
+    });
+});
+
+
 
 //企業
 Route::controller(CompanyController::class)

@@ -7,7 +7,7 @@
     <div class="max-w-6xl mx-auto my-5 sm:my-10">
         <div class="md:flex">
             <!-- Left sides of main -->
-            <div class="md:w-2/3 md:mr-5 ">
+            <div class="md:w-2/3 md:mr-5">
                 @if(!Auth::check())
                 <div class="block md:hidden">
                     <x-login-register />
