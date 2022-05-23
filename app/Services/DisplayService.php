@@ -49,7 +49,7 @@ class DisplayService implements DisplayServiceInterface {
         $allReviews = [];
 
         $c_reviews = $this->companyRepository->getReviewsTiedUserTenEach($id);
-        $s_reviews = $this->schoolRepository->getReviewsTiedUserTenEacsh($id);
+        $s_reviews = $this->schoolRepository->getReviewsTiedUserTenEach($id);
         $e_reviews = $this->eventRepository->getReviewsTiedUserTenEach($id);
         $a_reviews = $this->articleRepository->getReviewsTiedUserTenEach($id);
 

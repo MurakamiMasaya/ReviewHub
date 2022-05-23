@@ -23,6 +23,7 @@
             <div class="mt-10 text-sm md:text-md lg:text-lg font-bold">
                 タイトル(必須) : 
                 <input type="text" name="title" maxlength="40" value="{{ old('title') }}" required class="shadow appearance-none border w-full rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="SSRとSSGについて"/>
+                <div class="text-xs font-bold text-gray-500">※40文字以内でご記入ください。</div>
             </div>
 
             <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
@@ -33,6 +34,7 @@
             <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
                 ヘッダー画像(推奨) : 
                 <input type="file" name="image" accept="image/png,image/jpeg,image/jpg" class="shadow appearance-none border w-full rounded px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"/>
+                <div class="text-xs font-bold text-gray-500">※推奨サイズ: 横幅500px 縦幅400px</div>
             </div>
 
             <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">

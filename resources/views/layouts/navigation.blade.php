@@ -14,8 +14,8 @@
             <div class="hidden sm:flex items-center justify-end sm:pr-10 lg:pr-20">
                 <div class="pr-5">
                     <div>
-                        <a href="#" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">サイトマップ</a>
-                        <a href="#" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">お問い合わせ</a>
+                        <a href="{{ route('sitemap') }}" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">サイトマップ</a>
+                        <a href="{{ route('contact') }}" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">お問い合わせ</a>
                         <a href="{{ route('mypage.index') }}" class="text-xs font-bold text-gray-700 dark:text-gray-500">マイページ</a>
                     </div>
                     <div class="text-right">
@@ -117,7 +117,7 @@
             </div>
             <div class="text-center">
                 <x-responsive-nav-link :href="route('article.index')" :active="request()->routeIs('article.index')">
-                    特集記事
+                    記事情報
                 </x-responsive-nav-link>
             </div>
             <div class="text-center">
@@ -140,7 +140,7 @@
                     <a href="{{ route('company.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">企業情報</a>
                     <a href="{{ route('school.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">スクール情報</a>
                     <a href="{{ route('event.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold mr-2 lg:mr-5">イベント情報</a>
-                    <a href="{{ route('article.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">特集記事</a>
+                    <a href="{{ route('article.index') }}" class="text-white dark:text-white text-sm lg:text-lg font-bold lg:mr-5">記事情報</a>
                 </div>
             </div>
         </div>
