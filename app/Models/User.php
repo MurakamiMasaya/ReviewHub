@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use App\Models\Article;
 use App\Models\Event;
 use App\Models\Contact;
 use App\Models\ReviewArticle;
 use App\Models\ReviewCompany;
 use App\Models\ReviewEvent;
 use App\Models\ReviewSchool;
-
 
 class User extends Authenticatable
 {

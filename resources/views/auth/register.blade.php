@@ -110,9 +110,9 @@
                     </div>
                 </form>
 
-                <div>
-                    <a href="{{ route('google.login') }}">Googleアカウントでの登録はこちら</a>
-                </div>
+                <x-button.google-login >
+                    Googleアカウントで登録する
+                </x-button.google-login>
             </div>
         </div>
     </x-auth-card>
