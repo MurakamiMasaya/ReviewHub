@@ -109,6 +109,10 @@
                         </div>
                     </div>
                 </form>
+
+                <div>
+                    <a href="{{ route('google.login') }}">Googleアカウントでの登録はこちら</a>
+                </div>
             </div>
         </div>
     </x-auth-card>
