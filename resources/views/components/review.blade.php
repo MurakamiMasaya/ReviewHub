@@ -6,15 +6,8 @@
 <div class="mb-3 relative">
     @foreach ($reviews as $review)
     <div class="flex items-center mt-3">
-        <div class="w-12 md:w-15 mr-1 md:mr-2">
-            {{-- @php
-                dd($review->user->gender);
-            @endphp --}}
-            @if($review->user->gender == 0)
-            <img src="{{ asset('images/man.png') }}" alt="男性アイコン">
-            @else
-            <img src="{{ asset('images/woman.png') }}" alt="女性アイコン">
-            @endif
+        <div class="w-12 md:w-15 mr-1 md:mr-2">           
+            <x-icon :user="$review->user"/> 
         </div>
         <div class="w-full">
             <div class="flex justify-between items-center">

@@ -109,6 +109,10 @@
                         </div>
                     </div>
                 </form>
+
+                <x-button.google-login >
+                    Googleアカウントで登録する
+                </x-button.google-login>
             </div>
         </div>
     </x-auth-card>

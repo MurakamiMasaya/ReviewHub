@@ -65,11 +65,7 @@
                     <input type="hidden" name="article_id" value="{{ $article->id }}">
                     <div class="flex items-center justify-center">
                         <div class="w-10 md:w-12 mr-1 md:mr-2">
-                            @if($user->gender == 0)
-                            <img src="{{ asset('images/white-man.png') }}" alt="男性アイコン">
-                            @else
-                            <img src="{{ asset('images/white-woman.png') }}" alt="女性アイコン">
-                            @endif
+                            <x-icon :user="$user" white="true"/> 
                         </div>
                         <div class="w-3/4 py-1">
                             <div class="flex justify-between items-end mb-1">

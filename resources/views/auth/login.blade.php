@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
-        <div class="py-5 px-5 max-w-md mx-auto">
-            <div class="w-40 sm:w-56 mt-10">
+        <div class="py-10 px-5 max-w-md mx-auto">
+            <div class="w-40 sm:w-56">
                 <a href="/">
                     <x-application-logo />
                 </a>
@@ -55,12 +55,16 @@
                         </a>
                     </div>
                 </div>
-                 <div class="text-xs text-center text-blue-500 mb-5">
+                 <div class="text-xs text-center text-blue-500 mb-10">
                      <a href="{{ route('password.request') }}">
                          パスワードを忘れた方はこちら
                      </a>
                  </div>
             </form>
+
+            <x-button.google-login>
+                Googleアカウントでログインする
+            </x-button.google-login>
         </div>
     </x-auth-card>
 </x-guest-layout>

@@ -6,6 +6,7 @@ use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\SchoolController;
 use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\OtherController;
 
@@ -47,6 +48,10 @@ Route::controller(OtherController::class)->group(function(){
     });
 });
 
+Route::controller(GoogleLoginController::class)->group(function(){
+    Route::get('/auth/redirect', 'getGoogleAuth')->name('google.login');
+    Route::get('/login/callback', 'authGoogleCallback');
+});
 
 
 //企業
