@@ -36,11 +36,18 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request)
     {
-        $request->authenticate();
+        try{
 
-        $request->session()->regenerate();
-
-        return redirect()->intended();
+            $request->authenticate();
+            $request->session()->regenerate();
+            
+            return redirect()->intended();
+        
+        }catch(\Throwable $e){
+            Log::error($e);
+            \Slack::channel('error')->send('ログインでエラーが発生！');
+            return redirect()->route('register')->with('flash_message', 'ログインに失敗しました');
+        }
         
     }
 
