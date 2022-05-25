@@ -20,51 +20,79 @@ class OtherController extends Controller
 
     public function sitemap(){
 
-        $user = $this->displayService->getAuthenticatedUser();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
 
-        return view('sitemap', compact('user'));
+            return view('sitemap', compact('user'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('サイトマップでエラーが発生！');
+            abort(404);
+        }
     }
 
     public function contact(){
-        
-        $user = $this->displayService->getAuthenticatedUser();
 
-        return view('contact.index', compact('user'));
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+
+            return view('contact.index', compact('user'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('お問い合わせ画面でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function confilmContact(ContactFormRequest $request){
-        
-        $user = $this->displayService->getAuthenticatedUser();
 
-        $contact = [
-            'title' => $request->title,
-            'contents' => $request->contents
-        ];
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
 
-        return view('contact.confilm', compact('user', 'contact'));
+            $contact = [
+                'title' => $request->title,
+                'contents' => $request->contents
+            ];
+
+            return view('contact.confilm', compact('user', 'contact'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('お問い合わせ確認でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function registContact(ContactFormRequest $request){
 
-        $user = $this->displayService->getAuthenticatedUser();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
 
-        // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
-        if ($request->back === "true") {
-            return redirect()->route('contact')->withInput();
+            // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
+            if ($request->back === "true") {
+                return redirect()->route('contact')->withInput();
+            }
+
+            Contact::create([
+                'user_id' => $user->id,
+                'title' => $request->title,
+                'contents' => $request->contents
+            ]);
+
+            //以下に管理者へのメール送信を実装
+
+            $text = 'お問い合わせ完了です！';
+            $linkText = 'トップページに戻る';
+            $link = 'top';
+            
+            return view('redirect', compact('text', 'linkText', 'link'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('お問い合わせの送信でエラーが発生！');
+            abort(404);
         }
-
-        Contact::create([
-            'user_id' => $user->id,
-            'title' => $request->title,
-            'contents' => $request->contents
-        ]);
-
-        //以下に管理者へのメール送信を実装
-
-        $text = 'お問い合わせ完了です！';
-        $linkText = 'トップページに戻る';
-        $link = 'top';
-        
-        return view('redirect', compact('text', 'linkText', 'link'));
     }
 }

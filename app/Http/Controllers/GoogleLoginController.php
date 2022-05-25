@@ -11,28 +11,39 @@ class GoogleLoginController extends Controller
 {
     public function getGoogleAuth()
     {
-        return Socialite::driver('google')
-            ->redirect();
+        try{
+            return Socialite::driver('google')
+                ->redirect();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('Google認証でエラーが発生！');
+            return redirect()->route('login')->with('flash_message', 'ログインに失敗しました');
+        }
     }
 
     public function authGoogleCallback()
     {
-        $googleUser = Socialite::driver('google')->stateless()->user();
+        try{
+            $googleUser = Socialite::driver('google')->stateless()->user();
 
-        //ユーザー情報の確認
-        // dd($googleUser);
+            $user = User::firstOrCreate([
+                'email' => $googleUser->email
+            ], [
+                'name' => $googleUser->getName(),
+                'username' => $googleUser->getNickName() ?? $googleUser->user['given_name'],
+                'email_verified_at' => now(),
+                'password' => \Hash::make(uniqid()),
+            ]);
 
-        $user = User::firstOrCreate([
-            'email' => $googleUser->email
-        ], [
-            'name' => $googleUser->getName(),
-            'username' => $googleUser->getNickName() ?? $googleUser->user['given_name'],
-            'email_verified_at' => now(),
-            'password' => \Hash::make(uniqid()),
-        ]);
-
-        Auth::login($user, true);
-        return redirect()->route('top');
+            Auth::login($user, true);
+            return redirect()->route('top');
+            
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('Google認証でエラーが発生！');
+            return redirect()->route('login')->with('flash_message', 'ログインに失敗しました');
+        }
     }
 }
 

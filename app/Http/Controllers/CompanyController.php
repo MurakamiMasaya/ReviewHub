@@ -9,7 +9,6 @@ use App\Interfaces\Services\SchoolServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
 use App\Models\ReviewCompany;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redis;
 
 class CompanyController extends Controller
 {
@@ -32,121 +31,184 @@ class CompanyController extends Controller
 
     public function index(){
 
-        $user = $this->displayService->getAuthenticatedUser();
-        // #TODO: クエリビルダで取得したデータに順位をつけたい。
-        $companies = $this->companyService->getTwelveEach(); 
-        
-        $schools = $this->schoolService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+            // #TODO: クエリビルダで取得したデータに順位をつけたい。
+            $companies = $this->companyService->getTwelveEach(); 
+            
+            $schools = $this->schoolService->getTopThree();
+            $articles = $this->articleService->getTopEight();
 
-        return view('company.index', compact('user', 'companies', 'schools', 'articles'));
+            return view('company.index', compact('user', 'companies', 'schools', 'articles'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業ページのトップでエラーが発生！');
+            abort(404);
+        }
     }
 
     public function search(Request $request){
 
-        // #TODO: 文字入力なしでの検索をバリデーションで禁止にする
-        $user = $this->displayService->getAuthenticatedUser();
-        $target = $request->input('target');
+        try{
+            // #TODO: 文字入力なしでの検索をバリデーションで禁止にする
+            $user = $this->displayService->getAuthenticatedUser();
+            $target = $request->input('target');
 
-        // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $companiesSearch = $this->companyService->getSearchTenEach($target);
-        $companiesAll = $this->companyService->getSearchAll($target);
+            // ＃TODO: 大文字小文字全角半角を区別しないように修正
+            $companiesSearch = $this->companyService->getSearchTenEach($target);
+            $companiesAll = $this->companyService->getSearchAll($target);
 
-        $schools = $this->schoolService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getTopThree();
+            $articles = $this->articleService->getTopEight();
 
-        return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+            return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業ページの検索でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function tech(Request $request, $target){
-        
-        $user = $this->displayService->getAuthenticatedUser();
 
-        $companiesSearch = $this->companyService->getSearchTenEach($target);
-        $companiesAll = $this->companyService->getSearchAll($target);
-        
-        $schools = $this->schoolService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
 
-        return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+            $companiesSearch = $this->companyService->getSearchTenEach($target);
+            $companiesAll = $this->companyService->getSearchAll($target);
+            
+            $schools = $this->schoolService->getTopThree();
+            $articles = $this->articleService->getTopEight();
+
+            return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業ページの技術検索でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function condition(Request $request, $target){
-        
-        $user = $this->displayService->getAuthenticatedUser();
 
-        $companiesSearch = $this->companyService->getSearchTenEach($target);
-        $companiesAll = $this->companyService->getSearchAll($target);
-        
-        $schools = $this->schoolService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
 
-        return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+            $companiesSearch = $this->companyService->getSearchTenEach($target);
+            $companiesAll = $this->companyService->getSearchAll($target);
+            
+            $schools = $this->schoolService->getTopThree();
+            $articles = $this->articleService->getTopEight();
+
+            return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業ページの採用条件検索でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function detail(Request $request, $company){
 
-        $user = $this->displayService->getAuthenticatedUser();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
 
-        $companyData = $this->companyService->getCompany($company);
-        $reviews = $this->companyService->getReviewsTenEach($company);
+            $companyData = $this->companyService->getCompany($company);
+            $reviews = $this->companyService->getReviewsTenEach($company);
 
-        $schools = $this->schoolService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getTopThree();
+            $articles = $this->articleService->getTopEight();
 
-        return view('company.detail', compact('user', 'companyData', 'reviews', 'schools', 'articles'));
+            return view('company.detail', compact('user', 'companyData', 'reviews', 'schools', 'articles'));
+            
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業ページの詳細画面でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function review($detail){
 
-        $user = $this->displayService->getAuthenticatedUser();
-        $company = $this->companyService->getCompany($detail);
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+            $company = $this->companyService->getCompany($detail);
 
-        $schools = $this->schoolService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getTopThree();
+            $articles = $this->articleService->getTopEight();
 
-        return view('company.review', compact('user', 'company', 'schools', 'articles'));
+            return view('company.review', compact('user', 'company', 'schools', 'articles'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業ページのレビュー作成でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function confilmReview(ReviewForm $request, $company){
-        
-        $user = $this->displayService->getAuthenticatedUser();
-        $company = $this->companyService->getCompany($company);
 
-        $review = $request->review;
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+            $company = $this->companyService->getCompany($company);
 
-        $schools = $this->schoolService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+            $review = $request->review;
 
-        return view('company.confilm', compact('user', 'company', 'review', 'schools', 'articles'));
+            $schools = $this->schoolService->getTopThree();
+            $articles = $this->articleService->getTopEight();
+
+            return view('company.confilm', compact('user', 'company', 'review', 'schools', 'articles'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業ページのレビュー確認でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function registerReview(ReviewForm $request, $company){
-       
-        // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
-        if ($request->back === "true") {
-            return redirect()->route('company.review', $company)->withInput();
+
+        try{
+            // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
+            if ($request->back === "true") {
+                return redirect()->route('company.review', $company)->withInput();
+            }
+
+            ReviewCompany::create([
+                'user_id' => $request->user_id,
+                'company_id' => $company,
+                'review' => $request->review,
+            ]);
+
+            $text = '投稿が完了しました！';
+            $linkText = '企業一覧に戻る';
+            $link = 'company.index';
+            
+            return view('redirect', compact('text', 'linkText', 'link'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業ページのレビュー登録でエラーが発生！');
+            abort(404);
         }
-
-        ReviewCompany::create([
-            'user_id' => $request->user_id,
-            'company_id' => $company,
-            'review' => $request->review,
-        ]);
-
-        $text = '投稿が完了しました！';
-        $linkText = '企業一覧に戻る';
-        $link = 'company.index';
-        
-        return view('redirect', compact('text', 'linkText', 'link'));
     }
 
     public function deleteReview($id){
 
-        $user = $this->displayService->getAuthenticatedUser();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
 
-        $this->companyService->deleteReview($id);
+            $this->companyService->deleteReview($id);
 
-        return redirect()->route('mypage.review');
+            return redirect()->route('mypage.review');
+
+        }catch(\Throwable $e){
+            Log::error($e);
+            \Slack::channel('error')->send('企業ページのレビュー削除でエラーが発生！');
+            abort(404);
+        }
     }
 }
