@@ -22,7 +22,12 @@
                         <x-application-logo />
                     </a>
                 </div>
-        
+
+                <!-- Flash Message -->
+                @if (session('flash_message'))
+                    <x-flash-message :message="session('flash_message')"/>
+                @endif
+
                 <!-- Validation Errors -->
                 <x-auth-validation-errors class="mt-4" :errors="$errors" />
         

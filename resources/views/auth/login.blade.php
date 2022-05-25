@@ -6,6 +6,11 @@
                     <x-application-logo />
                 </a>
             </div>
+
+            <!-- Flash Message -->
+            @if (session('flash_message'))
+                <x-flash-message :message="session('flash_message')"/>
+            @endif
     
             <!-- Session Status -->
             <x-auth-session-status class="mt-4" :status="session('status')" />
