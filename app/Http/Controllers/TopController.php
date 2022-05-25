@@ -29,16 +29,23 @@ class TopController extends Controller
 
     public function index(){
 
-        $user = $this->displayService->getAuthenticatedUser();
-        $companies = $this->companyService->getTwelveEach(); 
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+            $companies = $this->companyService->getTwelveEach(); 
 
-        $conditions = $this->displayService->getConditionAll();
-        $stacks = $this->displayService->getTechnologyAll();
+            $conditions = $this->displayService->getConditionAll();
+            $stacks = $this->displayService->getTechnologyAll();
 
-        $schools = $this->schoolService->getTopThree();
-        $articles = $this->articleService->getTopEight();
-        
-        return view('top', compact('user', 'companies', 'conditions', 'stacks', 'schools', 'articles'));
+            $schools = $this->schoolService->getTopThree();
+            $articles = $this->articleService->getTopEight();
+            
+            return view('top', compact('user', 'companies', 'conditions', 'stacks', 'schools', 'articles'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('トップページでエラーが発生！');
+            abort(404);
+        }
     }
 
     public function go_refferrer(){

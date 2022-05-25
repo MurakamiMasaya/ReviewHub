@@ -32,95 +32,144 @@ class SchoolController extends Controller
 
     public function index(){
 
-        $user = $this->displayService->getAuthenticatedUser();
-        // #TODO: クエリビルダで取得したデータに順位をつけたい。
-        $schools = $this->schoolService->getTwelveEach();
-        
-        $companies = $this->companyService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+            // #TODO: クエリビルダで取得したデータに順位をつけたい。
+            $schools = $this->schoolService->getTwelveEach();
+            
+            $companies = $this->companyService->getTopThree();
+            $articles = $this->articleService->getTopEight();
 
-        return view('school.index', compact('user', 'schools', 'companies', 'articles'));
+            return view('school.index', compact('user', 'schools', 'companies', 'articles'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールのトップでエラーが発生！');
+            abort(404);
+        }
     }
 
     public function search(Request $request){
 
-        $user = $this->displayService->getAuthenticatedUser();
-        $target = $request->input('target');
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+            $target = $request->input('target');
 
-        // ＃TODO: 大文字小文字全角半角を区別しないように修正
-        $schoolsSearch = $this->schoolService->getSearchTenEach($target);
-        $schoolsAll = $this->schoolService->getSearchAll($target);
+            // ＃TODO: 大文字小文字全角半角を区別しないように修正
+            $schoolsSearch = $this->schoolService->getSearchTenEach($target);
+            $schoolsAll = $this->schoolService->getSearchAll($target);
 
-        $companies = $this->companyService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+            $companies = $this->companyService->getTopThree();
+            $articles = $this->articleService->getTopEight();
 
-        return view('school.candidates', compact('user', 'target', 'schoolsSearch', 'schoolsAll', 'companies', 'articles'));
+            return view('school.candidates', compact('user', 'target', 'schoolsSearch', 'schoolsAll', 'companies', 'articles'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールの検索でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function detail(Request $request, $school){
 
-        $user = $this->displayService->getAuthenticatedUser();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
 
-        $schoolData = $this->schoolService->getSchool($school);
-        $reviews = $this->schoolService->getReviewsTenEach($school);
+            $schoolData = $this->schoolService->getSchool($school);
+            $reviews = $this->schoolService->getReviewsTenEach($school);
 
-        $companies = $this->companyService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+            $companies = $this->companyService->getTopThree();
+            $articles = $this->articleService->getTopEight();
 
-        // dd($reviewCompanies);
-        return view('school.detail', compact('user', 'schoolData', 'reviews', 'companies', 'articles'));
+            // dd($reviewCompanies);
+            return view('school.detail', compact('user', 'schoolData', 'reviews', 'companies', 'articles'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールの詳細画面でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function review($detail){
 
-        $user = $this->displayService->getAuthenticatedUser();
-        $school = $this->schoolService->getSchool($detail);
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+            $school = $this->schoolService->getSchool($detail);
 
-        $companies = $this->companyService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+            $companies = $this->companyService->getTopThree();
+            $articles = $this->articleService->getTopEight();
 
-        return view('school.review', compact('user', 'school', 'companies', 'articles'));
+            return view('school.review', compact('user', 'school', 'companies', 'articles'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールのレビュー投稿でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function confilmReview(ReviewForm $request, $school){
-        
-        $user = $this->displayService->getAuthenticatedUser();
-        $school = $this->schoolService->getSchool($school);
 
-        $review = $request->review;
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+            $school = $this->schoolService->getSchool($school);
 
-        $companies = $this->companyService->getTopThree();
-        $articles = $this->articleService->getTopEight();
+            $review = $request->review;
 
-        return view('school.confilm', compact('user', 'school', 'review', 'companies', 'articles'));
+            $companies = $this->companyService->getTopThree();
+            $articles = $this->articleService->getTopEight();
+
+            return view('school.confilm', compact('user', 'school', 'review', 'companies', 'articles'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールのレビュー確認でエラーが発生！');
+            abort(404);
+        }
     }
 
     public function registerReview(ReviewForm $request, $school){
-       
-        // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
-        if ($request->back === "true") {
-            return redirect()->route('school.review', $school)->withInput();
+
+        try{       
+            // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
+            if ($request->back === "true") {
+                return redirect()->route('school.review', $school)->withInput();
+            }
+
+            ReviewSchool::create([
+                'user_id' => $request->user_id,
+                'school_id' => $school,
+                'review' => $request->review,
+            ]);
+
+            $text = '投稿が完了しました！';
+            $linkText = 'スクール一覧に戻る';
+            $link = 'school.index';
+            
+            return view('redirect', compact('text', 'linkText', 'link'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールのレビュー登録でエラーが発生！');
+            abort(404);
         }
-
-        ReviewSchool::create([
-            'user_id' => $request->user_id,
-            'school_id' => $school,
-            'review' => $request->review,
-        ]);
-
-        $text = '投稿が完了しました！';
-        $linkText = 'スクール一覧に戻る';
-        $link = 'school.index';
-        
-        return view('redirect', compact('text', 'linkText', 'link'));
     }
 
     public function deleteReview($id){
 
-        $user = $this->displayService->getAuthenticatedUser();
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
 
-        $this->schoolService->deleteReview($id);
+            $this->schoolService->deleteReview($id);
 
-        return redirect()->route('mypage.review');
+            return redirect()->route('mypage.review');
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールのレビュー削除でエラーが発生！');
+            abort(404);
+        }
     }
 }
