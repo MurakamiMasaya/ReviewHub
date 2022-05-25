@@ -12,5 +12,6 @@ interface CompanyServiceInterface{
 
     public function getReviewsTenEach($company);
 
+    public function createReview($request);
     public function deleteReview($id);
 }

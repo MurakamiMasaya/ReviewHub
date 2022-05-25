@@ -41,6 +41,14 @@ class CompanyRepository implements CompanyRepositoryInterface {
         return ReviewCompany::with('user', 'company')->where('user_id', $user)->orderBy('gr', 'desc')->paginate(10); 
     }
 
+    public function createReview($request){
+        ReviewCompany::create([
+            'user_id' => $request->user_id,
+            'company_id' => $request->company_id,
+            'review' => $request->review,
+        ]);
+    }
+
     public function deleteReview($id){
         return ReviewCompany::where('id', $id)->delete();
     }

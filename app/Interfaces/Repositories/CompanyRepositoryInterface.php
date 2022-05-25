@@ -13,5 +13,6 @@ interface CompanyRepositoryInterface{
     public function getReviewsTenEach($company);
     public function getReviewsTiedUserTenEach($user);
 
+    public function createReview($request);
     public function deleteReview($id);
 }

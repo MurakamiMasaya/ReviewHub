@@ -64,4 +64,8 @@ class DisplayService implements DisplayServiceInterface {
     public function deleteAcount($id){
         return $this->displayRepository->deleteAcount($id);
     }
+
+    public function createContact($request){
+        return $this->displayRepository->createContact($request);
+    }
 }

@@ -13,7 +13,6 @@ use App\Interfaces\Services\ImageServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Storage;
 
 class MypageController extends Controller
 {

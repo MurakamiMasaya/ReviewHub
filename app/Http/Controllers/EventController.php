@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
-use App\Http\Requests\ReviewForm;
+use App\Http\Requests\ReviewFormRequest;
 use App\Http\Requests\EventFormRequest;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
@@ -210,7 +209,7 @@ class EventController extends Controller
         }
     }
 
-    public function review(ReviewForm $request){
+    public function review(ReviewFormRequest $request){
 
         try{
             $this->eventService->createReview($request);

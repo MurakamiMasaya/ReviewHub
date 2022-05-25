@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReviewForm;
+use App\Http\Requests\ReviewFormRequest;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
-use App\Models\ReviewCompany;
 use Illuminate\Http\Request;
 
 class CompanyController extends Controller
@@ -149,7 +148,7 @@ class CompanyController extends Controller
         }
     }
 
-    public function confilmReview(ReviewForm $request, $company){
+    public function confilmReview(ReviewFormRequest $request, $company){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
@@ -169,7 +168,7 @@ class CompanyController extends Controller
         }
     }
 
-    public function registerReview(ReviewForm $request, $company){
+    public function registerReview(ReviewFormRequest $request, $company){
 
         try{
             // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
@@ -177,11 +176,7 @@ class CompanyController extends Controller
                 return redirect()->route('company.review', $company)->withInput();
             }
 
-            ReviewCompany::create([
-                'user_id' => $request->user_id,
-                'company_id' => $company,
-                'review' => $request->review,
-            ]);
+            $this->companyService->createReview($request);
 
             $text = '投稿が完了しました！';
             $linkText = '企業一覧に戻る';

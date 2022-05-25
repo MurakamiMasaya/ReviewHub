@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ContactFormRequest;
 use App\Interfaces\Services\DisplayServiceInterface;
-use App\Models\Contact;
 use Illuminate\Http\Request;
 
 class OtherController extends Controller
@@ -75,12 +74,7 @@ class OtherController extends Controller
                 return redirect()->route('contact')->withInput();
             }
 
-            Contact::create([
-                'user_id' => $user->id,
-                'title' => $request->title,
-                'contents' => $request->contents
-            ]);
-
+            $this->displayService->createContact($request);
             //以下に管理者へのメール送信を実装
 
             $text = 'お問い合わせ完了です！';

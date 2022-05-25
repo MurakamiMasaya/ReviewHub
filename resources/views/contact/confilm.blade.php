@@ -25,6 +25,7 @@
     
             <form method="POST" action="{{ route('contact.register') }}" class="mt-10">
                 @csrf
+                <input type="hidden" name="user_id" value="{{ $user->id }}">
 
                 <div class="font-bold">お問い合わせフォーム</div>
 

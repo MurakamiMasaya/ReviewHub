@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ReviewForm;
+use App\Http\Requests\ReviewFormRequest;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
@@ -110,7 +110,7 @@ class SchoolController extends Controller
         }
     }
 
-    public function confilmReview(ReviewForm $request, $school){
+    public function confilmReview(ReviewFormRequest $request, $school){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
@@ -130,7 +130,7 @@ class SchoolController extends Controller
         }
     }
 
-    public function registerReview(ReviewForm $request, $school){
+    public function registerReview(ReviewFormRequest $request, $school){
 
         try{       
             // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト

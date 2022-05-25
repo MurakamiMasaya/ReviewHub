@@ -8,8 +8,9 @@ use App\Models\Event;
 use App\Models\Article;
 use App\Models\Condition;
 use App\Models\Stack;
-use App\Interfaces\Repositories\DisplayRepositoryInterface;
+use App\Models\Contact;
 use App\Models\User;
+use App\Interfaces\Repositories\DisplayRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 
 class DisplayRepository implements DisplayRepositoryInterface {
@@ -28,5 +29,13 @@ class DisplayRepository implements DisplayRepositoryInterface {
 
     public function deleteAcount($id){
         return User::where('id', $id)->delete();
+    }
+
+    public function createContact($request){
+        Contact::create([
+            'user_id' => $request->user_id,
+            'title' => $request->title,
+            'contents' => $request->contents
+        ]);
     }
 }

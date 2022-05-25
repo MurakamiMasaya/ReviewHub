@@ -10,4 +10,6 @@ interface DisplayServiceInterface{
 
     public function getAllReviewsTenEach($id);
     public function deleteAcount($id);
+
+    public function createContact($request);
 }
