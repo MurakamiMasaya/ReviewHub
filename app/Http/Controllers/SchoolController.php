@@ -35,10 +35,10 @@ class SchoolController extends Controller
         try{
             $user = $this->displayService->getAuthenticatedUser();
             // #TODO: クエリビルダで取得したデータに順位をつけたい。
-            $schools = $this->schoolService->getTwelveEach();
+            $schools = $this->schoolService->getSchool(null, 'gr', 20);
             
-            $companies = $this->companyService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
             return view('school.index', compact('user', 'schools', 'companies', 'articles'));
 
@@ -56,13 +56,13 @@ class SchoolController extends Controller
             $target = $request->input('target');
 
             // ＃TODO: 大文字小文字全角半角を区別しないように修正
-            $schoolsSearch = $this->schoolService->getSearchTenEach($target);
-            $schoolsAll = $this->schoolService->getSearchAll($target);
+            $schools = $this->schoolService->searchSchool($target, 'name', 'gr', 20);
+            $AllSchools = $this->schoolService->searchSchool($target, 'name', 'gr');
 
-            $companies = $this->companyService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
-            return view('school.candidates', compact('user', 'target', 'schoolsSearch', 'schoolsAll', 'companies', 'articles'));
+            return view('school.candidates', compact('user', 'target', 'schools', 'Allschools', 'companies', 'articles'));
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -77,10 +77,10 @@ class SchoolController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             $schoolData = $this->schoolService->getSchool($school);
-            $reviews = $this->schoolService->getReviewsTenEach($school);
+            $reviews = $this->schoolService->getReviews($school, 'school_id', 'gr', 10);
 
-            $companies = $this->companyService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
             // dd($reviewCompanies);
             return view('school.detail', compact('user', 'schoolData', 'reviews', 'companies', 'articles'));
@@ -98,8 +98,8 @@ class SchoolController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
             $school = $this->schoolService->getSchool($detail);
 
-            $companies = $this->companyService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
             return view('school.review', compact('user', 'school', 'companies', 'articles'));
 
@@ -118,9 +118,9 @@ class SchoolController extends Controller
 
             $review = $request->review;
 
-            $companies = $this->companyService->getTopThree();
-            $articles = $this->articleService->getTopEight();
-
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            
             return view('school.confilm', compact('user', 'school', 'review', 'companies', 'articles'));
 
         }catch(\Throwable $e){
@@ -138,11 +138,7 @@ class SchoolController extends Controller
                 return redirect()->route('school.review', $school)->withInput();
             }
 
-            ReviewSchool::create([
-                'user_id' => $request->user_id,
-                'school_id' => $school,
-                'review' => $request->review,
-            ]);
+            $this->schoolService->createReview($request);
 
             $text = '投稿が完了しました！';
             $linkText = 'スクール一覧に戻る';

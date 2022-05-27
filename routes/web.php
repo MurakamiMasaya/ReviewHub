@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TopController;
 use App\Http\Controllers\CompanyController;
@@ -127,6 +128,7 @@ Route::controller(ArticleController::class)
         });
     });
 
+//マイページ
 Route::controller(MypageController::class)
     ->prefix('mypage')->name('mypage.')->middleware('auth')->group(function(){
         Route::get('/', 'index')->name('index');
@@ -146,6 +148,23 @@ Route::controller(MypageController::class)
         Route::post('/profile', 'registProfile')->name('profile.register');
         Route::post('/delete', 'deleteAcount')->name('delete');
 
+    });
+
+Route::controller(AdminController::class)
+    ->prefix('admin')->name('admin.')->middleware('auth')->group(function(){
+        Route::get('/company', 'showCompany')->name('company');
+        Route::get('/company/edit/{company}', 'editCompany')->name('company.edit');
+        Route::get('/company/search', 'searchCompany')->name('company.search');
+
+        Route::get('/school', 'showSchool')->name('school');
+        Route::get('/school/edit/{school}', 'editSchool')->name('school.edit');
+        Route::get('/school/search', 'searchSchool')->name('school.search');
+
+        Route::get('/event', 'showEvent')->name('event');
+        
+        Route::get('/article', 'showArticle')->name('article');
+
+        Route::get('/user', 'showUser')->name('user');
     });
 
 require __DIR__.'/auth.php';

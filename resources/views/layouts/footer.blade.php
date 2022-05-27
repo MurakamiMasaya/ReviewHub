@@ -30,8 +30,8 @@
                 </a>
             </div>
             <div class="flex mt-1 md:mt-0">
-                <x-company.search />
-                <x-school.search />
+                <x-company.search route="company.search"/>
+                <x-school.search route="school.search"/>
             </div>
         </div>
     </div>

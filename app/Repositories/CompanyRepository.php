@@ -9,36 +9,36 @@ use App\Models\ReviewCompany;
 
 class CompanyRepository implements CompanyRepositoryInterface {
 
-    public function getCompany($company){
-        return Company::findOrFail($company);
+    public function getCompany($target, $order, $paginate, $limit){
+        if(!is_null($target)){
+            return Company::findOrFail($target);
+        }
+        if(!is_null($paginate)){
+            return Company::orderBy($order, 'desc')->paginate($paginate); 
+        }
+        return Company::orderBy($order, 'desc')->limit($limit)->get();
+    }
+    
+    public function searchCompany($target, $column, $order, $paginate, $limit){
+        
+        if(is_null($paginate) && is_null($limit)){
+            return Company::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->get();
+        }
+        if(!is_null($paginate)){
+            return Company::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->paginate($paginate);
+        }
+        return Company::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
     }
 
-    public function getTopThree(){
-        return Company::orderBy('gr', 'desc')->limit(3)->get();
-    }
+    public function getReviews($target, $column, $order, $paginate, $limit){
 
-    public function getTwelveEach(){
-        return Company::orderBy('gr', 'desc')->paginate(20); 
-    }
-
-    public function getSearchTenEach($target){
-        return Company::where('name' , 'like', '%'. $target .'%')
-        ->orderBy('gr', 'desc')
-        ->paginate(10);
-    }
-
-    public function getSearchAll($target){
-        return Company::where('name' , 'like', '%'. $target .'%')
-        ->orderBy('gr', 'desc')
-        ->get();
-    }
-
-    public function getReviewsTenEach($company){
-        return ReviewCompany::with('user', 'company')->where('company_id', $company)->orderBy('gr', 'desc')->paginate(10); 
-    }
-
-    public function getReviewsTiedUserTenEach($user){
-        return ReviewCompany::with('user', 'company')->where('user_id', $user)->orderBy('gr', 'desc')->paginate(10); 
+        if(is_null($paginate) && is_null($limit)){
+            return ReviewCompany::with('user', 'company')->where($column, $target)->orderBy($order, 'desc')->get(); 
+        }
+        if(!is_null($paginate)){
+            return ReviewCompany::with('user', 'company')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+        }
+        return ReviewCompany::with('user', 'company')->where($column, $target)->orderBy($order, 'desc')->limit($limit)->get(); 
     }
 
     public function createReview($request){

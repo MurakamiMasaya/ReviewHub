@@ -15,28 +15,16 @@ class CompanyService implements CompanyServiceInterface {
         $this->companyRepository = $companyRepository;
     }
 
-    public function getCompany($company){
-        return $this->companyRepository->getCompany($company);
+    public function getCompany($target, $order = null, $paginate = null, $limit = null){
+        return $this->companyRepository->getCompany($target, $order, $paginate, $limit);
     }
 
-    public function getTopThree(){
-        return $this->companyRepository->getTopThree();
+    public function searchCompany($target, $column, $order, $paginate = null, $limit = null){
+        return $this->companyRepository->searchCompany($target, $column, $order, $paginate, $limit);
     }
 
-    public function getTwelveEach(){
-        return $this->companyRepository->getTwelveEach(); 
-    }
-
-    public function getSearchTenEach($target){
-        return $this->companyRepository->getSearchTenEach($target);
-    }
-
-    public function getSearchAll($target){
-        return $this->companyRepository->getSearchAll($target);
-    }
-
-    public function getReviewsTenEach($company){
-        return $this->companyRepository->getReviewsTenEach($company);
+    public function getReviews($target, $column, $order, $paginate = null, $limit = null){
+        return $this->companyRepository->getReviews($target, $column, $order, $paginate, $limit);
     }
 
     public function createReview($request){

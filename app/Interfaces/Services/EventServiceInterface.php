@@ -3,15 +3,12 @@
 namespace App\Interfaces\Services;
 
 interface EventServiceInterface{
- 
-    public function getEvent($event);
-    public function getEventTiedUserTenEach($user);
-    public function getTenEach();
-    public function getSearchTenEach($target);
-    public function getSearchAll($target);
 
-    public function getReviews($event);
-    public function getReviewsTenEach($event);
+    public function getEvent($target, $column = null, $order = null, $paginate = null, $limit = null);
+    public function searchEvent($target, $column, $order, $paginate = null, $limit = null);
+
+    public function getReviews($target, $column, $order, $paginate = null, $limit = null);
+
     public function deleteReview($id);
 
     public function createEvent($request, $image);

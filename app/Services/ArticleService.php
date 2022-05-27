@@ -17,36 +17,16 @@ class ArticleService implements ArticleServiceInterface {
         $this->articleRepository = $articleRepository;
     }
 
-    public function getArticle($article){
-        return $this->articleRepository->getArticle($article);
+    public function getArticle($target, $column = null, $order = null, $paginate = null, $limit = null){
+        return $this->articleRepository->getArticle($target, $column, $order, $paginate, $limit);
     }
 
-    public function getArticleTiedUserTenEach($user){
-        return $this->articleRepository->getArticleTiedUserTenEach($user);
+    public function searchArticle($target, $column, $order, $paginate = null, $limit = null){
+        return $this->articleRepository->searchArticle($target, $column, $order, $paginate, $limit);
     }
 
-    public function getTopEight(){
-        return $this->articleRepository->getTopEight();
-    }
-
-    public function getTenEach(){
-        return $this->articleRepository->getTenEach(); 
-    }
-
-    public function getSearchTenEach($target){
-        return $this->articleRepository->getSearchTenEach($target);
-    }
-
-    public function getSearchAll($target){
-        return $this->articleRepository->getSearchAll($target);
-    }
-
-    public function getReviewsAll($article){
-        return $this->articleRepository->getReviewsAll($article);
-    }
-
-    public function getReviewsTenEach($article){
-        return $this->articleRepository->getReviewsTenEach($article);
+    public function getReviews($target, $column, $order, $paginate = null, $limit = null){
+        return $this->articleRepository->getReviews($target, $column, $order, $paginate, $limit);
     }
 
     public function createArticle($request, $image){

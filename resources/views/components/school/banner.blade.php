@@ -13,7 +13,7 @@
             情報を掴んでライバルと差をつけよう！
         </div>
         <div class="flex justify-center pt-1">
-            <x-school.search />
+            <x-school.search route="school.search" />
         </div>
     </div>
 </div>

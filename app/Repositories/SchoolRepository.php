@@ -9,36 +9,44 @@ use App\Models\School;
 
 class SchoolRepository implements SchoolRepositoryInterface {
 
-    public function getSchool($company){
-        return School::findOrFail($company);
+    public function getSchool($target, $order, $paginate, $limit){
+        if(!is_null($target)){
+            return School::findOrFail($target);
+        }
+        if(!is_null($paginate)){
+            return School::orderBy($order, 'desc')->paginate($paginate); 
+        }
+        return School::orderBy($order, 'desc')->limit($limit)->get();
+    }
+    
+    public function searchSchool($target, $column, $order, $paginate, $limit){
+        
+        if(is_null($paginate) && is_null($limit)){
+            return School::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->get();
+        }
+        if(!is_null($paginate)){
+            return School::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->paginate($paginate);
+        }
+        return School::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
     }
 
-    public function getTopThree(){
-        return School::orderBy('gr', 'desc')->limit(3)->get();
+    public function getReviews($target, $column, $order, $paginate, $limit){
+
+        if(is_null($paginate) && is_null($limit)){
+            return ReviewSchool::with('user', 'school')->where($column, $target)->orderBy($order, 'desc')->get(); 
+        }
+        if(!is_null($paginate)){
+            return ReviewSchool::with('user', 'school')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+        }
+        return ReviewSchool::with('user', 'school')->where($column, $target)->orderBy($order, 'desc')->limit($limit)->get(); 
     }
 
-    public function getTwelveEach(){
-        return School::orderBy('gr', 'desc')->paginate(20); 
-    }
-
-    public function getSearchTenEach($target){
-        return School::where('name' , 'like', '%'. $target .'%')
-        ->orderBy('gr', 'desc')
-        ->paginate(10);
-    }
-
-    public function getSearchAll($target){
-        return School::where('name' , 'like', '%'. $target .'%')
-        ->orderBy('gr', 'desc')
-        ->get();
-    }
-
-    public function getReviewsTenEach($school){
-        return ReviewSchool::with('user', 'school')->where('school_id', $school)->orderBy('gr', 'desc')->paginate(10);
-    }
-
-    public function getReviewsTiedUserTenEach($user){
-        return ReviewSchool::with('user', 'school')->where('user_id', $user)->orderBy('gr', 'desc')->paginate(10); 
+    public function createReview($request){
+        ReviewSchool::create([
+            'user_id' => $request->user_id,
+            'school_id' => $request->school_id,
+            'review' => $request->review,
+        ]);
     }
 
     public function deleteReview($id){

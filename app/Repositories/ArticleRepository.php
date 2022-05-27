@@ -9,44 +9,40 @@ use App\Models\ReviewArticle;
 
 class ArticleRepository implements ArticleRepositoryInterface {
 
-    public function getArticle($article){
-        return Article::with('user')->findOrFail($article);
+    public function getArticle($target, $column, $order, $paginate, $limit){
+
+        if(!is_null($target) && !is_null($column) && !is_null($order) && !is_null($paginate) ){
+            return Article::with('user')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+        }
+        if(!is_null($target)){
+            return Article::with('user')->findOrFail($target);
+        }
+        if(!is_null($order) && !is_null($paginate) ){
+            return Article::with('user')->orderBy($order, 'desc')->paginate($paginate); 
+        }
+        return Article::with('user')->orderBy($order, 'desc')->limit($limit)->get(); 
     }
 
-    public function getArticleTiedUserTenEach($user){
-        return Article::where('user_id', $user)->orderBy('updated_at', 'desc')->paginate(10); 
+    public function searchArticle($target, $column, $order, $paginate, $limit){
+
+        if(is_null($paginate) && is_null($limit)){
+            return Article::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->get();
+        }
+        if(!is_null($paginate)){
+            return Article::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->paginate($paginate);
+        }
+        return Article::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
     }
 
-    public function getTopEight(){
-        return Article::with('user')->orderBy('gr', 'desc')->limit(8)->get();
-    }
+    public function getReviews($target, $column, $order, $paginate, $limit){
 
-    public function getTenEach(){
-        return Article::with('user')->orderBy('gr', 'desc')->paginate(10); 
-    }
-
-    public function getSearchTenEach($target){
-        return Article::with('user')->where('title' , 'like', '%'. $target .'%')
-        ->orderBy('gr', 'desc')
-        ->paginate(10);
-    }
-
-    public function getSearchAll($target){
-        return Article::with('user')->where('title' , 'like', '%'. $target .'%')
-        ->orderBy('gr', 'desc')
-        ->get();
-    }
-
-    public function getReviewsAll($article){
-        return ReviewArticle::with('user', 'article')->where('article_id', $article)->orderBy('gr', 'desc')->get();
-    }
-
-    public function getReviewsTiedUserTenEach($user){
-        return ReviewArticle::with('user', 'article')->where('user_id', $user)->orderBy('created_at', 'desc')->paginate(10);
-    }
-
-    public function getReviewsTenEach($article){
-        return ReviewArticle::with('user', 'article')->where('article_id', $article)->orderBy('gr', 'desc')->paginate(10);
+        if(is_null($paginate) && is_null($limit)){
+            return ReviewArticle::with('user', 'article')->where($column, $target)->orderBy($order, 'desc')->get(); 
+        }
+        if(!is_null($paginate)){
+            return ReviewArticle::with('user', 'article')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+        }
+        return ReviewArticle::with('user', 'article')->where($column, $target)->orderBy($order, 'desc')->limit($limit)->get(); 
     }
 
     public function createArticle($request, $image){
