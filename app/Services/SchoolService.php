@@ -15,32 +15,20 @@ class SchoolService implements SchoolServiceInterface {
         $this->schoolRepository = $schoolRepository;
     }
 
-    public function getSchool($company){
-        return $this->schoolRepository->getSchool($company);
+    public function getSchool($target, $order = null, $paginate = null, $limit = null){
+        return $this->schoolRepository->getSchool($target, $order, $paginate, $limit);
     }
 
-    public function getTopThree(){
-        return $this->schoolRepository->getTopThree();
+    public function searchSchool($target, $column, $order, $paginate = null, $limit = null){
+        return $this->schoolRepository->searchSchool($target, $column, $order, $paginate, $limit);
     }
 
-    public function getTwelveEach(){
-        return $this->schoolRepository->getTwelveEach();
+    public function getReviews($target, $column, $order, $paginate = null, $limit = null){
+        return $this->schoolRepository->getReviews($target, $column, $order, $paginate, $limit);
     }
 
-    public function getSearchTenEach($target){
-        return $this->schoolRepository->getSearchTenEach($target);
-    }
-
-    public function getSearchAll($target){
-        return $this->schoolRepository->getSearchAll($target);
-    }
-
-    public function getReviewsTenEach($school){
-        return $this->schoolRepository->getReviewsTenEach($school);
-    }
-
-    public function getReviewsTiedUserTenEach($user){
-        return $this->schoolRepository->getReviewsTiedUserTenEach($user);
+    public function createReview($request){
+        return $this->schoolRepository->createReview($request);
     }
 
     public function deleteReview($id){

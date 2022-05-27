@@ -32,11 +32,10 @@ class CompanyController extends Controller
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
-            // #TODO: クエリビルダで取得したデータに順位をつけたい。
-            $companies = $this->companyService->getTwelveEach(); 
+            $companies = $this->companyService->getCompany(null, 'gr', 20);
             
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
             return view('company.index', compact('user', 'companies', 'schools', 'articles'));
 
@@ -52,16 +51,16 @@ class CompanyController extends Controller
         try{
             // #TODO: 文字入力なしでの検索をバリデーションで禁止にする
             $user = $this->displayService->getAuthenticatedUser();
-            $target = $request->input('target');
 
             // ＃TODO: 大文字小文字全角半角を区別しないように修正
-            $companiesSearch = $this->companyService->getSearchTenEach($target);
-            $companiesAll = $this->companyService->getSearchAll($target);
+            $target = $request->target;
+            $companies = $this->companyService->searchCompany($target, 'name', 'gr', 20);
+            $AllCompanies = $this->companyService->searchCompany($target, 'name', 'gr');
 
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
-            return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+            return view('company.candidates', compact('user', 'target', 'companies', 'AllCompanies', 'schools', 'articles')); 
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -75,13 +74,13 @@ class CompanyController extends Controller
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            $companiesSearch = $this->companyService->getSearchTenEach($target);
-            $companiesAll = $this->companyService->getSearchAll($target);
+            $companies = $this->companyService->searchCompany($target, 'technology', 'gr', 20);
+            $AllCompanies = $this->companyService->searchCompany($target, 'technology', 'gr');
             
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
-            return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+            return view('company.candidates', compact('user', 'target', 'companies', 'AllCompanies', 'schools', 'articles')); 
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -95,13 +94,13 @@ class CompanyController extends Controller
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            $companiesSearch = $this->companyService->getSearchTenEach($target);
-            $companiesAll = $this->companyService->getSearchAll($target);
+            $companies = $this->companyService->searchCompany($target, 'condition', 'gr', 20);
+            $AllCompanies = $this->companyService->searchCompany($target, 'condition', 'gr');
             
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
-            return view('company.candidates', compact('user', 'target', 'companiesSearch', 'companiesAll', 'schools', 'articles')); 
+            return view('company.candidates', compact('user', 'target', 'companies', 'AllCompanies', 'schools', 'articles')); 
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -116,10 +115,10 @@ class CompanyController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             $companyData = $this->companyService->getCompany($company);
-            $reviews = $this->companyService->getReviewsTenEach($company);
+            $reviews = $this->companyService->getReviews($company, 'company_id', 'gr', 10);
 
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
             return view('company.detail', compact('user', 'companyData', 'reviews', 'schools', 'articles'));
             
@@ -136,8 +135,8 @@ class CompanyController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
             $company = $this->companyService->getCompany($detail);
 
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
             return view('company.review', compact('user', 'company', 'schools', 'articles'));
 
@@ -156,8 +155,8 @@ class CompanyController extends Controller
 
             $review = $request->review;
 
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
             return view('company.confilm', compact('user', 'company', 'review', 'schools', 'articles'));
 

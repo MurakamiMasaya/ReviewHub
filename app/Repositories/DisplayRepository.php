@@ -27,10 +27,6 @@ class DisplayRepository implements DisplayRepositoryInterface {
         return Condition::all();
     }
 
-    public function deleteAcount($id){
-        return User::where('id', $id)->delete();
-    }
-
     public function createContact($request){
         Contact::create([
             'user_id' => $request->user_id,
@@ -38,4 +34,9 @@ class DisplayRepository implements DisplayRepositoryInterface {
             'contents' => $request->contents
         ]);
     }
+    
+    public function deleteAcount($id){
+        return User::where('id', $id)->delete();
+    }
+
 }

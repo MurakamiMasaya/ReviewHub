@@ -48,10 +48,10 @@ class DisplayService implements DisplayServiceInterface {
 
         $allReviews = [];
 
-        $c_reviews = $this->companyRepository->getReviewsTiedUserTenEach($id);
-        $s_reviews = $this->schoolRepository->getReviewsTiedUserTenEach($id);
-        $e_reviews = $this->eventRepository->getReviewsTiedUserTenEach($id);
-        $a_reviews = $this->articleRepository->getReviewsTiedUserTenEach($id);
+        $c_reviews = $this->companyRepository->getReviews($id, 'user_id', 'updated_at', 10, null);
+        $s_reviews = $this->schoolRepository->getReviews($id, 'user_id', 'updated_at', 10, null);
+        $e_reviews = $this->eventRepository->getReviews($id, 'user_id', 'updated_at', 10, null);
+        $a_reviews = $this->articleRepository->getReviews($id, 'user_id', 'updated_at', 10, null);
 
         array_push($allReviews, [
             'c_reviews' => $c_reviews, 
@@ -60,12 +60,13 @@ class DisplayService implements DisplayServiceInterface {
             'a_reviews' => $a_reviews]);
         return $allReviews;
     }
-
+    
+    public function createContact($request){
+        return $this->displayRepository->createContact($request);
+    }
+    
     public function deleteAcount($id){
         return $this->displayRepository->deleteAcount($id);
     }
 
-    public function createContact($request){
-        return $this->displayRepository->createContact($request);
-    }
 }

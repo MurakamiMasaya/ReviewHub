@@ -36,11 +36,11 @@ class ArticleController extends Controller
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
-            // #TODO: クエリビルダで取得したデータに順位をつけたい。
-            $articles = $this->articleService->getTenEach();
 
-            $companies = $this->companyService->getTopThree();
-            $schools = $this->schoolService->getTopThree();
+            $articles = $this->articleService->getArticle(null, null, 'gr', 10);
+
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
 
             return view('article.index', compact('user', 'articles', 'companies', 'schools'));
 
@@ -55,16 +55,15 @@ class ArticleController extends Controller
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
-            $target = $request->input('target');
-
+            $target = $request->target;
             // ＃TODO: 大文字小文字全角半角を区別しないように修正
-            $articlesSearch = $this->articleService->getSearchTenEach($target);
-            $articlesAll = $this->articleService->getSearchAll($target);
+            $articles = $this->articleService->searchArticle($target, 'title', 'gr', 20);
+            $allArticles = $this->articleService->searchArticle($target, 'title', 'gr');
 
-            $companies = $this->companyService->getTopThree();
-            $schools = $this->schoolService->getTopThree();
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
                 
-            return view('article.candidates', compact('user', 'target', 'articlesSearch', 'articlesAll', 'companies', 'schools'));
+            return view('article.candidates', compact('user', 'target', 'articles', 'allArticles', 'companies', 'schools'));
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -79,13 +78,13 @@ class ArticleController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             $articleData = $this->articleService->getArticle($article);
-            $reviews = $this->articleService->getReviewsTenEach($article);
-            $reviewsAll = $this->articleService->getReviewsAll($article);
+            $reviews = $this->articleService->getReviews($article, 'article_id', 'gr', 10);
+            $allReviews = $this->articleService->getReviews($article, 'article_id', 'gr');
 
-            $companies = $this->companyService->getTopThree();
-            $schools = $this->schoolService->getTopThree();
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
 
-            return view('article.detail', compact('user', 'articleData', 'reviews', 'reviewsAll', 'companies', 'schools'));
+            return view('article.detail', compact('user', 'articleData', 'reviews', 'allReviews', 'companies', 'schools'));
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -113,8 +112,8 @@ class ArticleController extends Controller
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            $companies = $this->companyService->getTopThree();
-            $schools = $this->schoolService->getTopThree();
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
 
             return view('article.register' ,compact('user', 'companies', 'schools'));
 
@@ -151,8 +150,8 @@ class ArticleController extends Controller
                 'tag' => $request->tag,
             ];
 
-            $companies = $this->companyService->getTopThree();
-            $schools = $this->schoolService->getTopThree();
+            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
 
             return view('article.confilm', compact('user', 'articleInfo', 'companies', 'schools'));
             

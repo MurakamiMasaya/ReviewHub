@@ -18,6 +18,7 @@
             <form action="{{ route('school.review.register', ['school'=>$school->id]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="user_id" value="{{ $user->id }}">
+                <input type="hidden" name="school_id" value="{{ $school->id }}">
                 
                 <div class="mt-3 text-red-500 text-2xl lg:text-4xl font-bold">{{$title}}review</div>
 

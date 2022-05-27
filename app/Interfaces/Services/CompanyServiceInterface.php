@@ -3,14 +3,10 @@
 namespace App\Interfaces\Services;
 
 interface CompanyServiceInterface{
-    
-    public function getCompany($company);
-    public function getTopThree();
-    public function getTwelveEach();
-    public function getSearchTenEach($target);
-    public function getSearchAll($target);
+    public function getCompany($target, $order = null, $paginate = null, $limit = null);
+    public function searchCompany($target, $column, $order, $paginate = null, $limit = null);
 
-    public function getReviewsTenEach($company);
+    public function getReviews($target, $column, $order, $paginate = null, $limit = null);
 
     public function createReview($request);
     public function deleteReview($id);

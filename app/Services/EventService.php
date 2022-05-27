@@ -14,37 +14,25 @@ class EventService implements EventServiceInterface {
         ) {
         $this->eventRepository = $eventRepository;
     }
-
-    public function getEvent($event){
-        return $this->eventRepository->getEvent($event);
+   
+    public function getEvent($target, $column = null, $order = null, $paginate = null, $limit = null){
+        return $this->eventRepository->getEvent($target, $column, $order, $paginate, $limit);
     }
 
-    public function getEventTiedUserTenEach($user){
-        return $this->eventRepository->getEventTiedUserTenEach($user);
+    public function searchEvent($target, $column, $order, $paginate = null, $limit = null){
+        return $this->eventRepository->searchEvent($target, $column, $order, $paginate, $limit);
     }
 
-    public function getTenEach(){
-        return $this->eventRepository->getTenEach(); 
-    }
-
-    public function getSearchTenEach($target){
-        return $this->eventRepository->getSearchTenEach($target);
-    }
-
-    public function getSearchAll($target){
-        return $this->eventRepository->getSearchAll($target);
-    }
-
-    public function getReviews($event){
-        return $this->eventRepository->getReviews($event);
-    }
-
-    public function getReviewsTenEach($event){
-        return $this->eventRepository->getReviewsTenEach($event);
+    public function getReviews($target, $column, $order, $paginate = null, $limit = null){
+        return $this->eventRepository->getReviews($target, $column, $order, $paginate, $limit);
     }
 
     public function createEvent($request, $image){
         return $this->eventRepository->createEvent($request, $image);
+    }
+
+    public function deleteEvent($event){
+        return $this->eventRepository->deleteEvent($event);
     }
 
     public function createReview($request){
@@ -55,8 +43,5 @@ class EventService implements EventServiceInterface {
         return $this->eventRepository->deleteReview($id);
     }
 
-    public function deleteEvent($event){
-        return $this->eventRepository->deleteEvent($event);
-    }
 
 }

@@ -31,7 +31,7 @@ class TopController extends Controller
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
-            $companies = $this->companyService->getTwelveEach(); 
+            $companies = $this->companyService->getCompany(null, 'gr', 20);
 
             $conditions = $this->displayService->getConditionAll();
             $stacks = $this->displayService->getTechnologyAll();

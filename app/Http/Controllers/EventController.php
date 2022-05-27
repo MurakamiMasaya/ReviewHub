@@ -42,10 +42,10 @@ class EventController extends Controller
         try{
             $user = $this->displayService->getAuthenticatedUser();
             // #TODO: クエリビルダで取得したデータに順位をつけたい。
-            $events = $this->eventService->getTenEach();
+            $events = $this->eventService->getEvent(null, null, 'gr', 10);
             
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
         
             return view('event.index', compact('user', 'events', 'schools', 'articles'));
 
@@ -63,13 +63,13 @@ class EventController extends Controller
             $target = $request->input('target');
 
             // ＃TODO: 大文字小文字全角半角を区別しないように修正
-            $eventsSearch = $this->eventService->getSearchTenEach($target);
-            $eventsAll = $this->eventService->getSearchAll($target);
+            $events = $this->eventService->searchEvent($target, 'title', 'gr', 20);
+            $AllEvents = $this->eventService->SearchEvent($target, 'title', 'gr');
 
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
         
-            return view('event.candidates', compact('user', 'target', 'eventsSearch', 'eventsAll', 'schools', 'articles'));
+            return view('event.candidates', compact('user', 'target', 'events', 'AllEvents', 'schools', 'articles'));
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -84,13 +84,13 @@ class EventController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             $eventData = $this->eventService->getEvent($event);
-            $reviews = $this->eventService->getReviewsTenEach($event);
-            $reviewsAll = $this->eventService->getReviews($event);
+            $reviews = $this->eventService->getReviews($event, 'event_id', 'gr', 10);
+            $AllReviews = $this->eventService->getReviews($event, 'event_id', 'gr');
 
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
-            return view('event.detail', compact('user', 'eventData', 'reviews', 'reviewsAll', 'schools', 'articles'));
+            return view('event.detail', compact('user', 'eventData', 'reviews', 'AllReviews', 'schools', 'articles'));
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -118,8 +118,8 @@ class EventController extends Controller
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
             return view('event.register' ,compact('user', 'schools', 'articles'));
 
@@ -165,8 +165,8 @@ class EventController extends Controller
             //ログの出力
             Log::info($eventInfo);
 
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
             return view('event.confilm', compact('user', 'eventInfo', 'schools', 'articles'));
 

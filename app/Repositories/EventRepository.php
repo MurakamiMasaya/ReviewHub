@@ -9,40 +9,39 @@ use App\Models\ReviewEvent;
 
 class EventRepository implements EventRepositoryInterface {
 
-    public function getEvent($event){
-        return Event::with('user')->findOrFail($event);
+    public function getEvent($target, $column, $order, $paginate, $limit){
+
+        if(!is_null($target) && !is_null($column) && !is_null($order) && !is_null($paginate) ){
+            return Event::with('user')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+        }
+        if(!is_null($target)){
+            return Event::with('user')->findOrFail($target);
+        }
+        if(!is_null($order) && !is_null($paginate) ){
+            return Event::with('user')->orderBy($order, 'desc')->paginate($paginate); 
+        }
     }
 
-    public function getEventTiedUserTenEach($user){
-        return Event::where('user_id', $user)->orderBy('updated_at', 'desc')->paginate(10); 
+    public function searchEvent($target, $column, $order, $paginate, $limit){
+
+        if(is_null($paginate) && is_null($limit)){
+            return Event::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->get();
+        }
+        if(!is_null($paginate)){
+            return Event::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->paginate($paginate);
+        }
+        return Event::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
     }
 
-    public function getTenEach(){
-        return Event::with('user')->orderBy('gr', 'desc')->paginate(10); 
-    }
+    public function getReviews($target, $column, $order, $paginate, $limit){
 
-    public function getSearchTenEach($target){
-        return Event::with('user')->where('title' , 'like', '%'. $target .'%')
-        ->orderBy('gr', 'desc')
-        ->paginate(10);
-    }
-
-    public function getSearchAll($target){
-        return Event::with('user')->where('title' , 'like', '%'. $target .'%')
-        ->orderBy('gr', 'desc')
-        ->get();
-    }
-
-    public function getReviews($event){
-        return ReviewEvent::with('user', 'event')->where('event_id', $event)->orderBy('gr', 'desc')->get();
-    }
-
-    public function getReviewsTenEach($event){
-        return ReviewEvent::with('user', 'event')->where('event_id', $event)->orderBy('gr', 'desc')->paginate(10);
-    }
-
-    public function getReviewsTiedUserTenEach($user){
-        return ReviewEvent::with('user', 'event')->where('user_id', $user)->orderBy('created_at', 'desc')->paginate(10); 
+        if(is_null($paginate) && is_null($limit)){
+            return ReviewEvent::with('user', 'event')->where($column, $target)->orderBy($order, 'desc')->get(); 
+        }
+        if(!is_null($paginate)){
+            return ReviewEvent::with('user', 'event')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+        }
+        return ReviewEvent::with('user', 'event')->where($column, $target)->orderBy($order, 'desc')->limit($limit)->get(); 
     }
 
     public function createEvent($request, $image){
