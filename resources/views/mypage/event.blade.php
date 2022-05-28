@@ -5,9 +5,12 @@
     @endif
 
     <div class="max-w-4xl mx-auto my-10 px-2 md:px-10">
-        <div class="flex justify-between items-end">
-            <div class="text-xl font-bold">イベント一覧</div>
-            <div class="">
+        <div class="md:flex justify-between items-end">
+            <div>
+                <div class="text-xl font-bold">イベント一覧</div>
+                <div class="text-xs text-gray-500">※開催期間が過ぎているイベントも表示</div>
+            </div>
+            <div class="text-right">
                 <a href="{{ route("mypage.index") }}"><div class="text-sm text-blue-500 font-bold">マイページに戻る</div></a>
             </div>
         </div>
@@ -25,7 +28,7 @@
                 @foreach ($allEvents as $event)
                 <tr class="border-b-2 border-gray-300">
                     <td class="w-2/12 text-xs p-1">{{ $event->title }}</td>
-                    <td class="w-6/12 md:w-7/12 text-xs p-1">{{ $event->contents }}</td>
+                    <td class="w-6/12 md:w-7/12 text-xs p-1">{!! nl2br(e($event->contents)) !!}</td>
                     <td class="w-1/12 text-xs p-1 text-center">{{ $event->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $event->updated_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">

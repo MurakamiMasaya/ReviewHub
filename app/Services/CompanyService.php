@@ -34,4 +34,12 @@ class CompanyService implements CompanyServiceInterface {
     public function deleteReview($id){
         return $this->companyRepository->deleteReview($id);
     }
+
+    public function createCompany($request){
+        return $this->companyRepository->createCompany($request);
+    }
+
+    public function deleteCompany($id){
+        return $this->companyRepository->deleteCompany($id);
+    }
 }

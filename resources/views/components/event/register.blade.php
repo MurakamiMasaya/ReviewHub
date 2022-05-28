@@ -49,6 +49,17 @@
             <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
                 定員(必須) : 
                 <input type="number" name="capacity" min="1" max="100" value="{{ old('capacity') }}" required class="shadow appearance-none border w-20 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="20"/>
+                <div class="text-xs font-bold text-gray-500">※最大100名でご記入ください。</div>
+            </div>
+
+            <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
+                開始日(必須) : 
+                <input type="date" name="start_date" value="{{ old('start_date') }}" required class="shadow appearance-none border w-40 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
+            </div>
+
+            <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
+                終了日(必須) : 
+                <input type="date" name="end_date" value="{{ old('end_date') }}" required class="shadow appearance-none border w-40 rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" />
             </div>
 
             <div class="mt-10 text-sm md:text-md lg:text-lg font-bold">

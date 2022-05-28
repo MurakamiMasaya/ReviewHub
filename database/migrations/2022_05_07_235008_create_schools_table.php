@@ -16,9 +16,7 @@ return new class extends Migration
         Schema::create('schools', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->boolean('online');
             $table->string('address');
-            $table->text('contents');
             $table->bigInteger('phone')->unsigned();
             $table->integer('gr')->unsigned()->default(0);
             $table->string('website_url');

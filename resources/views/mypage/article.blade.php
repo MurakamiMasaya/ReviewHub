@@ -25,7 +25,7 @@
                 @foreach ($allArticles as $article)
                 <tr class="border-b-2 border-gray-300">
                     <td class="w-2/12 text-xs p-1">{{ $article->title }}</td>
-                    <td class="w-6/12 md:w-7/12 text-xs p-1">{{ $article->contents }}</td>
+                    <td class="w-6/12 md:w-7/12 text-xs p-1">{!! nl2br(e($article->contents)) !!}</td>
                     <td class="w-1/12 text-xs p-1 text-center">{{ $article->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $article->updated_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">

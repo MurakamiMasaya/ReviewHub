@@ -147,24 +147,40 @@ Route::controller(MypageController::class)
         Route::get('/profile', 'profile')->name('profile');
         Route::post('/profile', 'registProfile')->name('profile.register');
         Route::post('/delete', 'deleteAcount')->name('delete');
-
     });
 
 Route::controller(AdminController::class)
     ->prefix('admin')->name('admin.')->middleware('auth')->group(function(){
         Route::get('/company', 'showCompany')->name('company');
-        Route::get('/company/edit/{company}', 'editCompany')->name('company.edit');
         Route::get('/company/search', 'searchCompany')->name('company.search');
+        Route::get('/company/edit/{company}', 'editCompany')->name('company.edit');
+        Route::get('/company/create', 'createCompany')->name('company.create');
+        Route::post('/company/confilm', 'confilmCompany')->name('company.confilm');
+        Route::post('/company/register', 'registCompany')->name('company.register');
+        Route::post('/company/delete', 'deleteCompany')->name('company.delete');
 
         Route::get('/school', 'showSchool')->name('school');
-        Route::get('/school/edit/{school}', 'editSchool')->name('school.edit');
         Route::get('/school/search', 'searchSchool')->name('school.search');
+        Route::get('/school/edit/{school}', 'editSchool')->name('school.edit');
+        Route::get('/school/create', 'createSchool')->name('school.create');
+        Route::post('/school/confilm', 'confilmSchool')->name('school.confilm');
+        Route::post('/school/register', 'registSchool')->name('school.register');
+        Route::post('/school/delete', 'deleteSchool')->name('school.delete');
 
         Route::get('/event', 'showEvent')->name('event');
-        
+        Route::get('/event/search', 'searchEvent')->name('event.search');
+        Route::get('/event/confilm/{event}', 'confilmEvent')->name('event.confilm');
+        Route::post('/event/delete', 'deleteEvent')->name('event.delete');
+
         Route::get('/article', 'showArticle')->name('article');
+        Route::get('/article/search', 'searchArticle')->name('article.search');
+        Route::get('/article/confilm/{article}', 'confilmArticle')->name('article.confilm');
+        Route::post('/article/delete', 'deleteArticle')->name('article.delete');
 
         Route::get('/user', 'showUser')->name('user');
+        Route::get('/user/search', 'searchUser')->name('user.search');
+        Route::get('/user/confilm/{user}', 'confilmUser')->name('user.confilm');
+        Route::post('/user/delete', 'deleteUser')->name('user.delete');
     });
 
 require __DIR__.'/auth.php';

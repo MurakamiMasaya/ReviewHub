@@ -8,6 +8,9 @@ interface DisplayRepositoryInterface{
     public function getConditionAll();
     
     public function getAuthenticatedUser();
+    public function getUser();
+    public function searchUser($target, $sort);
+
     public function deleteAcount($id);
 
     public function createContact($request);

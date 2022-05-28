@@ -60,6 +60,16 @@
                         <div class="text-xs font-bold text-gray-500">※最大100名でご記入ください。</div>
                     </div>
         
+                    <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
+                        開始日(必須) : 
+                        <input type="date" name="start_date" value="{{ $event->start_date->format('Y-m-d') }}" required class="shadow border-none w-40 rounded py-2 px-3 text-gray-700 leading-tight"/>
+                    </div>
+        
+                    <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
+                        終了日(必須) : 
+                        <input type="date" name="end_date" value="{{ $event->end_date->format('Y-m-d') }}" required class="shadow border-none w-40 rounded py-2 px-3 text-gray-700 leading-tight"/>
+                    </div>
+
                     <div class="mt-10 text-sm md:text-md lg:text-lg font-bold">
                         タイトル(必須) : 
                         <input type="text" name="title" maxlength="40" value="{{ $event->title }}" required class="shadow border-none w-full rounded py-2 px-3 text-gray-700 leading-tight"/>
@@ -96,10 +106,10 @@
                     </div>
                 </form>
 
-                <form action="{{ route('event.delete', ['event' => $event->id]) }}" method="post">
+                <form id="delete_form" action="{{ route('event.delete', ['event' => $event->id]) }}" method="post">
                     @csrf
                     <div class="my-20 text-center">
-                        <button data-id="{{ $event->id }}" onClick="return deletePost(this);" class="px-5 py-3 bg-red-600 text-white rounded-lg font-semibold w-40 ">削除</button>
+                        <button id="delete_button" type="button" class="px-5 py-3 bg-red-600 text-white rounded-lg font-semibold w-40 ">削除</button>
                     </div>
                 </form>
             </div>
@@ -108,12 +118,15 @@
 
     <!-- Footer Image -->
     <x-eye-catching-image />
-    {{-- #FIXME: confilmでキャンセルを押しても、POST送信されてしまう。--}}
+
     <script>
-        function deletePost(e) {
-            if(confirm('本当に削除しますか?')) {
-                document.getElementById('delete_' + e.dataset.id).submit();
+        const deleteForm = document.querySelector('#delete_form');
+        const deleteButton = document.querySelector('#delete_button');
+
+        deleteButton.addEventListener('click', function() {
+            if(window.confirm('本当に削除しますか？')) {
+                deleteForm.submit()
             }
-        }
+        })
     </script>
 </x-app-layout>

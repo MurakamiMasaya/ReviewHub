@@ -13,13 +13,11 @@ class School extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'school_name',
-        'school_online',
-        'school_address',
-        'school_contents',
-        'school_phone',
-        'school_gr',
-        'school_website_url',
+        'name',
+        'address',
+        'phone',
+        'gr',
+        'website_url',
     ];
 
     public function user()

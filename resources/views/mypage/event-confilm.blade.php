@@ -59,6 +59,16 @@
                         <input type="number" name="capacity" min="1" max="100" value="{{ $eventInfo['capacity'] }}" required readonly class="shadow border-none w-20 rounded py-2 px-3 text-gray-700 leading-tight"/>
                         <div class="text-xs font-bold text-gray-500">※最大100名でご記入ください。</div>
                     </div>
+
+                    <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
+                        開始日(必須) : 
+                        <input type="date" name="start_date" value="{{ $eventInfo['start_date'] }}" required readonly class="shadow border-none w-40 rounded py-2 px-3 text-gray-700 leading-tight"/>
+                    </div>
+
+                    <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
+                        終了日(必須) : 
+                        <input type="date" name="end_date" value="{{ $eventInfo['end_date'] }}" required readonly class="shadow border-none w-40 rounded py-2 px-3 text-gray-700 leading-tight"/>
+                    </div>
         
                     <div class="mt-10 text-sm md:text-md lg:text-lg font-bold">
                         タイトル(必須) : 

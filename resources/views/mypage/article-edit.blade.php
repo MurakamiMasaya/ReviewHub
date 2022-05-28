@@ -64,10 +64,10 @@
                     </div>
                 </form>
 
-                <form action="{{ route('article.delete', ['article' => $article->id]) }}" method="post">
+                <form id="delete_form" action="{{ route('article.delete', ['article' => $article->id]) }}" method="post">
                     @csrf
                     <div class="my-20 text-center">
-                        <button data-id="{{ $article->id }}" onClick="return deletePost(this);" class="px-5 py-3 bg-red-600 text-white rounded-lg font-semibold w-40 ">削除</button>
+                        <button id="delete_button" type="button" class="px-5 py-3 bg-red-600 text-white rounded-lg font-semibold w-40 ">削除</button>
                     </div>
                 </form>
             </div>
@@ -76,12 +76,14 @@
 
     <!-- Footer Image -->
     <x-eye-catching-image />
-    {{-- #FIXME: confilmでキャンセルを押しても、POST送信されてしまう。--}}
     <script>
-        function deletePost(e) {
-            if(confirm('本当に削除しますか?')) {
-                document.getElementById('delete_' + e.dataset.id).submit();
+        const deleteForm = document.querySelector('#delete_form');
+        const deleteButton = document.querySelector('#delete_button');
+
+        deleteButton.addEventListener('click', function() {
+            if(window.confirm('本当に削除しますか？')) {
+                deleteForm.submit()
             }
-        }
+        })
     </script>
 </x-app-layout>

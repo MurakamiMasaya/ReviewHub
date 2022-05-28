@@ -43,7 +43,7 @@ class RegisteredUserController extends Controller
             return redirect(RouteServiceProvider::HOME);
         
         }catch(\Throwable $e){
-            Log::error($e);
+            \Log::error($e);
             \Slack::channel('error')->send('ユーザーの新規登録でエラーが発生！');
             return redirect()->route('register')->with('flash_message', '新規登録に失敗しました');
         }

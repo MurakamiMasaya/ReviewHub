@@ -52,4 +52,17 @@ class SchoolRepository implements SchoolRepositoryInterface {
     public function deleteReview($id){
         return ReviewSchool::where('id', $id)->delete();
     }
+
+    public function createSchool($request){
+        School::create([
+            'name' => $request->name,
+            'address' => $request->address,
+            'phone' => $request->phone,
+            'website_url' => $request->website_url,
+        ]);
+    }
+
+    public function deleteSchool($id){
+        return School::where('id', $id)->delete();
+    }
 }
