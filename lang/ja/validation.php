@@ -153,5 +153,14 @@ return [
         'contents' => '本文',
         'image' => '画像',
         'url' => 'URL',
+        'start_date' => '開始日',
+        'end_date' => '終了日',
+        'today' => '今日',
+    ],
+
+    'values' => [
+        'end_date' => [
+            'today' => '今日'
+        ],
     ],
 ];

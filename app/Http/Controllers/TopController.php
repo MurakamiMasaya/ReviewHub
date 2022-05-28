@@ -36,8 +36,8 @@ class TopController extends Controller
             $conditions = $this->displayService->getConditionAll();
             $stacks = $this->displayService->getTechnologyAll();
 
-            $schools = $this->schoolService->getTopThree();
-            $articles = $this->articleService->getTopEight();
+            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
             
             return view('top', compact('user', 'companies', 'conditions', 'stacks', 'schools', 'articles'));
 

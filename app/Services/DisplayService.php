@@ -36,6 +36,14 @@ class DisplayService implements DisplayServiceInterface {
         return $this->displayRepository->getAuthenticatedUser();
     }
 
+    public function getUser(){
+        return $this->displayRepository->getUser();
+    }
+
+    public function searchUser($target, $sort){
+        return $this->displayRepository->searchUser($target, $sort);
+    }
+
     public function getTechnologyAll(){
         return $this->displayRepository->getTechnologyAll();
     }

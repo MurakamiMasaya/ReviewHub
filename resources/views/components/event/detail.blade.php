@@ -34,6 +34,13 @@
                     <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->capacity }}</div>
                 </div>
 
+                <div class="flex items-center mt-3">
+                    <div class="font-bold text-sm md:text-lg lg:text-xl text-red-500 mr-2">開催期間 : </div>
+                    <div class="font-bold text-sm md:text-lg lg:text-xl">
+                        {{ $event->start_date->format('y/m/d') }}~{{ $event->end_date->format('y/m/d') }}
+                    </div>
+                </div>
+
                 <div class="mt-3">
                     <div class="font-bold text-sm md:text-lg lg:text-xl text-red-500 mr-2">イベント内容 : </div>
                     <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->contents }}</div>

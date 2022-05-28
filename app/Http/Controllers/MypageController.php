@@ -76,7 +76,7 @@ class MypageController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             //ユーザーに紐づくすべてのイベントを取得
-            $allEvents = $this->eventService->getEvent($user->id, 'user_id', 'updated_at', 20, null);
+            $allEvents = $this->eventService->getEvent($user->id, 'user_id', 'updated_at', 20, null, true);
 
             return view('mypage.event', compact('user', 'allEvents'));
 
@@ -132,6 +132,8 @@ class MypageController extends Controller
                 'online' => $request->online,
                 'area' => $request->area,
                 'capacity' => $request->capacity,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'title' => $request->title,
                 'contents' => $request->contents,
                 'image' => $fileNameToStore ?? $event->image,
@@ -169,9 +171,11 @@ class MypageController extends Controller
             $event->online = $request->online;
             $event->area = $request->area;
             $event->capacity = $request->capacity;
+            $event->start_date = $request->start_date;
+            $event->end_date = $request->end_date;
             $event->title = $request->title;
             $event->contents = $request->contents;
-            $event->image = $request->image;
+            $event->image = $request->image ?? '';
             $event->url = $request->url;
             $event->tag = $request->tag;
             $event->save();

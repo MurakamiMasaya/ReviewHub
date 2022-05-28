@@ -25,6 +25,9 @@ class EventFactory extends Factory
             'Swift',
         ];
 
+        $scheduled_date = $this->faker->dateTimeBetween('-1year', '+1year');
+        $add_date = $this->faker->numberBetween(1,30);
+
         return [
             'user_id' => $this->faker->numberBetween(1,10),
             'segment' => $this->faker->numberBetween(0,1),
@@ -33,6 +36,8 @@ class EventFactory extends Factory
             'online' => $this->faker->numberBetween(0,1),
             'area' => $this->faker->city(),
             'capacity' => $this->faker->numberBetween(1,50),
+            'start_date' => $scheduled_date->format('Y-m-d H:i:s'),
+            'end_date' => $scheduled_date->modify('+'. $add_date . 'day')->format('Y-m-d H:i:s'),
             'contact_address' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
             'contact_email' => $this->faker->unique()->safeEmail(),
             'gr' => $this->faker->numberBetween(0,1000),

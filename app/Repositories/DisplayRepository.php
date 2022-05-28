@@ -19,6 +19,14 @@ class DisplayRepository implements DisplayRepositoryInterface {
         return Auth::user();
     }
 
+    public function getUser(){
+        return User::with('events', 'articles')->orderby('created_at', 'desc')->paginate(20);
+    }
+
+    public function searchUser($target, $sort){
+        return User::with('events', 'articles')->where('username', 'like', '%'. $target .'%')->orWhere('name', 'like', '%'. $target .'%')->orderby($sort, 'desc')->paginate(20);
+    }
+
     public function getTechnologyAll(){
         return Stack::all();
     }

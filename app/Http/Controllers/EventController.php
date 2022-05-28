@@ -155,15 +155,14 @@ class EventController extends Controller
                 'online' => $request->online,
                 'area' => $request->area,
                 'capacity' => $request->capacity,
+                'start_date' => $request->start_date,
+                'end_date' => $request->end_date,
                 'title' => $request->title,
                 'contents' => $request->contents,
                 'image' => $fileNameToStore ?? '',
                 'url' => $request->url,
                 'tag' => $request->tag,
             ];
-
-            //ログの出力
-            Log::info($eventInfo);
 
             $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
             $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);

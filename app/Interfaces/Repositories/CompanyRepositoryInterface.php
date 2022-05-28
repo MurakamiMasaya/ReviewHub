@@ -11,4 +11,7 @@ interface CompanyRepositoryInterface{
 
     public function createReview($request);
     public function deleteReview($id);
+
+    public function createCompany($request);
+    public function deleteCompany($id);
 }

@@ -26,6 +26,8 @@ class UserSeeder extends Seeder
                 'phone' => '00099999999',
                 'password' => Hash::make('password123'),
                 'admin_flg' => 1,
+                'created_at' => '2022-05-25 00:00:10',
+                'updated_at' => '2022-05-25 00:00:10'
             ],
         ]);
     }

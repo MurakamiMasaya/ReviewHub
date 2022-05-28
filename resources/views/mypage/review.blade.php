@@ -26,13 +26,13 @@
                 @foreach ($allReviews[0]['c_reviews'] as $review)
                 <tr  class="border-b-2 border-gray-300">
                     <td class="w-3/12 text-xs p-1">{{ $review->company->name }}</td>
-                    <td class="w-5/12 md:w-6/12 text-xs p-1">{{ $review->review }}</td>
+                    <td class="w-5/12 md:w-6/12 text-xs p-1">{!! nl2br(e($review->review)) !!}</td>
                     <td class="w-1/12 text-xs p-1 text-center">{{ $review->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $review->created_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">
-                        <form action="{{ route('company.review.delete', ['id' => $review->id]) }}" method="post">
+                        <form id="delete_{{ $review->id }}" action="{{ route('company.review.delete', ['id' => $review->id]) }}" method="post">
                         @csrf
-                        <button data-id="{{ $review->id }}" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
+                        <button data-id="{{ $review->id }}" type="button" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
                         </form>
                     </td>
                 </tr>
@@ -62,13 +62,13 @@
                 @foreach ($allReviews[0]['s_reviews'] as $review)
                 <tr  class="border-b-2 border-gray-300">
                     <td class="w-3/12 text-xs p-1">{{ $review->school->name }}</td>
-                    <td class="w-5/12 md:w-6/12 text-xs p-1">{{ $review->review }}</td>
+                    <td class="w-5/12 md:w-6/12 text-xs p-1">{!! nl2br(e($review->review)) !!}</td>
                     <td class="w-1/12 text-xs p-1 text-center">{{ $review->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $review->created_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">
-                        <form action="{{ route('school.review.delete', ['id' => $review->id]) }}" method="post">
+                        <form id="delete_{{ $review->id }}" action="{{ route('school.review.delete', ['id' => $review->id]) }}" method="post">
                         @csrf
-                        <button data-id="{{ $review->id }}" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
+                        <button data-id="{{ $review->id }}" type="button" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
                         </form>
                     </td>
                 </tr>
@@ -98,13 +98,13 @@
                 @foreach ($allReviews[0]['e_reviews'] as $review)
                 <tr  class="border-b-2 border-gray-300">
                     <td class="w-4/12 text-xs p-1">{{ $review->event->title }}</td>
-                    <td class="w-4/12 md:w-5/12 text-xs p-1">{{ $review->review }}</td>
+                    <td class="w-4/12 md:w-5/12 text-xs p-1">{!! nl2br(e($review->review)) !!}</td>
                     <td class="w-1/12 text-xs p-1 text-center">{{ $review->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $review->created_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">
-                        <form action="{{ route('event.review.delete', ['id' => $review->id]) }}" method="post">
+                        <form id="delete_{{ $review->id }}" action="{{ route('event.review.delete', ['id' => $review->id]) }}" method="post">
                         @csrf
-                        <button data-id="{{ $review->id }}" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
+                        <button data-id="{{ $review->id }}" type="button" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
                         </form>
                     </td>
                 </tr>
@@ -133,13 +133,13 @@
                 @foreach ($allReviews[0]['a_reviews'] as $review)
                 <tr  class="border-b-2 border-gray-300">
                     <td class="w-4/12 text-xs p-1">{{ $review->article->title }}</td>
-                    <td class="w-4/12 md:w-5/12 text-xs p-1">{{ $review->review }}</td>
+                    <td class="w-4/12 md:w-5/12 text-xs p-1">{!! nl2br(e($review->review)) !!}</td>
                     <td class="w-1/12 text-xs p-1 text-center">{{ $review->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $review->created_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">
-                        <form action="{{ route('article.review.delete', ['id' => $review->id]) }}" method="post">
+                        <form id="delete_{{ $review->id }}" action="{{ route('article.review.delete', ['id' => $review->id]) }}" method="post">
                         @csrf
-                        <button data-id="{{ $review->id }}" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
+                        <button data-id="{{ $review->id }}" type="button" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
                         </form>
                     </td>
                 </tr>
@@ -159,7 +159,6 @@
     <!-- Footer Image -->
     <x-eye-catching-image />
 
-    {{-- #FIXME: confilmでキャンセルを押しても、POST送信されてしまう。--}}
     <script>
         function deletePost(e) {
             if(confirm('本当に削除しますか?')) {

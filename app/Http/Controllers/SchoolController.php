@@ -57,12 +57,12 @@ class SchoolController extends Controller
 
             // ＃TODO: 大文字小文字全角半角を区別しないように修正
             $schools = $this->schoolService->searchSchool($target, 'name', 'gr', 20);
-            $AllSchools = $this->schoolService->searchSchool($target, 'name', 'gr');
+            $allSchools = $this->schoolService->searchSchool($target, 'name', 'gr');
 
             $companies = $this->companyService->getCompany(null, 'gr', null, 3);
             $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
-            return view('school.candidates', compact('user', 'target', 'schools', 'Allschools', 'companies', 'articles'));
+            return view('school.candidates', compact('user', 'target', 'schools', 'allSchools', 'companies', 'articles'));
 
         }catch(\Throwable $e){
             \Log::error($e);

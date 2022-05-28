@@ -21,11 +21,18 @@ class Event extends Model
         'online',
         'area',
         'capacity',
+        'start_date',
+        'end_date',
         'contact_address',
         'contact_email',
         'gr',
         'tag',
         'url',
+    ];
+
+    protected $dates = [
+        'start_date',
+        'end_date',
     ];
 
     public function user()

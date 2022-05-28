@@ -12,12 +12,13 @@ class Company extends Model
     use HasFactory, SoftDeletes;
 
     protected $fillable = [
-        'company_name',
-        'company_address',
-        'company_phone',
-        'company_technology',
-        'company_gr',
-        'company_website_url',
+        'name',
+        'address',
+        'phone',
+        'condition',
+        'technology',
+        'gr',
+        'website_url',
     ];
 
     public function reviewCompanies()
