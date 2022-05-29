@@ -78,8 +78,8 @@ class ArticleController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             $articleData = $this->articleService->getArticle($article);
-            $reviews = $this->articleService->getReviews($article, 'article_id', 'gr', 10);
-            $allReviews = $this->articleService->getReviews($article, 'article_id', 'gr');
+            $reviews = $this->articleService->getReview($article, 'article_id', 'gr', 10);
+            $allReviews = $this->articleService->getReview($article, 'article_id', 'gr');
 
             $companies = $this->companyService->getCompany(null, 'gr', null, 3);
             $schools = $this->schoolService->getSchool(null, 'gr', null, 3);

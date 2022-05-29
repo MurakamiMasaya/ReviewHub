@@ -7,7 +7,7 @@ interface EventServiceInterface{
     public function getEvent($target, $column = null, $order = null, $paginate = null, $limit = null, $before = null);
     public function searchEvent($target, $column, $order, $paginate = null, $limit = null);
 
-    public function getReviews($target, $column, $order, $paginate = null, $limit = null);
+    public function getReview($target, $column, $order = null, $paginate = null, $limit = null);
 
     public function deleteReview($id);
 

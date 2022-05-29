@@ -8,7 +8,7 @@ interface ArticleServiceInterface{
     public function searchArticle($target, $column, $order, $paginate = null, $limit = null);
 
     public function createReview($request);
-    public function getReviews($target, $column, $order, $paginate = null, $limit = null);
+    public function getReview($target, $column, $order = null, $paginate = null, $limit = null);
     public function deleteReview($id);
 
     public function createArticle($request, $image);

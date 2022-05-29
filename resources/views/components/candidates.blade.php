@@ -9,25 +9,25 @@
         @foreach ($searchResults as $result)
             <div class="flex items-center pt-5 border-b-2 border-gray-400">
                 @if($flg === 'company')
-                    <a href="{{ route('company.detail', ['company' => $result->id]) }}">
+                    <a href="{{ route('company.detail', ['id' => $result->id]) }}">
                         <div class="font-bold text-md md:text-lg lg:text-xl line-clamp-2 mr-5 md:mr-10">
                             {{ $result->name }}
                         </div>
                     </a>
                 @elseif($flg === 'school')
-                    <a href="{{ route('school.detail', ['school' => $result->id]) }}">
+                    <a href="{{ route('school.detail', ['id' => $result->id]) }}">
                         <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
                             {{ $result->name }}
                         </div>
                     </a>
                 @elseif($flg === 'event')
-                    <a href="{{ route('event.detail', ['event' => $result->id]) }}">
+                    <a href="{{ route('event.detail', ['id' => $result->id]) }}">
                         <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
                             {{ $result->title }}
                         </div>
                     </a>
                 @elseif($flg === 'article')
-                    <a href="{{ route('article.detail', ['article' => $result->id]) }}">
+                    <a href="{{ route('article.detail', ['id' => $result->id]) }}">
                         <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
                             {{ $result->title }}
                         </div>

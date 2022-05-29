@@ -30,8 +30,11 @@ class SchoolRepository implements SchoolRepositoryInterface {
         return School::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
     }
 
-    public function getReviews($target, $column, $order, $paginate, $limit){
+    public function getReview($target, $column, $order, $paginate, $limit){
 
+        if(is_null($order) && is_null($paginate) && is_null($limit)){
+            return ReviewSchool::with('user', 'school')->where($column, $target)->first(); 
+        }
         if(is_null($paginate) && is_null($limit)){
             return ReviewSchool::with('user', 'school')->where($column, $target)->orderBy($order, 'desc')->get(); 
         }

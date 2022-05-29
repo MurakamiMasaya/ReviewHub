@@ -23,8 +23,8 @@ class CompanyService implements CompanyServiceInterface {
         return $this->companyRepository->searchCompany($target, $column, $order, $paginate, $limit);
     }
 
-    public function getReviews($target, $column, $order, $paginate = null, $limit = null){
-        return $this->companyRepository->getReviews($target, $column, $order, $paginate, $limit);
+    public function getReview($target, $column, $order = null, $paginate = null, $limit = null){
+        return $this->companyRepository->getReview($target, $column, $order, $paginate, $limit);
     }
 
     public function createReview($request){

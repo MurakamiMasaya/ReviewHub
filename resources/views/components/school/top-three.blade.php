@@ -28,7 +28,7 @@
                         <div class="flex items-center">
                             <div class="w-7 lg:w-10 mr-1 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
                             <div class="text-sm lg:text-lg font-bold">
-                                <a href="{{ route('school.detail', ['school' => $school->id]) }}">
+                                <a href="{{ route('school.detail', ['id' => $school->id]) }}">
                                     {{ $school->name }}
                                 </a>
                             </div>

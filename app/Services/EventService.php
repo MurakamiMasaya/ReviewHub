@@ -23,8 +23,8 @@ class EventService implements EventServiceInterface {
         return $this->eventRepository->searchEvent($target, $column, $order, $paginate, $limit);
     }
 
-    public function getReviews($target, $column, $order, $paginate = null, $limit = null){
-        return $this->eventRepository->getReviews($target, $column, $order, $paginate, $limit);
+    public function getReview($target, $column, $order = null, $paginate = null, $limit = null){
+        return $this->eventRepository->getReview($target, $column, $order, $paginate, $limit);
     }
 
     public function createEvent($request, $image){

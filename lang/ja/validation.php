@@ -156,6 +156,8 @@ return [
         'start_date' => '開始日',
         'end_date' => '終了日',
         'today' => '今日',
+        'report' => '通報の理由',
+        'report_other' => 'その他の理由'
     ],
 
     'values' => [

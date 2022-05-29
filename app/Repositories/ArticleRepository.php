@@ -34,8 +34,11 @@ class ArticleRepository implements ArticleRepositoryInterface {
         return Article::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
     }
 
-    public function getReviews($target, $column, $order, $paginate, $limit){
+    public function getReview($target, $column, $order, $paginate, $limit){
 
+        if(is_null($order) && is_null($paginate) && is_null($limit)){
+            return ReviewArticle::with('user', 'article')->where($column, $target)->first(); 
+        }
         if(is_null($paginate) && is_null($limit)){
             return ReviewArticle::with('user', 'article')->where($column, $target)->orderBy($order, 'desc')->get(); 
         }

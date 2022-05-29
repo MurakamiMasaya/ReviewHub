@@ -84,8 +84,8 @@ class EventController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             $eventData = $this->eventService->getEvent($event);
-            $reviews = $this->eventService->getReviews($event, 'event_id', 'gr', 10);
-            $AllReviews = $this->eventService->getReviews($event, 'event_id', 'gr');
+            $reviews = $this->eventService->getReview($event, 'event_id', 'gr', 10);
+            $AllReviews = $this->eventService->getReview($event, 'event_id', 'gr');
 
             $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
             $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);

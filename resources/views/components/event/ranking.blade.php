@@ -25,7 +25,7 @@
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
                                 <div class="font-bold text-md lg:text-lg line-clamp-1">
-                                    <a href="{{ route('event.detail', ['event' => $event->id]) }}">
+                                    <a href="{{ route('event.detail', ['id' => $event->id]) }}">
                                         {{ $event->title }}
                                     </a>
                                 </div>

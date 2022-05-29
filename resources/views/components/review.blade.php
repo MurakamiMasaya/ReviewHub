@@ -3,7 +3,7 @@
     reviewがまだありません
 </div>
 @else
-<div class="mb-3 relative">
+<div class="mb-4 relative">
     @foreach ($reviews as $review)
     <div class="flex items-center mt-3">
         <div class="w-12 md:w-15 mr-1 md:mr-2">           
@@ -21,6 +21,23 @@
                 </div>
             </div>
             <div class="text-xs md:text-sm mt-1">{{ $review->review }}</div>
+
+            <div class="flex justify-end">
+                <form action="{{ route('review.report') }}" method="get">
+                    <input type="hidden" name="review_id" value="{{ $review->id }}">
+                    <input type="hidden" name="user_id" value="{{ $review->user->id }}">
+                    <input type="hidden" name="type" value="{{ $title }}">
+                    <div class="w-5 mr-2" data-tooltip-target="tooltip-report" data-tooltip-style="light">
+                        <button>
+                            <img src="{{ asset('images/report.png') }}" alt="report">
+                        </button>
+                    </div>
+                    <div id="tooltip-report" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
+                        通報
+                        <div class="tooltip-arrow" data-popper-arrow></div>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
     @endforeach

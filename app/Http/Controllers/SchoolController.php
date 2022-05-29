@@ -77,7 +77,7 @@ class SchoolController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             $schoolData = $this->schoolService->getSchool($school);
-            $reviews = $this->schoolService->getReviews($school, 'school_id', 'gr', 10);
+            $reviews = $this->schoolService->getReview($school, 'school_id', 'gr', 10);
 
             $companies = $this->companyService->getCompany(null, 'gr', null, 3);
             $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);

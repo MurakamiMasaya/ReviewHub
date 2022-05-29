@@ -16,7 +16,7 @@
 
             <x-information :reviews="$reviews" :detail="$detail" :title="$title"/>
 
-            <x-review :reviews="$reviews"/>
+            <x-review :reviews="$reviews" :title="$title"/>
 
             <x-button.see-more :reviews="$reviews" :detail="$detail"/>
             

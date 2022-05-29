@@ -10,7 +10,9 @@ use App\Models\Condition;
 use App\Models\Stack;
 use App\Models\Contact;
 use App\Models\User;
+use App\Models\ReviewReport;
 use App\Interfaces\Repositories\DisplayRepositoryInterface;
+use App\Models\Report;
 use Illuminate\Support\Facades\Auth;
 
 class DisplayRepository implements DisplayRepositoryInterface {
@@ -45,6 +47,26 @@ class DisplayRepository implements DisplayRepositoryInterface {
     
     public function deleteAcount($id){
         return User::where('id', $id)->delete();
+    }
+
+    public function createReport($request){
+        Report::create([
+            'user_id' => Auth::user()->id,
+            'type' => $request->type,
+            'target_id' => $request->target_id,
+            'report' => $request->report,
+            'report_orther' => $request->other ?? '',
+        ]);
+    }
+
+    public function createReviewReport($request){
+        ReviewReport::create([
+            'user_id' => Auth::user()->id,
+            'type' => $request->type,
+            'review_id' => $request->review_id,
+            'report' => $request->report,
+            'report_orther' => $request->other ?? '',
+         ]);
     }
 
 }

@@ -66,19 +66,38 @@
                     <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->url }}</div>
                 </div>
 
-                <div class="flex items-center justify-center mt-10">
-                    <div class="flex items-center mr-5 md:mr-10">
-                        <div class="w-7 md:w-10 mr-2">
-                            <img src="{{ asset('images/GR.png') }}" alt="GR">
+                <div class="flex justify-around items-center mt-10">
+                    <div class="flex items-center justify-center">
+                        <div class="flex items-center mr-5 md:mr-10">
+                            <div class="w-7 md:w-10 mr-2">
+                                <img src="{{ asset('images/GR.png') }}" alt="GR">
+                            </div>
+                            <div class="text-md md:text-xl font-bold">{{ $event->gr }}</div>
                         </div>
-                        <div class="text-md md:text-xl font-bold">{{ $event->gr }}</div>
-                    </div>
-                    <div id="review-icon" class="flex items-center">
-                        <div class="w-7 md:w-10 mr-2">
-                            <img src="{{ asset('images/review.png') }}" alt="GR">
+                        <div id="review-icon" class="flex items-center">
+                            <div class="w-7 md:w-10 mr-2">
+                                <img src="{{ asset('images/review.png') }}" alt="GR">
+                            </div>
+                            <div class="text-md md:text-xl font-bold">{{ count($reviewsAll) }}</div>
                         </div>
-                        <div class="text-md md:text-xl font-bold">{{ count($reviewsAll) }}</div>
                     </div>
+
+                    <div class="">
+                        <form action="{{ route('report') }}" method="get">
+                            <input type="hidden" name="target_id" value="{{ $event->id }}">
+                            <input type="hidden" name="type" value="イベント">
+                            <div class="w-7 md:w-10" data-tooltip-target="tooltip-report" data-tooltip-style="light">
+                                <button>
+                                    <img src="{{ asset('images/report.png') }}" alt="report">
+                                </button>
+                            </div>
+                            <div id="tooltip-report" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
+                                通報
+                                <div class="tooltip-arrow" data-popper-arrow></div>
+                            </div>
+                        </form>
+                    </div>
+
                 </div>
 
             </div>
@@ -122,7 +141,7 @@
                 </form>
             </div>
             <div class="border-4 border-red-500 p-2">
-                <x-review :reviews="$reviews"/>
+                <x-review :reviews="$reviews" title="イベント"/>
             </div>
         </div>
     </div>

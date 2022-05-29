@@ -18,7 +18,7 @@
             <div class="border-b-2 border-gray-300 mt-3">
                 <div class="flex items-end">
                     <div class="mr-2 line-clamp-2">
-                        <a href="{{ route('article.detail', ['article' => $article->id]) }}">
+                        <a href="{{ route('article.detail', ['id' => $article->id]) }}">
                             {{ $article->contents}}
                         </a>
                     </div>

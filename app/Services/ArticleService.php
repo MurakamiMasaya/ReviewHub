@@ -25,8 +25,8 @@ class ArticleService implements ArticleServiceInterface {
         return $this->articleRepository->searchArticle($target, $column, $order, $paginate, $limit);
     }
 
-    public function getReviews($target, $column, $order, $paginate = null, $limit = null){
-        return $this->articleRepository->getReviews($target, $column, $order, $paginate, $limit);
+    public function getReview($target, $column, $order = null, $paginate = null, $limit = null){
+        return $this->articleRepository->getReview($target, $column, $order, $paginate, $limit);
     }
 
     public function createArticle($request, $image){

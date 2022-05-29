@@ -10,7 +10,7 @@ interface SchoolServiceInterface{
     public function deleteSchool($id);
     
     public function createReview($request);
-    public function getReviews($target, $column, $order, $paginate = null, $limit = null);
+    public function getReview($target, $column, $order = null, $paginate = null, $limit = null);
     public function deleteReview($id);
     
 }

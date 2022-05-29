@@ -23,8 +23,8 @@ class SchoolService implements SchoolServiceInterface {
         return $this->schoolRepository->searchSchool($target, $column, $order, $paginate, $limit);
     }
 
-    public function getReviews($target, $column, $order, $paginate = null, $limit = null){
-        return $this->schoolRepository->getReviews($target, $column, $order, $paginate, $limit);
+    public function getReview($target, $column, $order = null, $paginate = null, $limit = null){
+        return $this->schoolRepository->getReview($target, $column, $order, $paginate, $limit);
     }
 
     public function createReview($request){

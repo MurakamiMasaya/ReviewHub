@@ -46,6 +46,11 @@ Route::controller(OtherController::class)->group(function(){
         Route::get('/contact', 'contact')->name('contact');
         Route::post('/contact/confilm', 'confilmContact')->name('contact.confilm');
         Route::post('/contact/register', 'registContact')->name('contact.register');
+        
+        Route::get('/report', 'createReport')->name('report');
+        Route::post('/report/port', 'postReport')->name('report.post');
+        Route::get('/report/review', 'createReviewReport')->name('review.report');
+        Route::post('/report/port/review', 'postReviewReport')->name('review.report.post');
     });
 });
 
@@ -62,7 +67,7 @@ Route::controller(CompanyController::class)
         Route::get('/search', 'search')->name('search');
         Route::get('/tech/{target}', 'tech')->name('tech');
         Route::get('/condition/{target}', 'condition')->name('condition');
-        Route::get('/detail/{company}', 'detail')->name('detail');
+        Route::get('/detail/{id}', 'detail')->name('detail');
         
         Route::middleware('auth')->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
@@ -78,7 +83,7 @@ Route::controller(SchoolController::class)
     ->prefix('school')->name('school.')->group(function(){
         Route::get('/', 'index')->name('index');
         Route::get('/search', 'search')->name('search');
-        Route::get('/detail/{school}', 'detail')->name('detail');
+        Route::get('/detail/{id}', 'detail')->name('detail');
 
         Route::middleware('auth')->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
@@ -97,7 +102,7 @@ Route::controller(EventController::class)
         
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
-            Route::get('/detail/{event}', 'detail')->name('detail');
+            Route::get('/detail/{id}', 'detail')->name('detail');
             Route::get('/register', 'createEvent')->name('register');
             Route::post('/register/confilm', 'confilmEvent')->name('confilm');
             Route::post('/register', 'registEvent')->name('register');
@@ -117,7 +122,7 @@ Route::controller(ArticleController::class)
         
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
-            Route::get('/detail/{article}', 'detail')->name('detail');
+            Route::get('/detail/{id}', 'detail')->name('detail');
             Route::get('/register', 'createArticle')->name('register');
             Route::post('/register/confilm', 'confilmArticle')->name('confilm');
             Route::post('/register', 'registArticle')->name('register');

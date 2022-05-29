@@ -25,7 +25,7 @@
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
                                 <div class="w-5/6 font-bold text-md lg:text-lg">
-                                    <a href="{{ route('company.detail',['company' => $company->id]) }}">
+                                    <a href="{{ route('company.detail',['id' => $company->id]) }}">
                                         {{ $company->name }}
                                     </a>
                                 </div>
@@ -53,7 +53,7 @@
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
                                 <div class="w-5/6 font-bold text-md lg:text-lg">
-                                    <a href="{{ route('company.detail',['company' => $company->id]) }}">
+                                    <a href="{{ route('company.detail',['id' => $company->id]) }}">
                                         {{ $company->name }}
                                     </a>
                                 </div>

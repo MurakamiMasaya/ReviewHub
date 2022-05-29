@@ -115,7 +115,7 @@ class CompanyController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             $companyData = $this->companyService->getCompany($company);
-            $reviews = $this->companyService->getReviews($company, 'company_id', 'gr', 10);
+            $reviews = $this->companyService->getReview($company, 'company_id', 'gr', 10);
 
             $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
             $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);

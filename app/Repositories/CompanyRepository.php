@@ -11,11 +11,9 @@ class CompanyRepository implements CompanyRepositoryInterface {
 
     public function getCompany($target, $order, $paginate, $limit){
         if(!is_null($target)){
-
             return Company::findOrFail($target);
         }
         if(!is_null($paginate)){
-
             return Company::orderBy($order, 'desc')->paginate($paginate); 
         }
         return Company::orderBy($order, 'desc')->limit($limit)->get();
@@ -34,8 +32,12 @@ class CompanyRepository implements CompanyRepositoryInterface {
         return Company::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
     }
 
-    public function getReviews($target, $column, $order, $paginate, $limit){
+    public function getReview($target, $column, $order, $paginate, $limit){
 
+        if(is_null($order) && is_null($paginate) && is_null($limit)){
+
+            return ReviewCompany::with('user', 'company')->where($column, $target)->first(); 
+        }
         if(is_null($paginate) && is_null($limit)){
 
             return ReviewCompany::with('user', 'company')->where($column, $target)->orderBy($order, 'desc')->get(); 

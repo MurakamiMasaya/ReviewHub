@@ -14,5 +14,8 @@ interface DisplayRepositoryInterface{
     public function deleteAcount($id);
 
     public function createContact($request);
+
+    public function createReport($request);
+    public function createReviewReport($request);
     
 }

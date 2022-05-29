@@ -37,8 +37,11 @@ class EventRepository implements EventRepositoryInterface {
         return Event::where($column, 'like', '%'. $target . '%')->where('end_date', '>=', Carbon::now())->orderby($order, 'desc')->limit($limit)->get();
     }
 
-    public function getReviews($target, $column, $order, $paginate, $limit){
+    public function getReview($target, $column, $order, $paginate, $limit){
 
+        if(is_null($order) && is_null($paginate) && is_null($limit)){
+            return ReviewEvent::with('user', 'event')->where($column, $target)->first(); 
+        }
         if(is_null($paginate) && is_null($limit)){
             return ReviewEvent::with('user', 'event')->where($column, $target)->orderBy($order, 'desc')->get(); 
         }

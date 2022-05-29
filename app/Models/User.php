@@ -15,6 +15,7 @@ use App\Models\ReviewArticle;
 use App\Models\ReviewCompany;
 use App\Models\ReviewEvent;
 use App\Models\ReviewSchool;
+use App\Models\ReviewReport;
 
 class User extends Authenticatable
 {
@@ -87,8 +88,13 @@ class User extends Authenticatable
         return $this->hasMany(ReviewSchool::class);
     }
 
-    public function contact()
+    public function contacts()
     {
         return $this->hasMany(Contact::class);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(ReviewReport::class);
     }
 }

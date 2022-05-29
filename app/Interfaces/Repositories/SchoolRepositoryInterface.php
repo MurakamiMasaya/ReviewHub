@@ -10,6 +10,6 @@ interface SchoolRepositoryInterface{
     public function deleteSchool($id);
 
     public function createReview($request);
-    public function getReviews($target, $column, $order, $paginate, $limit);
+    public function getReview($target, $column, $order, $paginate, $limit);
     public function deleteReview($id);
 }
