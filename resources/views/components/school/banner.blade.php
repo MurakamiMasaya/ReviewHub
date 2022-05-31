@@ -1,4 +1,4 @@
-<div style="background-image: url('images/search_company_banner.png');" class="bg-cover">
+<div style="background-image: url('images/school_banner.png');" class="bg-cover">
     <div class="px-1 py-3 md:py-5">
         <div class="text-gray-800 text-center text-xl md:text-3xl font-bold">
             <div>人気スクールの</div>

@@ -15,7 +15,8 @@
                 @endif
 
                 <div class="my-5 md:my-0">
-                    <x-detail :detail="$schoolData" :reviews="$reviews" title="スクール" route="school.review"/>
+                    <x-detail :detail="$schoolData" :reviews="$reviews" 
+                    title="スクール" route="school.review" gr="school.gr" deleteGr="school.gr.delete" grReview="school.review.gr" deleteGrReview="school.review.gr.delete"/>
                 </div>
             </div>
 

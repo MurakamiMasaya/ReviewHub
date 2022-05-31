@@ -5,7 +5,10 @@ namespace App\Repositories;
 use App\Interfaces\Repositories\EventRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Event;
+use App\Models\EventGr;
+use App\Models\EventReviewGr;
 use App\Models\ReviewEvent;
+use App\Models\ReviewEventGr;
 use Carbon\Carbon;
 
 class EventRepository implements EventRepositoryInterface {
@@ -86,6 +89,30 @@ class EventRepository implements EventRepositoryInterface {
 
     public function deleteEvent($id){
         Event::where('id', $id)->delete();
+    }
+
+    public function createEventGr($id){
+        EventGr::create([
+            'user_id' => Auth::id(),
+            'event_id' => $id
+        ]);
+    }
+
+    public function deleteEventGr($id){
+        $gr = EventGr::where('event_id', $id)->where('user_id', Auth::id())->first();
+        $gr->delete();
+    }
+
+    public function createEventReviewGr($id){
+        EventReviewGr::create([
+            'user_id' => Auth::id(),
+            'review_event_id' => $id
+        ]);
+    }
+
+    public function deleteEventReviewGr($id){
+        $gr = EventReviewGr::where('event_id', $id)->where('user_id', Auth::id())->first();
+        $gr->delete();
     }
 
 }

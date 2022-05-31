@@ -43,5 +43,21 @@ class EventService implements EventServiceInterface {
         return $this->eventRepository->deleteReview($id);
     }
 
+    public function createEventGr($id){
+        return $this->eventRepository->createEventGr($id);
+    }
+
+    public function deleteEventGr($id){
+        return $this->eventRepository->deleteEventGr($id);
+    }
+
+    public function createEventReviewGr($id){
+        return $this->eventRepository->createEventReviewGr($id);
+    }
+
+    public function deleteEventReviewGr($id){
+        return $this->eventRepository->deleteEventReviewGr($id);
+    }
+
 
 }

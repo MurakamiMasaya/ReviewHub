@@ -31,10 +31,8 @@
                                 </div>
                             </div>
                             <div class="flex items-end">
-                                <div class="w-7 mr-1">
-                                    <img src="{{ asset('images/GR.png') }}" alt="GR">
-                                </div>
-                                <div class="text-lg font-bold flex items-end">{{ $company->gr }}</div>
+                                <x-gr :target="$company" gr="company.gr" deleteGr="company.gr.delete"/>
+                                <div class="text-lg font-bold flex items-end">{{ $company->grs->count() }}</div>
                             </div>
                         </div>
                     </div>
@@ -59,10 +57,8 @@
                                 </div>
                             </div>
                             <div class="flex items-end">
-                                <div class="w-7 mr-1">
-                                    <img src="{{ asset('images/GR.png') }}" alt="GR">
-                                </div>
-                                <div class="text-lg font-bold flex items-end">{{ $company->gr }}</div>
+                                <x-gr :target="$company" gr="company.gr" deleteGr="company.gr.delete"/>
+                                <div class="text-lg font-bold flex items-end">{{ $company->grs->count() }}</div>
                             </div>
                         </div>
                     </div>

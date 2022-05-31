@@ -6,6 +6,8 @@ use App\Interfaces\Repositories\SchoolRepositoryInterface;
 use App\Models\ReviewSchool;
 use Illuminate\Support\Facades\Auth;
 use App\Models\School;
+use App\Models\SchoolGr;
+use App\Models\SchoolReviewGr;
 
 class SchoolRepository implements SchoolRepositoryInterface {
 
@@ -67,5 +69,29 @@ class SchoolRepository implements SchoolRepositoryInterface {
 
     public function deleteSchool($id){
         return School::where('id', $id)->delete();
+    }
+
+    public function createSchoolGr($id){
+        SchoolGr::create([
+            'user_id' => Auth::id(),
+            'school_id' => $id
+        ]);
+    }
+
+    public function deleteSchoolGr($id){
+        $gr = SchoolGr::where('school_id', $id)->where('user_id', Auth::id())->first();
+        $gr->delete();
+    }
+
+    public function createSchoolReviewGr($id){
+        SchoolReviewGr::create([
+            'user_id' => Auth::id(),
+            'review_school_id' => $id
+        ]);
+    }
+
+    public function deleteSchoolReviewGr($id){
+        $gr = SchoolReviewGr::where('school_id', $id)->where('user_id', Auth::id())->first();
+        $gr->delete();
     }
 }

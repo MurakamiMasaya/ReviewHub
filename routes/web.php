@@ -75,6 +75,12 @@ Route::controller(CompanyController::class)
             Route::post('/review/confilm/{company}', 'confilmReview')->name('review.confilm');
             Route::post('/review/register/{company}', 'registerReview')->name('review.register');
             Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
+
+            //いいね機能
+            Route::get('/gr/{id}', 'gr')->name('gr');
+            Route::get('/gr/delete/{id}', 'deleteGr')->name('gr.delete');
+            Route::get('/review/gr/{id}', 'grReview')->name('review.gr');
+            Route::get('/review/gr/delete/{id}', 'deleteGrReview')->name('review.gr.delete');
         });
     });
 
@@ -91,6 +97,12 @@ Route::controller(SchoolController::class)
             Route::post('/review/confilm/{school}', 'confilmReview')->name('review.confilm');
             Route::post('/review/register/{school}', 'registerReview')->name('review.register');
             Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
+
+            //いいね機能
+            Route::get('/gr/{id}', 'gr')->name('gr');
+            Route::get('/gr/delete/{id}', 'deleteGr')->name('gr.delete');
+            Route::get('/review/gr/{id}', 'grReview')->name('review.gr');
+            Route::get('/review/gr/delete/{id}', 'deleteGrReview')->name('review.gr.delete');
         });
     });
 
@@ -110,6 +122,12 @@ Route::controller(EventController::class)
 
             Route::post('/review', 'review')->name('review');
             Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
+
+            //いいね機能
+            Route::get('/gr/{id}', 'gr')->name('gr');
+            Route::get('/gr/delete/{id}', 'deleteGr')->name('gr.delete');
+            Route::get('/review/gr/{id}', 'grReview')->name('review.gr');
+            Route::get('/review/gr/delete/{id}', 'deleteGrReview')->name('review.gr.delete');
         });
     });
 
@@ -130,6 +148,12 @@ Route::controller(ArticleController::class)
 
             Route::post('/review', 'review')->name('review');
             Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
+
+            //いいね機能
+            Route::get('/gr/{id}', 'gr')->name('gr');
+            Route::get('/gr/delete/{id}', 'deleteGr')->name('gr.delete');
+            Route::get('/review/gr/{id}', 'grReview')->name('review.gr');
+            Route::get('/review/gr/delete/{id}', 'deleteGrReview')->name('review.gr.delete');
         });
     });
 

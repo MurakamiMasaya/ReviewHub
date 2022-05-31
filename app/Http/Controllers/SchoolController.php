@@ -168,4 +168,60 @@ class SchoolController extends Controller
             abort(404);
         }
     }
+
+    public function gr($id){
+
+        try{
+            $this->schoolService->createSchoolGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールへのいいねでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function deleteGr($id){
+        
+        try{
+            $this->schoolService->deleteSchoolGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールへのいいねキャンセルでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function grReview($id){
+
+        try{
+            $this->schoolService->createSchoolReviewGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールへのいいねでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function deleteGrReview($id){
+
+        try{
+            $this->schoolService->deleteSchoolReviewGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('スクールレビューへのいいね削除でエラーが発生！');
+            abort(404);
+        }
+    }
 }

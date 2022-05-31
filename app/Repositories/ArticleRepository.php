@@ -5,6 +5,8 @@ namespace App\Repositories;
 use App\Interfaces\Repositories\ArticleRepositoryInterface;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Article;
+use App\Models\ArticleGr;
+use App\Models\ArticleReviewGr;
 use App\Models\ReviewArticle;
 
 class ArticleRepository implements ArticleRepositoryInterface {
@@ -73,5 +75,28 @@ class ArticleRepository implements ArticleRepositoryInterface {
 
     public function deleteArticle($article){
         Article::where('id', $article)->delete();
+    }
+
+    public function createArticleGr($id){
+        ArticleGr::create([
+            'user_id' => Auth::id(),
+            'article_id' => $id
+        ]);
+    }
+
+    public function deleteArticleGr($id){
+        $gr = ArticleGr::where('article_id', $id)->where('user_id', Auth::id())->first();
+        $gr->delete();
+    }
+
+    public function createArticleReviewGr($id){
+        ArticleReviewGr::create([
+            'user_id' => Auth::id(),
+            'review_article_id' => $id
+        ]);
+    }
+
+    public function deleteArticleReviewGr($id){
+        $gr = ArticleReviewGr::where('article_id', $id)->where('user_id', Auth::id())->first();
     }
 }

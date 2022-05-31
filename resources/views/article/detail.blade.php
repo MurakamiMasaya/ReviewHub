@@ -15,7 +15,8 @@
                 @endif
 
                 <div class="my-5 md:my-0">
-                    <x-article.detail :article="$articleData" :reviews="$reviews" :reviewsAll="$allReviews" :user="$user"/>
+                    <x-article.detail :article="$articleData" :reviews="$reviews" :reviewsAll="$allReviews" :user="$user"
+                    gr="article.gr" deleteGr="article.gr.delete" grReview="article.review.gr" deleteGrReview="article.review.gr.delete"/>
                 </div>
             </div>
 
