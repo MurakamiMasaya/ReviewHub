@@ -24,7 +24,7 @@
             @else
                 @foreach ($companies as $company)
                 <div>
-                    <div class="flex justify-between items-center mt-3 border-b border-gray-400">
+                    <div class="flex justify-between items-end mt-3 border-b border-gray-400">
                         <div class="flex items-center">
                             <div class="w-10 mr-1 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
                             <div class="text-sm lg:text-lg font-bold">
@@ -34,10 +34,8 @@
                             </div>
                         </div>
                         <div class="flex">
-                            <div class="w-6 mr-1">
-                                <img src="{{ asset('images/GR.png') }}" alt="GR">
-                            </div>
-                            <div class="text-md lg:text-lg font-bold flex items-end">{{ $company->gr }}</div>
+                            <x-gr :target="$company" gr="company.gr" deleteGr="company.gr.delete"/>
+                            <div class="text-lg font-bold flex items-end">{{ $company->grs->count() }}</div>
                         </div>
                     </div>
                 </div>

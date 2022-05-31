@@ -70,7 +70,7 @@
                     <td class="w-1/12 text-xs p-1">{{ $article->updated_at->format('y/m/d') }}</td>
                     <td class="w-2/12 md:w-1/12 text-xs p-1 text-center">
                         <a href="{{ route('admin.article.confilm', ['article' => $article->id]) }}">
-                            <button class="px-1 sm:px-2 py-1 bg-green-400 text-white rounded-lg font-semibold">編集</button>
+                            <button class="px-1 sm:px-2 py-1 bg-green-400 text-white rounded-lg font-semibold">確認</button>
                         </a>
                     </td>
                 </tr>

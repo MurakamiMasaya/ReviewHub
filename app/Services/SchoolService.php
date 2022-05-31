@@ -42,4 +42,20 @@ class SchoolService implements SchoolServiceInterface {
     public function deleteSchool($id){
         return $this->schoolRepository->deleteSchool($id);
     }
+
+    public function createSchoolGr($id){
+        return $this->schoolRepository->createSchoolGr($id);
+    }
+
+    public function deleteSchoolGr($id){
+        return $this->schoolRepository->deleteSchoolGr($id);
+    }
+
+    public function createSchoolReviewGr($id){
+        return $this->schoolRepository->createSchoolReviewGr($id);
+    }
+
+    public function deleteSchoolReviewGr($id){
+        return $this->schoolRepository->deleteSchoolReviewGr($id);
+    }
 }

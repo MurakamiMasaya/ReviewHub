@@ -237,4 +237,60 @@ class EventController extends Controller
             abort(404);
         }
     }
+
+    public function gr($id){
+
+        try{
+            $this->eventService->createEventGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('イベントへのいいねでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function deleteGr($id){
+        
+        try{
+            $this->eventService->deleteEventGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('イベントへのいいねキャンセルでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function grReview($id){
+
+        try{
+            $this->eventService->createEventReviewGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('イベントへのいいねでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function deleteGrReview($id){
+
+        try{
+            $this->eventService->deleteEventReviewGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('イベントレビューへのいいね削除でエラーが発生！');
+            abort(404);
+        }
+    }
 }

@@ -14,4 +14,9 @@ interface EventServiceInterface{
     public function createEvent($request, $image);
     public function createReview($request);
     public function deleteEvent($id);
+
+    public function createEventGr($id);
+    public function deleteEventGr($id);
+    public function createEventReviewGr($id);
+    public function deleteEventReviewGr($id);
 }

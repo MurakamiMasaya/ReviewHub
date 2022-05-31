@@ -223,4 +223,60 @@ class ArticleController extends Controller
             abort(404);
         }
     }
+
+    public function gr($id){
+
+        try{
+            $this->articleService->createArticleGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('記事へのいいねでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function deleteGr($id){
+        
+        try{
+            $this->articleService->deleteArticleGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('記事へのいいねキャンセルでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function grReview($id){
+
+        try{
+            $this->articleService->createArticleReviewGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('記事へのいいねでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function deleteGrReview($id){
+
+        try{
+            $this->articleService->deleteArticleReviewGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('記事レビューへのいいね削除でエラーが発生！');
+            abort(404);
+        }
+    }
 }

@@ -13,8 +13,8 @@
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
                     <div class="text-sm md:text-md mr-2 md:mr-3">{{ $review->user->username }}</div>
-                    <div class="w-5 md:w-6 mr-1 md:mr-2"><img src="{{ asset('images/GR.png') }}" alt="GR"></div>
-                    <div class="text-sm md:text-md">{{ $review->gr }}</div>
+                    <x-gr :target="$review" :gr="$gr" :deleteGr="$deleteGr"/>
+                    <div class="text-lg font-bold flex items-end">{{ $review->grs->count() }}</div>
                 </div>
                 <div>
                     <div class="text-xs md:text-md text-gray-500">{{ date_format($review->created_at, 'Y年m月n日') }}</div>

@@ -44,4 +44,20 @@ class ArticleService implements ArticleServiceInterface {
     public function deleteArticle($article){
         return $this->articleRepository->deleteArticle($article);
     }
+
+    public function createArticleGr($id){
+        return $this->articleRepository->createArticleGr($id);
+    }
+
+    public function deleteArticleGr($id){
+        return $this->articleRepository->deleteArticleGr($id);
+    }
+
+    public function createArticleReviewGr($id){
+        return $this->articleRepository->createArticleReviewGr($id);
+    }
+
+    public function deleteArticleReviewGr($id){
+        return $this->articleRepository->deleteArticleReviewGr($id);
+    }
 }

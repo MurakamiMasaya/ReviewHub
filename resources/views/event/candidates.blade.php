@@ -15,7 +15,8 @@
                 @endif
 
                 <div class="border-4 border-gray-300 my-5 md:my-0">
-                    <x-candidates :target="$target" :searchResults="$events" :targetsAll="$AllEvents" flg="event" title="イベント"/>
+                    <x-candidates :target="$target" :searchResults="$events" :targetsAll="$AllEvents" 
+                    flg="event" title="イベント" gr="event.gr" deleteGr="event.gr.delete" />
                 </div>
             </div>
 

@@ -4,10 +4,8 @@
             {{ $detail->name }}
         </div>
         <div class="flex items-center">
-            <div class="w-6 md:w-8 mr-1 md:mr-2">
-                <img src="{{ asset('images/GR.png') }}" alt="GR">
-            </div>
-            <div class="text-center font-bold text-lg md:text-xl lg:text-2xl">{{ $detail->gr }}</div>
+            <x-gr :target="$detail" :gr="$gr" :deleteGr="$deleteGr" class="w-10"/>
+            <div class="text-2xl font-bold flex items-end">{{ $detail->grs->count() }}</div>
         </div>
     </div>
     <div class="mt-5 md:mt-10">
@@ -16,7 +14,8 @@
 
             <x-information :reviews="$reviews" :detail="$detail" :title="$title"/>
 
-            <x-review :reviews="$reviews" :title="$title"/>
+            <x-review :reviews="$reviews" :title="$title"
+            :gr="$grReview" :deleteGr="$deleteGrReview"/>
 
             <x-button.see-more :reviews="$reviews" :detail="$detail"/>
             

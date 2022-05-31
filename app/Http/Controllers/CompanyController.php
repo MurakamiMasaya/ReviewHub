@@ -7,7 +7,9 @@ use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
+use App\Models\CompanyGr;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -200,8 +202,64 @@ class CompanyController extends Controller
             return redirect()->route('mypage.review');
 
         }catch(\Throwable $e){
-            Log::error($e);
+            \Log::error($e);
             \Slack::channel('error')->send('企業ページのレビュー削除でエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function gr($id){
+
+        try{
+            $this->companyService->createCompanyGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業へのいいねでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function deleteGr($id){
+        
+        try{
+            $this->companyService->deleteCompanyGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業へのいいねキャンセルでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function grReview($id){
+
+        try{
+            $this->companyService->createCompanyReviewGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業へのいいねでエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function deleteGrReview($id){
+
+        try{
+            $this->companyService->deleteCompanyReviewGr($id);
+
+            return redirect()->back();
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('企業レビューへのいいね削除でエラーが発生！');
             abort(404);
         }
     }

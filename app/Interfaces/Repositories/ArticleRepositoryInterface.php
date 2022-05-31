@@ -13,4 +13,9 @@ interface ArticleRepositoryInterface{
 
     public function createArticle($request, $image);
     public function deleteArticle($article);
+
+    public function createArticleGr($id);
+    public function deleteArticleGr($id);
+    public function createArticleReviewGr($id);
+    public function deleteArticleReviewGr($id);
 }

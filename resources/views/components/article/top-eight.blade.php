@@ -23,10 +23,8 @@
                         </a>
                     </div>
                     <div class="mx-auto align-middle">
-                        <div class="w-8">
-                            <img src="{{ asset('images/GR.png') }}" alt="GR">
-                        </div>
-                        <div class="text-center text-sm">{{ $article->gr }}</div>
+                        <x-gr :target="$article" gr="article.gr" deleteGr="article.gr.delete"/>
+                        <div class="text-md font-bold flex justify-center">{{ $article->grs->count() }}</div>
                     </div>
                 </div>
             </div>

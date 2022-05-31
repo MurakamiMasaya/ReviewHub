@@ -6,38 +6,36 @@
         検索の結果, <span>{{ count($targetsAll) }}</span>件が該当しました。
     </div>
     <div class="my-3 relative">
-        @foreach ($searchResults as $result)
-            <div class="flex items-center pt-5 border-b-2 border-gray-400">
+        @foreach ($searchResults as $detail)
+            <div class="flex items-center pt-8 border-b-2 border-gray-400">
                 @if($flg === 'company')
-                    <a href="{{ route('company.detail', ['id' => $result->id]) }}">
+                    <a href="{{ route('company.detail', ['id' => $detail->id]) }}">
                         <div class="font-bold text-md md:text-lg lg:text-xl line-clamp-2 mr-5 md:mr-10">
-                            {{ $result->name }}
+                            {{ $detail->name }}
                         </div>
                     </a>
                 @elseif($flg === 'school')
-                    <a href="{{ route('school.detail', ['id' => $result->id]) }}">
+                    <a href="{{ route('school.detail', ['id' => $detail->id]) }}">
                         <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
-                            {{ $result->name }}
+                            {{ $detail->name }}
                         </div>
                     </a>
                 @elseif($flg === 'event')
-                    <a href="{{ route('event.detail', ['id' => $result->id]) }}">
+                    <a href="{{ route('event.detail', ['id' => $detail->id]) }}">
                         <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
-                            {{ $result->title }}
+                            {{ $detail->title }}
                         </div>
                     </a>
                 @elseif($flg === 'article')
-                    <a href="{{ route('article.detail', ['id' => $result->id]) }}">
+                    <a href="{{ route('article.detail', ['id' => $detail->id]) }}">
                         <div class="font-bold text-sm md:text-md lg:text-lg line-clamp-2 mr-2 md:mr-5">
-                            {{ $result->title }}
+                            {{ $detail->title }}
                         </div>
                     </a>
                 @endif
                 <div class="flex items-end">
-                    <div class="w-6 md:w-8 mr-1 md:mr-2">
-                        <img src="{{ asset('images/GR.png') }}" alt="GR">
-                    </div>
-                    <div class="text-center font-bold text-sm md:text-lg">{{ $result->gr }}</div>
+                    <x-gr :target="$detail" :gr="$gr" :deleteGr="$deleteGr"/>
+                    <div class="text-lg font-bold flex items-end">{{ $detail->grs->count() }}</div>
                 </div>
             </div>
         @endforeach

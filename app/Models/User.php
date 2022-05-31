@@ -16,6 +16,14 @@ use App\Models\ReviewCompany;
 use App\Models\ReviewEvent;
 use App\Models\ReviewSchool;
 use App\Models\ReviewReport;
+use App\Models\CompanyGr;
+use App\Models\CompanyReviewGr;
+use App\Models\SchoolGr;
+use App\Models\SchoolReviewGr;
+use App\Models\EventGr;
+use App\Models\EventReviewGr;
+use App\Models\ArticleGr;
+use App\Models\ArticleReviewGr;
 
 class User extends Authenticatable
 {
@@ -96,5 +104,45 @@ class User extends Authenticatable
     public function reports()
     {
         return $this->hasMany(ReviewReport::class);
+    }
+
+    public function companyGrs()
+    {
+        return $this->hasMany(CompanyGr::class);
+    }
+
+    public function companyReviewGrs()
+    {
+        return $this->hasMany(CompanyReviewGr::class);
+    }
+
+    public function schoolGrs()
+    {
+        return $this->hasMany(SchoolGr::class);
+    }
+
+    public function schoolReviewGrs()
+    {
+        return $this->hasMany(SchoolReviewGr::class);
+    }
+
+    public function eventGrs()
+    {
+        return $this->hasMany(EventGr::class);
+    }
+
+    public function eventReviewGrs()
+    {
+        return $this->hasMany(EventReviewGr::class);
+    }
+
+    public function articleGrs()
+    {
+        return $this->hasMany(ArticleGr::class);
+    }
+
+    public function articleReviewGrs()
+    {
+        return $this->hasMany(ArticleReviewGr::class);
     }
 }

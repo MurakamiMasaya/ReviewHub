@@ -31,10 +31,8 @@
                                 </div>
                             </div>
                             <div class="flex items-center">
-                                <div class="w-7 mr-1">
-                                    <img src="{{ asset('images/GR.png') }}" alt="GR">
-                                </div>
-                                <div class="text-lg font-bold flex items-end">{{ $event->gr }}</div>
+                                <x-gr :target="$event" gr="event.gr" deleteGr="event.gr.delete"/>
+                                <div class="text-lg font-bold flex items-end">{{ $event->grs->count() }}</div>
                             </div>
                         </div>
                         <div class="line-clamp-2 px-5">
