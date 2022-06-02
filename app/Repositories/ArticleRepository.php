@@ -8,46 +8,107 @@ use App\Models\Article;
 use App\Models\ArticleGr;
 use App\Models\ArticleReviewGr;
 use App\Models\ReviewArticle;
+use Illuminate\Support\Facades\DB;
 
 class ArticleRepository implements ArticleRepositoryInterface {
 
     public function getArticle($target, $column, $order, $paginate, $limit){
 
         if(!is_null($target) && !is_null($column) && !is_null($order) && !is_null($paginate) ){
-            return Article::with('user')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+            return Article::with('user', 'reviewArticles', 'grs')
+                ->where($column, $target)
+                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
+                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
+                ->groupBy('articles.id')
+                ->orderBy($order, 'desc')
+                ->paginate($paginate); 
         }
         if(!is_null($target)){
-            return Article::with('user')->findOrFail($target);
+            return Article::with('user', 'reviewArticles', 'grs')
+                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
+                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
+                ->groupBy('articles.id')
+                ->findOrFail($target);
         }
         if(!is_null($order) && !is_null($paginate) ){
-            return Article::with('user')->orderBy($order, 'desc')->paginate($paginate); 
+            return Article::with('user', 'reviewArticles', 'grs')
+                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
+                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
+                ->groupBy('articles.id')
+                ->orderBy($order, 'desc')
+                ->paginate($paginate); 
         }
-        return Article::with('user')->orderBy($order, 'desc')->limit($limit)->get(); 
+        return Article::with('user', 'reviewArticles', 'grs')
+                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
+                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
+                ->groupBy('articles.id')
+                ->orderBy($order, 'desc')
+                ->limit($limit)->get(); 
     }
 
     public function searchArticle($target, $column, $order, $paginate, $limit){
 
         if(is_null($paginate) && is_null($limit)){
-            return Article::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->get();
+            return Article::where($column, 'like', '%'. $target . '%')
+                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
+                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
+                ->groupBy('articles.id')
+                ->orderby($order, 'desc')->get();
         }
         if(!is_null($paginate)){
-            return Article::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->paginate($paginate);
+            return Article::where($column, 'like', '%'. $target . '%')
+                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
+                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
+                ->groupBy('articles.id')
+                ->orderby($order, 'desc')
+                ->paginate($paginate);
         }
-        return Article::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
+        return Article::where($column, 'like', '%'. $target . '%')
+                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
+                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
+                ->groupBy('articles.id')
+                ->orderby($order, 'desc')
+                ->limit($limit)
+                ->get();
     }
 
     public function getReview($target, $column, $order, $paginate, $limit){
 
         if(is_null($order) && is_null($paginate) && is_null($limit)){
-            return ReviewArticle::with('user', 'article')->where($column, $target)->first(); 
+            return ReviewArticle::with('user', 'article')
+                ->where($column, $target)
+                ->leftJoin('article_review_grs', 'review_articles.id', '=', 'article_review_grs.review_article_id')
+                ->select('review_articles.*', DB::raw("count(article_review_grs.review_article_id) as gr"))
+                ->groupBy('review_articles.id')
+                ->orderby($order, 'desc')
+                ->first(); 
         }
         if(is_null($paginate) && is_null($limit)){
-            return ReviewArticle::with('user', 'article')->where($column, $target)->orderBy($order, 'desc')->get(); 
+            return ReviewArticle::with('user', 'article')
+                ->where($column, $target)
+                ->leftJoin('article_review_grs', 'review_articles.id', '=', 'article_review_grs.review_article_id')
+                ->select('review_articles.*', DB::raw("count(article_review_grs.review_article_id) as gr"))
+                ->groupBy('review_articles.id')
+                ->orderBy($order, 'desc')
+                ->get(); 
         }
         if(!is_null($paginate)){
-            return ReviewArticle::with('user', 'article')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+            return ReviewArticle::with('user', 'article')
+                ->where($column, $target)
+                ->leftJoin('article_review_grs', 'review_articles.id', '=', 'article_review_grs.review_article_id')
+                ->select('review_articles.*', DB::raw("count(article_review_grs.review_article_id) as gr"))
+                ->groupBy('review_articles.id')
+                ->orderBy($order, 'desc')
+                ->paginate($paginate); 
         }
-        return ReviewArticle::with('user', 'article')->where($column, $target)->orderBy($order, 'desc')->limit($limit)->get(); 
+        return ReviewArticle::with('user', 'article')
+            ->where($column, $target)
+            ->leftJoin('article_review_grs', 'review_articles.id', '=', 'article_review_grs.review_article_id')
+            ->select('review_articles.*', DB::raw("count(article_review_grs.review_article_id) as gr"))
+            ->groupBy('review_articles.id')
+            ->orderBy($order, 'desc')
+            ->limit($limit)
+            ->get(); 
     }
 
     public function createArticle($request, $image){

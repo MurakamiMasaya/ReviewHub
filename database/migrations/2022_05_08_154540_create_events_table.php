@@ -29,7 +29,6 @@ return new class extends Migration
             $table->dateTime('end_date');
             $table->bigInteger('contact_address')->unsigned();
             $table->string('contact_email');
-            $table->integer('gr')->unsigned()->default(0);
             $table->string('tag')->nullable();
             $table->string('url')->nullable();
             $table->timestamps();

@@ -40,7 +40,7 @@ class Event extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function reviewEvent(){
+    public function reviewEvents(){
         return $this->hasMany(ReviewEvent::class);
     }
 

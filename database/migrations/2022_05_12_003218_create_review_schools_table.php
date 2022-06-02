@@ -22,7 +22,6 @@ return new class extends Migration
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->text('review');
-            $table->integer('gr')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

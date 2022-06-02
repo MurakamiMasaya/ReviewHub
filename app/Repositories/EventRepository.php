@@ -10,48 +10,118 @@ use App\Models\EventReviewGr;
 use App\Models\ReviewEvent;
 use App\Models\ReviewEventGr;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 
 class EventRepository implements EventRepositoryInterface {
 
     public function getEvent($target, $column, $order, $paginate, $limit, $before){
 
         if($before){
-            return Event::with('user')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+            return Event::with('user', 'reviewEvents', 'grs')
+                ->where($column, $target)
+                ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
+                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
+                ->groupBy('events.id')
+                ->orderBy($order, 'desc')
+                ->paginate($paginate); 
         }
         if(!is_null($target) && !is_null($column) && !is_null($order) && !is_null($paginate) ){
-            return Event::with('user')->where($column, $target)->where('end_date', '>=', Carbon::now())->orderBy($order, 'desc')->paginate($paginate); 
+            return Event::with('user', 'reviewEvents', 'grs')
+                ->where($column, $target)
+                ->where('end_date', '>=', Carbon::now())
+                ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
+                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
+                ->groupBy('events.id')
+                ->orderBy($order, 'desc')
+                ->paginate($paginate); 
         }
         if(!is_null($target)){
-            return Event::with('user')->findOrFail($target);
+            return Event::with('user', 'reviewEvents', 'grs')
+                ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
+                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
+                ->groupBy('events.id')
+                ->findOrFail($target);
         }
         if(!is_null($order) && !is_null($paginate) ){
-            return Event::with('user')->where('end_date', '>=', Carbon::now())->orderBy($order, 'desc')->paginate($paginate); 
+            return Event::with('user', 'reviewEvents', 'grs')
+                ->where('end_date', '>=', Carbon::now())
+                ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
+                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
+                ->groupBy('events.id')
+                ->orderBy($order, 'desc')
+                ->paginate($paginate); 
         }
     }
 
     public function searchEvent($target, $column, $order, $paginate, $limit){
 
         if(is_null($paginate) && is_null($limit)){
-            return Event::where($column, 'like', '%'. $target . '%')->where('end_date', '>=', Carbon::now())->orderby($order, 'desc')->get();
+            return Event::with('user', 'reviewEvents', 'grs')
+                ->where($column, 'like', '%'. $target . '%')
+                ->where('end_date', '>=', Carbon::now())
+                ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
+                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
+                ->groupBy('events.id')
+                ->orderBy($order, 'desc')
+                ->get();
         }
         if(!is_null($paginate)){
-            return Event::where($column, 'like', '%'. $target . '%')->where('end_date', '>=', Carbon::now())->orderby($order, 'desc')->paginate($paginate);
+            return Event::with('user', 'reviewEvents', 'grs')
+                ->where($column, 'like', '%'. $target . '%')
+                ->where('end_date', '>=', Carbon::now())
+                ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
+                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
+                ->groupBy('events.id')
+                ->orderby($order, 'desc')
+                ->paginate($paginate);
         }
-        return Event::where($column, 'like', '%'. $target . '%')->where('end_date', '>=', Carbon::now())->orderby($order, 'desc')->limit($limit)->get();
+        return Event::with('user', 'reviewEvents', 'grs')
+            ->where($column, 'like', '%'. $target . '%')
+            ->where('end_date', '>=', Carbon::now())
+            ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
+            ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
+            ->groupBy('events.id')
+            ->orderby($order, 'desc')
+            ->limit($limit)
+            ->get();
     }
 
     public function getReview($target, $column, $order, $paginate, $limit){
 
         if(is_null($order) && is_null($paginate) && is_null($limit)){
-            return ReviewEvent::with('user', 'event')->where($column, $target)->first(); 
+            return ReviewEvent::with('user', 'event')
+                ->where($column, $target)
+                ->leftJoin('event_review_grs', 'review_events.id', '=', 'event_review_grs.review_event_id')
+                ->select('review_events.*', DB::raw("count(event_review_grs.review_event_id) as gr"))
+                ->groupBy('review_events.id')
+                ->first(); 
         }
         if(is_null($paginate) && is_null($limit)){
-            return ReviewEvent::with('user', 'event')->where($column, $target)->orderBy($order, 'desc')->get(); 
+            return ReviewEvent::with('user', 'event')
+                ->where($column, $target)
+                ->leftJoin('event_review_grs', 'review_events.id', '=', 'event_review_grs.review_event_id')
+                ->select('review_events.*', DB::raw("count(event_review_grs.review_event_id) as gr"))
+                ->groupBy('review_events.id')
+                ->orderBy($order, 'desc')
+                ->get(); 
         }
         if(!is_null($paginate)){
-            return ReviewEvent::with('user', 'event')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+            return ReviewEvent::with('user', 'event')
+                ->where($column, $target)
+                ->leftJoin('event_review_grs', 'review_events.id', '=', 'event_review_grs.review_event_id')
+                ->select('review_events.*', DB::raw("count(event_review_grs.review_event_id) as gr"))
+                ->groupBy('review_events.id')
+                ->orderBy($order, 'desc')
+                ->paginate($paginate); 
         }
-        return ReviewEvent::with('user', 'event')->where($column, $target)->orderBy($order, 'desc')->limit($limit)->get(); 
+        return ReviewEvent::with('user', 'event')
+            ->leftJoin('event_review_grs', 'review_events.id', '=', 'event_review_grs.review_event_id')
+            ->select('review_events.*', DB::raw("count(event_review_grs.review_event_id) as gr"))
+            ->groupBy('review_events.id')
+            ->where($column, $target)
+            ->orderBy($order, 'desc')
+            ->limit($limit)
+            ->get(); 
     }
 
     public function createEvent($request, $image){

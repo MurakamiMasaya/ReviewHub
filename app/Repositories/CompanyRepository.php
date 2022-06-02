@@ -8,6 +8,7 @@ use App\Models\Company;
 use App\Models\CompanyGr;
 use App\Models\CompanyReviewGr;
 use App\Models\ReviewCompany;
+use Illuminate\Support\Facades\DB;
 
 class CompanyRepository implements CompanyRepositoryInterface {
 
@@ -16,39 +17,88 @@ class CompanyRepository implements CompanyRepositoryInterface {
             return Company::findOrFail($target);
         }
         if(!is_null($paginate)){
-            return Company::orderBy($order, 'desc')->paginate($paginate); 
+            return Company::leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
+            ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
+            ->groupBy('companies.id')
+            ->orderBy($order, 'desc')
+            ->paginate($paginate); 
         }
-        return Company::orderBy($order, 'desc')->limit($limit)->get();
+        return Company::leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
+            ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
+            ->groupBy('companies.id')
+            ->orderBy($order, 'desc')
+            ->limit($limit)
+            ->get();
     }
     
     public function searchCompany($target, $column, $order, $paginate, $limit){
         
         if(is_null($paginate) && is_null($limit)){
 
-            return Company::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->get();
+            return Company::where($column, 'like', '%'. $target . '%')
+                ->leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
+                ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
+                ->groupBy('companies.id')
+                ->orderby($order, 'desc')
+                ->get();
         }
         if(!is_null($paginate)){
 
-            return Company::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->paginate($paginate);
+            return Company::where($column, 'like', '%'. $target . '%')
+                ->leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
+                ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
+                ->groupBy('companies.id')
+                ->orderby($order, 'desc')
+                ->paginate($paginate);
         }
-        return Company::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
+        return Company::where($column, 'like', '%'. $target . '%')
+            ->leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
+            ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
+            ->groupBy('companies.id')
+            ->orderby($order, 'desc')
+            ->limit($limit)
+            ->get();
     }
 
     public function getReview($target, $column, $order, $paginate, $limit){
 
         if(is_null($order) && is_null($paginate) && is_null($limit)){
 
-            return ReviewCompany::with('user', 'company')->where($column, $target)->first(); 
+            return ReviewCompany::with('user', 'company')
+                ->where($column, $target)
+                ->leftJoin('company_review_grs', 'review_companies.id', '=', 'company_review_grs.review_company_id')
+                ->select('review_companies.*', DB::raw("count(company_review_grs.review_company_id) as gr"))
+                ->groupBy('review_companies.id')
+                ->first(); 
         }
         if(is_null($paginate) && is_null($limit)){
 
-            return ReviewCompany::with('user', 'company')->where($column, $target)->orderBy($order, 'desc')->get(); 
+            return ReviewCompany::with('user', 'company')
+                ->where($column, $target)
+                ->leftJoin('company_review_grs', 'review_companies.id', '=', 'company_review_grs.review_company_id')
+                ->select('review_companies.*', DB::raw("count(company_review_grs.review_company_id) as gr"))
+                ->groupBy('review_companies.id')
+                ->orderBy($order, 'desc')
+                ->get(); 
         }
         if(!is_null($paginate)){
 
-            return ReviewCompany::with('user', 'company')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+            return ReviewCompany::with('user', 'company')
+                ->where($column, $target)
+                ->leftJoin('company_review_grs', 'review_companies.id', '=', 'company_review_grs.review_company_id')
+                ->select('review_companies.*', DB::raw("count(company_review_grs.review_company_id) as gr"))
+                ->groupBy('review_companies.id')
+                ->orderBy($order, 'desc')
+                ->paginate($paginate); 
         }
-        return ReviewCompany::with('user', 'company')->where($column, $target)->orderBy($order, 'desc')->limit($limit)->get(); 
+        return ReviewCompany::with('user', 'company')
+            ->where($column, $target)
+            ->leftJoin('company_review_grs', 'review_companies.id', '=', 'company_review_grs.review_company_id')
+            ->select('review_companies.*', DB::raw("count(company_review_grs.review_company_id) as gr"))
+            ->groupBy('review_companies.id')
+            ->orderBy($order, 'desc')
+            ->limit($limit)
+            ->get(); 
     }
 
     public function createReview($request){

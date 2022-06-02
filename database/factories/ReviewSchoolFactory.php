@@ -20,7 +20,6 @@ class ReviewSchoolFactory extends Factory
             'user_id' => $this->faker->numberBetween(1, 10),
             'school_id' => $this->faker->numberBetween(1, 100),
             'review' => $this->faker->realText(40),
-            'gr' => $this->faker->numberBetween(1, 100),
         ];
     }
 }

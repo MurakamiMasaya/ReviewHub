@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\School;
 use App\Models\SchoolGr;
 use App\Models\SchoolReviewGr;
+use Illuminate\Support\Facades\DB;
 
 class SchoolRepository implements SchoolRepositoryInterface {
 
@@ -16,34 +17,77 @@ class SchoolRepository implements SchoolRepositoryInterface {
             return School::findOrFail($target);
         }
         if(!is_null($paginate)){
-            return School::orderBy($order, 'desc')->paginate($paginate); 
+            return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
+            ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
+            ->groupBy('schools.id')
+            ->orderBy($order, 'desc')
+            ->paginate($paginate); 
         }
-        return School::orderBy($order, 'desc')->limit($limit)->get();
+        return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
+            ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
+            ->groupBy('schools.id')
+            ->orderBy($order, 'desc')
+            ->limit($limit)
+            ->get();
     }
     
     public function searchSchool($target, $column, $order, $paginate, $limit){
         
         if(is_null($paginate) && is_null($limit)){
-            return School::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->get();
+            return School::where($column, 'like', '%'. $target . '%')
+                ->leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
+                ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
+                ->groupBy('schools.id')
+                ->orderby($order, 'desc')->get();
         }
         if(!is_null($paginate)){
-            return School::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->paginate($paginate);
+            return School::where($column, 'like', '%'. $target . '%')
+                ->leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
+                ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
+                ->groupBy('schools.id')
+                ->orderby($order, 'desc')->paginate($paginate);
         }
-        return School::where($column, 'like', '%'. $target . '%')->orderby($order, 'desc')->limit($limit)->get();
+        return School::where($column, 'like', '%'. $target . '%')
+            ->leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
+            ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
+            ->groupBy('schools.id')
+            ->orderby($order, 'desc')->limit($limit)->get();
     }
 
     public function getReview($target, $column, $order, $paginate, $limit){
 
         if(is_null($order) && is_null($paginate) && is_null($limit)){
-            return ReviewSchool::with('user', 'school')->where($column, $target)->first(); 
+            return ReviewSchool::with('user', 'school')
+                ->where($column, $target)
+                ->leftJoin('school_review_grs', 'review_schools.id', '=', 'school_review_grs.review_school_id')
+                ->select('review_schools.*', DB::raw("count(school_review_grs.review_school_id) as gr"))
+                ->groupBy('review_schools.id')
+                ->first(); 
         }
         if(is_null($paginate) && is_null($limit)){
-            return ReviewSchool::with('user', 'school')->where($column, $target)->orderBy($order, 'desc')->get(); 
+            return ReviewSchool::with('user', 'school')
+                ->where($column, $target)
+                ->leftJoin('school_review_grs', 'review_schools.id', '=', 'school_review_grs.review_school_id')
+                ->select('review_schools.*', DB::raw("count(school_review_grs.review_school_id) as gr"))
+                ->groupBy('review_schools.id')
+                ->orderBy($order, 'desc')
+                ->get(); 
         }
         if(!is_null($paginate)){
-            return ReviewSchool::with('user', 'school')->where($column, $target)->orderBy($order, 'desc')->paginate($paginate); 
+            return ReviewSchool::with('user', 'school')
+                ->where($column, $target)
+                ->leftJoin('school_review_grs', 'review_schools.id', '=', 'school_review_grs.review_school_id')
+                ->select('review_schools.*', DB::raw("count(school_review_grs.review_school_id) as gr"))
+                ->groupBy('review_schools.id')
+                ->orderBy($order, 'desc')
+                ->paginate($paginate); 
         }
-        return ReviewSchool::with('user', 'school')->where($column, $target)->orderBy($order, 'desc')->limit($limit)->get(); 
+        return ReviewSchool::with('user', 'school')
+            ->where($column, $target)
+            ->leftJoin('school_review_grs', 'review_schools.id', '=', 'school_review_grs.review_school_id')
+            ->select('review_schools.*', DB::raw("count(school_review_grs.review_school_id) as gr"))
+            ->groupBy('review_schools.id')
+            ->orderBy($order, 'desc')->limit($limit)->get(); 
     }
 
     public function createReview($request){
