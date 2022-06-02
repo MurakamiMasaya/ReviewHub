@@ -20,7 +20,6 @@ return new class extends Migration
             $table->bigInteger('phone')->unsigned();
             $table->string('condition');
             $table->string('technology');
-            $table->integer('gr')->unsigned()->default(0);
             $table->string('website_url');
             $table->timestamps();
             $table->softDeletes();

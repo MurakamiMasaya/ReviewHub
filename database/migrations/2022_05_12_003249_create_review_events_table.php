@@ -13,16 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('review_articles', function (Blueprint $table) {
+        Schema::create('review_events', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
-            $table->foreignId('article_id')->constrained()
+            $table->foreignId('event_id')->constrained()
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->text('review');
-            $table->integer('gr')->unsigned()->default(0);
             $table->timestamps();
             $table->softDeletes();
         });
@@ -35,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('review_articles');
+        Schema::dropIfExists('review_events');
     }
 };

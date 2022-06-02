@@ -30,7 +30,6 @@ class ArticleFactory extends Factory
             'user_id' => $this->faker->numberBetween(1,10),
             'title' => $this->faker->realText(20),
             'contents' => $this->faker->realText(300),
-            'gr' => $this->faker->numberBetween(0,1000),
             'tag' => $this->faker->randomElement($tag),
             'url' => $this->faker->url(),
         ];

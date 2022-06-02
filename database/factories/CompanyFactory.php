@@ -50,7 +50,6 @@ class CompanyFactory extends Factory
             'phone' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
             'condition' => $this->faker->randomElement($condition),
             'technology' => $this->faker->randomElement($technology),
-            'gr' => $this->faker->numberBetween(0,1000),
             'website_url' => $this->faker->url(),
         ];
     }

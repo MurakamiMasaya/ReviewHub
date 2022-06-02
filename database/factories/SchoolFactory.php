@@ -20,7 +20,6 @@ class SchoolFactory extends Factory
             'name' => $this->faker->name().'スクール',
             'address' => $this->faker->address(),
             'phone' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
-            'gr' => $this->faker->numberBetween(0,1000),
             'website_url' => $this->faker->url(),
         ];
     }

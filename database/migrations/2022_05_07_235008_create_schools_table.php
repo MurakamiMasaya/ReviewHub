@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->string('address');
             $table->bigInteger('phone')->unsigned();
-            $table->integer('gr')->unsigned()->default(0);
             $table->string('website_url');
             $table->timestamps();
             $table->softDeletes();

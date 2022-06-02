@@ -40,7 +40,6 @@ class EventFactory extends Factory
             'end_date' => $scheduled_date->modify('+'. $add_date . 'day')->format('Y-m-d H:i:s'),
             'contact_address' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
             'contact_email' => $this->faker->unique()->safeEmail(),
-            'gr' => $this->faker->numberBetween(0,1000),
             'tag' => $this->faker->randomElement($tag),
             'url' => $this->faker->url(),
         ];
