@@ -9,14 +9,9 @@
     <x-eye-catching-image />
 
     <div class="max-w-6xl mx-auto my-5 sm:my-10">
-        <div class="md:flex">
+        <div class="md:flex relative">
             <!-- Left sides of main -->
             <div class="md:w-2/3 md:mr-5 ">
-                @if(!Auth::check())
-                <div class="block md:hidden">
-                    <x-login-register />
-                </div>
-                @endif
                 <div class="my-5 md:my-0">
                     <x-company.banner />
      
@@ -32,7 +27,7 @@
             <!-- Right side of main -->
             <div class="md:w-1/3">
                 @if(!Auth::check())
-                <div class="hidden md:block">
+                <div class="">
                     <x-login-register />
                 </div>
                 @endif
@@ -42,6 +37,7 @@
                 <x-article.top-eight :articles="$articles" />
                   
             </div>
+            <x-bg-text first="JavaScript" second="TypeScript"/>
         </div>
     </div>
 

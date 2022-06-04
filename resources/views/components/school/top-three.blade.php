@@ -9,7 +9,7 @@
     </div>
     <div class="py-5 px-2">
         <a href="{{ route('school.index') }}">
-            <div class="w-40 flex items-center justify-center mx-auto py-1 px-4 bg-gradient-to-r from-pink-500 via-orange-500 to-red-500 hover:from-red-500 hover:via-orange-500 hover:to-pink-500
+            <div class="w-40 flex items-center justify-center mx-auto py-1 px-4 bg-gradient-to-r from-pink-500 to-red-500 hover:from-red-500 hover:to-pink-500
             rounded-full transition duration-300 text-white"">
                 <div class="text-md font-bold mr-1">
                     GR 受付中
