@@ -17,7 +17,7 @@
                     <x-login-register />
                 </div>
                 @endif
-                <div class="border-4 border-gray-300 my-5 md:my-0">
+                <div class="my-5 md:my-0">
                     <x-company.banner />
      
                     <x-company.ranking :companies="$companies"/>
@@ -37,17 +37,14 @@
                 </div>
                 @endif
 
-                {{-- #TODO: デザインがかなりもっさりしているの修正必須。
-                    データを渡してforeachで表示する --}}
                 <x-school.top-three :schools="$schools" />
 
-                {{-- #TODO: tuncateがついていないので修正が必要かと
-                    上記同様にデータを渡して、foreachで表示する。 --}}
                 <x-article.top-eight :articles="$articles" />
                   
             </div>
         </div>
     </div>
+
 
     <!-- Footer Image -->
     {{-- #TODO: 画像を横にスライドできる機能を後ほど実装 --}}

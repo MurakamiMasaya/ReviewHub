@@ -4,7 +4,7 @@ namespace App\Interfaces\Services;
 
 interface ArticleServiceInterface{
     
-    public function getArticle($target, $column = null, $order = null, $paginate = null, $limit = null);
+    public function getArticle($target, $column = null, $order = null, $paginate = null, $period = null, $limit = null);
     public function searchArticle($target, $column, $order, $paginate = null, $limit = null);
 
     public function createReview($request);

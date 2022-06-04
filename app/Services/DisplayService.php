@@ -85,4 +85,19 @@ class DisplayService implements DisplayServiceInterface {
         return $this->displayRepository->createReviewReport($request);
     }
 
+    public function judgePeriod($period){
+
+        if($period === 'month'){
+            $period = 30;
+        }
+        if($period === 'year'){
+            $period = 365;
+        }
+        if($period === 'all'){
+            $period = 500000;
+        }
+
+        return $period;
+    }
+
 }

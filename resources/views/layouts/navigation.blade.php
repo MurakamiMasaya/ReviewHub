@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
+<nav x-data="{ open: false }" id="nav" class="bg-gray-50 border-b border-gray-50 fixed top-0 z-10 w-full"/>
 
     <!-- Primary Navigation Menu -->
     <div class="max-w-6xl mx-auto">
@@ -129,7 +129,7 @@
     </div>
 
     <!-- Top Bar -->
-    <header class="bg-gradient-to-r from-pink-500 via-orange-500 to-red-500 shadow">
+    <header class="bg-gradient-to-r from-pink-500 via-orange-500 to-red-500 hover:from-red-500 hover:via-orange-500 hover:to-pink-500 shadow">
         <div class="mx-auto py-3 md:py-6 px-4 sm:px-6 lg:px-8">
             <div class="max-w-6xl mx-auto flex justify-center sm:justify-between items-center">
                 <div class="flex">

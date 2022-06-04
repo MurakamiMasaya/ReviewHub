@@ -10,13 +10,13 @@ interface DisplayServiceInterface{
     public function getUser();
     public function searchUser($target, $sort);
     public function getAuthenticatedUser();
+    public function deleteAcount($id);
 
     public function getAllReviewsTenEach($id);
 
-    public function deleteAcount($id);
-
     public function createContact($request);
-
     public function createReport($request);
     public function createReviewReport($request);
+
+    public function judgePeriod($period);
 }

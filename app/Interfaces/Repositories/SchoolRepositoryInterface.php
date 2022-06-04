@@ -4,7 +4,7 @@ namespace App\Interfaces\Repositories;
 
 interface SchoolRepositoryInterface{
 
-    public function getSchool($target, $order, $paginate, $limit);
+    public function getSchool($target, $order, $period, $paginate, $limit);
     public function searchSchool($target, $column, $order, $paginate, $limit);
     public function createSchool($request);
     public function deleteSchool($id);

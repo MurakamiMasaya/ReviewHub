@@ -37,15 +37,16 @@ class EventController extends Controller
         $this->imageService = $imageService;
     }
 
-    public function index(){
+    public function index($period = 'month'){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
-            // #TODO: クエリビルダで取得したデータに順位をつけたい。
-            $events = $this->eventService->getEvent(null, null, 'gr', 10);
             
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $period = $this->displayService->judgePeriod($period);
+            $events = $this->eventService->getEvent(null, null, 'gr', $period, 10);
+            
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
         
             return view('event.index', compact('user', 'events', 'schools', 'articles'));
 
@@ -66,8 +67,8 @@ class EventController extends Controller
             $events = $this->eventService->searchEvent($target, 'title', 'gr', 20);
             $AllEvents = $this->eventService->SearchEvent($target, 'title', 'gr');
 
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
         
             return view('event.candidates', compact('user', 'target', 'events', 'AllEvents', 'schools', 'articles'));
 
@@ -87,8 +88,8 @@ class EventController extends Controller
             $reviews = $this->eventService->getReview($event, 'event_id', 'gr', 10);
             $AllReviews = $this->eventService->getReview($event, 'event_id', 'gr');
 
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('event.detail', compact('user', 'eventData', 'reviews', 'AllReviews', 'schools', 'articles'));
 
@@ -118,8 +119,8 @@ class EventController extends Controller
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('event.register' ,compact('user', 'schools', 'articles'));
 
@@ -164,10 +165,10 @@ class EventController extends Controller
                 'tag' => $request->tag,
             ];
 
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
             $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
 
-            return view('event.confilm', compact('user', 'eventInfo', 'schools', 'articles'));
+            return view('event.confilm', compact('user', 'eventInfo', 'schools', 30, 'articles'));
 
         }catch(\Throwable $e){
             \Log::error($e);

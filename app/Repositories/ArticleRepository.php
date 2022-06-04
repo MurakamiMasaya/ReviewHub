@@ -8,40 +8,48 @@ use App\Models\Article;
 use App\Models\ArticleGr;
 use App\Models\ArticleReviewGr;
 use App\Models\ReviewArticle;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class ArticleRepository implements ArticleRepositoryInterface {
 
-    public function getArticle($target, $column, $order, $paginate, $limit){
+    public function getArticle($target, $column, $order, $period, $paginate, $limit){
+
+        $days = Carbon::today()->subDay($period);
 
         if(!is_null($target) && !is_null($column) && !is_null($order) && !is_null($paginate) ){
             return Article::with('user', 'reviewArticles', 'grs')
                 ->where($column, $target)
                 ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
-                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
-                ->groupBy('articles.id')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
                 ->orderBy($order, 'desc')
                 ->paginate($paginate); 
         }
         if(!is_null($target)){
             return Article::with('user', 'reviewArticles', 'grs')
                 ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
-                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
-                ->groupBy('articles.id')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
                 ->findOrFail($target);
         }
         if(!is_null($order) && !is_null($paginate) ){
             return Article::with('user', 'reviewArticles', 'grs')
                 ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
-                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
-                ->groupBy('articles.id')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
                 ->orderBy($order, 'desc')
                 ->paginate($paginate); 
         }
         return Article::with('user', 'reviewArticles', 'grs')
                 ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
-                ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
-                ->groupBy('articles.id')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
                 ->orderBy($order, 'desc')
                 ->limit($limit)->get(); 
     }
@@ -53,7 +61,8 @@ class ArticleRepository implements ArticleRepositoryInterface {
                 ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
                 ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
                 ->groupBy('articles.id')
-                ->orderby($order, 'desc')->get();
+                ->orderby($order, 'desc')
+                ->get();
         }
         if(!is_null($paginate)){
             return Article::where($column, 'like', '%'. $target . '%')

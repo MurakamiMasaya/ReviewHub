@@ -21,7 +21,7 @@
             </div>
 
             <!-- Right side of main -->
-            <div class="md:w-1/3">
+            <div class="md:w-1/3 mt-10 md:mt-0">
                 @if(!Auth::check())
                 <div class="md:block hidden">
                     <x-login-register />

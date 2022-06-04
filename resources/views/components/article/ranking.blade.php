@@ -1,13 +1,9 @@
 <div class="mt-10 py-5 px-1 md:px-3 lg:px-5 text-gray-800">
-    <div class="lg:flex justify-between items-end">
-        <div class="text-xl md:text-2xl font-bold">
-            特集記事掲示板 GRランキング
-        </div>
-        <div class="text-right">
-            2022/04/25~2022/05/24
-        </div>
+    <div class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-600 to-red-600 bg-clip-text text-transparent">
+        特集記事掲示板 GRランキング
     </div>
-    <div class="bg-gray-500 h-1"></div>
+
+    <x-period target="article"/>
 
     <div class="my-5 md:flex relative">
         @if(count($articles)===0)
@@ -17,14 +13,14 @@
                 @foreach($articles as $article)
                     @if($loop->index < 10)
                     <div class="px-3 md:px-5">
-                        <div class="flex items-end mt-5 justify-around md:justify-between">
+                        <div class="flex items-end mt-5 justify-between">
                             <div class="flex items-center">
-                                <div class="w-2/12 md:w-1/12 lg:w-1/12 mr-2 md:mr-3">
+                                <div class="w-10 md:w-11 lg:w-12 mr-2 md:mr-3">
                                     {{-- うまく順位を取得できていないので暫定的処理 --}}
                                     {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
-                                <div class="w-10/12 md:w-10/12 lg:w-11/12 font-bold text-md lg:text-lg line-clamp-1">
+                                <div class="font-bold text-md lg:text-lg line-clamp-1">
                                     <a href="{{ route('article.detail', ['id' => $article->id]) }}">
                                         {{ $article->title }}
                                     </a>

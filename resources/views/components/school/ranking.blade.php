@@ -1,13 +1,9 @@
 <div class="mt-10 px-1 md:px-3 lg:px-5 text-gray-800">
-    <div class="lg:flex justify-between items-end">
-        <div class="text-xl md:text-2xl font-bold">
-            スクール掲示板 GRランキング
-        </div>
-        <div class="text-right">
-            2022/04/25~2022/05/24
-        </div>
+    <div class="text-2xl md:text-3xl font-bold bg-gradient-to-r from-red-600 via-orange-600 to-red-600 bg-clip-text text-transparent">
+        スクール掲示板 GRランキング
     </div>
-    <div class="bg-gray-500 h-1"></div>
+
+    <x-period target="school"/>
 
     <div class="my-5 md:flex">
         @if(count($schools)===0)
@@ -17,14 +13,14 @@
                 @foreach($schools as $school)
                     @if($loop->index < 10)
                     <div class="mr-1 lg:mr-3 mt-5">
-                        <div class="flex justify-around md:justify-between">
+                        <div class="flex justify-between">
                             <div class="flex items-center">
-                                <div class="w-1/6 mr-2 md:mr-3">
+                                <div class="w-10 sm:w-11 lg:w-12 mr-2 md:mr-3">
                                     {{-- うまく順位を取得できていないので暫定的処理 --}}
                                     {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
-                                <div class="w-5/6 font-bold text-md lg:text-lg">
+                                <div class="font-bold text-md lg:text-lg">
                                     <a href="{{ route('school.detail', ['id' => $school->id]) }}">
                                         {{ $school->name }}
                                     </a>

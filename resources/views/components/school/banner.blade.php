@@ -1,12 +1,9 @@
-<div style="background-image: url('images/school_banner.png');" class="bg-cover">
+<div>
     <div class="px-1 py-3 md:py-5">
         <div class="text-gray-800 text-center text-xl md:text-3xl font-bold">
             <div>人気スクールの</div>
             <div class="lg:flex justify-center mt-1 md:mt-5">
-                <div>
-                    <span class="text-2xl md:text-4xl text-orange-500">「開講情報・レビュー」</span>
-                </div>
-                <div class="mt-1 lg:mt-0">掲載中！！</div>
+                <span class="text-2xl md:text-4xl text-orange-500 mr-1">「開講情報」</span><span>掲載中！</span>
             </div>
         </div>
         <div class="text-gray-800 text-center text-sm md:text-xl font-bold mt-5">

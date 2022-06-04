@@ -30,15 +30,16 @@ class SchoolController extends Controller
         $this->displayService = $displayService;
     }
 
-    public function index(){
+    public function index($period = 'month'){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
-            // #TODO: クエリビルダで取得したデータに順位をつけたい。
-            $schools = $this->schoolService->getSchool(null, 'gr', 20);
             
-            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $period = $this->displayService->judgePeriod($period);
+            $schools = $this->schoolService->getSchool(null, 'gr', $period, 20);
+            
+            $companies = $this->companyService->getCompany(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('school.index', compact('user', 'schools', 'companies', 'articles'));
 
@@ -59,8 +60,8 @@ class SchoolController extends Controller
             $schools = $this->schoolService->searchSchool($target, 'name', 'gr', 20);
             $allSchools = $this->schoolService->searchSchool($target, 'name', 'gr');
 
-            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $companies = $this->companyService->getCompany(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('school.candidates', compact('user', 'target', 'schools', 'allSchools', 'companies', 'articles'));
 
@@ -79,8 +80,8 @@ class SchoolController extends Controller
             $schoolData = $this->schoolService->getSchool($school);
             $reviews = $this->schoolService->getReview($school, 'school_id', 'gr', 10);
 
-            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $companies = $this->companyService->getCompany(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             // dd($reviewCompanies);
             return view('school.detail', compact('user', 'schoolData', 'reviews', 'companies', 'articles'));
@@ -98,8 +99,8 @@ class SchoolController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
             $school = $this->schoolService->getSchool($detail);
 
-            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $companies = $this->companyService->getCompany(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('school.review', compact('user', 'school', 'companies', 'articles'));
 
@@ -118,8 +119,8 @@ class SchoolController extends Controller
 
             $review = $request->review;
 
-            $companies = $this->companyService->getCompany(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $companies = $this->companyService->getCompany(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
             
             return view('school.confilm', compact('user', 'school', 'review', 'companies', 'articles'));
 

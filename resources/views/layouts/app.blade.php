@@ -16,17 +16,18 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
-    <body class="font-sans antialiased">
-        <div class="min-h-screen bg-gray-100 relative">
+    <body class="font-sans antialiased bg-gray-50">
+        <div class="min-h-screen">
             @include('layouts.navigation')
 
             <!-- Page Content -->
-            <main>
+            <main id="main" class="w-full">
                 {{ $slot }}
             </main>
 
             @include('layouts.footer')
         </div>
         <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
+        <script src="{{ asset('js/adjustTopMargin.js') }}"></script>
     </body>
 </html>

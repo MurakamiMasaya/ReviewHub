@@ -30,14 +30,16 @@ class CompanyController extends Controller
         $this->displayService = $displayService;
     }
 
-    public function index(){
+    public function index($period = 'month'){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
-            $companies = $this->companyService->getCompany(null, 'gr', 20);
+
+            $period = $this->displayService->judgePeriod($period);
+            $companies = $this->companyService->getCompany(null, 'gr', $period, 20);
             
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('company.index', compact('user', 'companies', 'schools', 'articles'));
 
@@ -59,8 +61,8 @@ class CompanyController extends Controller
             $companies = $this->companyService->searchCompany($target, 'name', 'gr', 20);
             $AllCompanies = $this->companyService->searchCompany($target, 'name', 'gr');
 
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('company.candidates', compact('user', 'target', 'companies', 'AllCompanies', 'schools', 'articles')); 
 
@@ -79,8 +81,8 @@ class CompanyController extends Controller
             $companies = $this->companyService->searchCompany($target, 'technology', 'gr', 20);
             $AllCompanies = $this->companyService->searchCompany($target, 'technology', 'gr');
             
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('company.candidates', compact('user', 'target', 'companies', 'AllCompanies', 'schools', 'articles')); 
 
@@ -99,8 +101,8 @@ class CompanyController extends Controller
             $companies = $this->companyService->searchCompany($target, 'condition', 'gr', 20);
             $AllCompanies = $this->companyService->searchCompany($target, 'condition', 'gr');
             
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('company.candidates', compact('user', 'target', 'companies', 'AllCompanies', 'schools', 'articles')); 
 
@@ -119,8 +121,8 @@ class CompanyController extends Controller
             $companyData = $this->companyService->getCompany($company);
             $reviews = $this->companyService->getReview($company, 'company_id', 'gr', 10);
 
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('company.detail', compact('user', 'companyData', 'reviews', 'schools', 'articles'));
             
@@ -137,8 +139,8 @@ class CompanyController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
             $company = $this->companyService->getCompany($detail);
 
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('company.review', compact('user', 'company', 'schools', 'articles'));
 
@@ -157,8 +159,8 @@ class CompanyController extends Controller
 
             $review = $request->review;
 
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
             return view('company.confilm', compact('user', 'company', 'review', 'schools', 'articles'));
 

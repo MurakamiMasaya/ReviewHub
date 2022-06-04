@@ -15,8 +15,8 @@ class EventService implements EventServiceInterface {
         $this->eventRepository = $eventRepository;
     }
    
-    public function getEvent($target, $column = null, $order = null, $paginate = null, $limit = null ,$before = null){
-        return $this->eventRepository->getEvent($target, $column, $order, $paginate, $limit, $before);
+    public function getEvent($target, $column = null, $order = null, $period = null, $paginate = null, $limit = null ,$before = null){
+        return $this->eventRepository->getEvent($target, $column, $order, $period, $paginate, $limit, $before);
     }
 
     public function searchEvent($target, $column, $order, $paginate = null, $limit = null){

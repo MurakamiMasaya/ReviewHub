@@ -10,18 +10,22 @@ use App\Models\EventReviewGr;
 use App\Models\ReviewEvent;
 use App\Models\ReviewEventGr;
 use Carbon\Carbon;
+use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\DB;
 
 class EventRepository implements EventRepositoryInterface {
 
-    public function getEvent($target, $column, $order, $paginate, $limit, $before){
+    public function getEvent($target, $column, $order, $period, $paginate, $limit, $before){
+
+        $days = Carbon::today()->subDay($period);
 
         if($before){
             return Event::with('user', 'reviewEvents', 'grs')
                 ->where($column, $target)
                 ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
-                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
-                ->groupBy('events.id')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
                 ->orderBy($order, 'desc')
                 ->paginate($paginate); 
         }
@@ -30,24 +34,27 @@ class EventRepository implements EventRepositoryInterface {
                 ->where($column, $target)
                 ->where('end_date', '>=', Carbon::now())
                 ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
-                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
-                ->groupBy('events.id')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
                 ->orderBy($order, 'desc')
                 ->paginate($paginate); 
         }
         if(!is_null($target)){
             return Event::with('user', 'reviewEvents', 'grs')
                 ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
-                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
-                ->groupBy('events.id')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
                 ->findOrFail($target);
         }
         if(!is_null($order) && !is_null($paginate) ){
             return Event::with('user', 'reviewEvents', 'grs')
                 ->where('end_date', '>=', Carbon::now())
                 ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
-                ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
-                ->groupBy('events.id')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
                 ->orderBy($order, 'desc')
                 ->paginate($paginate); 
         }

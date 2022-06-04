@@ -1,5 +1,5 @@
-<footer class="max-w-6xl mx-auto">
-    <div class="bg-gradient-to-r from-red-500 via-orange-500 to-pink-500 shadow">
+<footer class="max-w-6xl mx-auto w-full">
+    <div class="bg-gradient-to-r from-red-500 via-orange-500 to-pink-500 hover:from-pink-500 hover:via-orange-500 hover:to-red-500 shadow">
         <div class="mx-auto py-6 px-2 md:px-5">
             <div class="max-w-6xl">
                 <div class="flex justify-around items-center">

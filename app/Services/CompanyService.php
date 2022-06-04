@@ -15,8 +15,8 @@ class CompanyService implements CompanyServiceInterface {
         $this->companyRepository = $companyRepository;
     }
 
-    public function getCompany($target, $order = null, $paginate = null, $limit = null){
-        return $this->companyRepository->getCompany($target, $order, $paginate, $limit);
+    public function getCompany($target, $order = null, $period = null, $paginate = null, $limit = null){
+        return $this->companyRepository->getCompany($target, $order, $period, $paginate, $limit);
     }
 
     public function searchCompany($target, $column, $order, $paginate = null, $limit = null){

@@ -27,17 +27,19 @@ class TopController extends Controller
         $this->displayService = $displayService;
     }
 
-    public function index(){
+    public function index($period = 'month'){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
-            $companies = $this->companyService->getCompany(null, 'gr', 20);
+
+            $period = $this->displayService->judgePeriod($period);
+            $companies = $this->companyService->getCompany(null, 'gr', $period, 20, null);
 
             $conditions = $this->displayService->getConditionAll();
             $stacks = $this->displayService->getTechnologyAll();
 
-            $schools = $this->schoolService->getSchool(null, 'gr', null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
             
             return view('top', compact('user', 'companies', 'conditions', 'stacks', 'schools', 'articles'));
 

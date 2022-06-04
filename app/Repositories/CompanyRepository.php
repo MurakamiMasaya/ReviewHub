@@ -8,24 +8,31 @@ use App\Models\Company;
 use App\Models\CompanyGr;
 use App\Models\CompanyReviewGr;
 use App\Models\ReviewCompany;
+use Illuminate\Contracts\Database\Eloquent\Builder;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 
 class CompanyRepository implements CompanyRepositoryInterface {
 
-    public function getCompany($target, $order, $paginate, $limit){
+    public function getCompany($target, $order, $period, $paginate, $limit){
+
+        $days = Carbon::today()->subDay($period);
+
         if(!is_null($target)){
             return Company::findOrFail($target);
         }
         if(!is_null($paginate)){
             return Company::leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
-            ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
-            ->groupBy('companies.id')
+            ->withCount(['grs as gr' => function(Builder $query) use($days){
+                $query->where('created_at', '>=', $days);
+            }])
             ->orderBy($order, 'desc')
             ->paginate($paginate); 
         }
         return Company::leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
-            ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
-            ->groupBy('companies.id')
+            ->withCount(['grs as gr' => function(Builder $query) use($days){
+                $query->where('created_at', '>=', $days);
+            }])
             ->orderBy($order, 'desc')
             ->limit($limit)
             ->get();

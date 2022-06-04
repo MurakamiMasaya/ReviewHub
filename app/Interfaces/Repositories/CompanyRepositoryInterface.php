@@ -4,7 +4,7 @@ namespace App\Interfaces\Repositories;
 
 interface CompanyRepositoryInterface{
     
-    public function getCompany($target, $order, $paginate, $limit);
+    public function getCompany($target, $order, $period, $paginate, $limit);
     public function searchCompany($target, $column, $order, $paginate, $limit);
 
     public function getReview($target, $column, $order, $paginate, $limit);

@@ -15,8 +15,8 @@ class SchoolService implements SchoolServiceInterface {
         $this->schoolRepository = $schoolRepository;
     }
 
-    public function getSchool($target, $order = null, $paginate = null, $limit = null){
-        return $this->schoolRepository->getSchool($target, $order, $paginate, $limit);
+    public function getSchool($target, $order = null, $period = null, $paginate = null, $limit = null){
+        return $this->schoolRepository->getSchool($target, $order, $period, $paginate, $limit);
     }
 
     public function searchSchool($target, $column, $order, $paginate = null, $limit = null){

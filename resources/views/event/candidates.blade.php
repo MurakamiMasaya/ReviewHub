@@ -14,14 +14,14 @@
                 </div>
                 @endif
 
-                <div class="border-4 border-gray-300 my-5 md:my-0">
+                <div class="my-5 md:my-0">
                     <x-candidates :target="$target" :searchResults="$events" :targetsAll="$AllEvents" 
                     flg="event" title="イベント" gr="event.gr" deleteGr="event.gr.delete" />
                 </div>
             </div>
 
             <!-- Right side of main -->
-            <div class="md:w-1/3">
+            <div class="md:w-1/3 mt-10 md:mt-0">
                 @if(!Auth::check())
                 <div class="hidden md:block">
                     <x-login-register />
