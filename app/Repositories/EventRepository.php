@@ -98,9 +98,6 @@ class EventRepository implements EventRepositoryInterface {
         if(is_null($order) && is_null($paginate) && is_null($limit)){
             return ReviewEvent::with('user', 'event')
                 ->where($column, $target)
-                ->leftJoin('event_review_grs', 'review_events.id', '=', 'event_review_grs.review_event_id')
-                ->select('review_events.*', DB::raw("count(event_review_grs.review_event_id) as gr"))
-                ->groupBy('review_events.id')
                 ->first(); 
         }
         if(is_null($paginate) && is_null($limit)){

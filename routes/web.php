@@ -110,13 +110,13 @@ Route::controller(SchoolController::class)
 //イベント
 Route::controller(EventController::class)
 ->prefix('event')->name('event.')->group(function(){
-    Route::get('/{period?}', 'index')->name('index');
+    Route::get('/top/{period?}', 'index')->name('index');
     Route::get('/search', 'search')->name('search');
         
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/detail/{id}', 'detail')->name('detail');
-            Route::get('/register', 'createEvent')->name('register');
+            Route::get('/create', 'createEvent')->name('create');
             Route::post('/register/confilm', 'confilmEvent')->name('confilm');
             Route::post('/register', 'registEvent')->name('register');
             Route::post('/delete/{event}', 'deleteEvent')->name('delete');
@@ -136,13 +136,13 @@ Route::controller(EventController::class)
 //特集記事
 Route::controller(ArticleController::class)
     ->prefix('article')->name('article.')->group(function(){
-        Route::get('/{period?}', 'index')->name('index');
+        Route::get('/top/{period?}', 'index')->name('index');
         Route::get('/search', 'search')->name('search');
         
         Route::middleware('auth')->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/detail/{id}', 'detail')->name('detail');
-            Route::get('/register', 'createArticle')->name('register');
+            Route::get('/create', 'createArticle')->name('create');
             Route::post('/register/confilm', 'confilmArticle')->name('confilm');
             Route::post('/register', 'registArticle')->name('register');
             Route::post('/delete/{article}', 'deleteArticle')->name('delete');

@@ -103,7 +103,7 @@
         </div>
     </div>
 
-    <a href="{{ route('article.register') }}">
+    <a href="{{ route('article.create') }}">
         <x-button.review title="記事" />
     </a>
     <script src="{{ asset('js/review.js') }}"></script>

@@ -9,6 +9,7 @@ use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
 use App\Interfaces\Services\EventServiceInterface;
 use App\Interfaces\Services\ImageServiceInterface;
+use App\Interfaces\Services\MailServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
 use App\Models\ReviewReport;
 use Illuminate\Http\Request;
@@ -22,6 +23,7 @@ class OtherController extends Controller
     private $displayService;
     private $imageService;
     private $eventService;
+    private $mailService;
 
     public function __construct(
         ArticleServiceInterface $articleService,
@@ -29,7 +31,8 @@ class OtherController extends Controller
         SchoolServiceInterface $schoolService,
         DisplayServiceInterface $displayService,
         ImageServiceInterface $imageService,
-        EventServiceInterface $eventService
+        EventServiceInterface $eventService,
+        MailServiceInterface $mailService
         ) {
         $this->articleService = $articleService;
         $this->companyService = $companyService;
@@ -37,6 +40,7 @@ class OtherController extends Controller
         $this->displayService = $displayService;
         $this->imageService = $imageService;
         $this->eventService = $eventService;
+        $this->mailService = $mailService;
     }
 
     public function sitemap(){
@@ -96,8 +100,10 @@ class OtherController extends Controller
                 return redirect()->route('contact')->withInput();
             }
 
-            $this->displayService->createContact($request);
             //以下に管理者へのメール送信を実装
+            $this->mailService->sendContact($request, $user);
+
+            $this->displayService->createContact($request);
 
             $text = 'お問い合わせ完了です！';
             $linkText = 'トップページに戻る';
@@ -159,7 +165,9 @@ class OtherController extends Controller
 
             $this->displayService->createReviewReport($request);
             
-            // #TODO: 管理者にメールを送信する処理を以下に追加
+            // 管理者に通報内容をメール
+            $this->mailService->sendReport($request, $user);
+
             \Slack::channel('report')->send($request->type.'レビューに関する通報がありました！');
 
             $text = '通報が完了しました！';
@@ -210,7 +218,9 @@ class OtherController extends Controller
 
             $this->displayService->createReport($request);
             
-            // #TODO: 管理者にメールを送信する処理を以下に追加
+            // 管理者に通報内容をメール
+            $this->mailService->sendReport($request, $user);
+
             \Slack::channel('report')->send($request->type.'に関する通報がありました！');
 
             $text = '通報が完了しました！';

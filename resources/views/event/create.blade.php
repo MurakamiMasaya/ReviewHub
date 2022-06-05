@@ -9,7 +9,7 @@
             <!-- Left sides of main -->
             <div class="md:w-2/3 md:mr-5">
                 <div class="my-5 md:my-0">
-                    <x-event.register :user="$user"/>
+                    <x-event.create :user="$user"/>
                 </div>
 
             </div>

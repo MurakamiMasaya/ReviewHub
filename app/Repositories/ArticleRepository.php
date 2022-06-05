@@ -86,10 +86,6 @@ class ArticleRepository implements ArticleRepositoryInterface {
         if(is_null($order) && is_null($paginate) && is_null($limit)){
             return ReviewArticle::with('user', 'article')
                 ->where($column, $target)
-                ->leftJoin('article_review_grs', 'review_articles.id', '=', 'article_review_grs.review_article_id')
-                ->select('review_articles.*', DB::raw("count(article_review_grs.review_article_id) as gr"))
-                ->groupBy('review_articles.id')
-                ->orderby($order, 'desc')
                 ->first(); 
         }
         if(is_null($paginate) && is_null($limit)){

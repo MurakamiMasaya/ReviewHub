@@ -72,9 +72,6 @@ class SchoolRepository implements SchoolRepositoryInterface {
         if(is_null($order) && is_null($paginate) && is_null($limit)){
             return ReviewSchool::with('user', 'school')
                 ->where($column, $target)
-                ->leftJoin('school_review_grs', 'review_schools.id', '=', 'school_review_grs.review_school_id')
-                ->select('review_schools.*', DB::raw("count(school_review_grs.review_school_id) as gr"))
-                ->groupBy('review_schools.id')
                 ->first(); 
         }
         if(is_null($paginate) && is_null($limit)){

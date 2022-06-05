@@ -5,7 +5,7 @@
                 <div class="w-10"><img src="{{ asset('images/pencil.png') }}" alt="pencil"></div>
             </div>
             <div>
-                <div class="text-xl font-bold text-gray-800">人気のある特集記事一覧</div>
+                <div class="text-xl font-bold text-gray-800">月間人気のある特集記事一覧</div>
                 <div class="h-1 bg-gradient-to-r from-pink-500 via-orange-500 to-red-500"></div>
             </div>
         </div>

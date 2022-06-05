@@ -68,14 +68,11 @@ class CompanyRepository implements CompanyRepositoryInterface {
     }
 
     public function getReview($target, $column, $order, $paginate, $limit){
-
+        
         if(is_null($order) && is_null($paginate) && is_null($limit)){
 
             return ReviewCompany::with('user', 'company')
                 ->where($column, $target)
-                ->leftJoin('company_review_grs', 'review_companies.id', '=', 'company_review_grs.review_company_id')
-                ->select('review_companies.*', DB::raw("count(company_review_grs.review_company_id) as gr"))
-                ->groupBy('review_companies.id')
                 ->first(); 
         }
         if(is_null($paginate) && is_null($limit)){

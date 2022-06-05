@@ -8,6 +8,7 @@ use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
 use App\Interfaces\Services\ImageServiceInterface;
+use App\Interfaces\Services\MailServiceInterface;
 use Illuminate\Http\Request;
 
 class ArticleController extends Controller
@@ -17,19 +18,22 @@ class ArticleController extends Controller
     private $schoolService;
     private $displayService;
     private $imageService;
+    private $mailService;
 
     public function __construct(
         ArticleServiceInterface $articleService,
         CompanyServiceInterface $companyService,
         SchoolServiceInterface $schoolService,
         DisplayServiceInterface $displayService,
-        ImageServiceInterface $imageService
+        ImageServiceInterface $imageService,
+        MailServiceInterface $mailService
         ) {
         $this->articleService = $articleService;
         $this->companyService = $companyService;
         $this->schoolService = $schoolService;
         $this->displayService = $displayService;
         $this->imageService = $imageService;
+        $this->mailService = $mailService;
     }
 
     public function index($period = 'month'){
@@ -116,7 +120,7 @@ class ArticleController extends Controller
             $companies = $this->companyService->getCompany(null, 'gr', 30, null, 3);
             $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
 
-            return view('article.register' ,compact('user', 'companies', 'schools'));
+            return view('article.create' ,compact('user', 'companies', 'schools'));
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -166,6 +170,7 @@ class ArticleController extends Controller
     public function registArticle(ArticleFormRequest $request){
         
         try{
+            $user = $this->displayService->getAuthenticatedUser();
             $image = $request->image;
 
             // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
@@ -178,9 +183,13 @@ class ArticleController extends Controller
             if(!is_null($image)){
                 $fileNameToStore = $this->imageService->upload($image, 'articles');
             }
+            
+            //メールを非同期で送信
+            $this->mailService->sendThanksCreateArticle($request, $user);
 
-            //イベントの作成
+            //記事の作成
             $this->articleService->createArticle($request, $image);
+
 
             $text = '登録が完了しました！';
             $linkText = '記事一覧に戻る';
