@@ -1388,6 +1388,15 @@ input:checked + .toggle-bg {
 .shrink-0 {
   flex-shrink: 0;
 }
+.basis-1\/4 {
+  flex-basis: 25%;
+}
+.basis-10 {
+  flex-basis: 2.5rem;
+}
+.basis-1\/6 {
+  flex-basis: 16.666667%;
+}
 .origin-top-left {
   transform-origin: top left;
 }
@@ -1461,6 +1470,9 @@ input:checked + .toggle-bg {
 }
 .grid-cols-7 {
   grid-template-columns: repeat(7, minmax(0, 1fr));
+}
+.flex-row {
+  flex-direction: row;
 }
 .flex-col {
   flex-direction: column;

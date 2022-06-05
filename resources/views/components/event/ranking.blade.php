@@ -20,7 +20,7 @@
                                     {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                 </div>
-                                <div class="font-bold text-md lg:text-lg line-clamp-1">
+                                <div class="w-5/6 font-bold text-md lg:text-lg line-clamp-1">
                                     <a href="{{ route('event.detail', ['id' => $event->id]) }}">
                                         {{ $event->title }}
                                     </a>

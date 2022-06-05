@@ -93,8 +93,9 @@ class DisplayService implements DisplayServiceInterface {
         if($period === 'year'){
             $period = 365;
         }
+        //全期間を表示できるように、期間を5万日にしています
         if($period === 'all'){
-            $period = 500000;
+            $period = 50000;
         }
 
         return $period;
