@@ -27,7 +27,7 @@ class ReportMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.report')
-            ->subject('通報');
+        return $this->subject('通報')
+            ->view('emails.report');
     }
 }

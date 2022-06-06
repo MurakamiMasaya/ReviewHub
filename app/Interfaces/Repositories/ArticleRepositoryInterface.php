@@ -4,7 +4,7 @@ namespace App\Interfaces\Repositories;
 
 interface ArticleRepositoryInterface{
     
-    public function getArticle($target, $column, $order, $paginate, $period, $limit);
+    public function getArticle($target, $column, $order, $paginate, $period, $limit, $before);
     public function searchArticle($target, $column, $order, $paginate, $limit);
     
     public function createReview($request);

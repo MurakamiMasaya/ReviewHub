@@ -55,7 +55,7 @@ class CompanyController extends Controller
         try{
             // #TODO: 文字入力なしでの検索をバリデーションで禁止にする
             $user = $this->displayService->getAuthenticatedUser();
-
+            
             // ＃TODO: 大文字小文字全角半角を区別しないように修正
             $target = $request->target;
             $companies = $this->companyService->searchCompany($target, 'name', 'gr', 20);

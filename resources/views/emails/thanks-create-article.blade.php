@@ -11,7 +11,6 @@
 ------------------------------- 
 タイトル : {{ $article['title'] }}
 記事本文 : {!! nl2br(e($article['contents'])) !!}
-ヘッダー画像 : <img src="{{ asset('/storage/articles/' . $article['image']) }}" />
 参考文献URL : {{ isset($article['url']) ? $article['url'] : '指定なし' }}
 ハッシュタグ : {!! nl2br(e(isset($article['tag']) ? $article['tag'] : '指定なし')) !!}
 

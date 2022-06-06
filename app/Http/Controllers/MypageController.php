@@ -57,7 +57,7 @@ class MypageController extends Controller
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
-
+            
             //ユーザーに紐づくすべてのreviewを取得
             $allReviews = $this->displayService->getAllReviewsTenEach($user->id);
 
@@ -76,7 +76,7 @@ class MypageController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             //ユーザーに紐づくすべてのイベントを取得
-            $allEvents = $this->eventService->getEvent($user->id, 'user_id', 'updated_at', 20, null, true);
+            $allEvents = $this->eventService->getEvent($user->id, 'user_id', 'updated_at', null, 20, null, true);
 
             return view('mypage.event', compact('user', 'allEvents'));
 
@@ -199,7 +199,7 @@ class MypageController extends Controller
             $user = $this->displayService->getAuthenticatedUser();
 
             //ユーザーに紐づくすべてのイベントを取得
-            $allArticles = $this->articleService->getArticle($user->id, 'user_id', 'updated_at', 20, null);
+            $allArticles = $this->articleService->getArticle($user->id, 'user_id', 'updated_at', null, 20, null, true);
 
             return view('mypage.article', compact('user', 'allArticles'));
             

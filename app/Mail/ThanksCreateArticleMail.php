@@ -27,7 +27,7 @@ class ThanksCreateArticleMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.thanks-create-article')
-            ->subject('記事のご登録ありがとうございます。');
+        return $this->subject('記事のご登録ありがとうございます。')
+            ->view('emails.thanks-create-article');
     }
 }

@@ -41,7 +41,7 @@ class AdminController extends Controller
 
         $user = $this->displayService->getAuthenticatedUser();
 
-        $companies = $this->companyService->getCompany(null, 'updated_at', 20, null);
+        $companies = $this->companyService->getCompany(null, 'updated_at',null, 20, null);
         
         $target = '';
         $sort = 'updated_at';
@@ -139,7 +139,7 @@ class AdminController extends Controller
 
         $user = $this->displayService->getAuthenticatedUser();
 
-        $schools = $this->schoolService->getSchool(null, 'created_at', 20, null);
+        $schools = $this->schoolService->getSchool(null, 'created_at', null, 20, null);
 
         $target = '';
         $sort = 'updated_at';
@@ -233,7 +233,7 @@ class AdminController extends Controller
 
         $user = $this->displayService->getAuthenticatedUser();
 
-        $events = $this->eventService->getEvent(null, null, 'created_at', 20, null);
+        $events = $this->eventService->getEvent(null, null, 'created_at', null, 20, null);
 
         $target = '';
         $sort = 'updated_at';
@@ -273,7 +273,7 @@ class AdminController extends Controller
 
         $user = $this->displayService->getAuthenticatedUser();
 
-        $articles = $this->articleService->getArticle(null, null, 'created_at', 20, null);
+        $articles = $this->articleService->getArticle(null, null, 'created_at', null, 20, null);
 
         $target = '';
         $sort = 'updated_at';

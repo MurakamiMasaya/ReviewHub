@@ -27,7 +27,7 @@ class ThanksCreateEventMail extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.thanks-create-event')
-            ->subject('イベントのご登録ありがとうございます。');
+        return $this->subject('イベントのご登録ありがとうございます。')
+            ->view('emails.thanks-create-event');
     }
 }

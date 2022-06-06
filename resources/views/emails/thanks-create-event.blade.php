@@ -19,7 +19,6 @@
 終了日 : {{ $event['end_date'] }}
 タイトル : {{ $event['title'] }}
 イベント本文 : {!! nl2br(e($event['contents'])) !!}
-ヘッダー画像 : <img src="{{ asset('/storage/events/' . $event['image']) }}" />
 イベントURL : {{ isset($event['url']) ? $event['url'] : '指定なし' }}
 ハッシュタグ : {!! nl2br(e(isset($event['tag']) ? $event['tag'] : '指定なし')) !!}
 

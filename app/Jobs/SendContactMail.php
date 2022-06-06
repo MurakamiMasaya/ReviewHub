@@ -31,6 +31,6 @@ class SendContactMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('review@gmail.com')->send(new ContactMail($this->contact, $this->user));
+        Mail::to('reviewhub.contact.us@gmail.com')->send(new ContactMail($this->contact, $this->user));
     }
 }

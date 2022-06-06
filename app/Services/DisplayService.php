@@ -56,16 +56,17 @@ class DisplayService implements DisplayServiceInterface {
 
         $allReviews = [];
 
-        $c_reviews = $this->companyRepository->getReviews($id, 'user_id', 'updated_at', 10, null);
-        $s_reviews = $this->schoolRepository->getReviews($id, 'user_id', 'updated_at', 10, null);
-        $e_reviews = $this->eventRepository->getReviews($id, 'user_id', 'updated_at', 10, null);
-        $a_reviews = $this->articleRepository->getReviews($id, 'user_id', 'updated_at', 10, null);
+        $c_reviews = $this->companyRepository->getReview($id, 'user_id', 'updated_at', 10, null);
+        $s_reviews = $this->schoolRepository->getReview($id, 'user_id', 'updated_at', 10, null);
+        $e_reviews = $this->eventRepository->getReview($id, 'user_id', 'updated_at', 10, null);
+        $a_reviews = $this->articleRepository->getReview($id, 'user_id', 'updated_at', 10, null);
 
         array_push($allReviews, [
             'c_reviews' => $c_reviews, 
             's_reviews' => $s_reviews, 
             'e_reviews' => $e_reviews, 
-            'a_reviews' => $a_reviews]);
+            'a_reviews' => $a_reviews]
+        );
         return $allReviews;
     }
     

@@ -32,6 +32,6 @@ class SendReportMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('review@gmail.com')->send(new ReportMail($this->report, $this->user));
+        Mail::to('reviewhub.contact.us@gmail.com')->send(new ReportMail($this->report, $this->user));
     }
 }

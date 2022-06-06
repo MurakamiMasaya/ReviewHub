@@ -43,24 +43,24 @@ class SchoolRepository implements SchoolRepositoryInterface {
     public function searchSchool($target, $column, $order, $paginate, $limit){
         
         if(is_null($paginate) && is_null($limit)){
-            return School::where($column, 'like', '%'. $target . '%')
-                ->leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
+            return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
                 ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
+                ->where('schools.' . $column, 'like', '%'. $target . '%')
                 ->groupBy('schools.id')
                 ->orderby($order, 'desc')
                 ->get();
         }
         if(!is_null($paginate)){
-            return School::where($column, 'like', '%'. $target . '%')
-                ->leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
+            return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
                 ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
+                ->where('schools.' . $column, 'like', '%'. $target . '%')
                 ->groupBy('schools.id')
                 ->orderby($order, 'desc')
                 ->paginate($paginate);
         }
-        return School::where($column, 'like', '%'. $target . '%')
-            ->leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
+        return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
             ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
+            ->where('schools.' . $column, 'like', '%'. $target . '%')
             ->groupBy('schools.id')
             ->orderby($order, 'desc')
             ->limit($limit)
@@ -76,26 +76,26 @@ class SchoolRepository implements SchoolRepositoryInterface {
         }
         if(is_null($paginate) && is_null($limit)){
             return ReviewSchool::with('user', 'school')
-                ->where($column, $target)
                 ->leftJoin('school_review_grs', 'review_schools.id', '=', 'school_review_grs.review_school_id')
                 ->select('review_schools.*', DB::raw("count(school_review_grs.review_school_id) as gr"))
+                ->where('review_schools.' . $column, $target)
                 ->groupBy('review_schools.id')
                 ->orderBy($order, 'desc')
                 ->get(); 
         }
         if(!is_null($paginate)){
             return ReviewSchool::with('user', 'school')
-                ->where($column, $target)
                 ->leftJoin('school_review_grs', 'review_schools.id', '=', 'school_review_grs.review_school_id')
                 ->select('review_schools.*', DB::raw("count(school_review_grs.review_school_id) as gr"))
+                ->where('review_schools.' . $column, $target)
                 ->groupBy('review_schools.id')
                 ->orderBy($order, 'desc')
                 ->paginate($paginate); 
         }
         return ReviewSchool::with('user', 'school')
-            ->where($column, $target)
             ->leftJoin('school_review_grs', 'review_schools.id', '=', 'school_review_grs.review_school_id')
             ->select('review_schools.*', DB::raw("count(school_review_grs.review_school_id) as gr"))
+            ->where('review_schools.' . $column, $target)
             ->groupBy('review_schools.id')
             ->orderBy($order, 'desc')->limit($limit)->get(); 
     }
