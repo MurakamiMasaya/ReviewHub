@@ -4,7 +4,7 @@
         <x-admin-header />
     @endif
 
-    <div class="max-w-lg mx-auto my-10 px-5 md:px-10">
+    <div class="max-w-lg mx-auto py-10 px-5 md:px-10">
         <div class="flex justify-between items-end">
             <div class="text-xl md:text-2xl font-bold">サイトマップ</div>
             <div class="">

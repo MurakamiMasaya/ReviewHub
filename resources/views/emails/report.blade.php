@@ -48,7 +48,7 @@
 
 ■お問い合わせ 
 ReviewHub事務局 
-<a href="{{ route('contact') }}">reviewhub@gmail.com</a>
+<a href="{{ route('contact') }}">reviewhub.contact.us@gmail.com</a>
 
 -----------------------------------------------------------------
 (c) ReviewHub. All Rights Reserved.

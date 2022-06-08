@@ -25,7 +25,7 @@ use App\Models\EventReviewGr;
 use App\Models\ArticleGr;
 use App\Models\ArticleReviewGr;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, SoftDeletes;
 
@@ -43,7 +43,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'password',
-        'admin_flg'
+        'admin_flg',
     ];
 
     /**

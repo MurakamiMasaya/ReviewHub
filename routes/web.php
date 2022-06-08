@@ -41,7 +41,7 @@ Route::controller(OtherController::class)->group(function(){
     //サイトマップ
     Route::get('/sitemap', 'sitemap')->name('sitemap');
 
-    Route::middleware('auth')->group(function(){   
+    Route::middleware(['verified', 'auth'])->group(function(){   
         //お問い合わせ
         Route::get('/contact', 'contact')->name('contact');
         Route::post('/contact/confilm', 'confilmContact')->name('contact.confilm');
@@ -69,7 +69,7 @@ Route::controller(CompanyController::class)
         Route::get('/condition/{target}', 'condition')->name('condition');
         Route::get('/detail/{id}', 'detail')->name('detail');
         
-        Route::middleware('auth')->group(function(){
+        Route::middleware(['verified', 'auth'])->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/review/{detail}', 'review')->name('review');
             Route::post('/review/confilm/{company}', 'confilmReview')->name('review.confilm');
@@ -91,7 +91,7 @@ Route::controller(SchoolController::class)
         Route::get('/search', 'search')->name('search');
         Route::get('/detail/{id}', 'detail')->name('detail');
 
-        Route::middleware('auth')->group(function(){
+        Route::middleware(['verified', 'auth'])->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/review/{detail}', 'review')->name('review');
             Route::post('/review/confilm/{school}', 'confilmReview')->name('review.confilm');
@@ -113,7 +113,7 @@ Route::controller(EventController::class)
     Route::get('/top/{period?}', 'index')->name('index');
     Route::get('/search', 'search')->name('search');
         
-        Route::middleware('auth')->group(function(){
+        Route::middleware(['verified', 'auth'])->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/detail/{id}', 'detail')->name('detail');
             Route::get('/create', 'createEvent')->name('create');
@@ -139,7 +139,7 @@ Route::controller(ArticleController::class)
         Route::get('/top/{period?}', 'index')->name('index');
         Route::get('/search', 'search')->name('search');
         
-        Route::middleware('auth')->group(function(){
+        Route::middleware(['verified', 'auth'])->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/detail/{id}', 'detail')->name('detail');
             Route::get('/create', 'createArticle')->name('create');
@@ -161,7 +161,7 @@ Route::controller(ArticleController::class)
 
 //マイページ
 Route::controller(MypageController::class)
-    ->prefix('mypage')->name('mypage.')->middleware('auth')->group(function(){
+    ->prefix('mypage')->name('mypage.')->middleware(['verified', 'auth'])->group(function(){
         Route::get('/', 'index')->name('index');
         Route::get('/review', 'review')->name('review');
 
@@ -181,7 +181,7 @@ Route::controller(MypageController::class)
     });
 
 Route::controller(AdminController::class)
-    ->prefix('admin')->name('admin.')->middleware('auth')->group(function(){
+    ->prefix('admin')->name('admin.')->middleware(['verified', 'auth'])->group(function(){
         Route::get('/company', 'showCompany')->name('company');
         Route::get('/company/search', 'searchCompany')->name('company.search');
         Route::get('/company/edit/{company}', 'editCompany')->name('company.edit');

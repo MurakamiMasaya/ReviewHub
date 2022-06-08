@@ -17,10 +17,14 @@
 定員 : {{ $event['capacity'] }}
 開始日 : {{ $event['start_date'] }}
 終了日 : {{ $event['end_date'] }}
-タイトル : {{ $event['title'] }}
-イベント本文 : {!! nl2br(e($event['contents'])) !!}
-イベントURL : {{ isset($event['url']) ? $event['url'] : '指定なし' }}
-ハッシュタグ : {!! nl2br(e(isset($event['tag']) ? $event['tag'] : '指定なし')) !!}
+タイトル : 
+{!! nl2br(e($event['title'])) !!}
+イベント本文 : 
+{!! nl2br(e($event['contents'])) !!}
+イベントURL : 
+{{ isset($event['url']) ? $event['url'] : '指定なし' }}
+ハッシュタグ : 
+{!! nl2br(e(isset($event['tag']) ? $event['tag'] : '指定なし')) !!}
 
 <a href="{{ route('top') }}">トップページに戻る</a>
 
@@ -35,7 +39,7 @@
 
 ■お問い合わせ 
 ReviewHub事務局 
-<a href="{{ route('contact') }}">reviewhub@gmail.com</a>
+<a href="{{ route('contact') }}">reviewhub.contact.us@gmail.com</a>
 
 -----------------------------------------------------------------
 (c) ReviewHub. All Rights Reserved.

@@ -8,7 +8,7 @@
     {{-- #TODO: 画像を横にスライドできる機能を後ほど実装 --}}
     <x-eye-catching-image />
 
-    <div class="max-w-6xl mx-auto my-5 sm:my-10">
+    <div class="max-w-6xl mx-auto mb-5 sm:mb-10">
         <div class="md:flex relative">
             <!-- Left sides of main -->
             <div class="md:w-2/3 md:mr-5 ">

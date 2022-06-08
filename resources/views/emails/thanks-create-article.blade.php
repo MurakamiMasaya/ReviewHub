@@ -9,10 +9,13 @@
 ------------------------------- 
 記事概要を確認する 
 ------------------------------- 
-タイトル : {{ $article['title'] }}
-記事本文 : {!! nl2br(e($article['contents'])) !!}
-参考文献URL : {{ isset($article['url']) ? $article['url'] : '指定なし' }}
-ハッシュタグ : {!! nl2br(e(isset($article['tag']) ? $article['tag'] : '指定なし')) !!}
+タイトル : {!! nl2br(e($article['title'])) !!}
+記事本文 : 
+{!! nl2br(e($article['contents'])) !!}
+参考文献URL : 
+{{ isset($article['url']) ? $article['url'] : '指定なし' }}
+ハッシュタグ : 
+{!! nl2br(e(isset($article['tag']) ? $article['tag'] : '指定なし')) !!}
 
 <a href="{{ route('top') }}">トップページに戻る</a>
 
@@ -27,7 +30,7 @@
 
 ■お問い合わせ 
 ReviewHub事務局 
-<a href="{{ route('contact') }}">reviewhub@gmail.com</a>
+<a href="{{ route('contact') }}">reviewhub.contact.us@gmail.com</a>
 
 -----------------------------------------------------------------
 (c) ReviewHub. All Rights Reserved.

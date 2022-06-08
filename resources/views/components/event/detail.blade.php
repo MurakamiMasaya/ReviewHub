@@ -125,13 +125,13 @@
                                 <div class="text-white text-xs md:text-sm lg:text-md font-bold">
                                     {{ $user->username }}
                                 </div>
-                                <button class="w-20 md:w-28 lg:w-32 px-3 bg-white rounded-lg">
+                                <button class="w-20 md:w-28 lg:w-32 px-3 bg-white rounded-md">
                                     <div class="text-center font-bold text-red-500">
-                                        review
+                                        登録
                                     </div>
                                 </button>
                             </div>
-                            <textarea name="review" id="" rows="2" maxlength="40" required class="shadow appearance-none border w-full rounded py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                            <textarea name="review" id="" rows="2" maxlength="40" required class="shadow appearance-none border-none w-full rounded py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
                         </div>
                     </div>
                 </form>

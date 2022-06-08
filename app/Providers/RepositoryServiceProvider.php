@@ -10,7 +10,8 @@ use App\Interfaces\Services\{DisplayServiceInterface,
     EventServiceInterface,
     ArticleServiceInterface,
     ImageServiceInterface,
-    MailServiceInterface};
+    MailServiceInterface,
+    TokenServiceInterface};
     
 use App\Services\{DisplayService,
     CompanyService,
@@ -18,7 +19,8 @@ use App\Services\{DisplayService,
     EventService,
     ArticleService,
     ImageService,
-    MailService};
+    MailService,
+    TokenService};
 
 use App\Interfaces\Repositories\{DisplayRepositoryInterface,
     CompanyRepositoryInterface,
@@ -48,6 +50,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(EventServiceInterface::class, EventService::class);
         $this->app->bind(ArticleServiceInterface::class, ArticleService::class);
         $this->app->bind(MailServiceInterface::class, MailService::class);
+        $this->app->bind(TokenServiceInterface::class, TokenService::class);
 
         $this->app->bind(DisplayRepositoryInterface::class, DisplayRepository::class);
         $this->app->bind(ImageRepositoryInterface::class, ImageService::class);

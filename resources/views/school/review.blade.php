@@ -4,11 +4,11 @@
         <x-admin-header />
     @endif
 
-    <div class="max-w-6xl mx-auto my-5 sm:my-10">
+    <div class="max-w-6xl mx-auto mb-5 sm:mb-10">
         <div class="md:flex">
             <!-- Left sides of main -->
             <div class="md:w-2/3 md:mr-5 ">
-                <div class="my-5 md:my-0">
+                <div>
                     <x-school.review-create :user="$user" title="スクール" :school="$school"/>
                 </div>
             </div>

@@ -4,7 +4,7 @@
         <x-admin-header />
     @endif
 
-    <div class="max-w-4xl mx-auto my-10 px-2 md:px-10">
+    <div class="max-w-4xl mx-auto py-10 px-2 md:px-10">
         <div class="px-5 md:px-10 text-gray-700">
             <div>
                 <div class="border-b-2 border-gray-500 text-lg md:text-xl font-bold">イベント編集</div>

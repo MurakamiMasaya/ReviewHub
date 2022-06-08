@@ -2,16 +2,24 @@
 
 namespace App\Services;
 
-use App\Interfaces\Services\ArticleServiceInterface;
-use App\Interfaces\Repositories\ArticleRepositoryInterface;
 use App\Interfaces\Services\MailServiceInterface;
+use App\Interfaces\Services\TokenServiceInterface;
 use App\Jobs\SendContactMail;
 use App\Jobs\SendCreateArticleMail;
 use App\Jobs\SendCreateEventMail;
 use App\Jobs\SendReportMail;
+use App\Jobs\SendVerificationMail;
 use Illuminate\Support\Facades\Auth;
 
 class MailService implements MailServiceInterface {
+
+    private $tokenService;
+
+    public function __construct(
+        TokenServiceInterface $tokenService
+        ) {
+        $this->tokenService = $tokenService;
+    }
 
     public function sendThanksCreateArticle($request, $user){
 
@@ -55,6 +63,7 @@ class MailService implements MailServiceInterface {
     }
 
     public function sendReport($request, $user){
+
         $report = [
             'type' => $request->type,
             'target_id' => $request->target_id ?? null,
@@ -63,5 +72,14 @@ class MailService implements MailServiceInterface {
             'report_other' => $request->report_other ?? null,
         ];
         SendReportMail::dispatch($report, $user);
+    }
+
+    public function sendVerificationEmail($request){
+
+        $token = $this->tokenService->createToken($request);
+
+        $url = request()->getSchemeAndHttpHost(). "/user/register?token=". $token;
+
+        SendVerificationMail::dispatch($request->email, $url);
     }
 }
