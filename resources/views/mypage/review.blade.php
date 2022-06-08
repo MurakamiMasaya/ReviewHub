@@ -4,7 +4,7 @@
         <x-admin-header />
     @endif
 
-    <div class="max-w-4xl mx-auto my-10 px-2 md:px-10">
+    <div class="max-w-4xl mx-auto py-10 px-2 md:px-10">
         <div class="flex justify-between items-end">
             <div class="text-xl font-bold">Review一覧</div>
             <div class="">

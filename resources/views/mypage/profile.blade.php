@@ -4,7 +4,7 @@
         <x-admin-header />
     @endif
 
-    <div class="max-w-4xl mx-auto my-10 px-2 md:px-10">
+    <div class="max-w-4xl mx-auto py-10 px-2 md:px-10">
         <div class="flex justify-center items-end">
             <div class="text-xl font-bold mr-5">登録情報の編集</div>
             <div class="">

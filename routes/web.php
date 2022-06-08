@@ -41,7 +41,7 @@ Route::controller(OtherController::class)->group(function(){
     //サイトマップ
     Route::get('/sitemap', 'sitemap')->name('sitemap');
 
-    Route::middleware('auth')->group(function(){   
+    Route::middleware(['verified', 'auth'])->group(function(){   
         //お問い合わせ
         Route::get('/contact', 'contact')->name('contact');
         Route::post('/contact/confilm', 'confilmContact')->name('contact.confilm');
@@ -63,13 +63,13 @@ Route::controller(GoogleLoginController::class)->group(function(){
 //企業
 Route::controller(CompanyController::class)
     ->prefix('company')->name('company.')->group(function(){
-        Route::get('/{period?}', 'index')->name('index');
+        Route::get('/top/{period?}', 'index')->name('index');
         Route::get('/search', 'search')->name('search');
         Route::get('/tech/{target}', 'tech')->name('tech');
         Route::get('/condition/{target}', 'condition')->name('condition');
         Route::get('/detail/{id}', 'detail')->name('detail');
         
-        Route::middleware('auth')->group(function(){
+        Route::middleware(['verified', 'auth'])->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/review/{detail}', 'review')->name('review');
             Route::post('/review/confilm/{company}', 'confilmReview')->name('review.confilm');
@@ -87,11 +87,11 @@ Route::controller(CompanyController::class)
 //スクール
 Route::controller(SchoolController::class)
     ->prefix('school')->name('school.')->group(function(){
-        Route::get('/{period?}', 'index')->name('index');
+        Route::get('/top/{period?}', 'index')->name('index');
         Route::get('/search', 'search')->name('search');
         Route::get('/detail/{id}', 'detail')->name('detail');
 
-        Route::middleware('auth')->group(function(){
+        Route::middleware(['verified', 'auth'])->group(function(){
         // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/review/{detail}', 'review')->name('review');
             Route::post('/review/confilm/{school}', 'confilmReview')->name('review.confilm');
@@ -110,13 +110,13 @@ Route::controller(SchoolController::class)
 //イベント
 Route::controller(EventController::class)
 ->prefix('event')->name('event.')->group(function(){
-    Route::get('/{period?}', 'index')->name('index');
+    Route::get('/top/{period?}', 'index')->name('index');
     Route::get('/search', 'search')->name('search');
         
-        Route::middleware('auth')->group(function(){
+        Route::middleware(['verified', 'auth'])->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/detail/{id}', 'detail')->name('detail');
-            Route::get('/register', 'createEvent')->name('register');
+            Route::get('/create', 'createEvent')->name('create');
             Route::post('/register/confilm', 'confilmEvent')->name('confilm');
             Route::post('/register', 'registEvent')->name('register');
             Route::post('/delete/{event}', 'deleteEvent')->name('delete');
@@ -136,13 +136,13 @@ Route::controller(EventController::class)
 //特集記事
 Route::controller(ArticleController::class)
     ->prefix('article')->name('article.')->group(function(){
-        Route::get('/{period?}', 'index')->name('index');
+        Route::get('/top/{period?}', 'index')->name('index');
         Route::get('/search', 'search')->name('search');
         
-        Route::middleware('auth')->group(function(){
+        Route::middleware(['verified', 'auth'])->group(function(){
             // #TODO: ログインにリダイレクトはUXが低下しそう。updateみたいにモーダルでログインを促したい。
             Route::get('/detail/{id}', 'detail')->name('detail');
-            Route::get('/register', 'createArticle')->name('register');
+            Route::get('/create', 'createArticle')->name('create');
             Route::post('/register/confilm', 'confilmArticle')->name('confilm');
             Route::post('/register', 'registArticle')->name('register');
             Route::post('/delete/{article}', 'deleteArticle')->name('delete');
@@ -161,8 +161,8 @@ Route::controller(ArticleController::class)
 
 //マイページ
 Route::controller(MypageController::class)
-    ->prefix('mypage')->name('mypage.')->middleware('auth')->group(function(){
-        Route::get('/{period?}', 'index')->name('index');
+    ->prefix('mypage')->name('mypage.')->middleware(['verified', 'auth'])->group(function(){
+        Route::get('/', 'index')->name('index');
         Route::get('/review', 'review')->name('review');
 
         Route::get('/event', 'event')->name('event');
@@ -181,7 +181,7 @@ Route::controller(MypageController::class)
     });
 
 Route::controller(AdminController::class)
-    ->prefix('admin')->name('admin.')->middleware('auth')->group(function(){
+    ->prefix('admin')->name('admin.')->middleware(['verified', 'auth'])->group(function(){
         Route::get('/company', 'showCompany')->name('company');
         Route::get('/company/search', 'searchCompany')->name('company.search');
         Route::get('/company/edit/{company}', 'editCompany')->name('company.edit');

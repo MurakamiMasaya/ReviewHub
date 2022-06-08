@@ -50,7 +50,7 @@
     <div class="my-5">{{ $articles->links() }}</div>
     @endif
 
-    <a href="{{ route('article.register') }}">
+    <a href="{{ route('article.create') }}">
         <x-button.review title="記事" />
     </a>
 </div>

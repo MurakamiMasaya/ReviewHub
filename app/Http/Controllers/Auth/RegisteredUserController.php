@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserFormRequest;
+use App\Interfaces\Services\MailServiceInterface;
 use App\Models\User;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
@@ -14,6 +15,13 @@ use Illuminate\Support\Facades\Log;
 
 class RegisteredUserController extends Controller
 {
+    private $mailService;
+
+    public function __construct(
+        MailServiceInterface $mailService
+        ) {
+        $this->mailService = $mailService;
+    }
 
     public function create()
     {
@@ -32,15 +40,19 @@ class RegisteredUserController extends Controller
                 'email' => $request->email,
                 'phone' => $request->phone,
                 'password' => Hash::make($request->password),
+                'auth_flg' => 0,
                 'admin_flg' => 0
             ]);
-    
+
             event(new Registered($user));
+            \Slack::send($user->username.'さんが仮登録しました！');
 
-            Auth::login($user);
-            \Slack::send($user->username.'さん、初めまして！');
-
-            return redirect(RouteServiceProvider::HOME);
+            //メール送信完了画面へリダイレクト
+            $text = '認証メールを送信しました。メールに記載されているURLからログインしてください';
+            $linkText = 'トップページに戻る';
+            $link = 'top';
+            
+            return view('redirect', compact('text', 'linkText', 'link'));
         
         }catch(\Throwable $e){
             \Log::error($e);

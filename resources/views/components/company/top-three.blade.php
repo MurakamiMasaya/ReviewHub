@@ -4,7 +4,7 @@
             2022年最新
         </div>
         <div class="text-center text-white text-lg lg:text-xl font-bold">
-            企業ランキングTOP3
+            月間企業ランキングTOP3
         </div>
     </div>
     <div class="py-5 px-2">

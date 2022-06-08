@@ -3,12 +3,6 @@
         <div class="font-bold text-lg md:text-xl lg:text-2xl line-clamp-2 mr-5 md:mr-10">
             {{ $school->name }}
         </div>
-        <div class="flex items-center">
-            <div class="w-6 md:w-8 mr-1 md:mr-2">
-                <img src="{{ asset('images/GR.png') }}" alt="GR">
-            </div>
-            <div class="text-center font-bold text-lg md:text-xl lg:text-2xl">{{ $school->gr }}</div>
-        </div>
     </div>
     <div class="mt-5 md:mt-10">
         <div class="my-5 py-10 px-5 shadow-xl">

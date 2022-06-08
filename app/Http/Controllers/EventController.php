@@ -11,6 +11,8 @@ use App\Interfaces\Services\SchoolServiceInterface;
 use App\Interfaces\Services\EventServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
 use App\Interfaces\Services\ImageServiceInterface;
+use App\Interfaces\Services\MailServiceInterface;
+use App\Jobs\SendCreateEventMail;
 
 class EventController extends Controller
 {
@@ -20,6 +22,7 @@ class EventController extends Controller
     private $eventService;
     private $displayService;
     private $imageService;
+    private $mailService;
 
     public function __construct(
         ArticleServiceInterface $articleService,
@@ -27,7 +30,8 @@ class EventController extends Controller
         SchoolServiceInterface $schoolService,
         EventServiceInterface $eventService,
         DisplayServiceInterface $displayService,
-        ImageServiceInterface $imageService
+        ImageServiceInterface $imageService,
+        MailServiceInterface $mailService
         ) {
         $this->articleService = $articleService;
         $this->companyService = $companyService;
@@ -35,6 +39,7 @@ class EventController extends Controller
         $this->eventService = $eventService;
         $this->displayService = $displayService;
         $this->imageService = $imageService;
+        $this->mailService = $mailService;
     }
 
     public function index($period = 'month'){
@@ -122,7 +127,7 @@ class EventController extends Controller
             $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
             $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
-            return view('event.register' ,compact('user', 'schools', 'articles'));
+            return view('event.create' ,compact('user', 'schools', 'articles'));
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -166,9 +171,9 @@ class EventController extends Controller
             ];
 
             $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
-            $articles = $this->articleService->getArticle(null, null, 'gr', null, 8);
+            $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 
-            return view('event.confilm', compact('user', 'eventInfo', 'schools', 30, 'articles'));
+            return view('event.confilm', compact('user', 'eventInfo', 'schools', 'articles'));
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -180,6 +185,7 @@ class EventController extends Controller
     public function registEvent(EventFormRequest $request){
 
         try{
+            $user = $this->displayService->getAuthenticatedUser();
             $image = $request->image;
 
             // 戻るボタンが押された場合に、一時保存画像を消して任意の画面にリダイレクト
@@ -193,8 +199,13 @@ class EventController extends Controller
                 $fileNameToStore = $this->imageService->upload($image, 'events');
             }
 
+            //イベント完了のメールを非同期に送信
+            $this->mailService->sendThanksCreateEvent($request, $user);
+
             //イベントの作成
             $this->eventService->createEvent($request, $image);
+
+
 
             $text = '登録が完了しました！';
             $linkText = 'イベント一覧に戻る';
