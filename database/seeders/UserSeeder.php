@@ -24,6 +24,7 @@ class UserSeeder extends Seeder
                 'username' => 'このサイトの管理者',
                 'email' => 'admin@admin.com',
                 'phone' => '00099999999',
+                'email_verified_at' => now(),
                 'password' => Hash::make('password123'),
                 'admin_flg' => 1,
                 'created_at' => '2022-05-25 00:00:10',

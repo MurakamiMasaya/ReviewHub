@@ -40,6 +40,15 @@ class EventRepository implements EventRepositoryInterface {
                 ->orderBy($order, 'desc')
                 ->paginate($paginate); 
         }
+        if(!is_null($target) && !is_null($column)){
+            return Event::with('user', 'reviewEvents', 'grs')
+                ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
+                ->where('events.' . $column, $target)
+                ->get();
+        }
         if(!is_null($target)){
             return Event::with('user', 'reviewEvents', 'grs')
                 ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')

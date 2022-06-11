@@ -11,7 +11,8 @@ use App\Interfaces\Services\{DisplayServiceInterface,
     ArticleServiceInterface,
     ImageServiceInterface,
     MailServiceInterface,
-    TokenServiceInterface};
+    TokenServiceInterface,
+    RankingServiceInterface};
     
 use App\Services\{DisplayService,
     CompanyService,
@@ -20,19 +21,22 @@ use App\Services\{DisplayService,
     ArticleService,
     ImageService,
     MailService,
-    TokenService};
+    TokenService,
+    RankingService};
 
 use App\Interfaces\Repositories\{DisplayRepositoryInterface,
     CompanyRepositoryInterface,
     SchoolRepositoryInterface,
     EventRepositoryInterface,
-    ArticleRepositoryInterface};
+    ArticleRepositoryInterface,
+    RankingRepositoryInterface};
 
 use App\Repositories\{DisplayRepository,
     CompanyRepository,
     SchoolRepository,
     EventRepository,
-    ArticleRepository};
+    ArticleRepository,
+    RankingRepository};
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -51,6 +55,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ArticleServiceInterface::class, ArticleService::class);
         $this->app->bind(MailServiceInterface::class, MailService::class);
         $this->app->bind(TokenServiceInterface::class, TokenService::class);
+        $this->app->bind(RankingServiceInterface::class, RankingService::class);
 
         $this->app->bind(DisplayRepositoryInterface::class, DisplayRepository::class);
         $this->app->bind(ImageRepositoryInterface::class, ImageService::class);
@@ -58,6 +63,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(SchoolRepositoryInterface::class, SchoolRepository::class);
         $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
         $this->app->bind(ArticleRepositoryInterface::class, ArticleRepository::class);
+        $this->app->bind(RankingRepositoryInterface::class, RankingRepository::class);
     }
 
     /**

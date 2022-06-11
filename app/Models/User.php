@@ -24,6 +24,9 @@ use App\Models\EventGr;
 use App\Models\EventReviewGr;
 use App\Models\ArticleGr;
 use App\Models\ArticleReviewGr;
+use App\Models\TotalGr;
+use App\Models\TotalMonthGr;
+use App\Models\TotalYearGr;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -145,4 +148,20 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(ArticleReviewGr::class);
     }
+
+    public function totalGrs()
+    {
+        return $this->hasMany(TotalGr::class);
+    }
+
+    public function totalMonthGrs()
+    {
+        return $this->hasMany(TotalMonthGr::class);
+    }
+
+    public function totalYearGrs()
+    {
+        return $this->hasMany(TotalYearGr::class);
+    }
+
 }

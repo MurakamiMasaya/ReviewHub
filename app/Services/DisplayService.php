@@ -102,4 +102,32 @@ class DisplayService implements DisplayServiceInterface {
         return $period;
     }
 
+    public function calculateTotalGrs($allReviews, $articles, $events){
+
+        $totalGrs = 0;
+
+        foreach($allReviews[0]['c_reviews'] as $review){
+            $totalGrs += $review->gr;
+        }
+        foreach($allReviews[0]['s_reviews'] as $review){
+            $totalGrs += $review->gr;
+        }
+        foreach($allReviews[0]['e_reviews'] as $review){
+            $totalGrs += $review->gr;
+        }
+        foreach($allReviews[0]['a_reviews'] as $review){
+            $totalGrs += $review->gr;
+        }
+
+        foreach($articles as $article){
+            $totalGrs += $article->gr;
+        }
+        foreach($events as $event){
+            $totalGrs += $event->gr;
+        }
+
+        return $totalGrs;
+
+    }
+
 }

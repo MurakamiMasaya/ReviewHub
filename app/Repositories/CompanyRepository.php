@@ -22,15 +22,13 @@ class CompanyRepository implements CompanyRepositoryInterface {
             return Company::findOrFail($target);
         }
         if(!is_null($paginate)){
-            return Company::leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
-            ->withCount(['grs as gr' => function(Builder $query) use($days){
+            return Company::withCount(['grs as gr' => function(Builder $query) use($days){
                 $query->where('created_at', '>=', $days);
             }])
             ->orderBy($order, 'desc')
             ->paginate($paginate); 
         }
-        return Company::leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
-            ->withCount(['grs as gr' => function(Builder $query) use($days){
+        return Company::withCount(['grs as gr' => function(Builder $query) use($days){
                 $query->where('created_at', '>=', $days);
             }])
             ->orderBy($order, 'desc')

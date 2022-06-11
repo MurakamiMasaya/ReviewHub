@@ -20,8 +20,7 @@ class ArticleRepository implements ArticleRepositoryInterface {
 
         if($before){
             return Article::with('user', 'reviewArticles', 'grs')
-                ->where('articles.' . $column, $target)
-                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
+                ->where($column, $target)
                 ->withCount(['grs as gr' => function(Builder $query) use($days){
                     $query->where('created_at', '>=', $days);
                 }])
@@ -30,17 +29,23 @@ class ArticleRepository implements ArticleRepositoryInterface {
         }
         if(!is_null($target) && !is_null($column) && !is_null($order) && !is_null($paginate) ){
             return Article::with('user', 'reviewArticles', 'grs')
-                ->where('articles.' . $column, $target)
-                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
+                ->where($column, $target)
                 ->withCount(['grs as gr' => function(Builder $query) use($days){
                     $query->where('created_at', '>=', $days);
                 }])
                 ->orderBy($order, 'desc')
                 ->paginate($paginate); 
         }
+        if(!is_null($target) && !is_null($column)){
+            return Article::with('user', 'reviewArticles', 'grs')
+                ->withCount(['grs as gr' => function(Builder $query) use($days){
+                    $query->where('created_at', '>=', $days);
+                }])
+                ->where('articles.' . $column, $target)
+                ->get();
+        }
         if(!is_null($target)){
             return Article::with('user', 'reviewArticles', 'grs')
-                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
                 ->withCount(['grs as gr' => function(Builder $query) use($days){
                     $query->where('created_at', '>=', $days);
                 }])
@@ -48,7 +53,6 @@ class ArticleRepository implements ArticleRepositoryInterface {
         }
         if(!is_null($order) && !is_null($paginate) ){
             return Article::with('user', 'reviewArticles', 'grs')
-                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
                 ->withCount(['grs as gr' => function(Builder $query) use($days){
                     $query->where('created_at', '>=', $days);
                 }])
@@ -56,7 +60,6 @@ class ArticleRepository implements ArticleRepositoryInterface {
                 ->paginate($paginate); 
         }
         return Article::with('user', 'reviewArticles', 'grs')
-                ->leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
                 ->withCount(['grs as gr' => function(Builder $query) use($days){
                     $query->where('created_at', '>=', $days);
                 }])

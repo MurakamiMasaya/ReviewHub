@@ -9,7 +9,7 @@
 
             <div class="mb-4 text-sm text-gray-600 px-5 py-10">
                 <p class="mb-5 font-semibold">会員登録していただき誠にありがとうございます！</p>
-                <p class="mb-3 font-semibold">お客様もメールアドレスはまだ認証されていないようです。メールアドレスを認証する場合は、以下のボタンからメールを再送してください。</p>
+                <p class="mb-3 font-semibold">お客様のメールアドレスはまだ認証されていないようです。メールアドレスを認証する場合は、以下のボタンからメールを再送してください。</p>
             </div>
 
             @if (session('status') == 'verification-link-sent')

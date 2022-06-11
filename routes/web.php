@@ -10,6 +10,7 @@ use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\GoogleLoginController;
 use App\Http\Controllers\MypageController;
 use App\Http\Controllers\OtherController;
+use App\Http\Controllers\RankingController;
 
 /*
 |--------------------------------------------------------------------------
@@ -180,6 +181,13 @@ Route::controller(MypageController::class)
         Route::post('/delete', 'deleteAcount')->name('delete');
     });
 
+//Reviewランキング
+Route::controller(RankingController::class)
+    ->prefix('rank')->name('rank.')->middleware(['verified', 'auth'])->group(function(){
+       Route::get('/top/{period?}', 'index')->name('index'); 
+    });
+
+//管理者ページ
 Route::controller(AdminController::class)
     ->prefix('admin')->name('admin.')->middleware(['verified', 'auth'])->group(function(){
         Route::get('/company', 'showCompany')->name('company');

@@ -10,6 +10,7 @@ use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
 use App\Interfaces\Services\EventServiceInterface;
 use App\Interfaces\Services\ImageServiceInterface;
+use App\Interfaces\Services\RankingServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +23,7 @@ class MypageController extends Controller
     private $displayService;
     private $imageService;
     private $eventService;
+    private $rankingService;
 
     public function __construct(
         ArticleServiceInterface $articleService,
@@ -29,7 +31,8 @@ class MypageController extends Controller
         SchoolServiceInterface $schoolService,
         DisplayServiceInterface $displayService,
         ImageServiceInterface $imageService,
-        EventServiceInterface $eventService
+        EventServiceInterface $eventService,
+        RankingServiceInterface $rankingService
         ) {
         $this->articleService = $articleService;
         $this->companyService = $companyService;
@@ -37,14 +40,26 @@ class MypageController extends Controller
         $this->displayService = $displayService;
         $this->imageService = $imageService;
         $this->eventService = $eventService;
+        $this->rankingService = $rankingService;
     }
 
     public function index(){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
+            $allReviews = $this->displayService->getAllReviewsTenEach($user->id);
 
-            return view('mypage.index', compact('user'));
+            $articles = $this->articleService->getArticle($user->id, 'user_id');
+            $events = $this->eventService->getEvent($user->id, 'user_id');
+
+            $totalGrs =  $this->displayService->calculateTotalGrs($allReviews, $articles, $events);
+
+            $this->rankingService->createTotalGr();
+            
+            $rankUser = $this->rankingService->calculateRankingUser();
+            $rankMonthUser = $this->rankingService->calculateRankingUser('month');
+
+            return view('mypage.index', compact('user', 'totalGrs', 'rankUser', 'rankMonthUser'));
 
         }catch(\Throwable $e){
             \Log::error($e);

@@ -38,6 +38,9 @@
                     <a href="{{ route('contact') }}" class="text-blue-500 text-sm lg:text-md font-bold ml-3">お問い合わせ</a>
                 </div>
                 <div class="mt-3">
+                    <a href="{{ route('rank.index') }}" class="text-blue-500 text-sm lg:text-md font-bold ml-3">個人のランキング</a>
+                </div>
+                <div class="mt-3">
                     <a href="{{ route('sitemap') }}" class="text-blue-500 text-sm lg:text-md font-bold ml-3">サイトマップ</a>
                 </div>
             </div>

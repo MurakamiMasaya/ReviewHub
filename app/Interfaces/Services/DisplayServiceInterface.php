@@ -19,4 +19,6 @@ interface DisplayServiceInterface{
     public function createReviewReport($request);
 
     public function judgePeriod($period);
+
+    public function calculateTotalGrs($allReviews, $articles, $events);
 }

@@ -22,19 +22,15 @@ class SchoolRepository implements SchoolRepositoryInterface {
             return School::findOrFail($target);
         }
         if(!is_null($paginate)){
-            return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
-            ->withCount(['grs as gr' => function(Builder $query) use($days){
+            return School::withCount(['grs as gr' => function(Builder $query) use($days){
                 $query->where('created_at', '>=', $days);
             }])
-            ->orderBy($order, 'desc')
             ->orderBy($order, 'desc')
             ->paginate($paginate); 
         }
-        return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
-            ->withCount(['grs as gr' => function(Builder $query) use($days){
+        return School::withCount(['grs as gr' => function(Builder $query) use($days){
                 $query->where('created_at', '>=', $days);
             }])
-            ->orderBy($order, 'desc')
             ->orderBy($order, 'desc')
             ->limit($limit)
             ->get();
