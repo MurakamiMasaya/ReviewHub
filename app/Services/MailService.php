@@ -8,7 +8,9 @@ use App\Jobs\SendContactMail;
 use App\Jobs\SendCreateArticleMail;
 use App\Jobs\SendCreateEventMail;
 use App\Jobs\SendReportMail;
+use App\Jobs\SendResetMail;
 use App\Jobs\SendVerificationMail;
+use App\Models\EmailReset;
 use Illuminate\Support\Facades\Auth;
 
 class MailService implements MailServiceInterface {
@@ -74,12 +76,14 @@ class MailService implements MailServiceInterface {
         SendReportMail::dispatch($report, $user);
     }
 
-    public function sendVerificationEmail($request){
+    public function sendResetMail($request){
 
-        $token = $this->tokenService->createToken($request);
+        $email = $request->email;
+        $token = $this->tokenService->createToken($email);
+        $url = request()->getSchemeAndHttpHost(). '/mypage/reset/' . $token;
 
-        $url = request()->getSchemeAndHttpHost(). "/user/register?token=". $token;
-
-        SendVerificationMail::dispatch($request->email, $url);
+        SendResetMail::dispatch($email, $url);
     }
+
+
 }

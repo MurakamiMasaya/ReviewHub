@@ -29,14 +29,16 @@ use App\Interfaces\Repositories\{DisplayRepositoryInterface,
     SchoolRepositoryInterface,
     EventRepositoryInterface,
     ArticleRepositoryInterface,
-    RankingRepositoryInterface};
+    RankingRepositoryInterface,
+    TokenRepositoryInterface};
 
 use App\Repositories\{DisplayRepository,
     CompanyRepository,
     SchoolRepository,
     EventRepository,
     ArticleRepository,
-    RankingRepository};
+    RankingRepository,
+    TokenRepository};
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -64,6 +66,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(EventRepositoryInterface::class, EventRepository::class);
         $this->app->bind(ArticleRepositoryInterface::class, ArticleRepository::class);
         $this->app->bind(RankingRepositoryInterface::class, RankingRepository::class);
+        $this->app->bind(TokenRepositoryInterface::class, TokenRepository::class);
     }
 
     /**

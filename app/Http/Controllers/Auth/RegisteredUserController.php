@@ -45,9 +45,8 @@ class RegisteredUserController extends Controller
             ]);
 
             event(new Registered($user));
-            \Slack::send($user->username.'さんが仮登録しました！');
+            \Slack::send($user->username.'さんが登録しました！');
 
-            //メール送信完了画面へリダイレクト
             $text = '認証メールを送信しました。メールに記載されているURLからログインしてください';
             $linkText = 'トップページに戻る';
             $link = 'top';

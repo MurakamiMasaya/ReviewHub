@@ -179,6 +179,10 @@ Route::controller(MypageController::class)
         Route::get('/profile', 'profile')->name('profile');
         Route::post('/profile', 'registProfile')->name('profile.register');
         Route::post('/delete', 'deleteAcount')->name('delete');
+
+        Route::get('/reset-email', 'resetEmail')->name('reset-email');
+        Route::post('/reset-email', 'sendResetEmail')->name('reset-email.post');
+        Route::get('/reset/{token}', 'completeResetEmail');
     });
 
 //Reviewランキング

@@ -4,15 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleFormRequest;
 use App\Http\Requests\EventFormRequest;
+use App\Http\Requests\ResetMailFormRequest;
 use App\Http\Requests\UpdateUserFormRequest;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
 use App\Interfaces\Services\EventServiceInterface;
 use App\Interfaces\Services\ImageServiceInterface;
+use App\Interfaces\Services\MailServiceInterface;
 use App\Interfaces\Services\RankingServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
-use Illuminate\Http\Request;
+use App\Interfaces\Services\TokenServiceInterface;
 use Illuminate\Support\Facades\Hash;
 
 class MypageController extends Controller
@@ -24,6 +26,8 @@ class MypageController extends Controller
     private $imageService;
     private $eventService;
     private $rankingService;
+    private $mailService;
+    private $tokenService;
 
     public function __construct(
         ArticleServiceInterface $articleService,
@@ -32,7 +36,9 @@ class MypageController extends Controller
         DisplayServiceInterface $displayService,
         ImageServiceInterface $imageService,
         EventServiceInterface $eventService,
-        RankingServiceInterface $rankingService
+        RankingServiceInterface $rankingService,
+        MailServiceInterface $mailService,
+        TokenServiceInterface $tokenService
         ) {
         $this->articleService = $articleService;
         $this->companyService = $companyService;
@@ -41,6 +47,8 @@ class MypageController extends Controller
         $this->imageService = $imageService;
         $this->eventService = $eventService;
         $this->rankingService = $rankingService;
+        $this->mailService = $mailService;
+        $this->tokenService = $tokenService;
     }
 
     public function index(){
@@ -366,7 +374,6 @@ class MypageController extends Controller
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            //アカウントの削除
             $this->displayService->deleteAcount($user->id);
 
             $text = 'アカウントを削除しました！';
@@ -378,6 +385,86 @@ class MypageController extends Controller
         }catch(\Throwable $e){
             \Log::error($e);
             \Slack::channel('error')->send('マイページのアカウント削除でエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function resetEmail(){
+
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+
+            return view('mypage/reset-email', compact('user'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('メールアドレスリセット画面でエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function sendResetEmail(ResetMailFormRequest $reqeust){
+
+        try{
+            $user = $this->displayService->getAuthenticatedUser();
+
+            $this->mailService->sendResetMail($reqeust);
+
+            $text = '確認メールを送信しました！';
+            $linkText = 'TOPに戻る';
+            $link = 'top';
+            
+            return view('redirect', compact('text', 'linkText', 'link'));
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('メールアドレスリセットメールの送信でエラーが発生！');
+            abort(404);
+        }
+    }
+
+    public function completeResetEmail($token){
+
+        try{
+
+            $authResult = $this->tokenService->matchToken($token);
+            
+            if($authResult == "OK"){
+            
+                $certificationToken = $this->tokenService->getCertificationToken($token);
+
+                $user = $this->displayService->getAuthenticatedUser();
+                $user->email = $certificationToken->email;
+                $user->save();
+
+                $this->tokenService->deleteToken($token);
+    
+                $text = 'メールアドレスを更新しました。';
+                $linkText = 'マイページに戻る';
+                $link = 'mypage.index';
+            
+                return view('redirect', compact('text', 'linkText', 'link'));
+
+            }else if($authResult === "WRONG"){
+
+                $text = 'メールアドレスの認証に失敗しました。';
+                $linkText = 'マイページに戻る';
+                $link = 'mypage.index';
+            
+                return view('redirect', compact('text', 'linkText', 'link'));
+
+            }else if($authResult === "EXPIRE"){
+
+                $text = '認証URLの有効期限が切れています。最初からもう一度やり直してください。';
+                $linkText = 'マイページに戻る';
+                $link = 'mypage.index';
+
+                return view('redirect', compact('text', 'linkText', 'link'));
+            }
+
+        }catch(\Throwable $e){
+            \Log::error($e);
+            \Slack::channel('error')->send('メールアドレスの更新処理でエラーが発生！');
             abort(404);
         }
     }

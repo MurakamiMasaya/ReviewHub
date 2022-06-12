@@ -8,5 +8,5 @@ interface MailServiceInterface{
     public function sendThanksCreateEvent($request, $user);
     public function sendContact($request, $user);
     public function sendReport($request, $user);
-    public function sendVerificationEmail($request);
+    public function sendResetMail($request);
 }

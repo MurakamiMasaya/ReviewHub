@@ -19,7 +19,7 @@
             @csrf
 
             <div class="mt-5 text-center">
-                <label for="email" class="text-gray-500 ml-3">メールアドレス(変更できません)</label>
+                <label for="email" class="text-gray-500 ml-3">メールアドレスの変更は<a href="{{ route('mypage.reset-email') }}" class="text-blue-500">こちら</a></label>
                 <x-input id="email" class="block w-72 text-gray-500 text-center mx-auto" type="email" name="email" value="{{ $user->email }}" required readonly/>
             </div>
 
