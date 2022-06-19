@@ -25,7 +25,7 @@
                 <x-school.top-three :schools="$schools"/>
                 <x-company.top-three :companies="$companies" />
             </div>
-            <x-bg-text first="JavaScript" second="TypeScript"/>
+            <x-bg-text first="Go,Go,Go" second="Go,Go,Go"/>
         </div>
     </div>
 

@@ -27,7 +27,7 @@
                 <x-article.top-eight :articles="$articles"/>
                   
             </div>
-            <x-bg-text first="JavaScript" second="TypeScript"/>
+            <x-bg-text first="React,Vue" second="Swift,Flutter"/>
         </div>
     </div>
 

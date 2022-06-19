@@ -1,0 +1,13 @@
+{
+    "compilerOptions": {
+        "target": "ES2015",
+        "module": "ES2015",
+        "strict": true,
+        "jsx": "preserve",
+        "moduleResolution": "node",
+
+        "typeRoots": ["./resources/js/@types"]
+    },
+    "include": ["./resources/js/**/*"]
+}
+

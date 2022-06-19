@@ -1,5 +1,5 @@
 <div>
-    <div class="px-1 mt-10">
+    <div class="px-1 pt-10">
         <div class="text-gray-800 text-center text-xl md:text-3xl font-bold">
             <div>人気企業の</div>
             <div class="lg:flex justify-center mt-1 md:mt-5">

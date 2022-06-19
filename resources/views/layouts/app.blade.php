@@ -12,22 +12,23 @@
 
         <!-- Styles -->
         <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-
-        <!-- Scripts -->
-        <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased bg-gray-50">
         <div class="min-h-screen">
-            @include('layouts.navigation')
-
-            <!-- Page Content -->
-            <main id="main" class="w-full">
-                {{ $slot }}
-            </main>
-
-            @include('layouts.footer')
+            <div id="app">
+                @include('layouts.navigation')
+    
+                <!-- Page Content -->
+                <main id="main" class="w-full">
+                    {{ $slot }}
+                </main>
+    
+                @include('layouts.footer')
+            </div>
         </div>
         <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
-        <script src="{{ asset('js/adjustTopMargin.js') }}"></script>
+        {{-- <script src="{{ asset('js/adjustTopMargin.js') }}"></script> --}}
+        <script src="{{ asset('js/review.js') }}"></script>
+        <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>

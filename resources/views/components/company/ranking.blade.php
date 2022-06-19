@@ -12,7 +12,7 @@
             <div class="md:w-1/2">
                 @foreach($companies as $company)
                     @if($loop->index < 10)
-                    <div class="mr-1 lg:mr-3 mt-5">
+                    <div class="mx-3 md:mx-2 mt-5">
                         <div class="flex justify-between">
                             <div class="flex items-center">
                                 <div class="w-10 sm:w-11 lg:w-12 mr-2 md:mr-3">
@@ -38,8 +38,8 @@
             <div class="md:w-1/2 relative">
                 @foreach($companies as $company)
                     @if($loop->index >= 10)
-                    <div class="mr-1 lg:mr-3 mt-5">
-                        <div class="flex justify-around md:justify-between">
+                    <div class="mx-3 md:mx-2 mt-5">
+                        <div class="flex justify-between">
                             <div class="flex items-center">
                                 <div class="w-10 sm:w-11 lg:w-12 mr-2 md:mr-3">
                                     {{-- うまく順位を取得できていないので暫定的処理 --}}

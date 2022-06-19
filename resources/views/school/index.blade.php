@@ -28,7 +28,7 @@
                 <x-article.top-eight :articles="$articles"/>
                   
             </div>
-            <x-bg-text first="JavaScript" second="TypeScript"/>
+            <x-bg-text first="PHP,Ruby" second="Java,Python"/>
         </div>
     </div>
 
