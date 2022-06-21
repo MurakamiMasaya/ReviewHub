@@ -9,8 +9,8 @@
             <!-- Left sides of main -->
             <div class="md:w-2/3 md:mr-5 ">
                 <div>
-                    <x-detail :detail="$companyData" :reviews="$reviews" 
-                    title="企業" route="company.review" gr="company.gr" deleteGr="company.gr.delete" grReview="company.review.gr" deleteGrReview="company.review.gr.delete"/>
+                    <x-detail :detail="$companyData" :reviews="$reviews" title="企業" route="company.review" path="company"
+                    gr="company.gr" deleteGr="company.gr.delete" grReview="company.review.gr" deleteGrReview="company.review.gr.delete"/>
                 </div>
             </div>
 

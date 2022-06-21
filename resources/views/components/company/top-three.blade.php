@@ -1,16 +1,16 @@
-<div class="border-4 border-pink-500 mx-5 md:mx-0">
-    <div class="py-2 bg-pink-500">
-        <div class="text-center text-white text-lg lg:text-xl font-bold">
-            2022年最新
+<div class="border-4 border-pink-500 mx-5 md:mx-0 rounded-lg">
+    <div class="relative">
+        <div class="pt-3 pb-10 bg-pink-500">
+            <div class="text-center text-white lg:text-xl font-bold">
+                2022年最新Top3
+            </div>
+            <div class="text-center text-white lg:text-xl font-bold">
+                月間企業ランキング
+            </div>
         </div>
-        <div class="text-center text-white text-lg lg:text-xl font-bold">
-            月間企業ランキングTOP3
-        </div>
-    </div>
-    <div class="py-5 px-2">
-        <a href="{{ route('company.index') }}">
+        <a class="absolute top-20 inset-x-0" href="{{ route('company.index') }}">
             <div class="w-40 flex items-center justify-center mx-auto py-1 px-4 bg-gradient-to-r from-pink-500 to-red-500 hover:from-red-500 hover:to-pink-500
-            rounded-full transition duration-300 text-white">
+            rounded-full transition duration-300 text-white border-4 border-gray-50">
                 <div class="text-md font-bold mr-1">
                     GR 受付中
                 </div>
@@ -19,6 +19,8 @@
                 </div>
             </div>
         </a>
+    </div>
+    <div class="pt-8 pb-5 px-2">
         <div>
             @if(count($companies)===0)
                 <span class="text-md md:text-lg font-bold flex justify-center mx-auto text-gray-500 my-5">企業が登録されていません。</span>
@@ -35,8 +37,12 @@
                             </div>
                         </div>
                         <div class="flex">
-                            <x-gr :target="$company" gr="company.gr" deleteGr="company.gr.delete"/>
-                            <div class="text-lg font-bold flex items-end">{{ $company->grs->count() }}</div>
+                            <switching-gr 
+                                :id='@json($company->id)'
+                                :grs='@json($company->grs->count())' 
+                                :is-gr='@json($company->isGrByAuthUser())'
+                                :path='@json('company')'>
+                            </switching-gr>
                         </div>
                     </div>
                 </div>

@@ -10,11 +10,8 @@
 
         <div class="">
             <div class="py-10 md:flex justify-center items-center">
-                <div class="w-64 relative mx-auto">
-                    <img src="{{ asset('images/sun.png') }}">
-                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2
-                     text-5xl font-bold text-red-800">{{ $totalGrs }}</div>
-                </div>
+                
+                <review-hub-object :total-grs='@json($totalGrs)'></review-hub-object>
 
                 <div class="md:w-1/2">
                     <div class="flex justify-center items-center mt-5">

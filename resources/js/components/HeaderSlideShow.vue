@@ -14,9 +14,16 @@ import "vue3-carousel/dist/carousel.css";
 import { defineComponent, registerRuntimeCompiler, toRefs, ref, onMounted, watch } from "vue";
 import { Carousel, Pagination, Navigation, Slide } from "vue3-carousel";
 
-    const mobileWindow = ref(false)
+    const mobileView = ref(false)
+    const windowWidth = ref(0)
     if(window.innerWidth < 768){
-        mobileWindow.value = true
+        mobileView.value = true
+    }
+
+    const calculateWindowWidth = () => {
+      windowWidth.value = window.innerWidth
+      // true/false
+      return mobileView.value = windowWidth.value < 768
     }
 
     const mobileImages = [

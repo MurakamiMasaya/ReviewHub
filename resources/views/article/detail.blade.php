@@ -9,7 +9,7 @@
             <!-- Left sides of main -->
             <div class="md:w-2/3 md:mr-5 ">
                 <div>
-                    <x-article.detail :article="$articleData" :reviews="$reviews" :reviewsAll="$allReviews" :user="$user"
+                    <x-article.detail :article="$articleData" :reviews="$reviews" :reviewsAll="$allReviews" :user="$user" path="article"
                     gr="article.gr" deleteGr="article.gr.delete" grReview="article.review.gr" deleteGrReview="article.review.gr.delete"/>
                 </div>
             </div>

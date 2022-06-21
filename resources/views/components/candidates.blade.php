@@ -34,8 +34,14 @@
                     </a>
                 @endif
                 <div class="flex items-end">
-                    <x-gr :target="$detail" :gr="$gr" :deleteGr="$deleteGr"/>
-                    <div class="text-lg font-bold flex items-end">{{ $detail->grs->count() }}</div>
+                    <switching-gr 
+                        :id='@json($detail->id)'
+                        :grs='@json($detail->grs->count())' 
+                        :is-gr='@json($detail->isGrByAuthUser())'
+                        :path='@json($flg)'
+                        :width='@json('40px')'
+                        :font='@json('30px')'>
+                    </switching-gr>
                 </div>
             </div>
         @endforeach

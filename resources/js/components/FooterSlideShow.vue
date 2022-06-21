@@ -1,6 +1,6 @@
 <template>
-  <carousel :items-to-show="1" :autoplay="3000" :transition="3000" :wrapAround="true" :pauseAutoplayOnHover="true" :dir="rtl">
-      <slide v-if="mobileWindow" v-for="(image, index) in mobileImages" :key="image.id">
+  <carousel :items-to-show="1" :autoplay="3000" :transition="3000" :wrapAround="true" :pauseAutoplayOnHover="true">
+      <slide v-if="mobileView" v-for="(image, index) in mobileImages" :key="image.id">
           <img :src="image.url"/>
       </slide>
       <slide v-else v-for="(image, index) in images" :key="image.id">
@@ -14,9 +14,16 @@ import "vue3-carousel/dist/carousel.css";
 import { defineComponent, registerRuntimeCompiler, toRefs, ref, onMounted, watch } from "vue";
 import { Carousel, Pagination, Navigation, Slide } from "vue3-carousel";
 
-    const mobileWindow = ref(false)
+    const mobileView = ref(false)
+    const windowWidth = ref(0)
     if(window.innerWidth < 768){
-        mobileWindow.value = true
+        mobileView.value = true
+    }
+
+    const calculateWindowWidth = () => {
+      windowWidth.value = window.innerWidth
+      // true/false
+      return mobileView.value = windowWidth.value < 768
     }
 
     const mobileImages = [
@@ -32,6 +39,11 @@ import { Carousel, Pagination, Navigation, Slide } from "vue3-carousel";
         { id: 3, url: "/images/header.png" },
         { id: 4, url: "/images/header.png" },
     ];
+
+    onMounted(() => {
+      window.addEventListener('resize', calculateWindowWidth)
+    })
+
 </script>
 <style scoped>
 .container {

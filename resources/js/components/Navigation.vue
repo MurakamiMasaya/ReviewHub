@@ -18,7 +18,7 @@ defineProps<Props>()
 
 <style scoped>
 #nav-title {
-    color: rgb(87, 68, 68);
+    color: rgb(48, 48, 48);
     font-weight: bold;
     font-size: 20px;
     margin: 10px 0;

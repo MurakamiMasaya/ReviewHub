@@ -9,7 +9,7 @@
             <!-- Left sides of main -->
             <div class="md:w-2/3 md:mr-5 ">
                 <div>
-                    <x-detail :detail="$schoolData" :reviews="$reviews" 
+                    <x-detail :detail="$schoolData" :reviews="$reviews" path="school"
                     title="スクール" route="school.review" gr="school.gr" deleteGr="school.gr.delete" grReview="school.review.gr" deleteGrReview="school.review.gr.delete"/>
                 </div>
             </div>

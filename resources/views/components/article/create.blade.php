@@ -1,4 +1,4 @@
-<div class="px-5 md:px-10 text-gray-700">
+<div class="p-5 md:p-10 text-gray-700">
     <div>
         <div class="border-b-2 border-gray-500 text-lg md:text-xl font-bold">イベント作成</div>
     </div>

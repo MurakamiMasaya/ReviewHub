@@ -152,7 +152,7 @@ class CompanyRepository implements CompanyRepositoryInterface {
     }
 
     public function deleteCompanyReviewGr($id){
-        $gr = CompanyReviewGr::where('company_id', $id)->where('user_id', Auth::id())->first();
+        $gr = CompanyReviewGr::where('review_company_id', $id)->where('user_id', Auth::id())->first();
         $gr->delete();
     }
 }

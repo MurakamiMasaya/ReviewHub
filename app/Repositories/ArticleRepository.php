@@ -176,6 +176,6 @@ class ArticleRepository implements ArticleRepositoryInterface {
     }
 
     public function deleteArticleReviewGr($id){
-        $gr = ArticleReviewGr::where('article_id', $id)->where('user_id', Auth::id())->first();
+        $gr = ArticleReviewGr::where('review_article_id', $id)->where('user_id', Auth::id())->first();
     }
 }

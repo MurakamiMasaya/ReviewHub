@@ -1,11 +1,17 @@
-<div class="px-5 md:px-10">
+<div class="p-5 md:p-10">
     <div class="flex items-end pt-5 border-b-2 border-gray-400">
         <div class="font-bold text-lg md:text-xl lg:text-2xl line-clamp-2 mr-5 md:mr-10">
             {{ $article->title }}
         </div>
         <div class="flex items-center">
-            <x-gr :target="$article" :gr="$gr" :deleteGr="$deleteGr" class="w-10"/>
-            <div class="text-2xl font-bold flex items-end">{{ $article->grs->count() }}</div>
+            <switching-gr 
+                :id='@json($article->id)'
+                :grs='@json($article->grs->count())' 
+                :is-gr='@json($article->isGrByAuthUser())'
+                :path='@json('article')'
+                :width='@json('40px')'
+                :font='@json('30px')'>
+            </switching-gr>
         </div>
     </div>
     <div class="mt-5 md:mt-10">
@@ -29,14 +35,20 @@
                 <div class="mt-10 flex justify-around items-center">
                     <div class="flex items-center justify-center">
                         <div class="flex items-center mr-5 md:mr-10">
-                            <x-gr :target="$article" :gr="$gr" :deleteGr="$deleteGr" class="w-7 md:w-10 mb-0"/>
-                            <div class="text-xl md:text-2xl font-bold flex items-end">{{ $article->grs->count() }}</div>
+                            <switching-gr 
+                                :id='@json($article->id)'
+                                :grs='@json($article->grs->count())' 
+                                :is-gr='@json($article->isGrByAuthUser())'
+                                :path='@json('article')'
+                                :width='@json('40px')'
+                                :font='@json('30px')'>
+                            </switching-gr>
                         </div>
                         <div id="review-icon" class="flex items-center">
-                            <div class="w-7 md:w-10 mr-2">
+                            <div class="w-12 mr-2">
                                 <img src="{{ asset('images/review.png') }}" alt="GR">
                             </div>
-                            <div class="text-xl md:text-2xl font-bold">{{ count($reviewsAll) }}</div>
+                            <div class="text-3xl font-bold">{{ count($reviewsAll) }}</div>
                         </div>
                     </div>
                     <div class="">
@@ -97,7 +109,7 @@
                 </form>
             </div>
             <div class="border-4 border-red-500 p-2">
-                <x-review :reviews="$reviews" title="記事"
+                <x-review :reviews="$reviews" title="記事" :path="$path"
                 :gr="$grReview" :deleteGr="$deleteGrReview"/>
             </div>
         </div>

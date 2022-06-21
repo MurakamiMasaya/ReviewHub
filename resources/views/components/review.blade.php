@@ -13,8 +13,12 @@
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
                     <div class="text-sm md:text-md mr-2 md:mr-3">{{ $review->user->username }}</div>
-                    <x-gr :target="$review" :gr="$gr" :deleteGr="$deleteGr"/>
-                    <div class="text-lg font-bold flex items-end">{{ $review->grs->count() }}</div>
+                    <switching-gr 
+                        :id='@json($review->id)'
+                        :grs='@json($review->grs->count())' 
+                        :is-gr='@json($review->isGrByAuthUser())'
+                        :path='@json($path . '/review')'>
+                    </switching-gr>
                 </div>
                 <div>
                     <div class="text-xs md:text-md text-gray-500">{{ date_format($review->created_at, 'Y年m月n日') }}</div>

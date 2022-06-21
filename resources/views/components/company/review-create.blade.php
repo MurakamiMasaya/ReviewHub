@@ -1,12 +1,18 @@
-<div class="px-5 md:px-10">
+<div class="p-5 md:p-10">
     <div class="flex items-center pt-5 border-b-2 border-gray-400">
         <div class="font-bold text-lg md:text-xl lg:text-2xl line-clamp-2 mr-5 md:mr-10">
             {{ $company->name }}
         </div>
-        {{-- <div class="flex items-center">
-            <x-gr :target="$company" gr="company.gr" deleteGr="company.gr.delete"/>
-            <div class="text-lg font-bold flex items-end">{{ $company->grs->count() }}</div>
-        </div> --}}
+        <div class="flex items-center">
+            <switching-gr 
+                :id='@json($company->id)'
+                :grs='@json($company->grs->count())' 
+                :is-gr='@json($company->isGrByAuthUser())'
+                :path='@json('company')'
+                :width='@json('40px')'
+                :font='@json('30px')'>
+            </switching-gr>
+        </div>
     </div>
     <div class="mt-5 md:mt-10">
         <div class="my-5 py-10 px-5 shadow-xl">

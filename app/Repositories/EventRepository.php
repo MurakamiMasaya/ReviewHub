@@ -194,7 +194,7 @@ class EventRepository implements EventRepositoryInterface {
     }
 
     public function deleteEventReviewGr($id){
-        $gr = EventReviewGr::where('event_id', $id)->where('user_id', Auth::id())->first();
+        $gr = EventReviewGr::where('review_event_id', $id)->where('user_id', Auth::id())->first();
         $gr->delete();
     }
 

@@ -9,7 +9,7 @@
             <!-- Left sides of main -->
             <div class="md:w-2/3 md:mr-5">
                 <div>
-                    <x-event.detail :event="$eventData" :reviews="$reviews" :user="$user" :reviewsAll="$AllReviews"
+                    <x-event.detail :event="$eventData" :reviews="$reviews" :user="$user" :reviewsAll="$AllReviews" path="event"
                     gr="event.gr" deleteGr="event.gr.delete" grReview="event.review.gr" deleteGrReview="event.review.gr.delete"/>
                 </div>
 

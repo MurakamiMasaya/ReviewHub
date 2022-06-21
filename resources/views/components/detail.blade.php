@@ -1,11 +1,17 @@
-<div class="px-5 md:px-10">
+<div class="p-5 md:p-10">
     <div class="flex items-center pt-5 border-b-2 border-gray-400">
         <div class="font-bold text-lg md:text-xl lg:text-2xl line-clamp-2 mr-5 md:mr-10">
             {{ $detail->name }}
         </div>
         <div class="flex items-center">
-            <x-gr :target="$detail" :gr="$gr" :deleteGr="$deleteGr" class="w-10"/>
-            <div class="text-2xl font-bold flex items-end">{{ $detail->grs->count() }}</div>
+            <switching-gr 
+                :id='@json($detail->id)'
+                :grs='@json($detail->grs->count())' 
+                :is-gr='@json($detail->isGrByAuthUser())'
+                :path='@json($path)'
+                :width='@json('40px')'
+                :font='@json('30px')'>
+            </switching-gr>
         </div>
     </div>
     <div class="mt-5 md:mt-10">
@@ -15,7 +21,7 @@
             <x-information :reviews="$reviews" :detail="$detail" :title="$title"/>
 
             <x-review :reviews="$reviews" :title="$title"
-            :gr="$grReview" :deleteGr="$deleteGrReview"/>
+            :gr="$grReview" :deleteGr="$deleteGrReview" :path="$path" />
 
             <x-button.see-more :reviews="$reviews" :detail="$detail"/>
             

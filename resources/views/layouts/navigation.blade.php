@@ -11,7 +11,7 @@
                     </a>
                 </div>
             </div>
-            <div class="hidden sm:flex items-center justify-end sm:pr-10 lg:pr-20">
+            <div class="hidden sm:flex items-center justify-end">
                 <div class="pr-5">
                     <div>
                         <a href="{{ route('sitemap') }}" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">サイトマップ</a>
@@ -27,11 +27,7 @@
                         @endauth
                     </div>
                 </div>
-                <div>
-                    <a href="{{ route('event.index') }}">
-                        <img src="{{ asset('images/event.png') }}" alt="">
-                    </a>
-                </div>
+                <top-image></top-image>
             </div>
 
             <!-- Responsive Group -->

@@ -5,7 +5,7 @@
                 <div class="w-10"><img src="{{ asset('images/pencil.png') }}" alt="pencil"></div>
             </div>
             <div>
-                <div class="text-xl font-bold text-gray-800">月間人気のある特集記事一覧</div>
+                <div class="text-xl font-bold text-gray-800">【月間】特集記事TOP8</div>
                 <div class="h-1 bg-gradient-to-r from-pink-500 via-orange-500 to-red-500"></div>
             </div>
         </div>
@@ -23,8 +23,12 @@
                         </a>
                     </div>
                     <div class="mx-auto align-middle">
-                        <x-gr :target="$article" gr="article.gr" deleteGr="article.gr.delete"/>
-                        <div class="text-md font-bold flex justify-center">{{ $article->grs->count() }}</div>
+                        <switching-gr 
+                            :id='@json($article->id)'
+                            :grs='@json($article->grs->count())' 
+                            :is-gr='@json($article->isGrByAuthUser())'
+                            :path='@json('article')'>
+                        </switching-gr>
                     </div>
                 </div>
             </div>

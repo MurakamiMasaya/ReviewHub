@@ -141,7 +141,7 @@ class SchoolRepository implements SchoolRepositoryInterface {
     }
 
     public function deleteSchoolReviewGr($id){
-        $gr = SchoolReviewGr::where('school_id', $id)->where('user_id', Auth::id())->first();
+        $gr = SchoolReviewGr::where('review_school_id', $id)->where('user_id', Auth::id())->first();
         $gr->delete();
     }
 }

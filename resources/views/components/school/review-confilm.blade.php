@@ -1,7 +1,17 @@
-<div class="px-5 md:px-10">
+<div class="p-5 md:p-10">
     <div class="flex items-center pt-5 border-b-2 border-gray-400">
         <div class="font-bold text-lg md:text-xl lg:text-2xl line-clamp-2 mr-5 md:mr-10">
             {{ $school->name }}
+        </div>
+        <div class="flex items-center">
+            <switching-gr 
+                :id='@json($school->id)'
+                :grs='@json($school->grs->count())' 
+                :is-gr='@json($school->isGrByAuthUser())'
+                :path='@json('school')'
+                :width='@json('40px')'
+                :font='@json('30px')'>
+            </switching-gr>
         </div>
     </div>
     <div class="mt-5 md:mt-10">

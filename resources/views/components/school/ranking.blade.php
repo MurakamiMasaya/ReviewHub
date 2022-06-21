@@ -15,10 +15,9 @@
                     <div class="mx-3 md:mx-2 mt-5">
                         <div class="flex justify-between">
                             <div class="flex items-center">
-                                <div class="w-10 sm:w-11 lg:w-12 mr-2 md:mr-3">
-                                    {{-- うまく順位を取得できていないので暫定的処理 --}}
-                                    {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
+                                <div class="w-10 sm:w-11 lg:w-12 mr-2 md:mr-3 relative">
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold">{{ $schools->firstItem()+ $loop->index }}</div>
                                 </div>
                                 <div class="w-5/6 font-bold text-md lg:text-lg">
                                     <a href="{{ route('school.detail', ['id' => $school->id]) }}">
@@ -27,8 +26,12 @@
                                 </div>
                             </div>
                             <div class="flex items-end">
-                                <x-gr :target="$school" gr="school.gr" deleteGr="school.gr.delete"/>
-                                <div class="text-lg font-bold flex items-end">{{ $school->grs->count() }}</div>
+                                <switching-gr 
+                                    :id='@json($school->id)'
+                                    :grs='@json($school->grs->count())' 
+                                    :is-gr='@json($school->isGrByAuthUser())'
+                                    :path='@json('school')'>
+                                </switching-gr>
                             </div>
                         </div>
                     </div>
@@ -41,10 +44,9 @@
                     <div class="mx-3 md:mx-2 mt-5">
                         <div class="flex justify-between">
                             <div class="flex items-center">
-                                <div class="w-10 sm:w-11 lg:w-12 mr-2 md:mr-3">
-                                    {{-- うまく順位を取得できていないので暫定的処理 --}}
-                                    {{-- <img src="{{ asset('images/ranking/'. ($loop->index+1) .'.png') }}" alt="順位"> --}}
+                                <div class="w-10 sm:w-11 lg:w-12 mr-2 md:mr-3 relative">
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold">{{ $schools->firstItem()+ $loop->index }}</div>
                                 </div>
                                 <div class="w-5/6 font-bold text-md lg:text-lg">
                                     <a href="{{ route('school.detail', ['id' => $school->id]) }}">
@@ -53,8 +55,12 @@
                                 </div>
                             </div>
                             <div class="flex items-end">
-                                <x-gr :target="$school" gr="school.gr" deleteGr="school.gr.delete"/>
-                                <div class="text-lg font-bold flex items-end">{{ $school->grs->count() }}</div>
+                                <switching-gr 
+                                    :id='@json($school->id)'
+                                    :grs='@json($school->grs->count())' 
+                                    :is-gr='@json($school->isGrByAuthUser())'
+                                    :path='@json('school')'>
+                                </switching-gr>
                             </div>
                         </div>
                     </div>
