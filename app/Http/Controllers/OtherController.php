@@ -102,6 +102,7 @@ class OtherController extends Controller
 
             //以下に管理者へのメール送信を実装
             $this->mailService->sendContact($request, $user);
+            \Slack::channel('report')->send($user->username.'さんからお問い合わせです！');
 
             $this->displayService->createContact($request);
 

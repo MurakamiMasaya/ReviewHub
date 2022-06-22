@@ -36,6 +36,7 @@
 
                 <x-article.top-eight :articles="$articles" />
                   
+                <stripe-banner />
             </div>
             <x-bg-text first="ReviewHub" second="ReviewHub"/>
         </div>

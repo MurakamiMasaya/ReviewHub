@@ -2738,6 +2738,10 @@ input:checked + .toggle-bg {
     padding: 2.5rem;
   }
 
+  .md\:p-7 {
+    padding: 1.75rem;
+  }
+
   .md\:px-10 {
     padding-left: 2.5rem;
     padding-right: 2.5rem;
@@ -2874,6 +2878,10 @@ input:checked + .toggle-bg {
 
   .lg\:w-8 {
     width: 2rem;
+  }
+
+  .lg\:p-7 {
+    padding: 1.75rem;
   }
 
   .lg\:px-8 {

@@ -1,4 +1,4 @@
-<div class="py-5 px-3 md:px-5 lg:px-7">
+<div class="p-5 md:p-7">
     <div class="font-bold text-lg md:text-xl lg:text-2xl">
         <span class="text-red-500 mx-2">「{{ $target }}」</span>の<span>{{ $title }}</span>検索結果</div>
     <div class="bg-gray-300 h-1"></div>
@@ -39,8 +39,8 @@
                         :grs='@json($detail->grs->count())' 
                         :is-gr='@json($detail->isGrByAuthUser())'
                         :path='@json($flg)'
-                        :width='@json('40px')'
-                        :font='@json('30px')'>
+                        :width='@json('30px')'
+                        :font='@json('20px')'>
                     </switching-gr>
                 </div>
             </div>

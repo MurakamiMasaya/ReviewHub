@@ -2,7 +2,7 @@
 
 <div class="top-0 right-0">
     <a :href="'/contact'">
-        <img class="top-image" :src="'/images/header-event.png'" alt="トップイメージ">
+        <img :src="'/images/header-event.png'" alt="トップイメージ">
     </a>
 </div>
 </template>
@@ -24,10 +24,6 @@ import { ref, computed } from 'vue'
 </script>
 
 <style scoped>
-.top-image {
-    /* height: v-bind(height); */
-    height: 64px;
-}
 /* #overlay {
     background-color: rgb(109, 108, 108);
     opacity: 0.5;
