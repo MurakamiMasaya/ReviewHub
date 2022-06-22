@@ -27,10 +27,10 @@ import { Carousel, Pagination, Navigation, Slide } from "vue3-carousel";
     }
 
     const mobileImages = [
-        { id: 1, url: "/images/header_mobile.png" },
-        { id: 2, url: "/images/header_mobile.png" },
-        { id: 3, url: "/images/header_mobile.png" },
-        { id: 4, url: "/images/header_mobile.png" },
+        { id: 1, url: "/images/header-mobile.png" },
+        { id: 2, url: "/images/header-mobile.png" },
+        { id: 3, url: "/images/header-mobile.png" },
+        { id: 4, url: "/images/header-mobile.png" },
     ];
 
     const images = [

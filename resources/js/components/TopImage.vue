@@ -1,8 +1,8 @@
 <template>
 
 <div class="top-0 right-0">
-    <a :href="'/event/top'">
-        <img class="top-image" :src="'/images/event.png'" alt="トップイメージ">
+    <a :href="'/contact'">
+        <img class="top-image" :src="'/images/header-event.png'" alt="トップイメージ">
     </a>
 </div>
 </template>

@@ -22206,13 +22206,13 @@ var _hoisted_1 = {
   "class": "top-0 right-0"
 };
 var _hoisted_2 = {
-  href: '/event/top'
+  href: '/contact'
 };
 var _hoisted_3 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
     "class": "top-image",
-    src: '/images/event.png',
+    src: '/images/header-event.png',
     alt: "トップイメージ"
   }, null, 8
   /* PROPS */
@@ -22258,16 +22258,16 @@ __webpack_require__.r(__webpack_exports__);
 
     var mobileImages = [{
       id: 1,
-      url: "/images/header_mobile.png"
+      url: "/images/header-mobile.png"
     }, {
       id: 2,
-      url: "/images/header_mobile.png"
+      url: "/images/header-mobile.png"
     }, {
       id: 3,
-      url: "/images/header_mobile.png"
+      url: "/images/header-mobile.png"
     }, {
       id: 4,
-      url: "/images/header_mobile.png"
+      url: "/images/header-mobile.png"
     }];
     var images = [{
       id: 1,
@@ -22349,16 +22349,16 @@ __webpack_require__.r(__webpack_exports__);
 
     var mobileImages = [{
       id: 1,
-      url: "/images/header_mobile.png"
+      url: "/images/header-mobile.png"
     }, {
       id: 2,
-      url: "/images/header_mobile.png"
+      url: "/images/header-mobile.png"
     }, {
       id: 3,
-      url: "/images/header_mobile.png"
+      url: "/images/header-mobile.png"
     }, {
       id: 4,
-      url: "/images/header_mobile.png"
+      url: "/images/header-mobile.png"
     }];
     var images = [{
       id: 1,
@@ -22418,8 +22418,14 @@ var _withScopeId = function _withScopeId(n) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.pushScopeId)("data-v-d581a050"), n = n(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.popScopeId)(), n;
 };
 
-var _hoisted_1 = ["src"];
+var _hoisted_1 = {
+  href: '/contact'
+};
 var _hoisted_2 = ["src"];
+var _hoisted_3 = {
+  href: '/contact'
+};
+var _hoisted_4 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)($setup["Carousel"], {
     "items-to-show": 1,
@@ -22436,11 +22442,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: image.id
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
               src: image.url
             }, null, 8
             /* PROPS */
-            , _hoisted_1)];
+            , _hoisted_2)])];
           }),
           _: 2
           /* DYNAMIC */
@@ -22457,11 +22463,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           key: image.id
         }, {
           "default": (0,vue__WEBPACK_IMPORTED_MODULE_0__.withCtx)(function () {
-            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+            return [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
               src: image.url
             }, null, 8
             /* PROPS */
-            , _hoisted_2)];
+            , _hoisted_4)])];
           }),
           _: 2
           /* DYNAMIC */

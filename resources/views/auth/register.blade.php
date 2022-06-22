@@ -3,7 +3,7 @@
     <x-auth-card>
         <div class="flex justify-center">
             <!-- Left side -->
-            <div class="hidden md:w-1/3 bg-gray-200 md:flex flex-col justify-center px-2">
+            {{-- <div class="hidden md:w-1/3 bg-gray-200 md:flex flex-col justify-center px-2">
                 <div class="text-sm text-gray-500 mb-28">
                     ReviewHubに登録することで、たくさんの情報が自由に閲覧できるようになります。さああなたも貴重な情報を掴み、ライバルと差をつけましょう！
                 </div>
@@ -13,7 +13,7 @@
                 <div class="text-sm text-gray-500 mb-28">
                     ReviewHubに登録することで、たくさんの情報が自由に閲覧できるようになります。さああなたも貴重な情報を掴み、ライバルと差をつけましょう！
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Right side -->
             <div class="md:w-2/3 py-5 px-5 max-w-md mx-auto">
