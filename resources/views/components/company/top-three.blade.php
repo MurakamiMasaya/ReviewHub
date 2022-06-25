@@ -1,4 +1,4 @@
-<div class="border-4 border-pink-500 mx-5 md:mx-0 rounded-lg">
+<div class="border-4 border-pink-500 m-5 md:m-3 rounded-lg">
     <div class="relative">
         <div class="pt-3 pb-10 bg-pink-500">
             <div class="text-center text-white lg:text-xl font-bold">
