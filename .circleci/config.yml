@@ -9,7 +9,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "894d773415ebed996164cf4873186111ce2923da" #上記メモったハッシュを指定
+            - "894d773415ebed996164cf4873186111ce2923da" 
       - run: ssh -p $SSH_PORT $SSH_USER@$SSH_HOST "/var/www/adachin.me/deploy.sh"
       - slack/status:
           fail_only: true
