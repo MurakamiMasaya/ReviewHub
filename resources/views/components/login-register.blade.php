@@ -1,4 +1,4 @@
-<div class="border-4 border-gray-300 px-5 py-3 md:py-5 m-5 rounded-lg">
+<div class="border-4 border-gray-300 px-5 py-3 md:py-5 m-5 md:m-3 rounded-lg">
     <a href="{{ route('login')}}">
         <div class="flex justify-center items-center px-2 lg:px-3 py-2 bg-gradient-to-r from-pink-500 to-red-500 hover:from-red-500 hover:to-pink-500
          rounded-md transition duration-300">
