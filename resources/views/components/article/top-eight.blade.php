@@ -1,4 +1,4 @@
-<div class="px-5 mt-5">
+<div class="px-5 mt-10">
     <div>
         <div class="flex items-end">
             <div>

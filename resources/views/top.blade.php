@@ -35,8 +35,10 @@
                 <x-school.top-three :schools="$schools" />
 
                 <x-article.top-eight :articles="$articles" />
-                  
-                <stripe-banner />
+                
+                <div class="hidden md:block">
+                    <stripe-banner />
+                </div>
             </div>
             <x-bg-text first="ReviewHub" second="ReviewHub"/>
         </div>
