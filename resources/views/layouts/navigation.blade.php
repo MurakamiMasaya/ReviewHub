@@ -4,7 +4,7 @@
     <div class="max-w-6xl mx-auto">
         <div class="flex justify-between h-20">
             <!-- Logo -->
-            <div class="shrink-0 flex items-center pl-3 sm:pl-10 lg:pl-20">
+            <div class="shrink-0 flex items-center ml-2 sm:ml-5 md:ml-10 lg:ml-20">
                 <div class="w-36 sm:w-40 md:w-48">
                     <a href="{{ route('top') }}">
                         <x-application-logo class="block h-10 w-auto fill-current text-gray-600" />
@@ -35,37 +35,34 @@
                 <!-- Responsive Icon -->
                 <div class="flex sm:hidden items-center">
                     @auth
-                        <div class="mr-3">
+                        <div class="mr-1 sm:mr-2">
                             <a href="{{ route('logout') }}">
-                                <div class="w-8 mx-auto" data-tooltip-target="tooltip-logout" data-tooltip-style="light">
+                                <div class="w-5 sm:w-8 mx-auto">
                                     <img src="{{ asset('images/logout.png') }}" alt="">
                                 </div>
-                                <div id="tooltip-logout" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
+                                <div class="text-gray-800 text-xs font-semibold md:font-bold mt-1">
                                     ログアウト
-                                    <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                             </a>
                         </div>
                     @else
-                        <div class="mr-3">
+                        <div class="mr-1 sm:mr-2">
                             <a href="{{ route('register') }}">
-                                <div class="w-8 mx-auto" data-tooltip-target="tooltip-register" data-tooltip-style="light">
+                                <div class="w-5 sm:w-8 mx-auto">
                                     <img src="{{ asset('images/register.png') }}" alt="">
                                 </div>
-                                <div id="tooltip-register" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
+                                <div class="text-gray-800 text-xs font-semibold md:font-bold mt-1">
                                     新規登録
-                                    <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                             </a>
                         </div>
-                        <div class="mr-3">
+                        <div class="mr-1 sm:mr-3">
                             <a href="{{ route('login') }}">
-                                <div class="w-8 mx-auto" data-tooltip-target="tooltip-login" data-tooltip-style="light">
+                                <div class="w-5 sm:w-8 mx-auto">
                                     <img src="{{ asset('images/login.png') }}" alt="">
                                 </div>
-                                <div id="tooltip-login" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
+                                <div class="text-gray-800 text-xs font-semibold md:font-bold mt-1">
                                     ログイン
-                                    <div class="tooltip-arrow" data-popper-arrow></div>
                                 </div>
                             </a>
                         </div>

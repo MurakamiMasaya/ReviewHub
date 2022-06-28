@@ -1147,6 +1147,12 @@ input:checked + .toggle-bg {
 .mb-5 {
   margin-bottom: 1.25rem;
 }
+.ml-2 {
+  margin-left: 0.5rem;
+}
+.mt-1 {
+  margin-top: 0.25rem;
+}
 .ml-5 {
   margin-left: 1.25rem;
 }
@@ -1159,9 +1165,6 @@ input:checked + .toggle-bg {
 .mb-10 {
   margin-bottom: 2.5rem;
 }
-.mt-1 {
-  margin-top: 0.25rem;
-}
 .mr-0 {
   margin-right: 0px;
 }
@@ -1173,9 +1176,6 @@ input:checked + .toggle-bg {
 }
 .mb-28 {
   margin-bottom: 7rem;
-}
-.ml-2 {
-  margin-left: 0.5rem;
 }
 .ml-4 {
   margin-left: 1rem;
@@ -1306,9 +1306,6 @@ input:checked + .toggle-bg {
 .w-auto {
   width: auto;
 }
-.w-8 {
-  width: 2rem;
-}
 .w-5\/6 {
   width: 83.333333%;
 }
@@ -1317,6 +1314,9 @@ input:checked + .toggle-bg {
 }
 .w-52 {
   width: 13rem;
+}
+.w-8 {
+  width: 2rem;
 }
 .w-56 {
   width: 14rem;
@@ -1833,14 +1833,14 @@ input:checked + .toggle-bg {
 .pt-2 {
   padding-top: 0.5rem;
 }
-.pl-3 {
-  padding-left: 0.75rem;
-}
 .pr-5 {
   padding-right: 1.25rem;
 }
 .pb-10 {
   padding-bottom: 2.5rem;
+}
+.pl-3 {
+  padding-left: 0.75rem;
 }
 .pr-4 {
   padding-right: 1rem;
@@ -2467,6 +2467,18 @@ input:checked + .toggle-bg {
     margin-bottom: 2.5rem;
   }
 
+  .sm\:ml-5 {
+    margin-left: 1.25rem;
+  }
+
+  .sm\:mr-2 {
+    margin-right: 0.5rem;
+  }
+
+  .sm\:mr-3 {
+    margin-right: 0.75rem;
+  }
+
   .sm\:block {
     display: block;
   }
@@ -2485,6 +2497,10 @@ input:checked + .toggle-bg {
 
   .sm\:w-40 {
     width: 10rem;
+  }
+
+  .sm\:w-8 {
+    width: 2rem;
   }
 
   .sm\:w-11 {
@@ -2531,10 +2547,6 @@ input:checked + .toggle-bg {
   .sm\:px-2 {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
-  }
-
-  .sm\:pl-10 {
-    padding-left: 2.5rem;
   }
 
   .sm\:pt-0 {
@@ -2594,6 +2606,10 @@ input:checked + .toggle-bg {
 
   .md\:mr-5 {
     margin-right: 1.25rem;
+  }
+
+  .md\:ml-10 {
+    margin-left: 2.5rem;
   }
 
   .md\:mr-20 {
@@ -2774,6 +2790,10 @@ input:checked + .toggle-bg {
     font-size: 4.5rem;
     line-height: 1;
   }
+
+  .md\:font-bold {
+    font-weight: 700;
+  }
 }
 @media (min-width: 1024px) {
 
@@ -2788,6 +2808,10 @@ input:checked + .toggle-bg {
 
   .lg\:mr-5 {
     margin-right: 1.25rem;
+  }
+
+  .lg\:ml-20 {
+    margin-left: 5rem;
   }
 
   .lg\:mr-4 {
@@ -2851,10 +2875,6 @@ input:checked + .toggle-bg {
   .lg\:px-3 {
     padding-left: 0.75rem;
     padding-right: 0.75rem;
-  }
-
-  .lg\:pl-20 {
-    padding-left: 5rem;
   }
 
   .lg\:text-lg {
