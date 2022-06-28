@@ -41,7 +41,8 @@
                         :path='@json($flg)'
                         :width='@json('30px')'
                         :font='@json('20px')'
-                        :auth='@json(Auth::check())'>
+                        :auth='@json(Auth::check())'
+                        :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
                     </switching-gr>
                 </div>
             </div>

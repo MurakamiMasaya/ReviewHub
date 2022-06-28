@@ -6,11 +6,23 @@
         <img :src="'/images/gr-gray.png'" alt="GR" />
     </div>
     <div class="count">{{ grs }}</div>
+
+    
+    <Modal :open="authModal">
+        <p class="modal_message">GRを押すにはログインが必要です。</p>
+        <button @click="closeAuthModal" class="close_button">閉じる</button>
+    </Modal>
+
+    <Modal :open="mailModal">
+        <p class="modal_message">メールアドレスを認証してください。</p>
+        <button @click="closeMailModal" class="close_button">閉じる</button>
+    </Modal>
 </template>
 
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
 import axios from 'axios'
+import Modal from './Modal.vue'
 
 const props = defineProps<{
     grs: number
@@ -20,6 +32,7 @@ const props = defineProps<{
     width: string
     font: string
     auth: boolean
+    mail: boolean
 }>()
 
 const isGrState = ref<boolean>(false)
@@ -27,7 +40,8 @@ const grs = ref<number>(0)
 const width = ref<string>('')
 const font = ref<string>('')
 const marginLeft = ref<string>('')
-const auth = ref<boolean>(false)
+const authModal = ref<boolean>(false)
+const mailModal = ref<boolean>(false)
 
 onMounted(() => {
     isGrState.value = props.isGr
@@ -35,12 +49,16 @@ onMounted(() => {
     width.value = props.width ?? '25px'
     font.value = props.font ?? '15px'
     marginLeft.value = props.font === '15px' ? '2px' : '5px'
-    auth.value = props.auth
 })
 
 const pushGr = async() => {
-    if(!auth.value){
-        return 
+    if(!props.auth){
+        authModal.value = true
+        return
+    }
+    if(!props.mail){
+        mailModal.value = true
+        return
     }
 
     grs.value = isGrState.value ? grs.value -1 : grs.value +1
@@ -56,6 +74,13 @@ const pushGr = async() => {
     } catch(e){
         console.log('データを更新できませんでした')
     }
+}
+
+const closeAuthModal = () => {
+    authModal.value = false
+}
+const closeMailModal = () => {
+    mailModal.value = false
 }
 
 
@@ -74,4 +99,16 @@ const pushGr = async() => {
     align-items: center;
     margin-left: v-bind(marginLeft);
 }
+.modal_message {
+    font-weight: 700;
+    font-size: medium;
+    color: rgb(220, 30, 30);
+}
+.close_button {
+    margin-top: 10px;
+    float: right;
+    font-weight: 700;
+    font-size: small;
+}
+
 </style>

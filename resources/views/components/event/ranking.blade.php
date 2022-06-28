@@ -31,7 +31,8 @@
                                     :grs='@json($event->grs->count())' 
                                     :is-gr='@json($event->isGrByAuthUser())'
                                     :path='@json('event')'
-                                    :auth='@json(Auth::check())'>
+                                    :auth='@json(Auth::check())'
+                                    :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
                                 </switching-gr>
                             </div>
                         </div>

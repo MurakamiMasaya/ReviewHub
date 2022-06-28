@@ -27,6 +27,7 @@ use App\Models\ArticleReviewGr;
 use App\Models\TotalGr;
 use App\Models\TotalMonthGr;
 use App\Models\TotalYearGr;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -162,6 +163,19 @@ class User extends Authenticatable implements MustVerifyEmail
     public function totalYearGrs()
     {
         return $this->hasMany(TotalYearGr::class);
+    }
+
+    public function emailVerified()
+    {
+        if(Auth::check()){
+            $user = Auth::user();
+            if(isset($user->email_verified_at)){
+                return true;
+            } else {
+                return false;
+            }
+        }
+        return false;
     }
 
 }

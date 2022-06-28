@@ -12,7 +12,8 @@
                     :path='@json('event')'
                     :width='@json('40px')'
                     :font='@json('30px')'
-                    :auth='@json(Auth::check())'>
+                    :auth='@json(Auth::check())'
+                    :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
                 </switching-gr>
             </div>
         </div>
@@ -83,7 +84,8 @@
                                 :path='@json('event')'
                                 :width='@json('40px')'
                                 :font='@json('30px')'
-                                :auth='@json(Auth::check())'>
+                                :auth='@json(Auth::check())'
+                                :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
                             </switching-gr>
                         </div>
                         <div id="review-icon" class="flex items-center">

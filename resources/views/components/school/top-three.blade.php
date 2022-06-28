@@ -42,7 +42,8 @@
                                 :grs='@json($school->grs->count())' 
                                 :is-gr='@json($school->isGrByAuthUser())'
                                 :path='@json('school')'
-                                :auth='@json(Auth::check())'>
+                                :auth='@json(Auth::check())'
+                                :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
                             </switching-gr>
                         </div>
                     </div>

@@ -31,7 +31,8 @@
                                     :grs='@json($company->grs->count())' 
                                     :is-gr='@json($company->isGrByAuthUser())'
                                     :path='@json('company')'
-                                    :auth='@json(Auth::check())'>
+                                    :auth='@json(Auth::check())'
+                                    :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
                                 </switching-gr>
                             </div>
                         </div>
@@ -61,7 +62,8 @@
                                     :grs='@json($company->grs->count())' 
                                     :is-gr='@json($company->isGrByAuthUser())'
                                     :path='@json('company')'
-                                    :auth='@json(Auth::check())'>
+                                    :auth='@json(Auth::check())'
+                                    :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
                                 </switching-gr>
                             </div>
                         </div>
