@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->bigInteger('phone')->unsigned()->nullable();
-            $table->string('condition')->nullable();
-            $table->string('technology')->nullable();
+            // $table->bigInteger('phone')->unsigned()->nullable();
+            // $table->string('condition')->nullable();
+            // $table->string('technology')->nullable();
             $table->string('website_url');
             $table->timestamps();
             $table->softDeletes();

@@ -16,11 +16,11 @@ class CompanyFactory extends Factory
      */
     public function definition()
     {
-        $technology = [
-            'PHP,Laravel,JavaScript,React,Doker,AWS',
-            'Apache,Docker,SQL,Java',
-            'Swift,Go,Vue',
-        ];
+        // $technology = [
+        //     'PHP,Laravel,JavaScript,React,Doker,AWS',
+        //     'Apache,Docker,SQL,Java',
+        //     'Swift,Go,Vue',
+        // ];
 
         $companies = [
             'アルサーガパートナーズ',
@@ -38,18 +38,18 @@ class CompanyFactory extends Factory
             '相互会社'
         ];
 
-        $condition = [
-            '実務未経験,経験浅め(1~3年),新卒・第二新卒',
-            '中途,フルリモート,実務未経験',
-            '関西勤務,業務委託,副業',
-        ];
+        // $condition = [
+        //     '実務未経験,経験浅め(1~3年),新卒・第二新卒',
+        //     '中途,フルリモート,実務未経験',
+        //     '関西勤務,業務委託,副業',
+        // ];
 
         return [
             'name' => $this->faker->randomElement($company_name). ' ' .$this->faker->randomElement($companies),
             'address' => $this->faker->address(),
-            'phone' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
-            'condition' => $this->faker->randomElement($condition),
-            'technology' => $this->faker->randomElement($technology),
+            // 'phone' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
+            // 'condition' => $this->faker->randomElement($condition),
+            // 'technology' => $this->faker->randomElement($technology),
             'website_url' => $this->faker->url(),
         ];
     }
