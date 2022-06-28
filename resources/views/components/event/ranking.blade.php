@@ -30,7 +30,8 @@
                                     :id='@json($event->id)'
                                     :grs='@json($event->grs->count())' 
                                     :is-gr='@json($event->isGrByAuthUser())'
-                                    :path='@json('event')'>
+                                    :path='@json('event')'
+                                    :auth='@json(Auth::check())'>
                                 </switching-gr>
                             </div>
                         </div>

@@ -30,7 +30,8 @@
                                     :id='@json($school->id)'
                                     :grs='@json($school->grs->count())' 
                                     :is-gr='@json($school->isGrByAuthUser())'
-                                    :path='@json('school')'>
+                                    :path='@json('school')'
+                                    :auth='@json(Auth::check())'>
                                 </switching-gr>
                             </div>
                         </div>
@@ -59,7 +60,8 @@
                                     :id='@json($school->id)'
                                     :grs='@json($school->grs->count())' 
                                     :is-gr='@json($school->isGrByAuthUser())'
-                                    :path='@json('school')'>
+                                    :path='@json('school')'
+                                    :auth='@json(Auth::check())'>
                                 </switching-gr>
                             </div>
                         </div>

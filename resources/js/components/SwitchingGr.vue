@@ -19,6 +19,7 @@ const props = defineProps<{
     path: string
     width: string
     font: string
+    auth: boolean
 }>()
 
 const isGrState = ref<boolean>(false)
@@ -26,6 +27,7 @@ const grs = ref<number>(0)
 const width = ref<string>('')
 const font = ref<string>('')
 const marginLeft = ref<string>('')
+const auth = ref<boolean>(false)
 
 onMounted(() => {
     isGrState.value = props.isGr
@@ -33,10 +35,14 @@ onMounted(() => {
     width.value = props.width ?? '25px'
     font.value = props.font ?? '15px'
     marginLeft.value = props.font === '15px' ? '2px' : '5px'
+    auth.value = props.auth
 })
 
 const pushGr = async() => {
-    console.log(isGrState.value)
+    if(!auth.value){
+        return 
+    }
+
     grs.value = isGrState.value ? grs.value -1 : grs.value +1
     isGrState.value = !isGrState.value
 

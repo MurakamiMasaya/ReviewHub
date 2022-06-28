@@ -11,7 +11,8 @@
                     :is-gr='@json($event->isGrByAuthUser())'
                     :path='@json('event')'
                     :width='@json('40px')'
-                    :font='@json('30px')'>
+                    :font='@json('30px')'
+                    :auth='@json(Auth::check())'>
                 </switching-gr>
             </div>
         </div>
@@ -81,7 +82,8 @@
                                 :is-gr='@json($event->isGrByAuthUser())'
                                 :path='@json('event')'
                                 :width='@json('40px')'
-                                :font='@json('30px')'>
+                                :font='@json('30px')'
+                                :auth='@json(Auth::check())'>
                             </switching-gr>
                         </div>
                         <div id="review-icon" class="flex items-center">

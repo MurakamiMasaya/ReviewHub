@@ -1088,10 +1088,6 @@ input:checked + .toggle-bg {
   margin-left: 0.75rem;
   margin-right: 0.75rem;
 }
-.mx-5 {
-  margin-left: 1.25rem;
-  margin-right: 1.25rem;
-}
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
@@ -2577,11 +2573,6 @@ input:checked + .toggle-bg {
   .md\:my-7 {
     margin-top: 1.75rem;
     margin-bottom: 1.75rem;
-  }
-
-  .md\:mx-0 {
-    margin-left: 0px;
-    margin-right: 0px;
   }
 
   .md\:my-0 {

@@ -27,7 +27,8 @@
                             :id='@json($article->id)'
                             :grs='@json($article->grs->count())' 
                             :is-gr='@json($article->isGrByAuthUser())'
-                            :path='@json('article')'>
+                            :path='@json('article')'
+                            :auth='@json(Auth::check())'>
                         </switching-gr>
                     </div>
                 </div>

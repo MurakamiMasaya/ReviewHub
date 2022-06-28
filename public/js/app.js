@@ -21764,6 +21764,10 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
     font: {
       type: String,
       required: true
+    },
+    auth: {
+      type: Boolean,
+      required: true
     }
   },
   setup: function setup(__props, _ref) {
@@ -21786,6 +21790,7 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
     var width = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
     var font = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
     var marginLeft = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)('');
+    var auth = (0,vue__WEBPACK_IMPORTED_MODULE_1__.ref)(false);
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
       var _a, _b;
 
@@ -21794,6 +21799,7 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
       width.value = (_a = props.width) !== null && _a !== void 0 ? _a : '25px';
       font.value = (_b = props.font) !== null && _b !== void 0 ? _b : '15px';
       marginLeft.value = props.font === '15px' ? '2px' : '5px';
+      auth.value = props.auth;
     });
 
     var pushGr = function pushGr() {
@@ -21802,43 +21808,50 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                console.log(isGrState.value);
-                grs.value = isGrState.value ? grs.value - 1 : grs.value + 1;
-                isGrState.value = !isGrState.value; //endpoint、urlをlaravelから渡せるように変更
-
-                _context.prev = 3;
-
-                if (!isGrState.value) {
-                  _context.next = 9;
+                if (auth.value) {
+                  _context.next = 2;
                   break;
                 }
 
-                _context.next = 7;
+                return _context.abrupt("return");
+
+              case 2:
+                grs.value = isGrState.value ? grs.value - 1 : grs.value + 1;
+                isGrState.value = !isGrState.value; //endpoint、urlをlaravelから渡せるように変更
+
+                _context.prev = 4;
+
+                if (!isGrState.value) {
+                  _context.next = 10;
+                  break;
+                }
+
+                _context.next = 8;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/' + props.path + '/gr/' + props.id);
 
-              case 7:
-                _context.next = 11;
+              case 8:
+                _context.next = 12;
                 break;
 
-              case 9:
-                _context.next = 11;
+              case 10:
+                _context.next = 12;
                 return axios__WEBPACK_IMPORTED_MODULE_2___default().post('/' + props.path + '/gr/delete/' + props.id);
 
-              case 11:
-                _context.next = 16;
+              case 12:
+                _context.next = 17;
                 break;
 
-              case 13:
-                _context.prev = 13;
-                _context.t0 = _context["catch"](3);
+              case 14:
+                _context.prev = 14;
+                _context.t0 = _context["catch"](4);
                 console.log('データを更新できませんでした');
 
-              case 16:
+              case 17:
               case "end":
                 return _context.stop();
             }
           }
-        }, _callee, null, [[3, 13]]);
+        }, _callee, null, [[4, 14]]);
       }));
     };
 
@@ -21849,6 +21862,7 @@ var __awaiter = undefined && undefined.__awaiter || function (thisArg, _argument
       width: width,
       font: font,
       marginLeft: marginLeft,
+      auth: auth,
       pushGr: pushGr
     };
     Object.defineProperty(__returned__, '__isScriptSetup', {

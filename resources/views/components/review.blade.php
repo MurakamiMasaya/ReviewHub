@@ -17,7 +17,8 @@
                         :id='@json($review->id)'
                         :grs='@json($review->grs->count())' 
                         :is-gr='@json($review->isGrByAuthUser())'
-                        :path='@json($path . '/review')'>
+                        :path='@json($path . '/review')'
+                        :auth='@json(Auth::check())'>
                     </switching-gr>
                 </div>
                 <div>

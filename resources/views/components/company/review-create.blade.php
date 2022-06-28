@@ -10,7 +10,8 @@
                 :is-gr='@json($company->isGrByAuthUser())'
                 :path='@json('company')'
                 :width='@json('40px')'
-                :font='@json('30px')'>
+                :font='@json('30px')'
+                :auth='@json(Auth::check())'>
             </switching-gr>
         </div>
     </div>
