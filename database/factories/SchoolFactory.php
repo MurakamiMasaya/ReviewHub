@@ -18,8 +18,8 @@ class SchoolFactory extends Factory
     {
         return [
             'name' => $this->faker->name().'スクール',
-            'address' => $this->faker->address(),
-            'phone' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
+            // 'address' => $this->faker->address(),
+            // 'phone' => $this->faker->randomNumber(1) . $this->faker->randomNumber(9),
             'website_url' => $this->faker->url(),
         ];
     }
