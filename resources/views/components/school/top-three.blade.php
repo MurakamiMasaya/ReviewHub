@@ -29,7 +29,7 @@
                 <div>
                     <div class="flex justify-between items-end mt-3 border-b border-gray-400">
                         <div class="flex items-center">
-                            <div class="w-7 lg:w-10 mr-1 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
+                            <div class="min-w-10 mr-2 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
                             <div class="text-sm lg:text-lg font-bold text-gray-800">
                                 <a href="{{ route('school.detail', ['id' => $school->id]) }}">
                                     {{ $school->name }}
