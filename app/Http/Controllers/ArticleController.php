@@ -98,12 +98,11 @@ class ArticleController extends Controller
         }
     }
 
-    public function deleteArticle($article){
+    public function deleteArticle(Request $request){
 
         try{
-            $this->articleService->deleteArticle($article);
 
-            return redirect()->route('mypage.article');
+            $this->articleService->deleteArticle($request->id);
 
         }catch(\Throwable $e){
             \Log::error($e);
@@ -218,12 +217,12 @@ class ArticleController extends Controller
         }
     }
 
-    public function deleteReview($id){
+    public function deleteReview(Request $request){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            $this->articleService->deleteReview($id);
+            $this->articleService->deleteReview($request->id);
 
             return redirect()->route('mypage.review');
 

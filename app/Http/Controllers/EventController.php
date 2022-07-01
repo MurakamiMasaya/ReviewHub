@@ -105,12 +105,11 @@ class EventController extends Controller
         }
     }
 
-    public function deleteEvent($event){
+    public function deleteEvent(Request $request){
 
         try{
-            $this->eventService->deleteEvent($event);
 
-            return redirect()->route('mypage.event');
+            $this->eventService->deleteEvent($request->id);
             
         }catch(\Throwable $e){
             \Log::error($e);
@@ -234,14 +233,12 @@ class EventController extends Controller
         }
     }
 
-    public function deleteReview($id){
+    public function deleteReview(Request $request){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            $this->eventService->deleteReview($id);
-
-            return redirect()->route('mypage.review');
+            $this->eventService->deleteReview($request->id);
 
         }catch(\Throwable $e){
             \Log::error($e);

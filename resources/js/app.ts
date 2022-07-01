@@ -6,6 +6,7 @@ import TopImage from "./components/TopImage.vue"
 import StripeBanner from "./components/StripeBanner.vue"
 import ReviewHubObject from "./components/ReviewHubObject.vue"
 import SwitchingGr from "./components/SwitchingGr.vue"
+import DeleteModal from "./components/DeleteModal.vue"
 
 createApp({
     components:{
@@ -16,6 +17,7 @@ createApp({
         TopImage,
         StripeBanner,
         ReviewHubObject,
-        SwitchingGr
+        SwitchingGr,
+        DeleteModal
     }
 }).mount('#app')

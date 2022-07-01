@@ -136,7 +136,7 @@
                     <input type="hidden" name="event_id" value="{{ $event->id }}">
                     <div class="flex items-center justify-center">
                         <div class="w-10 md:w-12 mr-1 md:mr-2">
-                            <x-icon :user="$user" white="true"/> 
+                            <x-icon :user="$user" white=true/> 
                         </div>
                         <div class="w-3/4 py-1">
                             <div class="flex justify-between items-end mb-1">

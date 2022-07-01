@@ -1,17 +1,29 @@
 <template>
-    <div v-if="open" class="backdrop"></div>
+    <div v-if="isOpen" @click="closeModal" class="backdrop"></div>
         <transition name="modal">
-            <dialog open v-if="open" class="dialog">
+            <dialog open v-if="isOpen" class="dialog">
                 <slot></slot>
             </dialog>
         </transition>
 </template>
 
 <script setup lang="ts">
-type Props = {
-    open: boolean,
+import { ref, watchEffect } from 'vue';
+
+const isOpen = ref<boolean>(false)
+
+const props = defineProps<{
+    open: boolean
+}>()
+
+const emit = defineEmits(['close-modal'])
+const closeModal = () => {
+    emit('close-modal')
 }
-defineProps<Props>()
+
+watchEffect(() => {
+    isOpen.value = props.open
+})
 
 </script>
 

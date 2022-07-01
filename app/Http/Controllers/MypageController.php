@@ -16,6 +16,7 @@ use App\Interfaces\Services\RankingServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
 use App\Interfaces\Services\TokenServiceInterface;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 
 class MypageController extends Controller
 {
@@ -369,18 +370,17 @@ class MypageController extends Controller
         }
     }
 
-    public function deleteAcount(){
+    public function deleteAcount(Request $reqeust){
 
         try{
-            $user = $this->displayService->getAuthenticatedUser();
 
-            $this->displayService->deleteAcount($user->id);
+            $this->displayService->deleteAcount($reqeust->id);
 
-            $text = 'アカウントを削除しました！';
-            $linkText = 'TOPに戻る';
-            $link = 'top';
+            // $text = 'アカウントを削除しました！';
+            // $linkText = 'TOPに戻る';
+            // $link = 'top';
             
-            return view('redirect', compact('text', 'linkText', 'link'));
+            // return view('redirect', compact('text', 'linkText', 'link'));
 
         }catch(\Throwable $e){
             \Log::error($e);

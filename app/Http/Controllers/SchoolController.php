@@ -154,14 +154,12 @@ class SchoolController extends Controller
         }
     }
 
-    public function deleteReview($id){
+    public function deleteReview(Request $request){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            $this->schoolService->deleteReview($id);
-
-            return redirect()->route('mypage.review');
+            $this->schoolService->deleteReview($request->id);
 
         }catch(\Throwable $e){
             \Log::error($e);

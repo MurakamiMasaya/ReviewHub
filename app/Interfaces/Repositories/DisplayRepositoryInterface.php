@@ -8,7 +8,7 @@ interface DisplayRepositoryInterface{
     public function getConditionAll();
     
     public function getAuthenticatedUser();
-    public function getUser();
+    public function getUsers();
     public function searchUser($target, $sort);
 
     public function deleteAcount($id);
@@ -17,5 +17,8 @@ interface DisplayRepositoryInterface{
 
     public function createReport($request);
     public function createReviewReport($request);
+
+    public function getUser($id);
+    public function deleteUser($id);
     
 }

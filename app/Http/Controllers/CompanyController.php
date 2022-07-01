@@ -194,12 +194,12 @@ class CompanyController extends Controller
         }
     }
 
-    public function deleteReview($id){
+    public function deleteReview(Request $request){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
-            $this->companyService->deleteReview($id);
+            $this->companyService->deleteReview($request->id);
 
             return redirect()->route('mypage.review');
 

@@ -64,26 +64,17 @@
                     </div>
                 </form>
 
-                <form id="delete_form" action="{{ route('article.delete', ['article' => $article->id]) }}" method="post">
-                    @csrf
-                    <div class="my-20 text-center">
-                        <button id="delete_button" type="button" class="px-5 py-3 bg-red-600 text-white rounded-lg font-semibold w-40 ">削除</button>
-                    </div>
-                </form>
+                <delete-modal 
+                    :text='@json('記事の削除')'
+                    :id='@json($article->id)'
+                    :path='@json('article')'
+                    :admin='@json(false)'
+                    :auth='@json(Auth::check())'>
+                </delete-modal>
             </div>
         </div>
     </div>
 
     <!-- Footer Image -->
     <x-eye-catching-image />
-    <script>
-        const deleteForm = document.querySelector('#delete_form');
-        const deleteButton = document.querySelector('#delete_button');
-
-        deleteButton.addEventListener('click', function() {
-            if(window.confirm('本当に削除しますか？')) {
-                deleteForm.submit()
-            }
-        })
-    </script>
 </x-app-layout>

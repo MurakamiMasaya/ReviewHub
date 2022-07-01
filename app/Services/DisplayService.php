@@ -36,8 +36,8 @@ class DisplayService implements DisplayServiceInterface {
         return $this->displayRepository->getAuthenticatedUser();
     }
 
-    public function getUser(){
-        return $this->displayRepository->getUser();
+    public function getUsers(){
+        return $this->displayRepository->getUsers();
     }
 
     public function searchUser($target, $sort){
@@ -127,7 +127,14 @@ class DisplayService implements DisplayServiceInterface {
         }
 
         return $totalGrs;
+    }
 
+    public function getUser($id){
+        return $this->displayRepository->getUser($id);
+    }
+
+    public function deleteUser($id){
+        $this->displayRepository->deleteUser($id);
     }
 
 }

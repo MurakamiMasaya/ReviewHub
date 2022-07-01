@@ -30,10 +30,14 @@
                     <td class="w-1/12 text-xs p-1 text-center">{{ $review->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $review->created_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">
-                        <form id="delete_{{ $review->id }}" action="{{ route('company.review.delete', ['id' => $review->id]) }}" method="post">
-                        @csrf
-                        <button data-id="{{ $review->id }}" type="button" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
-                        </form>
+                        <delete-modal 
+                            :text='@json('削除')'
+                            :id='@json($review->id)'
+                            :path='@json('company/review')'
+                            :admin='@json(false)'
+                            :auth='@json(Auth::check())'
+                            :review='@json(true)'>
+                        </delete-modal>
                     </td>
                 </tr>
                 @endforeach
@@ -66,10 +70,14 @@
                     <td class="w-1/12 text-xs p-1 text-center">{{ $review->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $review->created_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">
-                        <form id="delete_{{ $review->id }}" action="{{ route('school.review.delete', ['id' => $review->id]) }}" method="post">
-                        @csrf
-                        <button data-id="{{ $review->id }}" type="button" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
-                        </form>
+                        <delete-modal 
+                            :text='@json('削除')'
+                            :id='@json($review->id)'
+                            :path='@json('school/review')'
+                            :admin='@json(false)'
+                            :auth='@json(Auth::check())'
+                            :review='@json(true)'>
+                        </delete-modal>
                     </td>
                 </tr>
                 @endforeach
@@ -102,10 +110,14 @@
                     <td class="w-1/12 text-xs p-1 text-center">{{ $review->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $review->created_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">
-                        <form id="delete_{{ $review->id }}" action="{{ route('event.review.delete', ['id' => $review->id]) }}" method="post">
-                        @csrf
-                        <button data-id="{{ $review->id }}" type="button" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
-                        </form>
+                        <delete-modal 
+                            :text='@json('削除')'
+                            :id='@json($review->id)'
+                            :path='@json('event/review')'
+                            :admin='@json(false)'
+                            :auth='@json(Auth::check())'
+                            :review='@json(true)'>
+                        </delete-modal>
                     </td>
                 </tr>
                 @endforeach
@@ -137,10 +149,14 @@
                     <td class="w-1/12 text-xs p-1 text-center">{{ $review->gr }}</td>
                     <td class="w-1/12 text-xs p-1">{{ $review->created_at->format('y/m/d') }}</td>
                     <td class="w-2/12 mg:w-1/12 text-xs p-1 text-center">
-                        <form id="delete_{{ $review->id }}" action="{{ route('article.review.delete', ['id' => $review->id]) }}" method="post">
-                        @csrf
-                        <button data-id="{{ $review->id }}" type="button" onClick="return deletePost(this);" class="px-1 sm:px-2 py-1 bg-red-400 text-white rounded-lg font-semibold">削除</button>
-                        </form>
+                        <delete-modal 
+                            :text='@json('削除')'
+                            :id='@json($review->id)'
+                            :path='@json('article/review')'
+                            :admin='@json(false)'
+                            :auth='@json(Auth::check())'
+                            :review='@json(true)'>
+                        </delete-modal>
                     </td>
                 </tr>
                 @endforeach
@@ -158,12 +174,4 @@
 
     <!-- Footer Image -->
     <x-eye-catching-image />
-
-    <script>
-        function deletePost(e) {
-            if(confirm('本当に削除しますか?')) {
-                document.getElementById('delete_' + e.dataset.id).submit();
-            }
-        }
-    </script>
 </x-app-layout>

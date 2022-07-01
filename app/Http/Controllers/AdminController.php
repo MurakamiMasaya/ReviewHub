@@ -130,9 +130,7 @@ class AdminController extends Controller
 
     public function deleteCompany(Request $request){
         
-        $this->companyService->deleteCompany($request->company_id);
-
-        return redirect()->route('admin.company');
+        $this->companyService->deleteCompany($request->id);
     }
 
     public function showSchool(){
@@ -264,7 +262,7 @@ class AdminController extends Controller
 
     public function deleteEvent(Request $request){
         
-        $this->eventService->deleteEvent($request->event_id);
+        $this->eventService->deleteEvent($request->id);
 
         return redirect()->route('admin.event');
     }
@@ -304,16 +302,14 @@ class AdminController extends Controller
 
     public function deleteArticle(Request $request){
         
-        $this->articleService->deleteArticle($request->article_id);
-
-        return redirect()->route('admin.article');
+        $this->articleService->deleteArticle($request->id);
     }
 
     public function showUser(){
 
         $user = $this->displayService->getAuthenticatedUser();
 
-        $users = $this->displayService->getUser();
+        $users = $this->displayService->getUsers();
 
         $target = '';
         $sort = 'updated_at';
@@ -333,18 +329,17 @@ class AdminController extends Controller
         return view('admin.user.index', compact('users', 'user', 'target', 'sort'));
     }
 
-    public function confilmUser($article){
+    public function confilmUser($user){
 
-        $user = $this->displayService->getAuthenticatedUser();
+        $admin = $this->displayService->getAuthenticatedUser();
+        $user = $this->displayService->getUser($user);
 
-        return view('admin.user.confilm', compact('user'));
+        return view('admin.user.confilm', compact('user', 'admin'));
     }
 
     public function deleteUser(Request $request){
-        
-        $this->userService->deleteUser($request->user_id);
 
-        return redirect()->route('admin.user');
+        $this->displayService->deleteUser($request->id);
     }
 
 }

@@ -1,6 +1,6 @@
 <x-app-layout>
     <!-- Admin Header -->
-    @if(isset($user) && $user->admin_flg === 1)
+    @if(isset($admin) && $admin->admin_flg === 1)
         <x-admin-header />
     @endif
 
@@ -36,23 +36,14 @@
             <div class="font-bold text-center" >{{ $user->phone }}</div>
         </div>
 
-        <form id="delete_form" action="{{ route('admin.user.delete') }}" method="post">
-            @csrf
-            <div class="my-20 text-center">
-                <button id="delete_button" type="button" class="px-5 py-3 bg-red-600 text-white rounded-lg font-semibold w-48">アカウントの削除</button>
-            </div>
-        </form>
+        <delete-modal 
+            :text='@json('アカウントの削除')'
+            :id='@json($user->id)'
+            :path='@json('user')'
+            :admin='@json(true)'
+            :auth='@json(Auth::check())'>
+        </delete-modal>
+        
     </div>
-
-    <script>
-        const deleteForm = document.querySelector('#delete_form');
-        const deleteButton = document.querySelector('#delete_button');
-
-        deleteButton.addEventListener('click', function() {
-            if(window.confirm('本当に削除しますか？')) {
-                deleteForm.submit()
-            }
-        })
-    </script>
 
 </x-app-layout>

@@ -21,7 +21,7 @@ class DisplayRepository implements DisplayRepositoryInterface {
         return Auth::user();
     }
 
-    public function getUser(){
+    public function getUsers(){
         return User::with('events', 'articles')->orderby('created_at', 'desc')->paginate(20);
     }
 
@@ -67,6 +67,15 @@ class DisplayRepository implements DisplayRepositoryInterface {
             'report' => $request->report,
             'report_orther' => $request->other ?? '',
          ]);
+    }
+
+    public function getUser($id){
+        return User::where('id', $id)->first();
+    }
+
+    public function deleteUser($id){
+        $user = User::where('id', $id)->first();
+        $user->delete();
     }
 
 }

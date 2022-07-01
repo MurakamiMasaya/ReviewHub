@@ -78,26 +78,17 @@
             </div>
         </form>
 
-        {{-- アカウントの削除 --}}
-        <form id="delete_form" action="{{ route('mypage.delete') }}" method="post">
-            @csrf
-            <div class="my-20 text-center">
-                <button id="delete_button" type="button" class="px-5 py-3 bg-red-600 text-white rounded-lg font-semibold w-48">アカウントの削除</button>
-            </div>
-        </form>
+        <delete-modal 
+            :text='@json('アカウントの削除')'
+            :id='@json($user->id)'
+            :path='@json('profile')'
+            :admin='@json(false)'
+            :auth='@json(Auth::check())'
+            :delete-acount='@json(true)'>
+        </delete-modal>
     </div>
 
     <!-- Footer Image -->
     <x-eye-catching-image />
 
-    <script>
-        const deleteForm = document.querySelector('#delete_form');
-        const deleteButton = document.querySelector('#delete_button');
-
-        deleteButton.addEventListener('click', function() {
-            if(window.confirm('本当に削除しますか？')) {
-                deleteForm.submit()
-            }
-        })
-    </script>
 </x-app-layout>

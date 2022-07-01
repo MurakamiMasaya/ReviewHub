@@ -66,27 +66,16 @@
                         <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->url }}</div>
                     </div>
 
-                    <form id="delete_form" action="{{ route('admin.event.delete')}}" method="post">
-                        @csrf
-                        <div class="my-20 text-center">
-                            <input type="hidden" name="event_id" value="{{ $event->id }}">
-                            <button id="delete_button" type="button" class="px-5 py-3 bg-red-600 text-white rounded-lg font-semibold w-40 ">削除</button>
-                        </div>
-                    </form>
+                    <delete-modal 
+                        :text='@json('イベントの削除')'
+                        :id='@json($event->id)'
+                        :path='@json('event')'
+                        :admin='@json(true)'
+                        :auth='@json(Auth::check())'>
+                    </delete-modal>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-        const deleteForm = document.querySelector('#delete_form');
-        const deleteButton = document.querySelector('#delete_button');
-
-        deleteButton.addEventListener('click', function() {
-            if(window.confirm('本当に削除しますか？')) {
-                deleteForm.submit()
-            }
-        })
-    </script>
 
 </x-app-layout>

@@ -75,7 +75,7 @@ Route::controller(CompanyController::class)
             Route::get('/review/{detail}', 'review')->name('review');
             Route::post('/review/confilm/{company}', 'confilmReview')->name('review.confilm');
             Route::post('/review/register/{company}', 'registerReview')->name('review.register');
-            Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
+            Route::post('/review/delete', 'deleteReview')->name('review.delete');
 
             //いいね機能
             Route::post('/gr/{id}', 'gr')->name('gr');
@@ -97,7 +97,7 @@ Route::controller(SchoolController::class)
             Route::get('/review/{detail}', 'review')->name('review');
             Route::post('/review/confilm/{school}', 'confilmReview')->name('review.confilm');
             Route::post('/review/register/{school}', 'registerReview')->name('review.register');
-            Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
+            Route::post('/review/delete', 'deleteReview')->name('review.delete');
 
             //いいね機能
             Route::post('/gr/{id}', 'gr')->name('gr');
@@ -120,10 +120,10 @@ Route::controller(EventController::class)
             Route::get('/create', 'createEvent')->name('create');
             Route::post('/register/confilm', 'confilmEvent')->name('confilm');
             Route::post('/register', 'registEvent')->name('register');
-            Route::post('/delete/{event}', 'deleteEvent')->name('delete');
+            Route::post('/delete', 'deleteEvent')->name('delete');
 
             Route::post('/review', 'review')->name('review');
-            Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
+            Route::post('/review/delete', 'deleteReview')->name('review.delete');
 
             //いいね機能
             Route::post('/gr/{id}', 'gr')->name('gr');
@@ -146,10 +146,10 @@ Route::controller(ArticleController::class)
             Route::get('/create', 'createArticle')->name('create');
             Route::post('/register/confilm', 'confilmArticle')->name('confilm');
             Route::post('/register', 'registArticle')->name('register');
-            Route::post('/delete/{article}', 'deleteArticle')->name('delete');
+            Route::post('/delete', 'deleteArticle')->name('delete');
 
             Route::post('/review', 'review')->name('review');
-            Route::post('/review/delete/{id}', 'deleteReview')->name('review.delete');
+            Route::post('/review/delete', 'deleteReview')->name('review.delete');
 
             //いいね機能
             Route::post('/gr/{id}', 'gr')->name('gr');
@@ -178,7 +178,7 @@ Route::controller(MypageController::class)
 
         Route::get('/profile', 'profile')->name('profile');
         Route::post('/profile', 'registProfile')->name('profile.register');
-        Route::post('/delete', 'deleteAcount')->name('delete');
+        Route::post('/profile/delete', 'deleteAcount')->name('delete');
 
         Route::get('/reset-email', 'resetEmail')->name('reset-email');
         Route::post('/reset-email', 'sendResetEmail')->name('reset-email.post');

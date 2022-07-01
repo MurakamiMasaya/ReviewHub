@@ -4,6 +4,6 @@
     </div>
     <div class="mt-5">
         <div class="text-sm md:text-lg lg:text-xl  text-red-700 font-bold ">{{ $target->title }}</div>
-        <div class="text-sm md:text-lg lg:text-xl  text-red-700 font-semibold text-right">{{ $target->user->username }}</div>
+        <div class="text-sm md:text-lg lg:text-xl  text-red-700 font-semibold text-right">{{ $target->user->username ?? '' }}</div>
     </div>
 </div>

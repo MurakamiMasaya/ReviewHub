@@ -8,12 +8,12 @@
     <div class="count">{{ grs }}</div>
 
     
-    <Modal :open="authModal">
+    <Modal :open="authModal" @close-modal="closeAuthModal">
         <p class="modal_message">GRを押すにはログインが必要です。</p>
         <button @click="closeAuthModal" class="close_button">閉じる</button>
     </Modal>
 
-    <Modal :open="mailModal">
+    <Modal :open="mailModal" @close-modal="closeMailModal">
         <p class="modal_message">メールアドレスを認証してください。</p>
         <button @click="closeMailModal" class="close_button">閉じる</button>
     </Modal>
@@ -64,7 +64,6 @@ const pushGr = async() => {
     grs.value = isGrState.value ? grs.value -1 : grs.value +1
     isGrState.value = !isGrState.value
 
-    //endpoint、urlをlaravelから渡せるように変更
     try{
         if(isGrState.value){
             await axios.post('/' + props.path + '/gr/' + props.id)
