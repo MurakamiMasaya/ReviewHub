@@ -164,5 +164,8 @@ return [
         'end_date' => [
             'today' => '今日'
         ],
+        'birthday' => [
+            'today' => '今日'
+        ]
     ],
 ];
