@@ -6,7 +6,7 @@
 
     <!-- Header Image -->
     {{-- #TODO: 画像を横にスライドできる機能を後ほど実装 --}}
-    <x-eye-catching-image />
+    <x-header-image />
 
     <div class="max-w-6xl mx-auto mb-5 sm:mb-10">
         <div class="md:flex relative">
@@ -32,9 +32,9 @@
 
                 <x-article.top-eight :articles="$articles" />
                 
-                <div class="hidden md:block">
+                {{-- <div class="hidden md:block">
                     <stripe-banner />
-                </div>
+                </div> --}}
             </div>
             <x-bg-text first="ReviewHub" second="ReviewHub"/>
         </div>
@@ -42,6 +42,5 @@
 
 
     <!-- Footer Image -->
-    {{-- #TODO: 画像を横にスライドできる機能を後ほど実装 --}}
-    <x-eye-catching-image />
+    <x-footer-image />
 </x-app-layout>

@@ -1,12 +1,16 @@
 <template>
-  <carousel :items-to-show="1" :autoplay="3000" :transition="3000" :wrapAround="true" :pauseAutoplayOnHover="true">
-      <slide v-if="mobileWindow" v-for="(image, index) in mobileImages" :key="image.id">
-          <img :src="image.url"/>
-      </slide>
-      <slide v-else v-for="(image, index) in images" :key="image.id">
-          <img :src="image.url"/>
-      </slide>
-  </carousel>
+    <carousel :items-to-show="1" :autoplay="3000" :transition="3000" :wrapAround="true" :pauseAutoplayOnHover="true">
+        <slide v-if="mobileWindow" v-for="image in mobileImages" :key="image.id">
+            <a :href="'/contact'">
+                <img :src="image.url"/>
+            </a>
+        </slide>
+        <slide v-else v-for="image in images" :key="image.id">
+            <a :href="'/contact'">
+                <img :src="image.url"/>
+            </a>
+        </slide>
+    </carousel>
 </template>
 
 <script setup>
@@ -22,22 +26,22 @@ import { Carousel, Pagination, Navigation, Slide } from "vue3-carousel";
 
     const calculateWindowWidth = () => {
       windowWidth.value = window.innerWidth
-      // true/false
+      
       return mobileView.value = windowWidth.value < 768
     }
 
     const mobileImages = [
-        { id: 1, url: "/images/header-mobile.png" },
-        { id: 2, url: "/images/header-mobile.png" },
-        { id: 3, url: "/images/header-mobile.png" },
-        { id: 4, url: "/images/header-mobile.png" },
+        { url: "/images/header-mobile.png" },
+        { url: "/images/header-mobile.png" },
+        { url: "/images/header-mobile.png" },
+        { url: "/images/header-mobile.png" },
     ];
 
     const images = [
-        { id: 1, url: "/images/header.png" },
-        { id: 2, url: "/images/header.png" },
-        { id: 3, url: "/images/header.png" },
-        { id: 4, url: "/images/header.png" },
+        { url: "/images/header.png" },
+        { url: "/images/header.png" },
+        { url: "/images/header.png" },
+        { url: "/images/header.png" },
     ];
 </script>
 <style scoped>

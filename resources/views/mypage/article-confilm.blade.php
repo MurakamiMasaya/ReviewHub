@@ -72,5 +72,5 @@
     </div>
 
     <!-- Footer Image -->
-    <x-eye-catching-image />
+    <x-footer-image />
 </x-app-layout>

@@ -34,5 +34,5 @@
 
     <!-- Footer Image -->
     {{-- #TODO: 画像を横にスライドできる機能を後ほど実装 --}}
-    <x-eye-catching-image />
+    <x-footer-image />
 </x-app-layout>
