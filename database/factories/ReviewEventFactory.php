@@ -18,7 +18,7 @@ class ReviewEventFactory extends Factory
     {
         return [
             'user_id' => $this->faker->numberBetween(1, 10),
-            'event_id' => $this->faker->numberBetween(1, 100),
+            'event_id' => $this->faker->numberBetween(1, 20),
             'review' => $this->faker->realText(40),
         ];
     }

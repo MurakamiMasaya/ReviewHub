@@ -71,7 +71,7 @@
 
                 <div class="md:flex items-center mt-3">
                     <div class="font-bold text-sm md:text-lg lg:text-xl text-red-500 mr-2">URL : </div>
-                    <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->url }}</div>
+                    <div class="font-bold text-sm md:text-lg lg:text-x"><a class="text-blue-500" target="_blank" rel="noopener noreferrer" href="{{ $event->url }}">{{ $event->url }}</a></div>
                 </div>
 
                 <div class="flex justify-around items-center mt-10">
