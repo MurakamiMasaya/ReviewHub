@@ -71,11 +71,13 @@ class EventRepository implements EventRepositoryInterface {
 
     public function searchEvent($target, $column, $order, $paginate, $limit){
 
+        $target = '%' . addcslashes($target, '%_\\') . '%';
+
         if(is_null($paginate) && is_null($limit)){
             return Event::with('user', 'reviewEvents', 'grs')
                 ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
                 ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
-                ->where('events.' . $column, 'like', '%'. $target . '%')
+                ->where('events.' . $column, 'like', $target)
                 ->where('end_date', '>=', Carbon::now())
                 ->groupBy('events.id')
                 ->orderBy($order, 'desc')
@@ -85,7 +87,7 @@ class EventRepository implements EventRepositoryInterface {
             return Event::with('user', 'reviewEvents', 'grs')
                 ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
                 ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
-                ->where('events.' . $column, 'like', '%'. $target . '%')
+                ->where('events.' . $column, 'like', $target)
                 ->where('end_date', '>=', Carbon::now())
                 ->groupBy('events.id')
                 ->orderby($order, 'desc')
@@ -94,7 +96,7 @@ class EventRepository implements EventRepositoryInterface {
         return Event::with('user', 'reviewEvents', 'grs')
             ->leftJoin('event_grs', 'events.id', '=', 'event_grs.event_id')
             ->select('events.*', DB::raw("count(event_grs.event_id) as gr"))
-            ->where('events.' . $column, 'like', '%'. $target . '%')
+            ->where('events.' . $column, 'like', $target)
             ->where('end_date', '>=', Carbon::now())
             ->groupBy('events.id')
             ->orderby($order, 'desc')

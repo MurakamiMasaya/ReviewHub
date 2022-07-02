@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReviewFormRequest;
+use App\Http\Requests\SearchRequest;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\SchoolServiceInterface;
@@ -50,14 +51,14 @@ class CompanyController extends Controller
         }
     }
 
-    public function search(Request $request){
+    public function search(SearchRequest $request){
 
         try{
             // #TODO: 文字入力なしでの検索をバリデーションで禁止にする
             $user = $this->displayService->getAuthenticatedUser();
             
             // ＃TODO: 大文字小文字全角半角を区別しないように修正
-            $target = $request->target;
+            $target = htmlspecialchars($request->target);
             $companies = $this->companyService->searchCompany($target, 'name', 'gr', 20);
             $AllCompanies = $this->companyService->searchCompany($target, 'name', 'gr');
 

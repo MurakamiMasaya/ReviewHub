@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleFormRequest;
+use App\Http\Requests\SearchRequest;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
 use App\Interfaces\Services\DisplayServiceInterface;
@@ -56,7 +57,7 @@ class ArticleController extends Controller
         }
     }
 
-    public function search(Request $request){
+    public function search(SearchRequest $request){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();

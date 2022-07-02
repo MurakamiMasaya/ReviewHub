@@ -37,11 +37,13 @@ class SchoolRepository implements SchoolRepositoryInterface {
     }
     
     public function searchSchool($target, $column, $order, $paginate, $limit){
+
+        $target = '%' . addcslashes($target, '%_\\') . '%';
         
         if(is_null($paginate) && is_null($limit)){
             return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
                 ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
-                ->where('schools.' . $column, 'like', '%'. $target . '%')
+                ->where('schools.' . $column, 'like', $target)
                 ->groupBy('schools.id')
                 ->orderby($order, 'desc')
                 ->get();
@@ -49,14 +51,14 @@ class SchoolRepository implements SchoolRepositoryInterface {
         if(!is_null($paginate)){
             return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
                 ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
-                ->where('schools.' . $column, 'like', '%'. $target . '%')
+                ->where('schools.' . $column, 'like', $target)
                 ->groupBy('schools.id')
                 ->orderby($order, 'desc')
                 ->paginate($paginate);
         }
         return School::leftJoin('school_grs', 'schools.id', '=', 'school_grs.school_id')
             ->select('schools.*', DB::raw("count(school_grs.school_id) as gr"))
-            ->where('schools.' . $column, 'like', '%'. $target . '%')
+            ->where('schools.' . $column, 'like', $target)
             ->groupBy('schools.id')
             ->orderby($order, 'desc')
             ->limit($limit)

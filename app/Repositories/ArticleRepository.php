@@ -69,10 +69,12 @@ class ArticleRepository implements ArticleRepositoryInterface {
 
     public function searchArticle($target, $column, $order, $paginate, $limit){
 
+        $target = '%' . addcslashes($target, '%_\\') . '%';
+
         if(is_null($paginate) && is_null($limit)){
             return Article::leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
                 ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
-                ->where('articles.' . $column, 'like', '%'. $target . '%')
+                ->where('articles.' . $column, 'like', $target)
                 ->groupBy('articles.id')
                 ->orderby($order, 'desc')
                 ->get();
@@ -80,14 +82,14 @@ class ArticleRepository implements ArticleRepositoryInterface {
         if(!is_null($paginate)){
             return Article::leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
                 ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
-                ->where('articles.' . $column, 'like', '%'. $target . '%')
+                ->where('articles.' . $column, 'like', $target)
                 ->groupBy('articles.id')
                 ->orderby($order, 'desc')
                 ->paginate($paginate);
         }
         return Article::leftJoin('article_grs', 'articles.id', '=', 'article_grs.article_id')
                 ->select('articles.*', DB::raw("count(article_grs.article_id) as gr"))
-                ->where('articles.' . $column, 'like', '%'. $target . '%')
+                ->where('articles.' . $column, 'like', $target)
                 ->groupBy('articles.id')
                 ->orderby($order, 'desc')
                 ->limit($limit)

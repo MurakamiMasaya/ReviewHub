@@ -37,12 +37,14 @@ class CompanyRepository implements CompanyRepositoryInterface {
     }
     
     public function searchCompany($target, $column, $order, $paginate, $limit){
+
+        $target = '%' . addcslashes($target, '%_\\') . '%';
         
         if(is_null($paginate) && is_null($limit)){
             
             return Company::leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
                 ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
-                ->where('companies.' . $column, 'like', '%'. $target . '%')
+                ->where('companies.' . $column, 'like', $target)
                 ->groupBy('companies.id')
                 ->orderby($order, 'desc')
                 ->get();
@@ -51,14 +53,14 @@ class CompanyRepository implements CompanyRepositoryInterface {
 
             return Company::leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
                 ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
-                ->where('companies.' . $column, 'like', '%'. $target . '%')
+                ->where('companies.' . $column, 'like', $target)
                 ->groupBy('companies.id')
                 ->orderby($order, 'desc')
                 ->paginate($paginate);
         }
         return Company::leftJoin('company_grs', 'companies.id', '=', 'company_grs.company_id')
             ->select('companies.*', DB::raw("count(company_grs.company_id) as gr"))
-            ->where('companies.' . $column, 'like', '%'. $target . '%')
+            ->where('companies.' . $column, 'like', $target)
             ->groupBy('companies.id')
             ->orderby($order, 'desc')
             ->limit($limit)
