@@ -95,7 +95,7 @@
                     <!-- phone -->
                     <div class="mt-5">
                         <div class="text-sm font-bold">■電話番号<span class="text-red-500">(必須)</span></div>
-                        <x-input id="phone" class="block mt-1 w-full" type="number" name="phone" :value="old('phone')" required autofocus placeholder="電話番号" />
+                        <x-input id="phone" class="block mt-1 w-full no-spin" type="number" name="phone" :value="old('phone')" required autofocus placeholder="電話番号" />
                     </div>
 
                     <!-- privacy policy -->

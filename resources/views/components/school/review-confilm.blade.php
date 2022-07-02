@@ -40,7 +40,7 @@
 
                 <div class="mt-10 text-sm md:text-md lg:text-lg font-bold">
                     本文(必須) : 
-                    <textarea name="review" rows="10" required maxlength="40"readonly class="shadow appearance-none border-none w-full rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $review }}</textarea>
+                    <textarea name="review" rows="6" required maxlength="140"readonly class="shadow appearance-none border-none w-full rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">{{ $review }}</textarea>
                 </div>
 
                 <div class="mt-10">

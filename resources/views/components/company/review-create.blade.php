@@ -39,8 +39,8 @@
 
                 <div class="mt-10 text-sm md:text-md lg:text-lg font-bold">
                     本文(必須) : 
-                    <textarea name="review" rows="10" value="{{ old('review') }}" required maxlength="40" class="shadow appearance-none border w-full rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="従業員を大切にしてくれる良い企業だったと思います！">{{ old('review') }}</textarea>
-                    <div class="text-xs font-bold text-gray-500">※40文字以内でご記入ください。</div>
+                    <textarea name="review" rows="6" value="{{ old('review') }}" required maxlength="140" class="shadow appearance-none border w-full rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="従業員を大切にしてくれる良い企業だったと思います！">{{ old('review') }}</textarea>
+                    <div class="text-xs font-bold text-gray-500">※140文字以内でご記入ください。</div>
                 </div>
 
                 <div class="mt-10">

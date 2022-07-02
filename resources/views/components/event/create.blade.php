@@ -22,7 +22,7 @@
 
             <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">
                 電話番号(必須) : 
-                <input type="number" name="contact_address" value="{{ old('contact_address') }}" required class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" placeholder="{{ $user->phone }}"/>
+                <input type="number" name="contact_address" value="{{ old('contact_address') }}" required class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline no-spin" placeholder="{{ $user->phone }}"/>
             </div>
 
             <div class="mt-3 text-sm md:text-md lg:text-lg font-bold">

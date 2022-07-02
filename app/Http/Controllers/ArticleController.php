@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleFormRequest;
+use App\Http\Requests\ReviewFormRequest;
 use App\Http\Requests\SearchRequest;
 use App\Interfaces\Services\ArticleServiceInterface;
 use App\Interfaces\Services\CompanyServiceInterface;
@@ -204,7 +205,7 @@ class ArticleController extends Controller
         }
     }
 
-    public function review(Request $request){
+    public function review(ReviewFormRequest $request){
 
         try{
             $this->articleService->createReview($request);

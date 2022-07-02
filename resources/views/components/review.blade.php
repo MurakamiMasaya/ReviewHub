@@ -26,7 +26,7 @@
                     <div class="text-xs md:text-md text-gray-500">{{ date_format($review->created_at, 'Y年m月n日') }}</div>
                 </div>
             </div>
-            <div class="text-xs md:text-sm mt-1">{{ $review->review }}</div>
+            <div class="text-xs md:text-sm mt-1">{!! nl2br($review->review) !!}</div>
 
             <div class="flex justify-end">
                 <form action="{{ route('review.report') }}" method="get">

@@ -51,12 +51,12 @@
 
                 <div class="mt-3">
                     <div class="font-bold text-sm md:text-lg lg:text-xl text-red-500 mr-2">イベント内容 : </div>
-                    <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->contents }}</div>
+                    <div class="font-bold text-sm md:text-lg lg:text-xl">{!! nl2br($event->contents) !!}</div>
                 </div>
 
                 <div class="flex items-center mt-3">
                     <div class="font-bold text-sm md:text-lg lg:text-xl text-red-500 mr-2">ハッシュタグ : </div>
-                    <div class="font-bold text-sm md:text-lg lg:text-xl">{{ $event->tag }}</div>
+                    <div class="font-bold text-sm md:text-lg lg:text-xl">{!! nl2br($event->tag) !!}</div>
                 </div>
 
                 <div class="flex items-center mt-3">
@@ -82,17 +82,17 @@
                                 :grs='@json($event->grs->count())' 
                                 :is-gr='@json($event->isGrByAuthUser())'
                                 :path='@json('event')'
-                                :width='@json('40px')'
-                                :font='@json('30px')'
+                                :width='@json('30px')'
+                                :font='@json('20px')'
                                 :auth='@json(Auth::check())'
                                 :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
                             </switching-gr>
                         </div>
                         <div id="review-icon" class="flex items-center">
-                            <div class="w-12 mr-2">
+                            <div class="w-8 mr-2">
                                 <img src="{{ asset('images/review.png') }}" alt="GR">
                             </div>
-                            <div class="text-3xl font-bold">{{ count($reviewsAll) }}</div>
+                            <div class="text-xl font-bold">{{ count($reviewsAll) }}</div>
                         </div>
                     </div>
 
@@ -139,17 +139,20 @@
                             <x-icon :user="$user" white=true/> 
                         </div>
                         <div class="w-3/4 py-1">
-                            <div class="flex justify-between items-end mb-1">
-                                <div class="text-white text-xs md:text-sm lg:text-md font-bold">
+                            <div class="mb-1">
+                                <div class="text-white text-sm md:text-md lg:text-lg font-bold">
                                     {{ $user->username }}
                                 </div>
+                            </div>
+                            <textarea name="review" id="" rows="5" maxlength="140" required class="shadow appearance-none border-none w-full rounded py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
+                            <div class="flex justify-between">
+                                <div class="text-xs font-bold text-gray-50">※140文字以内でご記入ください。</div>
                                 <button class="w-20 md:w-28 lg:w-32 px-3 bg-white rounded-md">
                                     <div class="text-center font-bold text-red-500">
                                         登録
                                     </div>
                                 </button>
                             </div>
-                            <textarea name="review" id="" rows="2" maxlength="40" required class="shadow appearance-none border-none w-full rounded py-2 px-2 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"></textarea>
                         </div>
                     </div>
                 </form>
