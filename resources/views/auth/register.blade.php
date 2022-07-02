@@ -38,54 +38,64 @@
         
                     <!-- Email Address -->
                     <div class="mt-5">
-                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required placeholder="メールアドレス(必須)"/>
+                        <div class="text-sm font-bold">■メールアドレス<span class="text-red-500">(必須)</span></div>
+                        <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required placeholder="メールアドレス"/>
                     </div>
         
                     <!-- Password -->
                     <div class="mt-5">
+                        <div class="text-sm font-bold">■パスワード<span class="text-red-500">(必須)</span></div>
                         <x-input id="password" class="block mt-1 w-full"
                                         type="password"
                                         name="password"
                                         required autocomplete="new-password"
-                                        placeholder="パスワード(必須)" />
+                                        placeholder="パスワード" />
                     </div>
         
                     <!-- Confirm Password -->
                     <div class="mt-2">
+                        <div class="text-sm font-bold">■メールアドレス確認用<span class="text-red-500">(必須)</span></div>
                         <x-input id="password_confirmation" class="block mt-1 w-full"
                                         type="password"
                                         name="password_confirmation" required
-                                        placeholder="パスワード確認用(必須)" />
+                                        placeholder="パスワード確認用" />
                     </div>
         
                     <!-- Name -->
                     <div class="mt-5">
-                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus placeholder="氏名(必須)" />
+                        <div class="text-sm font-bold">■名前<span class="text-red-500">(必須)</span></div>
+                        <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus placeholder="氏名" />
                     </div>
         
                     <!-- birthday -->
                     <div class="mt-5">
-                        <x-input id="birthday" class="block mt-1 w-full" type="date" name="birthday" :value="old('birthday')" required autofocus placeholder="生年月日(必須)" />
+                        <div class="text-sm font-bold">■生年月日<span class="text-red-500">(必須)</span></div>
+                        <x-input id="birthday" class="block mt-1 w-full" type="date" name="birthday" :value="old('birthday')" required autofocus min="1900-04-01" max="<?php echo date('Y-m-d'); ?>" />
                     </div>
                     
                     <!-- gender -->
-                    <div class="flex mt-5">
-                        <div class="mr-2 flex justify-center">
-                            <x-input id="gender" class="mt-1 mr-1" type="radio" name="gender" value="0" required />男性
-                        </div>
-                        <div class="flex justify-center">
-                            <x-input id="gender" class="mt-1 mr-1" type="radio" name="gender" value="1" required />女性
+                    <div class="mt-5">
+                        <div class="text-sm font-bold">■性別<span class="text-red-500">(必須)</span></div>
+                        <div class="flex">
+                            <div class="mr-2 flex justify-center">
+                                <x-input id="gender" class="mt-1 mr-1" type="radio" name="gender" value="0" required />男性
+                            </div>
+                            <div class="flex justify-center">
+                                <x-input id="gender" class="mt-1 mr-1" type="radio" name="gender" value="1" required />女性
+                            </div>
                         </div>
                     </div>
                     
                     <!-- username -->
                     <div class="mt-5">
-                        <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus placeholder="ユーザーネーム(必須)" />
+                        <div class="text-sm font-bold">■ユーザーネーム<span class="text-red-500">(必須)</span></div>
+                        <x-input id="username" class="block mt-1 w-full" type="text" name="username" :value="old('username')" required autofocus placeholder="ユーザーネーム" />
                     </div>
         
                     <!-- phone -->
                     <div class="mt-5">
-                        <x-input id="phone" class="block mt-1 w-full" type="number" name="phone" :value="old('phone')" required autofocus placeholder="電話番号(必須)" />
+                        <div class="text-sm font-bold">■電話番号<span class="text-red-500">(必須)</span></div>
+                        <x-input id="phone" class="block mt-1 w-full" type="number" name="phone" :value="old('phone')" required autofocus placeholder="電話番号" />
                     </div>
 
                     <!-- privacy policy -->

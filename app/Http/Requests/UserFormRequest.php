@@ -26,7 +26,7 @@ class UserFormRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:255'],
-            'birthday' => ['required'],
+            'birthday' => ['required', 'date', 'before:today'],
             'gender' => ['required', 'numeric'],
             'username' => ['required', 'string', 'max:10'],
             'email' => ['required', 'string', 'email:strict,spoof', 'max:255', 'unique:users'],

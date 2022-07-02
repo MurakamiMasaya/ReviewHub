@@ -45,8 +45,7 @@ class AuthenticatedSessionController extends Controller
         
         }catch(\Throwable $e){
             \Log::error($e);
-            \Slack::channel('error')->send('ログインでエラーが発生！');
-            return redirect()->route('register')->with('flash_message', 'ログインに失敗しました');
+            return redirect()->route('login')->with('flash_message', 'ログインに失敗しました');
         }
         
     }

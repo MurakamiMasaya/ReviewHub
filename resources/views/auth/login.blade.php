@@ -25,16 +25,18 @@
     
                 <!-- Email Address -->
                 <div class="mt-5">
-                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus placeholder="メールアドレス(必須)" />
+                    <div class="text-sm font-bold">■メールアドレス<span class="text-red-500">(必須)</span></div>
+                    <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus placeholder="メールアドレス" />
                 </div>
     
                 <!-- Password -->
                 <div class="mt-5">
+                    <div class="text-sm font-bold">■パスワード<span class="text-red-500">(必須)</span></div>
                     <x-input id="password" class="block mt-1 w-full"
                                     type="password"
                                     name="password"
                                     required autocomplete="current-password"
-                                    placeholder="パスワード(必須)" />
+                                    placeholder="パスワード" />
                 </div>
     
                 <!-- privacy policy -->
