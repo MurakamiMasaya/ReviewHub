@@ -1068,6 +1068,9 @@ input:checked + .toggle-bg {
 .m-5 {
   margin: 1.25rem;
 }
+.m-4 {
+  margin: 1rem;
+}
 .mx-auto {
   margin-left: auto;
   margin-right: auto;

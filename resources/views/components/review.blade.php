@@ -3,47 +3,39 @@
     reviewがまだありません
 </div>
 @else
-<div class="mb-4 relative">
+<div class="mt-4 relative">
     @foreach ($reviews as $review)
-    <div class="flex items-center mt-3">
-        <div class="w-12 md:w-15 mr-1 md:mr-2">           
-            <x-icon :user="$review->user"/> 
+    <div class="flex justify-between items-center mb-1">
+        <div class="flex items-center">
+            <div class="w-5 md:w-7 mr-1 md:mr-2">           
+                <x-icon :user="$review->user"/> 
+            </div>
+            <div class="text-xs md:text-md mr-2 md:mr-3">{{ $review->user->username }}</div>
         </div>
-        <div class="w-full">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <div class="text-sm md:text-md mr-2 md:mr-3">{{ $review->user->username }}</div>
-                    <switching-gr 
-                        :id='@json($review->id)'
-                        :grs='@json($review->grs->count())' 
-                        :is-gr='@json($review->isGrByAuthUser())'
-                        :path='@json($path . '/review')'
-                        :auth='@json(Auth::check())'
-                        :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
-                    </switching-gr>
-                </div>
-                <div>
-                    <div class="text-xs md:text-md text-gray-500">{{ date_format($review->created_at, 'Y年m月n日') }}</div>
-                </div>
-            </div>
-            <div class="text-xs md:text-sm mt-1">{!! nl2br($review->review) !!}</div>
-
-            <div class="flex justify-end">
-                <form action="{{ route('review.report') }}" method="get">
-                    <input type="hidden" name="review_id" value="{{ $review->id }}">
-                    <input type="hidden" name="user_id" value="{{ $review->user->id }}">
-                    <input type="hidden" name="type" value="{{ $title }}">
-                    <div class="w-5 mr-2" data-tooltip-target="tooltip-report" data-tooltip-style="light">
-                        <button>
-                            <img src="{{ asset('images/report.png') }}" alt="report">
-                        </button>
-                    </div>
-                    <div id="tooltip-report" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
-                        通報
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                    </div>
-                </form>
-            </div>
+        <div>
+            <div class="text-xs md:text-sm text-gray-500">{{ date_format($review->created_at, 'Y年m月n日') }}</div>
+        </div>
+    </div>
+    <div class="text-xs md:text-sm mb-1">{!! nl2br($review->review) !!}</div>
+    <div class="flex justify-between items-center">
+        <div class="flex items-center">
+            <switching-gr 
+                :id='@json($review->id)'
+                :grs='@json($review->grs->count())' 
+                :is-gr='@json($review->isGrByAuthUser())'
+                :path='@json($path . '/review')'
+                :auth='@json(Auth::check())'
+                :mail='@json(isset(Auth::user()->email_verified_at) ? true : false)'>
+            </switching-gr>
+        </div>
+        <div class="w-5 mr-2" data-tooltip-target="tooltip-report" data-tooltip-style="light">
+            <button>
+                <img src="{{ asset('images/report.png') }}" alt="report">
+            </button>
+        </div>
+        <div id="tooltip-report" role="tooltip" class="inline-block absolute invisible z-20 py-2 px-3 text-sm font-bold text-red-500 bg-white rounded-lg border-2 border-red-300 shadow-sm opacity-0 tooltip">
+            通報
+            <div class="tooltip-arrow" data-popper-arrow></div>
         </div>
     </div>
     @endforeach
