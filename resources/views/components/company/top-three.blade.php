@@ -29,7 +29,15 @@
                 <div>
                     <div class="flex justify-between items-end mt-3 border-b border-gray-400">
                         <div class="flex items-center">
-                            <div class="min-w-10 mr-2 md:text-md lg:text-xl font-bold text-red-800">{{ $loop->index+1 . '位' }}</div>
+                            <div class="flex-none w-10 mr-1">
+                                @if($loop->index === 0)
+                                    <img src="{{ asset('images/first.png') }}" alt="1位">
+                                @elseif($loop->index === 1)
+                                    <img src="{{ asset('images/second.png') }}" alt="2位">
+                                @else
+                                    <img src="{{ asset('images/third.png') }}" alt="3位">
+                                @endif
+                            </div>
                             <div class="text-sm lg:text-lg font-bold text-gray-800">
                                 <a href="{{ route('company.detail',['id' => $company->id]) }}">
                                     {{ $company->name }}
