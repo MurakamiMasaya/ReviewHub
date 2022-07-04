@@ -15,7 +15,7 @@
                     <div class="mx-3 md:mx-2 mt-5">
                         <div class="flex justify-between">
                             <div class="flex items-center">
-                                <div class="w-10 sm:w-11 lg:w-12 mr-2 md:mr-3 relative">
+                                <div class="w-10 sm:w-11 lg:w-12 flex-none mr-2 md:mr-3 relative">
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold">{{ $schools->firstItem()+ $loop->index }}</div>
                                 </div>
@@ -46,7 +46,7 @@
                     <div class="mx-3 md:mx-2 mt-5">
                         <div class="flex justify-between">
                             <div class="flex items-center">
-                                <div class="w-10 sm:w-11 lg:w-12 mr-2 md:mr-3 relative">
+                                <div class="w-10 sm:w-11 lg:w-12 flex-none mr-2 md:mr-3 relative">
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold">{{ $schools->firstItem()+ $loop->index }}</div>
                                 </div>
