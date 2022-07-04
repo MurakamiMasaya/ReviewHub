@@ -26,7 +26,7 @@ import { Carousel, Pagination, Navigation, Slide } from "vue3-carousel";
 
     const calculateWindowWidth = () => {
       windowWidth.value = window.innerWidth
-      // true/false
+
       return mobileView.value = windowWidth.value < 768
     }
 

@@ -1,11 +1,11 @@
 <template>
     <carousel :items-to-show="1" :autoplay="3000" :transition="3000" :wrapAround="true" :pauseAutoplayOnHover="true">
-        <slide v-if="mobileWindow" v-for="image in mobileImages" :key="image.id">
+        <slide v-if="mobileView" v-for="image in mobileImages" :key="image.id">
             <a :href="'/contact'">
                 <img :src="image.url"/>
             </a>
         </slide>
-        <slide v-else v-for="image in images" :key="image.id">
+        <slide v-else v-for="(image, index) in images" :key="image.id">
             <a :href="'/contact'">
                 <img :src="image.url"/>
             </a>
@@ -31,17 +31,17 @@ import { Carousel, Pagination, Navigation, Slide } from "vue3-carousel";
     }
 
     const mobileImages = [
-        { url: "/images/header-mobile.png" },
-        { url: "/images/header-mobile.png" },
-        { url: "/images/header-mobile.png" },
-        { url: "/images/header-mobile.png" },
+        { id: 1, url: "/images/header-mobile.png" },
+        { id: 2, url: "/images/header-mobile.png" },
+        { id: 3, url: "/images/header-mobile.png" },
+        { id: 4, url: "/images/header-mobile.png" },
     ];
 
     const images = [
-        { url: "/images/header.png" },
-        { url: "/images/header.png" },
-        { url: "/images/header.png" },
-        { url: "/images/header.png" },
+        { id: 1, url: "/images/header.png" },
+        { id: 2, url: "/images/header.png" },
+        { id: 3, url: "/images/header.png" },
+        { id: 4, url: "/images/header.png" },
     ];
 </script>
 <style scoped>
