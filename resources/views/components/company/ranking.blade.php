@@ -15,10 +15,22 @@
                     <div class="mx-3 md:mx-2 mt-5">
                         <div class="flex justify-between">
                             <div class="flex items-center">
+                                @if($companies->firstItem()+ $loop->index < 4)
+                                <div class="w-10 md:w-11 lg:w-12 flex-none mr-2 md:mr-3">
+                                    @if($companies->firstItem()+ $loop->index === 1)
+                                        <img src="{{ asset('images/first.png') }}" alt="1位">
+                                    @elseif($companies->firstItem()+ $loop->index === 2)
+                                        <img src="{{ asset('images/second.png') }}" alt="2位">
+                                    @elseif($companies->firstItem()+ $loop->index === 3)
+                                        <img src="{{ asset('images/third.png') }}" alt="3位">
+                                    @endif
+                                </div>
+                                @else
                                 <div class="w-10 sm:w-11 lg:w-12 flex-none mr-2 md:mr-3 relative">
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-semibold">{{ $companies->firstItem()+ $loop->index }}</div>
                                 </div>
+                                @endif
                                 <div class="w-5/6 font-bold text-md lg:text-lg">
                                     <a href="{{ route('company.detail',['id' => $company->id]) }}">
                                         {{ $company->name }}

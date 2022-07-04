@@ -11,15 +11,26 @@
         @else
             <div class="">
                 @foreach($articles as $article)
-                    @if($loop->index < 10)
                     <div class="px-3 md:px-5">
                         <div class="flex items-end mt-5 justify-between">
                             <div class="flex items-center">
+                                @if($articles->firstItem()+ $loop->index < 4)
+                                <div class="w-10 md:w-11 lg:w-12 flex-none mr-2 md:mr-3">
+                                    @if($articles->firstItem()+ $loop->index === 1)
+                                        <img src="{{ asset('images/first.png') }}" alt="1位">
+                                    @elseif($articles->firstItem()+ $loop->index === 2)
+                                        <img src="{{ asset('images/second.png') }}" alt="2位">
+                                    @elseif($articles->firstItem()+ $loop->index === 3)
+                                        <img src="{{ asset('images/third.png') }}" alt="3位">
+                                    @endif
+                                </div>
+                                @else
                                 <div class="w-10 md:w-11 lg:w-12 flex-none mr-2 md:mr-3 relative">
                                     <img src="{{ asset('images/ranking/other.png') }}" alt="順位">
                                     <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 font-bold">{{ $articles->firstItem()+ $loop->index }}</div>
                                 </div>
-                                <div class="w-5/6 font-bold text-md lg:text-lg line-clamp-1">
+                                @endif
+                                <div class="w-5/6 font-bold text-xs md:text-sm lg:text-md line-clamp-2">
                                     <a href="{{ route('article.detail', ['id' => $article->id]) }}">
                                         {{ $article->title }}
                                     </a>
@@ -36,11 +47,10 @@
                                 </switching-gr>
                             </div>
                         </div>
-                        <div class="line-clamp-2 px-5">
+                        <div class="text-xs md:text-sm lg:text-md line-clamp-2 px-5">
                             {{ $article->contents }}
                         </div>
                     </div>
-                    @endif
                 @endforeach
             </div>
         @endif

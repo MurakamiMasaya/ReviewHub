@@ -30,7 +30,6 @@
         </div>
     </div>
 
-    <!-- Footer Image -->
-    {{-- #TODO: 画像を横にスライドできる機能を後ほど実装 --}}
     <x-footer-image />
+    <script src="{{ asset('js/review.js') }}"></script>
 </x-app-layout>

@@ -39,8 +39,6 @@
             </div>
         </div>
         <script src="https://unpkg.com/flowbite@1.4.4/dist/flowbite.js"></script>
-        {{-- <script src="{{ asset('js/adjustTopMargin.js') }}"></script> --}}
-        <script src="{{ asset('js/review.js') }}"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
     </body>
 </html>

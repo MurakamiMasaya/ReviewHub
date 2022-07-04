@@ -3,9 +3,9 @@
     reviewがまだありません
 </div>
 @else
-<div class="mt-4 relative">
+<div class="relative">
     @foreach ($reviews as $review)
-    <div class="flex justify-between items-center mb-1">
+    <div class="flex justify-between items-center mt-4">
         <div class="flex items-center">
             <div class="w-5 md:w-7 mr-1 md:mr-2">           
                 <x-icon :user="$review->user"/> 
