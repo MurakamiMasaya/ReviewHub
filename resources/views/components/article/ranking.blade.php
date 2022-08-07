@@ -39,7 +39,7 @@
                             <div class="flex items-center">
                                 <switching-gr 
                                     :id='@json($article->id)'
-                                    :grs='@json($article->grs->count())' 
+                                    :grs='@json($article->gr)' 
                                     :is-gr='@json($article->isGrByAuthUser())'
                                     :path='@json('article')'
                                     :auth='@json(Auth::check())'

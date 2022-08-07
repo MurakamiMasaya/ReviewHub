@@ -40,7 +40,7 @@
                             <div class="flex items-end">
                                 <switching-gr 
                                     :id='@json($company->id)'
-                                    :grs='@json($company->grs->count())' 
+                                    :grs='@json($company->gr)' 
                                     :is-gr='@json($company->isGrByAuthUser())'
                                     :path='@json('company')'
                                     :auth='@json(Auth::check())'
@@ -71,7 +71,7 @@
                             <div class="flex items-end">
                                 <switching-gr 
                                     :id='@json($company->id)'
-                                    :grs='@json($company->grs->count())' 
+                                    :grs='@json($company->gr)' 
                                     :is-gr='@json($company->isGrByAuthUser())'
                                     :path='@json('company')'
                                     :auth='@json(Auth::check())'

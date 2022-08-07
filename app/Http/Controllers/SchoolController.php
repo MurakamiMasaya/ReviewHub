@@ -31,7 +31,7 @@ class SchoolController extends Controller
         $this->displayService = $displayService;
     }
 
-    public function index($period = 'month'){
+    public function index($period = 'all'){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();

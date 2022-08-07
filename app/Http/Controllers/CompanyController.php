@@ -31,14 +31,13 @@ class CompanyController extends Controller
         $this->displayService = $displayService;
     }
 
-    public function index($period = 'month'){
+    public function index($period = 'all'){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
 
             $period = $this->displayService->judgePeriod($period);
             $companies = $this->companyService->getCompany(null, 'gr', $period, 20);
-            
             $schools = $this->schoolService->getSchool(null, 'gr', 30, null, 3);
             $articles = $this->articleService->getArticle(null, null, 'gr', 30, null, 8);
 

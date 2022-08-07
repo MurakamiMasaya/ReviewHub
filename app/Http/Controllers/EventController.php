@@ -43,7 +43,7 @@ class EventController extends Controller
         $this->mailService = $mailService;
     }
 
-    public function index($period = 'month'){
+    public function index($period = 'all'){
 
         try{
             $user = $this->displayService->getAuthenticatedUser();
