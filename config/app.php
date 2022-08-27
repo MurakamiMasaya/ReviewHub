@@ -196,6 +196,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Slack' => App\Facades\Slack::class,
+        'Log' => Illuminate\Support\Facades\Log::class,
     ])->toArray(),
 
 ];
