@@ -1,8 +1,9 @@
+# For more information: https://laravel.com/docs/sail
 version: '3'
 services:
     laravel.test:
         build:
-            context: docker/8.1
+            context: ./docker/8.1
             dockerfile: Dockerfile
             args:
                 WWWGROUP: '${WWWGROUP}'
@@ -27,7 +28,6 @@ services:
             - selenium
     mysql:
         image: 'mysql/mysql-server:8.0'
-        platform: linux/x86_64  
         ports:
             - '${FORWARD_DB_PORT:-3306}:3306'
         environment:
