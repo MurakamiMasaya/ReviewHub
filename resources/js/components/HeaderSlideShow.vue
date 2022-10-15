@@ -1,13 +1,13 @@
 <template>
-    <carousel :items-to-show="1" :autoplay="3000" :transition="3000" :wrapAround="true" :pauseAutoplayOnHover="true">
+    <carousel :items-to-show="1" :autoplay="3000" :transition="3000" :wrapAround="true" :pauseAutoplayOnHover="true" dir="rtl">
         <slide v-if="mobileView" v-for="image in mobileImages" :key="image.id">
-            <a :href="'/contact'">
-                <img :src="image.url"/>
+            <a :href="image.url" target="_blank" rel="noopener">
+                <img :src="image.src"/>
             </a>
         </slide>
         <slide v-else v-for="(image, index) in images" :key="image.id">
-            <a :href="'/contact'">
-                <img :src="image.url"/>
+            <a :href="image.url" target="_blank" rel="noopener">
+                <img :src="image.src"/>
             </a>
         </slide>
     </carousel>
@@ -31,17 +31,13 @@ import { Carousel, Pagination, Navigation, Slide } from "vue3-carousel";
     }
 
     const mobileImages = [
-        { id: 1, url: "/images/header-mobile.png" },
-        { id: 2, url: "/images/header-mobile.png" },
-        { id: 3, url: "/images/header-mobile.png" },
-        { id: 4, url: "/images/header-mobile.png" },
+        { id: 1, src: "/images/ad/cdc_bn_3syu_seminar.png", url: "http://type.jp/s/fair/e/?waad=zyjfTRw5"},
+        { id: 2, src: "/images/ad/cdc_bn_3syu_seminar.png", url: "http://type.jp/s/fair/e/?waad=zyjfTRw5"},
     ];
-
+      
     const images = [
-        { id: 1, url: "/images/header.png" },
-        { id: 2, url: "/images/header.png" },
-        { id: 3, url: "/images/header.png" },
-        { id: 4, url: "/images/header.png" },
+        { id: 1, src: "/images/ad/cdc_bn_3syu_store.png", url: "http://type.jp/s/fair/e/?waad=qEZ9m9iZ"},
+        { id: 2, src: "/images/ad/cdc_bn_3syu_pre.png", url: "http://type.jp/s/fair/e/?waad=vAnj5OEB"},
     ];
 </script>
 <style scoped>

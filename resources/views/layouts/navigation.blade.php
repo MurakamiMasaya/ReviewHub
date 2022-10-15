@@ -11,8 +11,8 @@
                     </a>
                 </div>
             </div>
-            <div class="hidden sm:flex items-center justify-end">
-                <div class="pr-5">
+            <div class="hidden sm:flex justify-end">
+                <div class="pr-5 my-auto">
                     <div>
                         <a href="{{ route('sitemap') }}" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">サイトマップ</a>
                         <a href="{{ route('contact') }}" class="mr-2 lg:mr-4 text-xs font-bold text-gray-700 dark:text-gray-500">お問い合わせ</a>
