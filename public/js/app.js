@@ -22659,22 +22659,17 @@ var _withScopeId = function _withScopeId(n) {
 var _hoisted_1 = {
   "class": "top-0 right-0"
 };
-var _hoisted_2 = ["href"];
+var _hoisted_2 = {
+  href: '/contact'
+};
 var _hoisted_3 = ["src"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
-    href: 'http://type.jp/s/fair/e/?waad=zyjfTRw5',
-    target: "_blank",
-    rel: "noopener"
-  }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
-    "class": "h-full",
-    src: '/images/ad/cdc_bn_3syu_seminar.png',
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("img", {
+    src: '/images/header-event.png',
     alt: "トップイメージ"
   }, null, 8
   /* PROPS */
-  , _hoisted_3)], 8
-  /* PROPS */
-  , _hoisted_2)]);
+  , _hoisted_3)])]);
 }
 
 /***/ }),
@@ -22715,21 +22710,29 @@ __webpack_require__.r(__webpack_exports__);
 
     var mobileImages = [{
       id: 1,
-      src: "/images/ad/cdc_bn_3syu_seminar.png",
-      url: "http://type.jp/s/fair/e/?waad=zyjfTRw5"
+      src: "/images/header-mobile.png"
     }, {
       id: 2,
-      src: "/images/ad/cdc_bn_3syu_seminar.png",
-      url: "http://type.jp/s/fair/e/?waad=zyjfTRw5"
+      src: "/images/header-mobile.png"
+    }, {
+      id: 3,
+      src: "/images/header-mobile.png"
+    }, {
+      id: 4,
+      src: "/images/header-mobile.png"
     }];
     var images = [{
       id: 1,
-      src: "/images/ad/cdc_bn_3syu_store.png",
-      url: "http://type.jp/s/fair/e/?waad=qEZ9m9iZ"
+      src: "/images/header.png"
     }, {
       id: 2,
-      src: "/images/ad/cdc_bn_3syu_pre.png",
-      url: "http://type.jp/s/fair/e/?waad=vAnj5OEB"
+      src: "/images/header.png"
+    }, {
+      id: 3,
+      src: "/images/header.png"
+    }, {
+      id: 4,
+      src: "/images/header.png"
     }];
     (0,vue__WEBPACK_IMPORTED_MODULE_1__.onMounted)(function () {
       window.addEventListener('resize', calculateWindowWidth);
@@ -22797,21 +22800,29 @@ __webpack_require__.r(__webpack_exports__);
 
     var mobileImages = [{
       id: 1,
-      src: "/images/ad/cdc_bn_3syu_seminar.png",
-      url: "http://type.jp/s/fair/e/?waad=zyjfTRw5"
+      src: "/images/header-mobile.png"
     }, {
       id: 2,
-      src: "/images/ad/cdc_bn_3syu_seminar.png",
-      url: "http://type.jp/s/fair/e/?waad=zyjfTRw5"
+      src: "/images/header-mobile.png"
+    }, {
+      id: 3,
+      src: "/images/header-mobile.png"
+    }, {
+      id: 4,
+      src: "/images/header-mobile.png"
     }];
     var images = [{
       id: 1,
-      src: "/images/ad/cdc_bn_3syu_store.png",
-      url: "http://type.jp/s/fair/e/?waad=qEZ9m9iZ"
+      src: "/images/header.png"
     }, {
       id: 2,
-      src: "/images/ad/cdc_bn_3syu_pre.png",
-      url: "http://type.jp/s/fair/e/?waad=vAnj5OEB"
+      src: "/images/header.png"
+    }, {
+      id: 3,
+      src: "/images/header.png"
+    }, {
+      id: 4,
+      src: "/images/header.png"
     }];
     var __returned__ = {
       mobileView: mobileView,

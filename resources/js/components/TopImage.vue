@@ -1,8 +1,8 @@
 <template>
 
 <div class="top-0 right-0">
-    <a :href="'http://type.jp/s/fair/e/?waad=zyjfTRw5'" target="_blank" rel="noopener">
-        <img class="h-full" :src="'/images/ad/cdc_bn_3syu_seminar.png'" alt="トップイメージ">
+    <a :href="'/contact'">
+        <img :src="'/images/header-event.png'" alt="トップイメージ">
     </a>
 </div>
 </template>

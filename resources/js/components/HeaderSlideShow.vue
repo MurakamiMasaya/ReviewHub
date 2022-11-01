@@ -31,13 +31,17 @@ import { Carousel, Pagination, Navigation, Slide } from "vue3-carousel";
     }
 
     const mobileImages = [
-        { id: 1, src: "/images/ad/cdc_bn_3syu_seminar.png", url: "http://type.jp/s/fair/e/?waad=zyjfTRw5"},
-        { id: 2, src: "/images/ad/cdc_bn_3syu_seminar.png", url: "http://type.jp/s/fair/e/?waad=zyjfTRw5"},
+        { id: 1, src: "/images/header-mobile.png" },
+        { id: 2, src: "/images/header-mobile.png" },
+        { id: 3, src: "/images/header-mobile.png" },
+        { id: 4, src: "/images/header-mobile.png" },
     ];
       
     const images = [
-        { id: 1, src: "/images/ad/cdc_bn_3syu_store.png", url: "http://type.jp/s/fair/e/?waad=qEZ9m9iZ"},
-        { id: 2, src: "/images/ad/cdc_bn_3syu_pre.png", url: "http://type.jp/s/fair/e/?waad=vAnj5OEB"},
+        { id: 1, src: "/images/header.png" },
+        { id: 2, src: "/images/header.png" },
+        { id: 3, src: "/images/header.png" },
+        { id: 4, src: "/images/header.png" },
     ];
 </script>
 <style scoped>
